@@ -199,55 +199,6 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
-    describe 'the cataloged_date from publishing job' do
-      describe 'the date cataloged facets' do
-        context 'When the record has 950, 876 and 951 fields' do
-          it 'indexes the oldest 876d field' do
-            marc_record = fixture_record('99299653506421_custom_951')
-            fields_876_sorted = alma_876(marc_record).map { |f| f['d'] }.sort
-            expect(marc_record['876']['d']).to be_truthy
-            expect(marc_record['951']['w']).to be_truthy
-            expect(marc_record['950']['b']).to be_truthy
-            expect(Time.parse(@added_custom_951['cataloged_tdt'].first)).to eq Time.parse(fields_876_sorted.first).utc
-          end
-        end
-
-        context 'When the record has only a 950b field' do
-          it 'indexes the 950b field' do
-            record = fixture_record('9939339473506421')
-            expect(record['950']['b']).to be_truthy
-            expect(record['876']).to be_falsey
-            expect(record['951']).to be_falsey
-            expect(Time.parse(@sample42['cataloged_tdt'].first)).to eq Time.parse(record['950']['b']).utc
-          end
-        end
-
-        context 'When the record fails to parse the time' do
-          it 'logs the error and moves on' do
-            allow(Time).to receive(:parse).and_raise(ArgumentError)
-            expect { @indexer.map_record(fixture_record('9992320213506421')) }.not_to raise_error
-          end
-        end
-      end
-
-      context 'When it is a SCSB partner record' do
-        it 'does not have a date cataloged facet' do
-          expect(@scsb_nypl['cataloged_tdt']).to be_nil
-        end
-      end
-
-      context 'When it is an electronic record' do
-        it 'indexes the 951w field' do
-          record = fixture_record('99122424622606421')
-          indexed_record = @indexer.map_record(record)
-          expect(record['951']['w']).to be_truthy
-          expect(record['876']).to be_falsey
-          expect(record['950']).to be_truthy
-          expect(Time.parse(indexed_record['cataloged_tdt'].first)).to eq Time.parse(record['951']['w']).utc
-        end
-      end
-    end
-
     describe 'summary_note_display' do
       it 'returns the summary_note_display field' do
         record = fixture_record('9948545023506421')

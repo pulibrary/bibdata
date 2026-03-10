@@ -22,6 +22,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         "call_number_labels_for_display",
         function!(call_number_labels_for_display_from_marc_breaker, 1),
     )?;
+    submodule_marc.define_singleton_method("cataloged_date", function!(cataloged_date, 1))?;
     submodule_marc
         .define_singleton_method("current_location_code", function!(current_location_code, 1))?;
     submodule_marc.define_singleton_method("format_facets", function!(format_facets, 1))?;
@@ -97,6 +98,11 @@ fn author_roles_from_marc_breaker(
             format!("Found error {} while serializing author roles", err),
         )
     })
+}
+
+fn cataloged_date(ruby: &Ruby, record_string: String) -> Result<Option<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
+    Ok(date::cataloged_date(&record))
 }
 
 #[cfg(test)]

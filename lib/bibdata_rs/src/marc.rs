@@ -2,10 +2,12 @@ use itertools::Itertools;
 use magnus::Ruby;
 use marctk::Record;
 
+pub mod alma;
 pub mod call_number;
 pub mod cjk;
 pub mod contributors;
 pub mod control_field;
+pub mod date;
 pub mod fixed_field;
 pub mod genre;
 pub mod identifier;
@@ -22,6 +24,8 @@ mod string_normalize;
 
 pub use ruby_bindings::register_ruby_methods;
 pub use string_normalize::trim_punctuation;
+
+use crate::marc::alma::AlmaHoldingId;
 
 pub fn holding_id(
     ruby: &Ruby,
@@ -42,7 +46,7 @@ pub fn holding_id(
 }
 
 pub fn alma_code_start_22(code: String) -> bool {
-    code.starts_with("22") && code.ends_with("06421")
+    AlmaHoldingId(&code).is_valid()
 }
 pub fn genres(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;

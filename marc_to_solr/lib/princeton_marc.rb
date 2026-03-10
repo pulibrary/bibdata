@@ -439,10 +439,6 @@ def alma_852(record)
   record.fields('852').select { |f| alma_code_start_22?(f['8']) }
 end
 
-def alma_876(record)
-  record.fields('876').select { |f| alma_code_start_22?(f['0']) }
-end
-
 def alma_951_active(record)
   alma_951 = record.fields('951').select { |f| alma_code_start_53?(f['8']) }
   alma_951&.select { |f| f['a'] == 'Available' }
@@ -454,11 +450,6 @@ end
 
 def alma_954(record)
   record.fields('954').select { |f| alma_code_start_53?(f['a']) }
-end
-
-def alma_950(record)
-  field_950_a = record.fields('950').select { |f| %w[true false].include?(f['a']) }
-  field_950_a.map { |f| f['b'] }.first if field_950_a.present?
 end
 
 def process_holdings(record, marc_breaker)
