@@ -12,6 +12,7 @@ pub mod extract_values;
 pub mod fixed_field;
 pub mod genre;
 pub mod identifier;
+pub mod indigenous_studies;
 pub mod language;
 pub mod note;
 pub mod publication;

@@ -16,11 +16,6 @@ RSpec.describe AugmentTheSubject, :indexing do
       expect(subfields[:standalone_subfield_a].length).to eq 5599
     end
 
-    it 'caches a list of terms from the json' do
-      expect(ats.standalone_subfield_a_terms).to be
-      expect(ats.standalone_subfield_a_terms.length).to eq 5599
-    end
-
     context 'mismatched capitalization' do
       let(:subject_term) { 'Abipon Language' }
 
@@ -39,11 +34,6 @@ RSpec.describe AugmentTheSubject, :indexing do
   end
 
   context "subfield x's that match by themselves" do
-    it 'caches a list of terms from the json' do
-      expect(ats.standalone_subfield_x_terms).to be
-      expect(ats.standalone_subfield_x_terms.length).to eq 26
-    end
-
     context 'only the subfield x is relevant' do
       let(:subject_terms) { ["Whatever#{SEPARATOR}Indian authors#{SEPARATOR}History"] }
 

@@ -27,6 +27,14 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         .define_singleton_method("current_location_code", function!(current_location_code, 1))?;
     submodule_marc.define_singleton_method("format_facets", function!(format_facets, 1))?;
     submodule_marc.define_singleton_method("genres", function!(genres, 1))?;
+    submodule_marc.define_singleton_method(
+        "has_main_term_related_to_indigenous_studies",
+        function!(has_main_term_related_to_indigenous_studies, 1),
+    )?;
+    submodule_marc.define_singleton_method(
+        "has_subfield_related_to_indigenous_studies",
+        function!(has_subfield_related_to_indigenous_studies, 1),
+    )?;
     submodule_marc.define_singleton_method("holding_id", function!(holding_id, 2))?;
     submodule_marc.define_module_function(
         "icpsr_subjects",
@@ -110,6 +118,14 @@ fn cataloged_date(ruby: &Ruby, record_string: String) -> Result<Option<String>, 
 fn siku_subjects_display(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(subject::siku_subjects_display(&record).collect())
+}
+
+fn has_subfield_related_to_indigenous_studies(term: String) -> Result<bool, magnus::Error> {
+    Ok(indigenous_studies::has_subfield_related_to_indigenous_studies(&term))
+}
+
+fn has_main_term_related_to_indigenous_studies(term: String) -> Result<bool, magnus::Error> {
+    Ok(indigenous_studies::has_main_term_related_to_indigenous_studies(&term))
 }
 
 #[cfg(test)]
