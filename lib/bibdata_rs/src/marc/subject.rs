@@ -5,7 +5,7 @@ use crate::marc::{
     extract_values::ExtractValues, trim_punctuation, variable_length_field::multiscript_tag_eq,
 };
 
-const SEPARATOR: char = '—';
+pub const SEPARATOR: char = '—';
 
 enum SubjectVocabulary {
     Icpsr,

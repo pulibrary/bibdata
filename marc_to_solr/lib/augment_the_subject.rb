@@ -5,42 +5,14 @@
 class AugmentTheSubject
   LCSH_TERMS_CSV_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies.csv')
   # Can be re-created using `bundle exec rake augment:recreate_fixtures`
-  LCSH_STANDALONE_A_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'standalone_subfield_a.json')
-  # Must be created by hand from file provided by metadata librarians
-  LCSH_STANDALONE_X_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'standalone_subfield_x.json')
-  # Can be re-created using `bundle exec rake augment:recreate_fixtures`
   LCSH_REQUIRED_SUBFIELDS = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies_required.json')
 
   ##
   # Ensure the needed config files exist
   def initialize
     raise "Cannot find lcsh csv file at #{LCSH_TERMS_CSV_FILE}" unless File.exist?(LCSH_TERMS_CSV_FILE)
-    unless File.exist?(LCSH_STANDALONE_A_FILE)
-      raise "Cannot find lcsh standalone subfield a file at #{LCSH_STANDALONE_A_FILE}"
-    end
-    unless File.exist?(LCSH_STANDALONE_X_FILE)
-      raise "Cannot find lcsh standalone subfield x file at #{LCSH_STANDALONE_X_FILE}"
-    end
     unless File.exist?(LCSH_REQUIRED_SUBFIELDS)
       raise "Cannot find lcsh required subfields file at #{LCSH_REQUIRED_SUBFIELDS}"
-    end
-  end
-
-  def standalone_subfield_a_terms
-    @standalone_subfield_a_terms ||= begin
-      parsed_json = JSON.parse(File.read(LCSH_STANDALONE_A_FILE), { symbolize_names: true })
-      parsed_json[:standalone_subfield_a].to_set do |term|
-        normalize(term)
-      end
-    end
-  end
-
-  def standalone_subfield_x_terms
-    @standalone_subfield_x_terms ||= begin
-      parsed_json = JSON.parse(File.read(LCSH_STANDALONE_X_FILE), { symbolize_names: true })
-      parsed_json[:standalone_subfield_x].map do |term|
-        normalize(term)
-      end
     end
   end
 
@@ -99,17 +71,14 @@ class AugmentTheSubject
   # be assigned an Indigenous Studies term even though that entire term doesn't
   # appear in our terms list.
   def subfield_a_match?(term)
-    subfield_a = normalize(term.split(SEPARATOR).first).gsub(/\.$/, '')
-    standalone_subfield_a_terms.include?(subfield_a)
+    BibdataRs::Marc.has_main_term_related_to_indigenous_studies(term)
   end
 
   ##
   # For some subfield terms, only a single subfield needs to match.
   # E.g., any subject term that includes "Indian authors" should be assigned Indigenous Studies
   def subfield_x_match?(term)
-    subfields = term.split(SEPARATOR)
-    subfields = subfields.map { |subfield| normalize(subfield) }
-    !!standalone_subfield_x_terms.intersect?(subfields)
+    BibdataRs::Marc.has_subfield_related_to_indigenous_studies(term)
   end
 
   ##
