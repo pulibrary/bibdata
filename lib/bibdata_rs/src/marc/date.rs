@@ -9,6 +9,38 @@ use crate::marc::{
     scsb::is_scsb,
 };
 
+#[derive(Debug, PartialEq)]
+struct Dates {
+    start_year: Option<i16>,
+    end_year: Option<i16>,
+}
+
+#[derive(Debug, PartialEq)]
+struct RecordHasNoDates;
+
+impl TryFrom<&Record> for Dates {
+    type Error = RecordHasNoDates;
+
+    fn try_from(record: &Record) -> Result<Self, Self::Error> {
+        let field = record
+            .control_fields()
+            .iter()
+            .find(|field| field.tag() == "008");
+        match field {
+            Some(field) => {
+                let mut char_indices = field.content().char_indices();
+                let (date1_start, _) = char_indices.nth(7).unwrap();
+                let (date1_end, _) = char_indices.nth(3).unwrap();
+                Ok(Dates {
+                    start_year: Some(field.content()[date1_start..date1_end].parse().unwrap()),
+                    end_year: None,
+                })
+            }
+            None => Err(RecordHasNoDates),
+        }
+    }
+}
+
 pub fn cataloged_date(record: &Record) -> Option<String> {
     if is_scsb(record) {
         return None;
@@ -122,5 +154,17 @@ mod tests {
             cataloged_date(&record),
             Some("2021-07-13T12:24:58Z".to_owned())
         )
+    }
+
+    #[test]
+    fn it_can_get_start_year_from_008() {
+        let record = Record::from_breaker("=008 990924u1977uuuumiuuu p 0 a0eng^^").unwrap();
+        assert_eq!(
+            Dates::try_from(&record),
+            Ok(Dates {
+                start_year: Some(1977),
+                end_year: None
+            })
+        );
     }
 }
