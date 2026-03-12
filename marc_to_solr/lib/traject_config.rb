@@ -311,8 +311,8 @@ to_field 'pub_date_start_sort' do |record, accumulator|
   accumulator << record.date_from_008
 end
 
-to_field 'pub_date_end_sort' do |record, accumulator|
-  accumulator << record.end_date_from_008
+to_field 'pub_date_end_sort' do |_record, accumulator, context|
+  accumulator << BibdataRs::Marc.pub_date_end_sort(context.clipboard[:marc_breaker])
 end
 
 to_field 'publication_date_citation_display' do |record, accumulator|

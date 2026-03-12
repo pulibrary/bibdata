@@ -104,13 +104,17 @@ impl TryFrom<&Record> for EndDate {
     type Error = NoEndDate;
 
     fn try_from(record: &Record) -> Result<Self, Self::Error> {
+        let range = match DateType::from(record) {
+            DateType::DetailedDate => 7..11,
+            _ => 11..15,
+        };
         let year = record
             .get_control_fields("008")
             .into_iter()
             .next()
             .ok_or(NoEndDate)?
             .content()
-            .get(11..15)
+            .get(range)
             .ok_or(NoEndDate)?;
 
         match Date::from_str(year) {
@@ -180,5 +184,12 @@ mod tests {
     fn it_does_not_get_the_end_date_from_an_incomplete_008() {
         let record = Record::from_breaker("=008 940720d1976197").unwrap();
         assert!(EndDate::try_from(&record).is_err());
+    }
+
+    #[test]
+    fn it_gets_end_date_year_with_detailed_date() {
+        let record = Record::from_breaker("=008 220203e17040506xx 000 0cara d").unwrap();
+        let end_date = EndDate::try_from(&record).unwrap();
+        assert_eq!(end_date, EndDate(Date::KnownYear("1704".to_owned())));
     }
 }

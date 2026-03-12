@@ -27,17 +27,6 @@ module MARC
       end
     end
 
-    def end_date_from_008
-      if self['008']
-        d = self['008'].value[11, 4]
-        return d unless d
-
-        d = d.tr 'u', '9' unless d == 'uuuu'
-        d = d.tr ' ', '9' unless d == '    '
-        d if /^[0-9]{4}$/.match?(d)
-      end
-    end
-
     def date_display
       date = nil
       date = self['260']['c'] if self['260'] && self['260']['c']
