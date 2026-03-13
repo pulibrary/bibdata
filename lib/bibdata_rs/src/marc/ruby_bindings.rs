@@ -1,6 +1,6 @@
-use crate::solr::AuthorRoles;
-
 use super::*;
+use crate::marc::fixed_field::dates::EndDate;
+use crate::solr::AuthorRoles;
 use magnus::{Module, Object, RModule, function};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
@@ -58,6 +58,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         function!(permanent_location_code, 1),
     )?;
     submodule_marc.define_singleton_method("private_items?", function!(private_items, 2))?;
+    submodule_marc.define_singleton_method("pub_date_end_sort", function!(pub_date_end_sort, 1))?;
     submodule_marc.define_singleton_method(
         "publication_statements",
         function!(publication_statements, 1),
@@ -87,6 +88,13 @@ fn call_number_labels_for_browse_from_marc_breaker(
 ) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(call_number::call_number_labels_for_browse(&record))
+}
+
+fn pub_date_end_sort(ruby: &Ruby, record_string: String) -> Result<Option<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
+    Ok(EndDate::try_from(&record)
+        .ok()
+        .and_then(|date| date.maybe_to_string()))
 }
 
 fn icpsr_subjects_from_marc_breaker(

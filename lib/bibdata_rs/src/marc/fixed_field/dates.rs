@@ -100,17 +100,31 @@ pub struct EndDate(Date);
 #[derive(Debug)]
 pub struct NoEndDate;
 
+impl EndDate {
+    pub fn maybe_to_string(&self) -> Option<String> {
+        match &self.0 {
+            Date::KnownYear(year) => Some(year.to_string()),
+            Date::PartiallyKnownYear(year) => Some(year.replace('u', "9")),
+            _ => None,
+        }
+    }
+}
+
 impl TryFrom<&Record> for EndDate {
     type Error = NoEndDate;
 
     fn try_from(record: &Record) -> Result<Self, Self::Error> {
+        let range = match DateType::from(record) {
+            DateType::DetailedDate => 7..11,
+            _ => 11..15,
+        };
         let year = record
             .get_control_fields("008")
             .into_iter()
             .next()
             .ok_or(NoEndDate)?
             .content()
-            .get(11..15)
+            .get(range)
             .ok_or(NoEndDate)?;
 
         match Date::from_str(year) {
@@ -122,14 +136,8 @@ impl TryFrom<&Record> for EndDate {
 
 impl Display for EndDate {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match &self.0 {
-            Date::KnownYear(year) => {
-                write!(f, "{year}")
-            }
-            Date::PartiallyKnownYear(year) => {
-                // assume 9, since we are in EndDate and it is the latest possible
-                write!(f, "{}", year.replace("u", "9"))
-            }
+        match self.maybe_to_string() {
+            Some(year) => write!(f, "{year}"),
             _ => Ok(()),
         }
     }
@@ -180,5 +188,26 @@ mod tests {
     fn it_does_not_get_the_end_date_from_an_incomplete_008() {
         let record = Record::from_breaker("=008 940720d1976197").unwrap();
         assert!(EndDate::try_from(&record).is_err());
+    }
+
+    #[test]
+    fn it_gets_end_date_year_with_detailed_date() {
+        let record = Record::from_breaker("=008 220203e17040506xx 000 0cara d").unwrap();
+        let end_date = EndDate::try_from(&record).unwrap();
+        assert_eq!(end_date, EndDate(Date::KnownYear("1704".to_owned())));
+    }
+
+    #[test]
+    fn it_displays_end_date_correctly() {
+        assert_eq!(
+            EndDate(Date::KnownYear("1999".to_owned())).maybe_to_string(),
+            Some("1999".to_owned())
+        );
+        assert_eq!(
+            EndDate(Date::PartiallyKnownYear("19uu".to_owned())).maybe_to_string(),
+            Some("1999".to_owned())
+        );
+        assert_eq!(EndDate(Date::UnknownYear).maybe_to_string(), None);
+        assert_eq!(EndDate(Date::YearNotAvailable).maybe_to_string(), None);
     }
 }
