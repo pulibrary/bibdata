@@ -92,11 +92,9 @@ fn call_number_labels_for_browse_from_marc_breaker(
 
 fn pub_date_end_sort(ruby: &Ruby, record_string: String) -> Result<Option<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
-    let end_date = EndDate::try_from(&record);
-    match end_date {
-        Ok(end_date) => Ok(Some(end_date.to_string())),
-        Err(_) => Ok(None),
-    }
+    Ok(EndDate::try_from(&record)
+        .ok()
+        .and_then(|date| date.maybe_to_string()))
 }
 
 fn icpsr_subjects_from_marc_breaker(
