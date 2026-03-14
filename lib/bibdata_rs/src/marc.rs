@@ -206,14 +206,6 @@ pub fn identifiers_of_all_versions(
     Ok(identifier::identifiers_of_all_versions(&record))
 }
 
-pub fn publication_statements(
-    ruby: &Ruby,
-    record_string: String,
-) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(publication::publication_statements(&record).collect())
-}
-
 pub fn strip_non_numeric(string: String) -> String {
     string_normalize::strip_non_numeric(&string)
 }

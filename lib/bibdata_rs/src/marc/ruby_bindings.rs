@@ -1,7 +1,7 @@
 use super::*;
 use crate::marc::fixed_field::dates::EndDate;
 use crate::solr::AuthorRoles;
-use magnus::{Module, Object, RModule, function};
+use magnus::{Module, Object, RHash, RModule, function};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
 // (specifically the BibdataRs::Marc Ruby module and the crate::marc Rust module)
@@ -59,10 +59,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     )?;
     submodule_marc.define_singleton_method("private_items?", function!(private_items, 2))?;
     submodule_marc.define_singleton_method("pub_date_end_sort", function!(pub_date_end_sort, 1))?;
-    submodule_marc.define_singleton_method(
-        "publication_statements",
-        function!(publication_statements, 1),
-    )?;
+    submodule_marc.define_singleton_method("publication_data", function!(publication_data, 1))?;
     submodule_marc
         .define_singleton_method("recap_partner_notes", function!(recap_partner_notes, 1))?;
     submodule_marc.define_singleton_method("strip_non_numeric", function!(strip_non_numeric, 1))?;
@@ -134,6 +131,20 @@ fn has_subfield_related_to_indigenous_studies(term: String) -> Result<bool, magn
 
 fn has_main_term_related_to_indigenous_studies(term: String) -> Result<bool, magnus::Error> {
     Ok(indigenous_studies::has_main_term_related_to_indigenous_studies(&term))
+}
+
+// Create a ruby hash of various data related to the publication, so that
+// we don't have the overhead of repeated function calls between Ruby and
+// Rust to get each value separately
+fn publication_data(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
+    let pub_citation_display: Vec<_> = publication::pub_citation_display(&record).collect();
+    let pub_created_display: Vec<_> = publication::pub_created_display(&record).collect();
+
+    let hash = ruby.hash_new();
+    hash.aset("pub_citation_display", pub_citation_display)?;
+    hash.aset("pub_created_display", pub_created_display)?;
+    Ok(hash)
 }
 
 #[cfg(test)]

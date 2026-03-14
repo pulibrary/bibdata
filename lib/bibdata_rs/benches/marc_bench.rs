@@ -1,7 +1,7 @@
 use bibdata_rs::{
     marc::{
         call_number::call_number_labels_for_display, date::cataloged_date, genre::genres,
-        subject::siku_subjects_display,
+        publication::pub_citation_display, subject::siku_subjects_display,
     },
     solr::AuthorRoles,
 };
@@ -54,6 +54,18 @@ fn cataloged_date_benchmark(c: &mut Criterion) {
     });
 }
 
+fn publisher_citation_benchmark(c: &mut Criterion) {
+    let record = fixture_record("../../spec/fixtures/marc_to_solr/9939238033506421.mrx");
+    c.bench_function("publisher_citation", |b| {
+        b.iter(|| {
+            assert_eq!(
+                pub_citation_display(&record).collect::<Vec<String>>(),
+                vec!["China: s.n.".to_string()]
+            );
+        })
+    });
+}
+
 fn siku_subjects_display_benchmark(c: &mut Criterion) {
     let record = fixture_record("../../spec/fixtures/marc_to_solr/9918309193506421.mrx");
     c.bench_function("siku_subjects_display", |b| {
@@ -74,6 +86,7 @@ criterion_group!(
     call_number_benchmark,
     cataloged_date_benchmark,
     genre_facet_benchmark,
+    publisher_citation_benchmark,
     siku_subjects_display_benchmark
 );
 criterion_main!(benches);
