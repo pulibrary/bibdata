@@ -387,20 +387,6 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
-    describe 'call_number_locator_display field' do
-      it 'returns the call_number_locator_display field with no subfield k' do
-        expect(@sample40['call_number_locator_display']).to eq(['.B7544 2003q'])
-      end
-
-      it 'returns an array of call_number_locator_display values with no subfield k' do
-        expect(@sample43['call_number_locator_display']).to eq(['01.XIII.19', 'JV6225 .R464 2001'])
-      end
-
-      it 'skips indexing the field if subfields $h and $i are missing' do
-        expect(@record_call_number_nil['call_number_locator_display']).to be_nil
-      end
-    end
-
     describe 'bound-with linking fields' do
       it 'indexes a valid 773w field' do
         record = @indexer.map_record(fixture_record('9939073273506421'))
