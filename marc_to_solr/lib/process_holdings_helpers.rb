@@ -16,33 +16,20 @@ class ProcessHoldingsHelpers
     BibdataRs::Marc.alma_code_start_22?(field_852['8'].to_s)
   end
 
-  def scsb?(field_852)
-    BibdataRs::Marc.is_scsb?(marc_breaker) && field_852['0']
-  end
-
-  def group_866_867_868_on_holding_perm_id(holding_perm_id, field_852)
-    if scsb?(field_852)
-      record.fields('866'..'868').select { |f| f['0'] == holding_perm_id }
-    else
-      record.fields('866'..'868').select { |f| f['8'] == holding_perm_id }
-    end
+  def group_866_867_868_on_holding_perm_id(holding_perm_id)
+    record.fields('866'..'868').select { |f| f['8'] == holding_perm_id }
   end
 
   def items_by_852(field_852)
     holding_id = holding_id(field_852)
-    items = record.fields('876').select { |f| f['0'] == holding_id }
-    items.reject { |item| private_scsb_item?(item, field_852) }
+    record.fields('876').select { |f| f['0'] == holding_id }
   end
 
-  def private_scsb_item?(field_876, field_852)
-    field_876['x'] == 'Private' && scsb?(field_852)
-  end
-
-  # Select 852 fields from an Alma or SCSB record
+  # Select 852 fields from an Alma record
   # returns an array of MARC 852 (full holdings) fields
-  def fields_852_alma_or_scsb
+  def fields_852_alma
     record.fields('852').select do |f|
-      BibdataRs::Marc.alma_code_start_22?(f['8'].to_s) || (BibdataRs::Marc.is_scsb?(marc_breaker) && f['0'])
+      BibdataRs::Marc.alma_code_start_22?(f['8'].to_s)
     end
   end
 
@@ -61,8 +48,6 @@ class ProcessHoldingsHelpers
 
   # Select 876 fields (items) with permanent location. 876 location is equal to the 852 permanent location.
   def select_permanent_location_876(group_876_fields, field_852)
-    return group_876_fields if /^scsb/.match?(field_852['b'])
-
     group_876_fields.select do |field_876|
       !in_temporary_location(field_876, field_852)
     end
@@ -70,8 +55,6 @@ class ProcessHoldingsHelpers
 
   # Select 876 fields (items) with current location. 876 location is NOT equal to the 852 permanent location.
   def select_temporary_location_876(group_876_fields, field_852)
-    return [] if /^scsb/.match?(field_852['b'])
-
     group_876_fields.select do |field_876|
       in_temporary_location(field_876, field_852)
     end
@@ -86,12 +69,6 @@ class ProcessHoldingsHelpers
 
   def build_call_number(field_852)
     BibdataRs::Marc.build_call_number(marc_breaker_field(field_852))
-  end
-
-  def includes_only_private_scsb_items?(field_852)
-    return false unless scsb?(field_852)
-
-    BibdataRs::Marc.private_items?(marc_breaker, holding_id(field_852))
   end
 
   # Builds the holding, without any item-specific information
@@ -139,8 +116,7 @@ class ProcessHoldingsHelpers
     all_holdings
   end
 
-  def build_item(field_852:, field_876:)
-    is_scsb = scsb?(field_852)
+  def build_item(field_876:)
     item = {}
     item[:holding_id] = field_876['0'] if field_876['0']
     item[:description] = field_876['3'] if field_876['3']
@@ -148,16 +124,7 @@ class ProcessHoldingsHelpers
     item[:status_at_load] = field_876['j'] if field_876['j']
     item[:barcode] = field_876['p'] if field_876['p']
     item[:copy_number] = field_876['t'] if field_876['t']
-    item[:use_statement] = field_876['h'] if field_876['h'] && is_scsb
-    item[:storage_location] = field_876['l'] if field_876['l'] && is_scsb
-    if field_876['x']
-      if is_scsb
-        item[:cgd] = field_876['x']
-      else
-        item[:process_type] = field_876['x']
-      end
-    end
-    item[:collection_code] = field_876['z'] if field_876['z'] && is_scsb
+    item[:process_type] = field_876['x'] if field_876['x']
     item
   end
 

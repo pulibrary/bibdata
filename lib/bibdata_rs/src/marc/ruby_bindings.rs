@@ -1,6 +1,9 @@
+use std::collections::HashMap;
+
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
 use crate::marc::date::cataloged_date;
+use crate::marc::holdings::partner::partner_holdings;
 use crate::marc::identifier::identifiers_of_all_versions;
 use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::note::access_notes;
@@ -38,6 +41,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     )?;
     submodule_marc
         .define_singleton_method("normalize_oclc_number", function!(normalize_oclc_number, 1))?;
+    submodule_marc.define_singleton_method(
+        "partner_holdings_1display",
+        function!(partner_holdings_1display, 1),
+    )?;
     submodule_marc.define_singleton_method(
         "permanent_location_code",
         function!(permanent_location_code, 1),
@@ -130,6 +137,28 @@ fn library_label(code: String) -> Option<String> {
 
 fn location_label(code: String) -> Option<String> {
     holdings::holding_location::location_label(&code).map(|label| label.to_owned())
+}
+
+fn partner_holdings_1display(
+    ruby: &Ruby,
+    record_string: String,
+) -> Result<Option<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
+    let holdings: Vec<holdings::partner::PartnerHolding<'_>> = partner_holdings(&record).collect();
+    if holdings.is_empty() {
+        Ok(None)
+    } else {
+        let mut hash = HashMap::new();
+        for holding in holdings {
+            hash.insert(holding.holding_id, holding);
+        }
+        Ok(Some(serde_json::to_string(&hash).map_err(|err| {
+            magnus::Error::new(
+                ruby.exception_runtime_error(),
+                format!("Found error {} while serializing partner holdings", err),
+            )
+        })?))
+    }
 }
 
 #[cfg(test)]
