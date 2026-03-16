@@ -50,37 +50,6 @@ pub fn holding_id(
 pub fn alma_code_start_22(code: String) -> bool {
     AlmaHoldingId(&code).is_valid()
 }
-pub fn genres(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(genre::genres(&record))
-}
-
-pub fn original_languages_of_translation(
-    ruby: &Ruby,
-    record_string: String,
-) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(language::original_languages_of_translation(&record)
-        .iter()
-        .map(|language| language.english_name.to_owned())
-        .collect())
-}
-
-pub fn access_notes(
-    ruby: &Ruby,
-    record_string: String,
-) -> Result<Option<Vec<String>>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(note::access_notes(&record))
-}
-
-pub fn recap_partner_notes(
-    ruby: &Ruby,
-    record_string: String,
-) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(scsb::recap_partner::recap_partner_notes(&record))
-}
 
 pub fn is_scsb(ruby: &Ruby, record_string: String) -> Result<bool, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
@@ -157,13 +126,6 @@ pub fn build_call_number(
     Ok(call_number.filter(|s| !s.is_empty()))
 }
 
-pub fn format_facets(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(record_facet_mapping::format_facets(&record)
-        .iter()
-        .map(|facet| format!("{facet}"))
-        .collect())
-}
 pub fn private_items(
     ruby: &Ruby,
     record_string: String,
@@ -180,30 +142,12 @@ pub fn private_items(
     }))
 }
 
-pub fn notes_cjk(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(cjk::notes_cjk(&record).collect())
-}
-
-pub fn subjects_cjk(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(cjk::subjects_cjk(&record).collect())
-}
-
 pub fn normalize_oclc_number(string: String) -> String {
     identifier::normalize_oclc_number(&string)
 }
 
 pub fn is_oclc_number(string: String) -> bool {
     identifier::is_oclc_number(&string)
-}
-
-pub fn identifiers_of_all_versions(
-    ruby: &Ruby,
-    record_string: String,
-) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
-    Ok(identifier::identifiers_of_all_versions(&record))
 }
 
 pub fn strip_non_numeric(string: String) -> String {

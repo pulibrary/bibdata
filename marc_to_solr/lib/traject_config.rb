@@ -59,7 +59,7 @@ end
 
 each_record do |record, context|
   context.clipboard[:marc_breaker] = MarcBreaker.break record
-  context.clipboard[:publication_data] = BibdataRs::Marc.publication_data(context.clipboard[:marc_breaker])
+  context.clipboard[:solr_fields] = BibdataRs::Marc.solr_fields(context.clipboard[:marc_breaker])
   context.clipboard[:is_scsb] = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
 end
 
@@ -116,7 +116,7 @@ end
 # 880 field is "vernacular" and may link to a translation in a 5xx
 # Only add 880 alt script values associated with a 5xx field
 to_field 'cjk_notes' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.notes_cjk(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:solr_fields]['cjk_notes'])
 end
 
 to_field 'figgy_1display' do |record, accumulator|
@@ -139,7 +139,7 @@ to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', tr
 to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
 
 to_field 'author_roles_1display' do |_record, accumulator, context|
-  accumulator[0] = BibdataRs::Marc.author_roles(context.clipboard[:marc_breaker])
+  accumulator[0] = context.clipboard[:solr_fields]['author_roles_1display']
 end
 
 to_field 'cjk_author' do |record, accumulator|
@@ -291,13 +291,13 @@ to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', altern
 #    260 XX abcefg
 #    264 XX abc
 to_field 'pub_created_display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:publication_data]['pub_created_display'])
+  accumulator.replace(context.clipboard[:solr_fields]['pub_created_display'])
 end
 
 to_field 'pub_created_s', extract_marc('260abcefg:264abcefg3')
 
 to_field 'pub_citation_display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:publication_data]['pub_citation_display'])
+  accumulator.replace(context.clipboard[:solr_fields]['pub_citation_display'])
 end
 
 to_field 'publication_location_citation_display', extract_marc('260a:264|*1|a', trim_punctuation: true, first: true)
@@ -312,7 +312,7 @@ to_field 'pub_date_start_sort' do |record, accumulator|
 end
 
 to_field 'pub_date_end_sort' do |_record, accumulator, context|
-  accumulator << BibdataRs::Marc.pub_date_end_sort(context.clipboard[:marc_breaker])
+  accumulator << context.clipboard[:solr_fields]['pub_date_end_sort']
 end
 
 to_field 'publication_date_citation_display' do |record, accumulator|
@@ -330,12 +330,12 @@ end
 # Physical Items Enrichment -> Create date subfield 876d
 # Electronic Inventory Enrichment -> Activation date subfield 951w
 to_field 'cataloged_tdt' do |_record, accumulator, context|
-  accumulator[0] = BibdataRs::Marc.cataloged_date(context.clipboard[:marc_breaker])
+  accumulator[0] = context.clipboard[:solr_fields]['cataloged_tdt']
 end
 
 # format - allow multiple - "first" one is used for thumbnail
 to_field 'format' do |_record, accumulator, context|
-  accumulator.replace BibdataRs::Marc.format_facets(context.clipboard[:marc_breaker])
+  accumulator.replace context.clipboard[:solr_fields]['format']
 end
 
 # Medium/Support:
@@ -709,7 +709,7 @@ to_field 'language_facet' do |record, accumulator|
 end
 
 to_field 'original_language_of_translation_facet' do |_record, accumulator, context|
-  accumulator.replace BibdataRs::Marc.original_languages_of_translation(context.clipboard[:marc_breaker])
+  accumulator.replace context.clipboard[:solr_fields]['original_language_of_translation_facet']
 end
 
 to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|
@@ -847,7 +847,7 @@ to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator
 end
 
 to_field 'siku_subject_display' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.siku_subjects_display(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:solr_fields]['siku_subject_display'])
 end
 
 # used for the Browse lists and hierarchical subject facet
@@ -910,7 +910,7 @@ to_field 'fast_subject_display' do |record, accumulator|
 end
 
 to_field 'icpsr_subject_unstem_search' do |_record, accumulator, context|
-  accumulator.replace BibdataRs::Marc.icpsr_subjects(context.clipboard[:marc_breaker])
+  accumulator.replace context.clipboard[:solr_fields]['icpsr_subject_unstem_search']
 end
 
 # Adds lc, siku, local, and homoit subject unstem_search fields
@@ -1018,7 +1018,7 @@ to_field 'rbgenr_genre_facet' do |record, accumulator|
 end
 
 to_field 'cjk_subject' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.subjects_cjk(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:solr_fields]['cjk_subject'])
 end
 
 # used for split subject topic facet
@@ -1140,7 +1140,7 @@ end
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
 to_field 'genre_facet' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.genres(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:solr_fields]['genre_facet'])
 end
 
 # Related name(s):
@@ -1348,7 +1348,7 @@ end
 #    3500 020A776Z
 #    3500 776Z020A
 to_field 'other_version_s' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.identifiers_of_all_versions(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:solr_fields]['other_version_s'])
 end
 
 # Original language:
@@ -1366,7 +1366,7 @@ end
 
 # Skip SCSB records that include only private items
 each_record do |record, context|
-  recap_notes = BibdataRs::Marc.recap_partner_notes(context.clipboard[:marc_breaker])
+  recap_notes = context.clipboard[:solr_fields]['recap_notes_display']
   next if recap_notes.empty?
   next if recap_notes.map { |note| note.include?('P') }.include?(false)
 
@@ -1376,16 +1376,11 @@ end
 
 ## for recap notes
 to_field 'recap_notes_display' do |_record, accumulator, context|
-  recap_notes = BibdataRs::Marc.recap_partner_notes(context.clipboard[:marc_breaker])
-  unless recap_notes.empty?
-    recap_notes.each_with_index do |value, i|
-      accumulator[i] = value
-    end
-  end
+  accumulator.replace(context.clipboard[:solr_fields]['recap_notes_display'])
 end
 
 to_field 'access_restrictions_note_display' do |_record, accumulator, context|
-  notes = BibdataRs::Marc.access_notes(context.clipboard[:marc_breaker])
+  notes = context.clipboard[:solr_fields]['access_restrictions_note_display']
   accumulator.replace(notes) if notes
 end
 
@@ -1590,13 +1585,13 @@ end
 # Position 852|k in the beginning of the call_number_display
 # The call_number_display is used in the catalog record page.
 to_field 'call_number_display' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.call_number_labels_for_display(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:solr_fields]['call_number_display'])
 end
 
 # Position 852|k at the end of the call_number_browse_s
 # The call_number_browse_s is used in the call number browse page in the catalog
 to_field 'call_number_browse_s' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.call_number_labels_for_browse(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:solr_fields]['call_number_browse_s'])
 end
 
 # The call_number_locator_display is used in the 'Where to find it' feature in the record page,
