@@ -505,7 +505,9 @@ def add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all
 end
 
 def invalid_location?(code)
-  Traject::TranslationMap.new('locations')[code].nil?
+  return true unless code
+
+  BibdataRs::Marc.location_label(code).nil?
 end
 
 def local_heading?(field)
