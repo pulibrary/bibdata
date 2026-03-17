@@ -35,24 +35,18 @@ module MARC
   end
 end
 
-FALLBACK_STANDARD_NO = 'Other standard number'
+# rubocop :disable Rails/Delegate
 def map_024_indicators_to_labels i
-  case i
-  when '0' then 'International Standard Recording Code'
-  when '1' then 'Universal Product Code'
-  when '2' then 'International Standard Music Number'
-  when '3' then 'International Article Number'
-  when '4' then 'Serial Item and Contribution Identifier'
-  when '7' then '$2'
-  else FALLBACK_STANDARD_NO
-  end
+  BibdataRs::Marc.map_024_indicators_to_labels(i)
 end
+# rubocop :enable Rails/Delegate
 
 def subfield_specified_hash_key subfield_value, fallback
   key = subfield_value.capitalize.gsub(/[[:punct:]]?$/, '')
   key.empty? ? fallback : key
 end
 
+FALLBACK_STANDARD_NO = 'Other standard number'
 def standard_no_hash record
   standard_no = {}
   Traject::MarcExtractor.cached('024').collect_matching_lines(record) do |field, _spec, _extractor|
