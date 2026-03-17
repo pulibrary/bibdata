@@ -48,20 +48,6 @@ def map_024_indicators_to_labels i
   end
 end
 
-def indicator_label_246 i
-  case i
-  when '0' then 'Portion of title'
-  when '1' then 'Parallel title'
-  when '2' then 'Distinctive title'
-  when '3' then 'Other title'
-  when '4' then 'Cover title'
-  when '5' then 'Added title page title'
-  when '6' then 'Caption title'
-  when '7' then 'Running title'
-  when '8' then 'Spine title'
-  end
-end
-
 def subfield_specified_hash_key subfield_value, fallback
   key = subfield_value.capitalize.gsub(/[[:punct:]]?$/, '')
   key.empty? ? fallback : key
