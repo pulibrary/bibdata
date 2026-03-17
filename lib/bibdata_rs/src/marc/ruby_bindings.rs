@@ -29,6 +29,8 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_module_function("solr_fields", function!(solr_fields, 1))?;
     submodule_marc.define_singleton_method("is_oclc_number?", function!(is_oclc_number, 1))?;
     submodule_marc.define_singleton_method("is_scsb?", function!(is_scsb, 1))?;
+    submodule_marc.define_singleton_method("library_label", function!(library_label, 1))?;
+    submodule_marc.define_singleton_method("location_label", function!(location_label, 1))?;
     submodule_marc
         .define_singleton_method("normalize_oclc_number", function!(normalize_oclc_number, 1))?;
     submodule_marc.define_singleton_method(
@@ -115,6 +117,14 @@ fn has_subfield_related_to_indigenous_studies(term: String) -> Result<bool, magn
 
 fn has_main_term_related_to_indigenous_studies(term: String) -> Result<bool, magnus::Error> {
     Ok(indigenous_studies::has_main_term_related_to_indigenous_studies(&term))
+}
+
+fn library_label(code: String) -> Option<String> {
+    holdings::holding_location::library_label(&code).map(|label| label.to_owned())
+}
+
+fn location_label(code: String) -> Option<String> {
+    holdings::holding_location::location_label(&code).map(|label| label.to_owned())
 }
 
 #[cfg(test)]

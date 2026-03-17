@@ -100,12 +100,16 @@ class ProcessHoldingsHelpers
     holding = {}
     if permanent
       holding['location_code'] = permanent_location_code(field_852)
-      holding['location'] = Traject::TranslationMap.new('locations', default: '__passthrough__')[holding['location_code']]
-      holding['library'] = Traject::TranslationMap.new('location_display', default: '__passthrough__')[holding['location_code']]
+      if holding['location_code']
+        holding['location'] = BibdataRs::Marc.location_label(holding['location_code'])
+        holding['library'] = BibdataRs::Marc.library_label(holding['location_code'])
+      end
     else
       holding['location_code'] = current_location_code(field_876)
-      holding['current_location'] = Traject::TranslationMap.new('locations', default: '__passthrough__')[holding['location_code']]
-      holding['current_library'] = Traject::TranslationMap.new('location_display', default: '__passthrough__')[holding['location_code']]
+      if holding['location_code']
+        holding['current_location'] = BibdataRs::Marc.location_label(holding['location_code'])
+        holding['current_library'] = BibdataRs::Marc.library_label(holding['location_code'])
+      end
     end
 
     holding['call_number'] = build_call_number(field_852)
