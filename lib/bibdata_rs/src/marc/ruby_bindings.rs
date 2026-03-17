@@ -2,6 +2,7 @@ use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
 use crate::marc::date::cataloged_date;
 use crate::marc::identifier::identifiers_of_all_versions;
+use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::note::access_notes;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::solr::AuthorRoles;
@@ -31,6 +32,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_singleton_method("is_scsb?", function!(is_scsb, 1))?;
     submodule_marc.define_singleton_method("library_label", function!(library_label, 1))?;
     submodule_marc.define_singleton_method("location_label", function!(location_label, 1))?;
+    submodule_marc.define_singleton_method(
+        "map_024_indicators_to_labels",
+        function!(map_024_indicators_to_labels, 1),
+    )?;
     submodule_marc
         .define_singleton_method("normalize_oclc_number", function!(normalize_oclc_number, 1))?;
     submodule_marc.define_singleton_method(

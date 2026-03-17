@@ -21,6 +21,19 @@ pub fn identifiers_of_all_versions(record: &Record) -> Vec<String> {
         .collect()
 }
 
+const FALLBACK_STANDARD_NO: &str = "Other standard number";
+pub fn map_024_indicators_to_labels(indicator: char) -> &'static str {
+    match indicator {
+        '0' => "International Standard Recording Code",
+        '1' => "Universal Product Code",
+        '2' => "International Standard Music Number",
+        '3' => "International Article Number",
+        '4' => "Serial Item and Contribution Identifier",
+        '7' => "$2",
+        _ => FALLBACK_STANDARD_NO,
+    }
+}
+
 // Record control numbers can either be OCLC numbers (which are normalized to a format like ocn991350412)
 // or some other type of control number (which are normalized and include the prefix BIB)
 fn linked_record_control_numbers(record: &Record) -> impl Iterator<Item = String> + use<> {
@@ -41,6 +54,14 @@ fn linked_record_control_numbers(record: &Record) -> impl Iterator<Item = String
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn it_can_map_024_indicators_to_labels() {
+        assert_eq!(
+            map_024_indicators_to_labels('0'),
+            "International Standard Recording Code"
+        );
+        assert_eq!(map_024_indicators_to_labels('1'), "Universal Product Code");
+    }
 
     #[test]
     fn it_can_get_identifiers_of_all_versions() {
