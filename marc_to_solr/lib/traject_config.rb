@@ -1345,8 +1345,12 @@ to_field 'subject_era_facet', marc_era_facet
 # # From displayh.cfg
 
 to_field 'holdings_1display' do |record, accumulator, context|
-  all_holdings = process_holdings(record, context.clipboard[:marc_breaker])
-  accumulator[0] = all_holdings.to_json unless all_holdings.empty?
+  if context.clipboard[:is_scsb]
+    accumulator[0] = BibdataRs::Marc.partner_holdings_1display(context.clipboard[:marc_breaker])
+  else
+    all_holdings = process_holdings(record, context.clipboard[:marc_breaker])
+    accumulator[0] = all_holdings.to_json unless all_holdings.empty?
+  end
 end
 
 # Skip SCSB records that include only private items
