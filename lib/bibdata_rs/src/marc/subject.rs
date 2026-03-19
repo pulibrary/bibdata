@@ -1,3 +1,5 @@
+use std::iter;
+
 use itertools::Itertools;
 use marctk::{Field, Record, Subfield};
 
@@ -7,8 +9,11 @@ use crate::marc::{
 
 pub const SEPARATOR: char = '—';
 
+#[derive(PartialEq)]
 enum SubjectVocabulary {
+    Fast,
     Icpsr,
+    LibraryOfCongress,
     Siku,
     UnknownVocabulary,
     VocabularyNotSpecified,
@@ -17,7 +22,9 @@ enum SubjectVocabulary {
 impl From<&Field> for SubjectVocabulary {
     // can convert a MARC 650 (Topic Subject) field into a SubjectVocabulary
     fn from(field: &Field) -> Self {
-        if field.ind2() == "7" {
+        if field.ind2() == "0" {
+            Self::LibraryOfCongress
+        } else if field.ind2() == "7" {
             match field.first_subfield("2") {
                 Some(subfield) => Self::from(subfield.content()),
                 _ => Self::VocabularyNotSpecified,
@@ -31,11 +38,37 @@ impl From<&Field> for SubjectVocabulary {
 impl From<&str> for SubjectVocabulary {
     fn from(value: &str) -> Self {
         match value.trim() {
+            "fast" => Self::Fast,
             "icpsr" => Self::Icpsr,
             "sk" => Self::Siku,
             "skbb" => Self::Siku,
             _ => Self::UnknownVocabulary,
         }
+    }
+}
+
+pub fn fast_subjects<'a>(record: &'a Record) -> Box<dyn Iterator<Item = &'a str> + 'a> {
+    // We only display FAST subjects for records with no Library of Congress subjects
+    if record.fields().iter().any(|field| {
+        ["600", "610", "611", "630", "650", "651"].contains(&field.tag())
+            && SubjectVocabulary::from(field) == SubjectVocabulary::LibraryOfCongress
+    }) {
+        Box::new(iter::empty())
+    } else {
+        Box::new(record.extract_field_values_by(
+            |field| {
+                field.tag().starts_with("6")
+                    && SubjectVocabulary::from(field) == SubjectVocabulary::Fast
+            },
+            |field| {
+                field.first_subfield("a").map(|subfield| {
+                    subfield
+                        .content()
+                        .trim_start()
+                        .trim_end_matches(|c: char| c.is_whitespace() || c == '.')
+                })
+            },
+        ))
     }
 }
 
@@ -123,5 +156,25 @@ mod tests {
             hierarchical_heading(field, &["a", "x"], |subfield| subfield.code() == "x"),
             "German language—Grammar, Historical"
         );
+    }
+
+    #[test]
+    fn it_can_find_fast_headings() {
+        let record =
+            Record::from_breaker(r"=650 \7 $a Gods, Greek. $2 fast $0 (OCoLC)fst00944264").unwrap();
+        let mut fast_headings = fast_subjects(&record);
+        assert_eq!(fast_headings.next(), Some("Gods, Greek"));
+        assert!(fast_headings.next().is_none())
+    }
+
+    #[test]
+    fn it_does_not_include_fast_headings_if_there_are_lcsh_headings() {
+        let record = Record::from_breaker(
+            r#"=650 \0 $aGods, Greek $v Juvenile fiction.
+=650 \7 $a Gods, Greek. $2 fast $0 (OCoLC)fst00944264"#,
+        )
+        .unwrap();
+        let mut fast_headings = fast_subjects(&record);
+        assert!(fast_headings.next().is_none())
     }
 }

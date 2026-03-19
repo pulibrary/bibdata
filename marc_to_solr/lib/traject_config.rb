@@ -885,28 +885,13 @@ to_field 'homoit_subject_display' do |record, accumulator|
   accumulator.replace(subjects)
 end
 
-to_field 'fast_subject_facet' do |record, accumulator|
-  subjects = accumulate_hierarchy_per_field(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  next if subjects.present?
-
-  record.fields.select { |field| field.tag[0] == '6' }.each do |field|
-    next unless field['2'] == 'fast'
-
-    value = field['a']&.delete_suffix('.')
-    accumulator << value
-  end
+to_field 'fast_subject_facet' do |_record, accumulator, context|
+  # fast_subject_facet and fast_subject_display have the same implementation
+  accumulator.replace context.clipboard[:solr_fields]['fast_subject_display']
 end
 
-to_field 'fast_subject_display' do |record, accumulator|
-  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  next if subjects.present?
-
-  record.fields.select { |field| field.tag[0] == '6' }.each do |field|
-    next unless field['2'] == 'fast'
-
-    value = field['a']&.delete_suffix('.')
-    accumulator << value
-  end
+to_field 'fast_subject_display' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['fast_subject_display']
 end
 
 to_field 'icpsr_subject_unstem_search' do |_record, accumulator, context|
