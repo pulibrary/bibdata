@@ -104,28 +104,6 @@ def process_alt_script_names record
   names.uniq
 end
 
-##
-# Process publication information for citations.
-# @param [MARC::Record]
-# @return [Array] pub info strings from fields 260 and 264.
-def set_pub_citation(record)
-  Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, _spec, _extractor|
-    a_pub_info = nil
-    b_pub_info = nil
-    pub_info = ''
-    field.subfields.each do |s_field|
-      a_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'a'
-      b_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'b'
-    end
-
-    # Build publication info string and add to citation array.
-    pub_info += a_pub_info unless a_pub_info.nil?
-    pub_info += ': ' if !a_pub_info.nil? && !b_pub_info.nil?
-    pub_info += b_pub_info unless b_pub_info.nil?
-    pub_info if !pub_info.empty?
-  end.compact
-end
-
 SEPARATOR = '—'
 
 # for the hierarchical subject/genre display
