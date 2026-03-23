@@ -92,24 +92,6 @@ class BibliographicController < ApplicationController
     end
   end
 
-  # Client: Used by firestone_locator to pull bibliographic data
-  #   Also used to pull orangelight and pul_solr test fixtures
-  def bib_solr
-    opts = {
-      holdings: params.fetch('holdings', 'true') == 'true',
-      holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
-    }
-    records = adapter.get_bib_record(sanitized_bibid)
-    if records.nil?
-      render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
-    else
-      solr_doc = indexer.map_record(records)
-      render json: solr_doc
-    end
-  rescue StandardError => e
-    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitized_bibid}")
-  end
-
   # Client: No known use cases
   def bib_holdings
     records = adapter.get_holding_records(sanitized_bibid)
