@@ -9,7 +9,9 @@ use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::note::access_notes;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::solr::AuthorRoles;
+use flate2::{Compression, write::GzEncoder};
 use magnus::{Module, Object, RHash, RModule, function};
+use std::io::Write;
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
 // (specifically the BibdataRs::Marc Ruby module and the crate::marc Rust module)
@@ -71,6 +73,12 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .map(|facet| format!("{facet}"))
         .collect();
     let icpsr_subject_unstem_search = subject::icpsr_subjects(&record);
+    let marcxml_string = record.to_xml_string().as_bytes();
+    let marcxml_compressed = Vec::new();
+    let mut encoder = GzEncoder::new(marcxml_compressed, Compression::default());
+    encoder.write_all(&marcxml_string).unwrap();
+    encoder.finish().unwrap();
+
     let original_language_of_translation_facet: Vec<_> =
         language::original_languages_of_translation(&record)
             .iter()
@@ -104,6 +112,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
     hash.aset("format", format)?;
     hash.aset("genre_facet", genre::genres(&record))?;
     hash.aset("icpsr_subject_unstem_search", icpsr_subject_unstem_search)?;
+    hash.aset("marcxml", marcxml_compressed.iter().collect::<String>())?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
     hash.aset(
         "original_language_of_translation_facet",
