@@ -83,8 +83,9 @@ to_field 'id', extract_marc('001', first: true)
 to_field 'marcxml' do |record, accumulator, context|
   next unless context.clipboard[:is_scsb]
 
-  xml_string = record.to_xml.to_s
-  accumulator << MarcxmlCompressor.compress(xml_string)
+  # xml_string = record.to_xml.to_s
+  # accumulator << MarcxmlCompressor.compress(xml_string)
+  accumulator << context.clipboard[:solr_fields]['marcxml']
 end
 
 # if the id contains only numbers we know it's a princeton item
