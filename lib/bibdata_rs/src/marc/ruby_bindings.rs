@@ -6,6 +6,7 @@ use crate::marc::date::cataloged_date;
 use crate::marc::holdings::partner::partner_holdings;
 use crate::marc::identifier::identifiers_of_all_versions;
 use crate::marc::identifier::map_024_indicators_to_labels;
+use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::solr::AuthorRoles;
@@ -71,6 +72,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .map(|facet| format!("{facet}"))
         .collect();
     let icpsr_subject_unstem_search = subject::icpsr_subjects(&record);
+
     let original_language_of_translation_facet: Vec<_> =
         language::original_languages_of_translation(&record)
             .iter()
@@ -104,6 +106,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
     hash.aset("format", format)?;
     hash.aset("genre_facet", genre::genres(&record))?;
     hash.aset("icpsr_subject_unstem_search", icpsr_subject_unstem_search)?;
+    hash.aset("marcxml", marcxml_compressed(&record))?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
     hash.aset(
         "original_language_of_translation_facet",

@@ -15,6 +15,7 @@ pub mod holdings;
 pub mod identifier;
 pub mod indigenous_studies;
 pub mod language;
+pub mod marcxml_compressor;
 pub mod note;
 pub mod publication;
 pub mod record_facet_mapping;
