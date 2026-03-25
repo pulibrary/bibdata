@@ -47,6 +47,15 @@ pub fn strip_non_numeric(string: &str) -> String {
         .collect()
 }
 
+pub fn upcase_first(string: &str) -> Cow<'_, str> {
+    let mut chars = string.chars();
+    match chars.next() {
+        Some(first) if first.is_uppercase() => Cow::Borrowed(string),
+        Some(first) => Cow::Owned(first.to_uppercase().collect::<String>() + chars.as_str()),
+        None => Cow::Borrowed(Default::default()),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -86,5 +95,11 @@ mod tests {
         assert_eq!(strip_non_numeric("a1b0c2d4e"), "1024");
         assert_eq!(strip_non_numeric("300"), "300");
         assert_eq!(strip_non_numeric("3abcd00"), "300");
+    }
+
+    #[test]
+    fn it_can_upcase_first() {
+        assert_eq!(upcase_first("dog"), "Dog");
+        assert_eq!(upcase_first("Dog"), "Dog");
     }
 }

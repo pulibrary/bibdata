@@ -8,6 +8,7 @@ use crate::marc::identifier::identifiers_of_all_versions;
 use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
+use crate::marc::note::action_note::action_notes;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::solr::AuthorRoles;
 use magnus::{Module, Object, RHash, RModule, function};
@@ -60,6 +61,15 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
 fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
 
+    let action_notes_1display = ruby.ary_new();
+    let action_notes = action_notes(&record).collect::<Vec<_>>();
+
+    if !action_notes.is_empty()
+        && let Ok(notes) = serde_json::to_string(&action_notes)
+    {
+        action_notes_1display.push(notes)?;
+    }
+
     let author_roles_1display =
         serde_json::to_string(&AuthorRoles::from(&record)).map_err(|err| {
             magnus::Error::new(
@@ -82,7 +92,11 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(18);
+    let hash = ruby.hash_new_capa(20);
+    if action_notes_1display.is_empty() {
+        hash.aset("action_notes_1display", ruby.qnil())?;
+    }
+    hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
     hash.aset("author_roles_1display", author_roles_1display)?;
     hash.aset(

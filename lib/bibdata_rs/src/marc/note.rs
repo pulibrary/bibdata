@@ -1,5 +1,7 @@
 use marctk::Record;
 
+pub mod action_note;
+
 pub fn access_notes(record: &Record) -> Option<Vec<String>> {
     let notes: Vec<String> = record
         .extract_values("506(1*)a")
