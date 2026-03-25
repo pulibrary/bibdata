@@ -35,7 +35,7 @@ set :linked_dirs, %w{
   log
 }
 
-set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml']
+set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml'] if File.exist?('marc_to_solr/translation_maps/figgy_mms_ids.yaml')
 
 set :default_env, {
   CARGO_HOME: '/usr/local/cargo',
