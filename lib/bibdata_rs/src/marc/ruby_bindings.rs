@@ -93,9 +93,6 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .and_then(|date| date.maybe_to_string());
 
     let hash = ruby.hash_new_capa(20);
-    if action_notes_1display.is_empty() {
-        hash.aset("action_notes_1display", ruby.qnil())?;
-    }
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
     hash.aset("author_roles_1display", author_roles_1display)?;

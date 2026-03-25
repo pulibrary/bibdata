@@ -101,5 +101,6 @@ mod tests {
     fn it_can_upcase_first() {
         assert_eq!(upcase_first("dog"), "Dog");
         assert_eq!(upcase_first("Dog"), "Dog");
+        assert_eq!(upcase_first(""), "");
     }
 }

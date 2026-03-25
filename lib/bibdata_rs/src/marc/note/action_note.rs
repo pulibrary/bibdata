@@ -126,3 +126,24 @@ fn authorizations_as_phrase(authorizations: &Vec<&str>) -> Option<String> {
         Some(iter::once(&"—").chain(authorizations).join(" "))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_gets_action_note_from_scsb_record() {
+        let record = Record::from_breaker(r#"=001 SCSB-9893561
+=583 1\ $acommitted to retain$c20181001$din perpetuity$fReCAP Shared Collection$5HUL$8221934240020003941"#).unwrap();
+        let notes: Vec<_> = action_notes(&record).collect();
+        assert_eq!(
+            notes,
+            vec![ActionNote {
+                description: Some(
+                    "Committed to retain in perpetuity — ReCAP Shared Collection (HUL)".to_owned()
+                ),
+                uri: None
+            }]
+        );
+    }
+}
