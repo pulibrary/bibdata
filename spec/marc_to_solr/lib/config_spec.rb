@@ -1758,7 +1758,7 @@ describe 'From traject_config.rb', :indexing do
         expect(notes.first.keys).to include('description')
         expect(notes.first['description']).to eq('Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.')
         expect(notes.first.keys).to include('uri')
-        expect(notes.first['uri']).to eq('')
+        expect(notes.first['uri']).to be_nil
       end
 
       it 'has an Action Note from Princeton holding records' do

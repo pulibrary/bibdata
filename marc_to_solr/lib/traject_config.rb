@@ -782,9 +782,8 @@ to_field 'source_acquisition_display', extract_marc('541|1*|abcdefhno36:541| *|a
 to_field 'publications_about_display', extract_marc('581az36')
 
 # Action note - formatted with link
-to_field 'action_notes_1display' do |record, accumulator, context|
-  notes = ActionNoteBuilder.build(record:, scsb_record: context.clipboard[:scsb_record])
-  accumulator.replace(notes) if notes.present?
+to_field 'action_notes_1display' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['action_notes_1display'])
 end
 
 # Indexed in:

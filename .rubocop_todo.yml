@@ -197,7 +197,6 @@ Performance/MapMethodChain:
 Performance/StringInclude:
   Exclude:
     - 'app/models/electronic_location.rb'
-    - 'marc_to_solr/lib/action_note_builder.rb'
     - 'marc_to_solr/lib/format/bib_types.rb'
 
 # Offense count: 7
