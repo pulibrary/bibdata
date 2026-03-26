@@ -35,8 +35,6 @@ set :linked_dirs, %w{
   log
 }
 
-set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml'] if File.exist?('marc_to_solr/translation_maps/figgy_mms_ids.yaml')
-
 set :default_env, {
   CARGO_HOME: '/usr/local/cargo',
   RUSTUP_HOME: '/usr/local/rustup',
@@ -97,6 +95,7 @@ end
 after 'deploy:reverted', 'sidekiq:restart'
 after 'deploy:published', 'sidekiq:restart'
 after 'deploy:restart', 'sqs_poller:restart'
+before 'deploy:check:linked_files', 'deploy:link_figgy_file'
 
 namespace :deploy do
   desc "Check that we can access everything"
@@ -147,6 +146,14 @@ namespace :deploy do
     on roles(:all) do
       within release_path do
         execute :rake, 'rust:cleanup_toolchains'
+      end
+    end
+  end
+
+  task :link_figgy_file do
+    on roles(:app) do
+      if test("[ -f #{shared_path}/marc_to_solr/translation_maps/figgy_mms_ids.yaml ]")
+        set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml']
       end
     end
   end
