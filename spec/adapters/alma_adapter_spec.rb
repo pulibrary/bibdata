@@ -292,6 +292,7 @@ RSpec.describe AlmaAdapter do
                     temp_library_label: 'Lewis Library - Term Loan Reserves', temp_location_code: 'lewis$resterm',
                     temp_location_label: 'Lewis Library - Term Loan Reserves' }
       expect(item).to eq item_test
+      expect(availability.first[:status]).to eq 'Available'
     end
 
     it 'defaults the pickup location to the library' do
@@ -341,6 +342,20 @@ RSpec.describe AlmaAdapter do
       expect(item[:status]).to eq 'Available'
       expect(item[:status_label]).to eq 'Item in place'
       expect(item[:status_source]).to eq 'base_status'
+    end
+
+    context 'when the item is requested and in place' do
+      before do
+        # rubocop:disable RSpec/AnyInstance
+        allow_any_instance_of(AlmaAdapter::AlmaItem).to receive(:requested_and_item_in_place?).and_return(true)
+        # rubocop:enable RSpec/AnyInstance
+      end
+
+      it 'sets the status label to "Unavailable" if the item is requested and in place' do
+        availability = adapter.get_availability_holding(id: '9943506421', holding_id: '22261963850006421')
+        expect(availability.first[:status]).to eq 'Unavailable'
+        expect(availability.first[:status_label]).to eq 'Item in place'
+      end
     end
   end
 
