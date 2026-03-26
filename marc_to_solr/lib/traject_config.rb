@@ -120,10 +120,12 @@ end
 
 to_field 'figgy_1display' do |record, accumulator|
   figgy_items = Traject::TranslationMap.new('figgy_mms_ids')[record['001']&.value]
-
   next unless figgy_items
 
   accumulator << figgy_items.to_json
+rescue Traject::TranslationMap::NotFound
+  Rails.logger.warn("figgy_mms_ids translation map not found for record #{record['001']&.value}")
+  next
 end
 
 # Author/Artist:
