@@ -240,7 +240,7 @@ class AlmaAdapter
         id: item_data['pid'],
         holding_id:,
         copy_number: holding_data['copy_id'],
-        status: status[:code],        # Available
+        status: requested_and_item_in_place? ? 'Unavailable' : status[:code], # Available
         status_label: status[:label], # Item in place
         status_source: status[:source], # e.g. work_order, process_type, base_status
         process_type: status[:process_type],
@@ -255,6 +255,10 @@ class AlmaAdapter
         chron_display: chronology, # in Alma there are many chronologies
         requested: item_data['requested']
       }.merge(temp_library_availability_summary)
+    end
+
+    def requested_and_item_in_place?
+      item_data['requested'] == true && calculate_status[:label] == 'Item in place'
     end
 
     def temp_library_availability_summary
