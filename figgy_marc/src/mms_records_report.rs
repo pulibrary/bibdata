@@ -32,9 +32,22 @@ pub fn fetch_report(
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     use mockito::Matcher;
 
-    use super::*;
+    const BASIC_RESPONSE: &str = r#"{
+  "99129146648906421": [
+    {
+      "visibility": {
+        "value": "restricted",
+        "label": "private",
+        "definition": "Only privileged users of this application can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/1ab2345-bde9-4165-ba00-4eb0e772e145/manifest"
+    }
+  ]
+}"#;
 
     #[test]
     fn it_sends_the_auth_token() {
@@ -43,6 +56,7 @@ mod tests {
 
         let mock = server
             .mock("GET", "/reports/mms_records.json")
+            .with_body(BASIC_RESPONSE)
             .match_query(Matcher::UrlEncoded(
                 "auth_token".into(),
                 "FAKE_TOKEN".into(),
