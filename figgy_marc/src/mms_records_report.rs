@@ -3,12 +3,12 @@
 
 use std::{collections::HashMap, time::Duration};
 
-use crate::{config::FiggyMarcConfig, error::FiggyMarcError};
+use crate::{Visibility, config::FiggyMarcConfig, error::FiggyMarcError};
 use reqwest::StatusCode;
 
 pub fn fetch_report(
     config: &FiggyMarcConfig,
-) -> Result<HashMap<String, serde_json::Value>, FiggyMarcError<'_>> {
+) -> Result<HashMap<String, Vec<serde_json::Value>>, FiggyMarcError<'_>> {
     let url = format!(
         "{}/reports/mms_records.json?auth_token={}",
         config.figgy_url(),
@@ -28,6 +28,31 @@ pub fn fetch_report(
             .json()
             .map_err(FiggyMarcError::CouldNotParseReportBody)?),
     }
+}
+
+pub fn only_open(
+    documents: &HashMap<String, Vec<serde_json::Value>>,
+) -> HashMap<String, Vec<serde_json::Value>> {
+    documents
+        .iter()
+        .filter_map(|(mms_id, figgy_items)| {
+            let open_items: Vec<_> = figgy_items
+                .iter()
+                .filter_map(|item| {
+                    if matches!(Visibility::from(item), Visibility::Open) {
+                        Some(item.clone())
+                    } else {
+                        None
+                    }
+                })
+                .collect();
+            if open_items.is_empty() {
+                None
+            } else {
+                Some((mms_id.clone(), open_items))
+            }
+        })
+        .collect()
 }
 
 #[cfg(test)]
