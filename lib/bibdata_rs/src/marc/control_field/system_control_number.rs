@@ -1,8 +1,8 @@
 // This module is concerned with the 035 (system control number)
 
-use std::borrow::Cow;
 use crate::marc::{extract_values::ExtractValues, identifier::oclc::is_oclc_number};
 use marctk::Record;
+use std::borrow::Cow;
 
 pub enum SystemControlNumber {
     Pulfa(String),
@@ -52,13 +52,13 @@ pub fn standard_numbers<'a>(record: &'a Record) -> impl Iterator<Item = Cow<'a, 
                             .chars()
                             .skip_while(|x| x != &')')
                             .skip(1) // skip the closing Paren
-                            .collect()
+                            .collect(),
                     )
                 } else {
                     Cow::Borrowed(original.content())
                 }
             })
-        }
+        },
     )
 }
 

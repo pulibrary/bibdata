@@ -1,9 +1,11 @@
 use std::collections::HashMap;
+use std::fs;
 
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
 use crate::marc::control_field::system_control_number::standard_numbers;
 use crate::marc::date::cataloged_date;
+use crate::marc::figgy::figgy_1display;
 use crate::marc::holdings::partner::partner_holdings;
 use crate::marc::identifier::identifiers_of_all_versions;
 use crate::marc::identifier::map_024_indicators_to_labels;
@@ -11,7 +13,9 @@ use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
+use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
+use figgy_marc::only_open;
 use magnus::{Module, Object, RArray, RHash, RModule, function};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
@@ -53,6 +57,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         function!(permanent_location_code, 1),
     )?;
     submodule_marc.define_singleton_method("private_items?", function!(private_items, 2))?;
+    submodule_marc.define_singleton_method(
+        "index_test_figgy_data_into_redis",
+        function!(index_test_figgy_data_into_redis, 0),
+    )?;
     submodule_marc.define_singleton_method("strip_non_numeric", function!(strip_non_numeric, 1))?;
     submodule_marc
         .define_module_function("trim_punctuation", function!(trim_punctuation_owned, 1))?;
@@ -93,7 +101,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(21);
+    let hash = ruby.hash_new_capa(22);
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
     hash.aset("author_roles_1display", author_roles_1display)?;
@@ -115,6 +123,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         "fast_subject_display",
         ruby.ary_from_iter(subject::fast_subjects(&record)),
     )?;
+    hash.aset("figgy_1display", figgy_1display(&record))?;
     hash.aset("format", format)?;
     hash.aset("genre_facet", genre::genres(&record))?;
     hash.aset("icpsr_subject_unstem_search", icpsr_subject_unstem_search)?;
@@ -138,7 +147,10 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         "siku_subject_display",
         ruby.ary_from_iter(subject::siku_subjects_display(&record)),
     )?;
-    hash.aset("standard_no_index", standard_numbers_for_ruby(ruby, &record))?;
+    hash.aset(
+        "standard_no_index",
+        standard_numbers_for_ruby(ruby, &record),
+    )?;
 
     Ok(hash)
 }
@@ -149,6 +161,13 @@ fn has_subfield_related_to_indigenous_studies(term: String) -> Result<bool, magn
 
 fn has_main_term_related_to_indigenous_studies(term: String) -> Result<bool, magnus::Error> {
     Ok(indigenous_studies::has_main_term_related_to_indigenous_studies(&term))
+}
+
+fn index_test_figgy_data_into_redis() {
+    let json_fixture_path = APPLICATION_ROOT.join("spec/fixtures/files/figgy/figgy_report.json");
+    let json = fs::read_to_string(&json_fixture_path).unwrap_or_else(|_| panic!("Could not find the figgy_report in the fixtures directory, please check the path ({}), which is referenced in file {}", &json_fixture_path.to_str().unwrap(), file!()));
+    let test_data: figgy_marc::FiggyMmsIdCache = serde_json::from_str(&json).unwrap();
+    figgy_marc::redis_cache::write(&only_open(&test_data));
 }
 
 fn library_label(code: String) -> Option<String> {
@@ -183,9 +202,8 @@ fn partner_holdings_1display(
 
 fn standard_numbers_for_ruby(ruby: &Ruby, record: &Record) -> RArray {
     ruby.ary_from_iter(
-    standard_numbers(record)
-        .map(|number| ruby.enc_str_new(number.as_bytes(), ruby.utf8_encoding()))
-
+        standard_numbers(record)
+            .map(|number| ruby.enc_str_new(number.as_bytes(), ruby.utf8_encoding())),
     )
 }
 

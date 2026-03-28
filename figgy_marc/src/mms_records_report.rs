@@ -3,16 +3,17 @@
 
 use std::{collections::HashMap, time::Duration};
 
-use crate::{Visibility, config::FiggyMarcConfig, error::FiggyMarcError};
+use crate::{Visibility, config::FiggyConfig, error::FiggyMarcError};
 use reqwest::StatusCode;
 
-pub fn fetch_report(
-    config: &FiggyMarcConfig,
-) -> Result<HashMap<String, Vec<serde_json::Value>>, FiggyMarcError<'_>> {
+pub type FiggyItems = Vec<serde_json::Value>;
+pub type FiggyMmsIdCache = HashMap<String, FiggyItems>;
+
+pub fn fetch_report(config: &FiggyConfig) -> Result<FiggyMmsIdCache, FiggyMarcError<'_>> {
     let url = format!(
         "{}/reports/mms_records.json?auth_token={}",
         config.figgy_url(),
-        config.figgy_sync_token()
+        config.private_figgy_sync_token()
     );
     let client = reqwest::blocking::Client::new();
     let response = client
@@ -30,10 +31,8 @@ pub fn fetch_report(
     }
 }
 
-pub fn only_open(
-    documents: &HashMap<String, Vec<serde_json::Value>>,
-) -> HashMap<String, Vec<serde_json::Value>> {
-    documents
+pub fn only_open(full_cache: &FiggyMmsIdCache) -> FiggyMmsIdCache {
+    full_cache
         .iter()
         .filter_map(|(mms_id, figgy_items)| {
             let open_items: Vec<_> = figgy_items
@@ -57,6 +56,8 @@ pub fn only_open(
 
 #[cfg(test)]
 mod tests {
+    use crate::test_helpers::FiggyConfigBuilder;
+
     use super::*;
     use mockito::Matcher;
 
@@ -77,7 +78,10 @@ mod tests {
     #[test]
     fn it_sends_the_auth_token() {
         let mut server = mockito::Server::new();
-        let config = FiggyMarcConfig::new(server.url(), "FAKE_TOKEN".into());
+        let config = FiggyConfigBuilder::new()
+            .with_figgy_sync_token("FAKE_TOKEN".into())
+            .with_figgy_url(server.url())
+            .build();
 
         let mock = server
             .mock("GET", "/reports/mms_records.json")
@@ -96,7 +100,10 @@ mod tests {
     #[test]
     fn it_returns_error_if_forbidden() {
         let mut server = mockito::Server::new();
-        let config = FiggyMarcConfig::new(server.url(), "BAD_TOKEN".into());
+        let config = FiggyConfigBuilder::new()
+            .with_figgy_sync_token("BAD_TOKEN".into())
+            .with_figgy_url(server.url())
+            .build();
 
         let mock = server
             .mock("GET", "/reports/mms_records.json?auth_token=BAD_TOKEN")

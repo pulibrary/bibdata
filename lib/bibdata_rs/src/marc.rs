@@ -23,6 +23,7 @@ pub mod scsb;
 pub mod subject;
 pub mod variable_length_field;
 
+mod figgy;
 mod ruby_bindings;
 mod string_normalize;
 

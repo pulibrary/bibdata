@@ -1,11 +1,5 @@
 RSpec.configure do |config|
-  # rubocop:disable RSpec/BeforeAfterAll
-  # Ideally, we could use config.when_first_matching_example_defined(:indexing) instead,
-  # but that fails to load Webmock
-  config.before(:all) do
-    stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.read('spec/fixtures/files/figgy/figgy_report.json'))
-    MmsRecordsReport.new.to_translation_map
+  config.when_first_matching_example_defined(:indexing) do
+    BibdataRs::Marc.index_test_figgy_data_into_redis
   end
-  # rubocop:enable RSpec/BeforeAfterAll
 end
