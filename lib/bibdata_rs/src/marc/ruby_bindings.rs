@@ -2,6 +2,7 @@ use std::collections::HashMap;
 
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
+use crate::marc::control_field::system_control_number::standard_numbers;
 use crate::marc::date::cataloged_date;
 use crate::marc::holdings::partner::partner_holdings;
 use crate::marc::identifier::identifiers_of_all_versions;
@@ -11,7 +12,7 @@ use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::solr::AuthorRoles;
-use magnus::{Module, Object, RHash, RModule, function};
+use magnus::{Module, Object, RArray, RHash, RModule, function};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
 // (specifically the BibdataRs::Marc Ruby module and the crate::marc Rust module)
@@ -92,7 +93,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(20);
+    let hash = ruby.hash_new_capa(21);
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
     hash.aset("author_roles_1display", author_roles_1display)?;
@@ -137,6 +138,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         "siku_subject_display",
         ruby.ary_from_iter(subject::siku_subjects_display(&record)),
     )?;
+    hash.aset("standard_no_index", standard_numbers_for_ruby(ruby, &record))?;
 
     Ok(hash)
 }
@@ -177,6 +179,14 @@ fn partner_holdings_1display(
             )
         })?))
     }
+}
+
+fn standard_numbers_for_ruby(ruby: &Ruby, record: &Record) -> RArray {
+    ruby.ary_from_iter(
+    standard_numbers(record)
+        .map(|number| ruby.enc_str_new(number.as_bytes(), ruby.utf8_encoding()))
+
+    )
 }
 
 #[cfg(test)]

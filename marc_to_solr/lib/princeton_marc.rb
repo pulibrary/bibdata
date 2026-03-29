@@ -254,10 +254,6 @@ def fragment_value(fragment_index)
   end
 end
 
-def remove_parens_035 standard_no
-  standard_no.gsub(/^\(.*?\)/, '')
-end
-
 def everything_after_t record, fields
   values = []
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|

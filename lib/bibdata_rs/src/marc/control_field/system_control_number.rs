@@ -1,6 +1,7 @@
 // This module is concerned with the 035 (system control number)
 
-use crate::marc::identifier::oclc::is_oclc_number;
+use std::borrow::Cow;
+use crate::marc::{extract_values::ExtractValues, identifier::oclc::is_oclc_number};
 use marctk::Record;
 
 pub enum SystemControlNumber {
@@ -37,4 +38,40 @@ pub fn is_princeton_finding_aid(record: &Record) -> bool {
     system_control_numbers(record)
         .iter()
         .any(|number| matches!(number, SystemControlNumber::Pulfa(_)))
+}
+
+pub fn standard_numbers<'a>(record: &'a Record) -> impl Iterator<Item = Cow<'a, str>> {
+    record.extract_field_values_by(
+        |field| field.tag() == "035",
+        |field| {
+            field.first_subfield("a").map(|original| {
+                if original.content().starts_with('(') {
+                    Cow::Owned(
+                        original
+                            .content()
+                            .chars()
+                            .skip_while(|x| x != &')')
+                            .skip(1) // skip the closing Paren
+                            .collect()
+                    )
+                } else {
+                    Cow::Borrowed(original.content())
+                }
+            })
+        }
+    )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_can_find_standard_numbers() {
+        let record = Record::from_breaker("=035 \\$a(OCoLC)ocn179901451").unwrap();
+        let mut numbers = standard_numbers(&record);
+        let normalized = numbers.next().unwrap();
+        assert_eq!(normalized, "ocn179901451");
+        assert!(numbers.next().is_none());
+    }
 }
