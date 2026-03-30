@@ -295,21 +295,21 @@ GEM
     honeybadger (6.5.2)
       logger
       ostruct
-    http (5.2.0)
+    http (5.3.1)
       addressable (~> 2.8)
-      base64 (~> 0.1)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       llhttp-ffi (~> 0.5.0)
     http-accept (1.7.0)
-    http-cookie (1.0.8)
+    http-cookie (1.1.0)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     httparty (0.24.0)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    httpclient (2.8.3)
+    httpclient (2.9.0)
+      mutex_m
     human_languages (0.10.1)
       csv (~> 3.0)
     i18n (1.14.8)
@@ -350,7 +350,7 @@ GEM
       rb_sys (~> 0.9.91)
     lightly (0.2.1)
     lint_roller (1.1.0)
-    llhttp-ffi (0.5.0)
+    llhttp-ffi (0.5.1)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
     logger (1.7.0)
@@ -664,14 +664,16 @@ GEM
       mize (~> 0.6)
       readline
       sync
-    traject (3.8.2)
+    traject (3.8.3)
       concurrent-ruby (>= 0.8.0)
+      csv
       dot-properties (>= 0.1.1)
       hashie (>= 3.1, < 6)
       http (>= 3.0, < 6)
       httpclient (~> 2.5)
       marc (~> 1.0)
       marc-fastxmlwriter (~> 1.0)
+      mutex_m
       nokogiri (~> 1.9)
       slop (~> 4.0)
       yell
