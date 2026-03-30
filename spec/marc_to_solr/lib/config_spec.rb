@@ -9,11 +9,6 @@ describe 'From traject_config.rb', :indexing do
     indexer.reader!(f).first
   end
 
-  before do
-    allow(ENV).to receive(:fetch).and_call_original
-    allow(ENV).to receive(:fetch).with('CATALOG_SYNC_TOKEN', 'FAKE_TOKEN').and_return('FAKE_TOKEN')
-  end
-
   context 'valid records' do
     before(:all) do
       stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')

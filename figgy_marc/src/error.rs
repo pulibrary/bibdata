@@ -1,10 +1,11 @@
-use crate::config::FiggyMarcConfig;
+use crate::config::FiggyConfig;
 use std::{env::VarError, error::Error, fmt::Display};
 
 #[derive(Debug)]
 pub enum FiggyMarcError<'a> {
-    CouldNotAuthenticateToFiggy(&'a FiggyMarcConfig),
+    CouldNotAuthenticateToFiggy(&'a FiggyConfig),
     CouldNotConnectToFiggy(reqwest::Error),
+    CouldNotStartRedisClient(redis::RedisError, String),
     CouldNotParseReportBody(reqwest::Error),
     InvalidEnvironmentVariable(&'a str, VarError),
 }
@@ -19,6 +20,7 @@ impl<'a> Error for FiggyMarcError<'a> {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
             Self::CouldNotConnectToFiggy(e) => Some(e),
+            Self::CouldNotStartRedisClient(e, _) => Some(e),
             Self::InvalidEnvironmentVariable(_, e) => Some(e),
             _ => None,
         }

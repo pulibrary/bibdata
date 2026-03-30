@@ -45,7 +45,7 @@ every 1.day, at: '6:00am', roles: [:cron_production] do
 end
 
 every 1.day, at: '1:00am', roles: [:worker] do
-  rake 'figgy_mms_ids:build_translation_map', output: '/tmp/cron_log.log'
+  command 'cargo run --bin cache_figgy_data'
 end
 
 # delete old events, dumps, and files on disk

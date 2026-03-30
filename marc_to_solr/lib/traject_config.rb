@@ -118,12 +118,8 @@ to_field 'cjk_notes' do |_record, accumulator, context|
   accumulator.replace(context.clipboard[:solr_fields]['cjk_notes'])
 end
 
-to_field 'figgy_1display' do |record, accumulator|
-  figgy_items = Traject::TranslationMap.new('figgy_mms_ids')[record['001']&.value]
-
-  next unless figgy_items
-
-  accumulator << figgy_items.to_json
+to_field 'figgy_1display' do |_record, accumulator, context|
+  accumulator << context.clipboard[:solr_fields]['figgy_1display'] if context.clipboard[:solr_fields]['figgy_1display']
 end
 
 # Author/Artist:
