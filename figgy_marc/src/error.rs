@@ -5,6 +5,7 @@ use std::{env::VarError, error::Error, fmt::Display};
 pub enum FiggyMarcError<'a> {
     CouldNotAuthenticateToFiggy(&'a FiggyConfig),
     CouldNotConnectToFiggy(reqwest::Error),
+    CouldNotCreateRedisConnectionPool(r2d2::Error, redis::ConnectionAddr),
     CouldNotStartRedisClient(redis::RedisError, String),
     CouldNotParseReportBody(reqwest::Error),
     InvalidEnvironmentVariable(&'a str, VarError),
@@ -20,6 +21,7 @@ impl<'a> Error for FiggyMarcError<'a> {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
             Self::CouldNotConnectToFiggy(e) => Some(e),
+            Self::CouldNotCreateRedisConnectionPool(e, _) => Some(e),
             Self::CouldNotStartRedisClient(e, _) => Some(e),
             Self::InvalidEnvironmentVariable(_, e) => Some(e),
             _ => None,
