@@ -944,9 +944,8 @@ to_field 'geographic_facet', marc_geo_facet do |_record, accumulator|
   accumulator.replace(subjects)
 end
 
-to_field 'homoit_genre_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[homoit] }
-  accumulator.replace(genres)
+to_field 'homoit_genre_s' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['homoit_genre_s'])
 end
 
 # used for the Browse lists and hierarchical subject facet
@@ -957,9 +956,8 @@ to_field 'homoit_genre_facet' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'lcgft_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft] }
-  accumulator.replace(genres)
+to_field 'lcgft_s' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['lcgft_s'])
 end
 
 # used for the Browse lists and hierarchical subject facet
@@ -970,9 +968,8 @@ to_field 'lcgft_genre_facet' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'aat_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[aat] }
-  accumulator.replace(genres)
+to_field 'aat_s' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['aat_s'])
 end
 
 # used for the Browse lists and hierarchical subject facet
@@ -983,9 +980,8 @@ to_field 'aat_genre_facet' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'rbgenr_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp] }
-  accumulator.replace(genres)
+to_field 'rbgenr_s' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['rbgenr_s'])
 end
 
 # used for the Browse lists and hierarchical subject facet
