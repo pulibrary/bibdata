@@ -28,6 +28,8 @@ every 1.day, at: '4:00am', roles: [:cron_production] do
   rake 'ephemera:full_reindex', output: '/tmp/ephemera_full_reindex.log'
 end
 
+job_type :cargo, 'cd :path && cargo run --release --bin :task >> :output'
+
 job_type :liberate_latest_production,
          'cd :path && :environment_variable=:environment SET_URL=:set_url :bundle_command rake :task --silent :output'
 
@@ -44,8 +46,8 @@ every 1.day, at: '6:00am', roles: [:cron_production] do
   rake 'marc_liberation:partner_update', output: '/tmp/cron_log.log'
 end
 
-every 1.day, at: '1:00am', roles: [:worker] do
-  command 'cargo run --bin cache_figgy_data'
+every 1.day, at: '1:00am', roles: [:cron_production] do
+  cargo 'cache_figgy_data', output: '/tmp/cron_log.log'
 end
 
 # delete old events, dumps, and files on disk
