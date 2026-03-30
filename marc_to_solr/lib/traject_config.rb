@@ -1317,10 +1317,8 @@ to_field 'oclc_s', extract_marc('035a') do |_record, accumulator|
   accumulator.replace(oclcs)
 end
 
-to_field 'standard_no_index', extract_marc('035a') do |_record, accumulator|
-  accumulator.each_with_index do |value, i|
-    accumulator[i] = remove_parens_035(value)
-  end
+to_field 'standard_no_index' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['standard_no_index'])
 end
 
 # Other version(s):
