@@ -1,14 +1,4 @@
-use std::{path::Path, sync::LazyLock};
+use std::{path::PathBuf, sync::LazyLock};
 
-pub static APPLICATION_ROOT: LazyLock<&Path> = LazyLock::new(|| {
-    let current_path = Path::new(file!());
-    current_path
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-});
+pub static APPLICATION_ROOT: LazyLock<PathBuf> =
+    LazyLock::new(|| PathBuf::from(&format!("{}/../..", env!("CARGO_MANIFEST_DIR"))));
