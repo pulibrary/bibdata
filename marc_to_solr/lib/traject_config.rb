@@ -94,22 +94,12 @@ end
 # for scsb local system id
 to_field 'other_id_s', extract_marc('009', first: true)
 
-# cjk
-to_field 'cjk_all' do |record, accumulator|
-  keep_fields = %w[880]
-  result = []
-  record.each do |field|
-    next unless  keep_fields.include?(field.tag)
+to_field 'cjk_all' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['cjk_all']
+end
 
-    subfield_values = field.subfields
-                           .reject { |sf| sf.code == '6' }
-                           .collect(&:value)
-
-    next if subfield_values.empty?
-
-    result << subfield_values.join(' ')
-  end
-  accumulator << result.join(' ')
+to_field 'non_latin_non_cjk_all_index' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_all_index']
 end
 
 # 880 field is "vernacular" and may link to a translation in a 5xx

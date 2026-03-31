@@ -20,6 +20,10 @@ pub fn join_all_subfields(field: &Field) -> String {
     join_subfields(field.subfields().iter())
 }
 
+pub fn join_subfields_except(field: &Field, exclude: &[&str]) -> String {
+    join_subfields(field.subfields().iter().filter(|subfield| !exclude.contains(&subfield.code())))
+}
+
 pub fn join_subfields<'a>(subfields: impl Iterator<Item = &'a Subfield>) -> String {
     let raw = subfields.map(|subfield| subfield.content()).join(" ");
     combine_consecutive_whitespace(&raw)
