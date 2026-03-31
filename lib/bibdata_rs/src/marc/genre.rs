@@ -1,9 +1,14 @@
+use crate::marc::{
+    extract_values::ExtractValues, subject::hierarchical_heading,
+    variable_length_field::multiscript_tag_eq,
+};
+
 use super::{
     fixed_field::{BibliographicLevel, TypeOfRecord, literary_forms},
     trim_punctuation,
 };
 use itertools::Itertools;
-use marctk::Record;
+use marctk::{Field, Record};
 use std::sync::LazyLock;
 
 mod biographical_content;
@@ -20,6 +25,107 @@ pub fn genres(record: &Record) -> Vec<String> {
         .chain(genres_from_biographical_content(record))
         .unique()
         .collect()
+}
+
+pub fn aat_s(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        |field| {
+            multiscript_tag_eq(field, "655")
+                && matches!(
+                    GenreVocabulary::from(field),
+                    GenreVocabulary::ArtArchitectureThesaurus
+                )
+        },
+        |field| {
+            Some(hierarchical_heading(
+                field,
+                &["a", "v", "x", "y", "z"],
+                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
+            ))
+        },
+    )
+}
+
+pub fn homoit_genre_s(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        |field| {
+            multiscript_tag_eq(field, "655")
+                && matches!(GenreVocabulary::from(field), GenreVocabulary::Homosaurus)
+        },
+        |field| {
+            Some(hierarchical_heading(
+                field,
+                &["a", "v", "x", "y", "z"],
+                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
+            ))
+        },
+    )
+}
+
+pub fn lcgft_s(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        |field| {
+            multiscript_tag_eq(field, "655")
+                && matches!(
+                    GenreVocabulary::from(field),
+                    GenreVocabulary::LCGenreFormTerms
+                )
+        },
+        |field| {
+            Some(hierarchical_heading(
+                field,
+                &["a", "v", "x", "y", "z"],
+                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
+            ))
+        },
+    )
+}
+
+pub fn rbgenr_s(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        |field| {
+            multiscript_tag_eq(field, "655")
+                && matches!(
+                    GenreVocabulary::from(field),
+                    GenreVocabulary::RareBooksManuscriptsGenreVocabularies
+                )
+        },
+        |field| {
+            Some(hierarchical_heading(
+                field,
+                &["a", "v", "x", "y", "z"],
+                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
+            ))
+        },
+    )
+}
+
+const RARE_BOOKS_MANUSCRIPTS_GENRE_VOCABS: [&str; 8] = [
+    "rbbin", "rbgenr", "rbmscv", "rbpap", "rbpri", "rbprov", "rbpub", "rbtyp",
+];
+
+pub enum GenreVocabulary {
+    ArtArchitectureThesaurus,
+    Homosaurus,
+    LCGenreFormTerms,
+    RareBooksManuscriptsGenreVocabularies,
+    UnknownVocabulary,
+}
+
+impl From<&Field> for GenreVocabulary {
+    fn from(field: &Field) -> Self {
+        match field.first_subfield("2") {
+            Some(subfield) if subfield.content().trim() == "aat" => Self::ArtArchitectureThesaurus,
+            Some(subfield) if subfield.content().trim() == "homoit" => Self::Homosaurus,
+            Some(subfield) if subfield.content().trim() == "lcgft" => Self::LCGenreFormTerms,
+            Some(subfield)
+                if RARE_BOOKS_MANUSCRIPTS_GENRE_VOCABS.contains(&subfield.content().trim()) =>
+            {
+                Self::RareBooksManuscriptsGenreVocabularies
+            }
+            _ => Self::UnknownVocabulary,
+        }
+    }
 }
 
 fn genres_from_primary_source_lcsh_mapping(record: &Record) -> Vec<String> {

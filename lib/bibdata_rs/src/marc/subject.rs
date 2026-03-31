@@ -106,7 +106,7 @@ pub fn siku_subjects_display(record: &Record) -> impl Iterator<Item = String> {
 
 // Creates a concatenated heading with separators before the desired subfields, for example:
 // German language—Foreign words and phrases
-fn hierarchical_heading(
+pub fn hierarchical_heading(
     field: &Field,
     subfields_to_include: &[&str],
     place_separator_before: fn(&Subfield) -> bool,
