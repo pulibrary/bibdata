@@ -24,6 +24,7 @@ pub mod subject;
 pub mod variable_length_field;
 
 mod figgy;
+mod non_latin;
 mod ruby_bindings;
 mod string_normalize;
 mod title;

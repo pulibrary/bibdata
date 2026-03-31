@@ -759,8 +759,8 @@ describe 'From traject_config.rb', :indexing do
         expect(@record_cjk['cjk_subject']).to eq ['子部 醫家類 兒科.']
       end
 
-      it 'cjk_all contains 880 fields in a single string' do
-        expect(@record_cjk['cjk_all'][0]).to include('葉其蓁. 抱乙子幼科指掌遺藁 : 五卷 / 葉其蓁編輯 ; [葉] 大本述. 幼科指掌.  [China : s.n.], 清乾隆癸亥 [8年, 1743] 子部 醫家類 兒科. ')
+      it 'cjk_all contains 880 fields' do
+        expect(@record_cjk['cjk_all']).to contain_exactly('葉其蓁.', '抱乙子幼科指掌遺藁 : 五卷 / 葉其蓁編輯 ; [葉] 大本述.', '幼科指掌.', '[China : s.n.], 清乾隆癸亥 [8年, 1743]', '子部 醫家類 兒科. sk', '葉大本, 述.', '書業堂, 藏板.', '封面鐫"抱乙子遺藁南汇葉困菴先生編輯幼科指掌書業堂藏板".', '乾隆癸亥李大倫"序"言刻書事.', '框19 x 13.1公分, 9行18字, 白口, 左右雙邊, 單黑魚尾. 版心上鐫"幼科", 中鐫卷次.')
       end
 
       it 'cjk_notes contains 880 fields associated with 5xx fields' do

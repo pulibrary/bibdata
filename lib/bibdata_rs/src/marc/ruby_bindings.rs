@@ -102,7 +102,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(27);
+    let hash = ruby.hash_new_capa(29);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -116,6 +116,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         call_number_labels_for_display(&record),
     )?;
     hash.aset("cataloged_date_tdt", cataloged_date(&record))?;
+    hash.aset("cjk_all", ruby.ary_from_iter(cjk::cjk_all(&record)))?;
     hash.aset("cjk_notes", ruby.ary_from_iter(cjk::notes_cjk(&record)))?;
     hash.aset(
         "cjk_subject",
@@ -135,6 +136,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
     hash.aset("icpsr_subject_unstem_search", icpsr_subject_unstem_search)?;
     hash.aset("lcgft_s", ruby.ary_from_iter(genre::lcgft_s(&record)))?;
     hash.aset("marcxml", marcxml_compressed(&record))?;
+    hash.aset("non_latin_non_cjk_all_index", ruby.ary_from_iter(non_latin::non_latin_non_cjk_all(&record)))?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
     hash.aset(
         "original_language_of_translation_facet",
@@ -238,11 +240,11 @@ mod tests {
         let ruby = unsafe { Ruby::get_unchecked() };
         let record_string = String::from(r"=655 \7$aDictionaries$xFrench$y18th century.$2rbgenr");
         let hash = solr_fields(&ruby, record_string).unwrap();
-        
+
         let rbgenr_s_value = hash.aref::<&str, Vec<String>>("rbgenr_s").unwrap();
         assert_eq!(
             rbgenr_s_value,
             vec![String::from("Dictionaries—French—18th century")]
-            );
+        );
     }
 }

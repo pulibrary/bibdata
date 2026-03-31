@@ -6,6 +6,22 @@ use itertools::Itertools;
 use marctk::Record;
 use unicode_blocks::is_cjk;
 
+use crate::marc::{extract_values::ExtractValues, variable_length_field::join_subfields_except};
+
+pub fn cjk_all(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        |field| field.tag() == "880",
+        |field| {
+            let joined = join_subfields_except(field, &["6"]);
+            if has_cjk_chars(&joined) {
+                Some(joined)
+            } else {
+                None
+            }
+        },
+    )
+}
+
 pub fn notes_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
     // These notes are supposedly in Latin script, but still may contain some
     // CJK characters
@@ -91,7 +107,7 @@ pub fn subjects_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
     .filter(|subject| has_cjk_chars(subject))
 }
 
-fn has_cjk_chars(value: &str) -> bool {
+pub fn has_cjk_chars(value: &str) -> bool {
     value.chars().any(is_cjk)
 }
 
@@ -120,6 +136,28 @@ fn extract_parallel_values<'record>(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn it_can_extract_cjk_from_880() {
+        let record = Record::from_breaker(
+            r#"=880 \\$6123-01$a돌고래
+=880 \\$6123-02$aدُلفين"#,
+        )
+        .unwrap();
+        let mut cjk_all = cjk_all(&record);
+        assert_eq!(cjk_all.next(), Some(String::from("돌고래")));
+        assert_eq!(cjk_all.next(), None);
+    }
+
+    #[test]
+    fn it_can_extract_cjk_from_multiple_880_subfields() {
+        let record = Record::from_breaker(
+            r"=880 \\$6260-03/{dollar}1$a上海 : $b 上海大学出版社, $c 2023.")
+        .unwrap();
+        let mut cjk_all = cjk_all(&record);
+        assert_eq!(cjk_all.next(), Some(String::from("上海 : 上海大学出版社, 2023.")));
+        assert_eq!(cjk_all.next(), None);
+    }
 
     #[test]
     fn it_can_extract_cjk_notes_from_500() {
