@@ -212,7 +212,9 @@ to_field 'title_no_h_index' do |record, accumulator|
   accumulator
 end
 
-to_field 'title_t', extract_marc('245abchknps', alternate_script: false, first: true)
+to_field 'title_t' do |_record, accumulator, context|
+  accumulator << context.clipboard[:solr_fields]['title_t'] if context.clipboard[:solr_fields]['title_t']
+end
 to_field 'title_citation_display', extract_marc('245ab', trim_punctuation: true)
 
 ## Series, Title, and Title starts with index-only fields ##

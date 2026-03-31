@@ -91,6 +91,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .map(|facet| format!("{facet}"))
         .collect();
     let icpsr_subject_unstem_search = subject::icpsr_subjects(&record);
+    let title_t = title::latin_script_title(&record);
 
     let original_language_of_translation_facet: Vec<_> =
         language::original_languages_of_translation(&record)
@@ -101,7 +102,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(26);
+    let hash = ruby.hash_new_capa(27);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -158,6 +159,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         "standard_no_index",
         standard_numbers_for_ruby(ruby, &record),
     )?;
+    hash.aset("title_t", title_t)?;
 
     Ok(hash)
 }
