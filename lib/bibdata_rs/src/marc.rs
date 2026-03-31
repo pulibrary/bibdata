@@ -26,6 +26,7 @@ pub mod variable_length_field;
 mod figgy;
 mod ruby_bindings;
 mod string_normalize;
+mod title;
 
 pub use ruby_bindings::register_ruby_methods;
 pub use string_normalize::trim_punctuation;
