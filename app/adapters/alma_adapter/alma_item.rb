@@ -304,7 +304,7 @@ class AlmaAdapter
 
       # [Source for values](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/)
       # [Work Order documentation](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770142/Work+Orders)
-      code = if value.in?(%w[Bind Pres AcqWorkOrder CollDev HMT])
+      code = if value.in?(%w[Pres AcqWorkOrder CollDev HMT Firestone])
                'Unavailable'
              else
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
