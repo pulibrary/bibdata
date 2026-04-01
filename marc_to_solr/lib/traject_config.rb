@@ -238,18 +238,12 @@ to_field 'linked_series_index', extract_marc('760acgst:762acgst')
 
 to_field 'original_version_series_index', extract_marc('534f')
 
-to_field 'cjk_title', extract_marc(%w(
-                                     130apldfhkmnorst:210ab:211a:212a:214a:222ab:240apldfhkmnors:
-                                     242abchnp:243adfklmnoprs:245abcfghknps:246abfnp:247abfhnp:
-                                     440anpvx:490avx:
-                                     505t:534f:730aplskfmnor:740ahnp:
-                                     760acgst:762acgst:765kst:767kst:
-                                     770kst:772kst:773kst:774kst:775kst:776kst:777kst:
-                                     780kst:785kst:786kst:787kst:
-                                     830adfghklmnoprstv:840anpv
-                                   ), alternate_script: :only) do |record, accumulator|
-  accumulator << everything_after_t_alt_script(record, '100:110:111:400:410:411:700:710:711:800:810:811')
-  accumulator.flatten!
+to_field 'cjk_title' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['cjk_title']
+end
+
+to_field 'non_latin_non_cjk_title_index' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_title_index']
 end
 
 to_field 'cjk_series_title' do |_record, accumulator, context|

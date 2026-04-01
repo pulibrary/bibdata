@@ -102,7 +102,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(33);
+    let hash = ruby.hash_new_capa(35);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -121,12 +121,13 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
     hash.aset("cjk_notes", ruby.ary_from_iter(cjk::notes_cjk(&record)))?;
     hash.aset(
         "cjk_series_title",
-        ruby.ary_from_iter(non_latin::non_latin_non_cjk_series_titles(&record)),
+        ruby.ary_from_iter(cjk::cjk_series_titles(&record)),
     )?;
     hash.aset(
         "cjk_subject",
         ruby.ary_from_iter(cjk::subjects_cjk(&record)),
     )?;
+    hash.aset("cjk_title", ruby.ary_from_iter(cjk::cjk_titles(&record)))?;
     hash.aset(
         "fast_subject_display",
         ruby.ary_from_iter(subject::fast_subjects(&record)),
@@ -152,6 +153,10 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
     hash.aset(
         "non_latin_non_cjk_series_title_index",
         ruby.ary_from_iter(non_latin::non_latin_non_cjk_series_titles(&record)),
+    )?;
+    hash.aset(
+        "non_latin_non_cjk_title_index",
+        ruby.ary_from_iter(non_latin::non_latin_non_cjk_titles(&record)),
     )?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
     hash.aset(
