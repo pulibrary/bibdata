@@ -8,6 +8,7 @@ use unicode_blocks::is_cjk;
 
 use crate::marc::{
     extract_values::ExtractValues,
+    non_latin::{NON_LATIN_SERIES_TITLE_TAGS, non_latin_series_title_subfields},
     trim_punctuation,
     variable_length_field::{
         SubfieldIterator, join_subfields_except, non_latin_tag, non_latin_tag_included_in,
@@ -37,6 +38,25 @@ pub fn cjk_authors(record: &Record) -> impl Iterator<Item = String> {
                 Some("711") => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n", "p", "q"],
                 _ => Default::default(),
             };
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .subfields_before("t")
+                    .filter_by_code(&desired_subfields)
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_cjk_text(joined)
+        },
+    )
+}
+
+pub fn cjk_series_titles(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        non_latin_tag_included_in(&NON_LATIN_SERIES_TITLE_TAGS),
+        |field| {
+            let desired_subfields = non_latin_series_title_subfields(field);
             let joined = trim_punctuation(
                 &field
                     .subfields()

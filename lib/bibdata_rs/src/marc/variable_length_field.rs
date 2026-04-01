@@ -5,6 +5,7 @@ pub trait SubfieldIterator<'a>: Iterator<Item = &'a Subfield> {
     fn content(self) -> impl Iterator<Item = &'a str>;
     fn filter_by_code(self, codes: &'a [&str]) -> impl Iterator<Item = &'a Subfield>;
     fn subfields_before(self, stop_before: &'a str) -> impl Iterator<Item = &'a Subfield>;
+    fn subfields_after(self, start_at: &'a str) -> impl Iterator<Item = &'a Subfield>;
 }
 impl<'a, I> SubfieldIterator<'a> for I
 where
@@ -19,6 +20,10 @@ where
 
     fn subfields_before(self, stop_before: &'a str) -> impl Iterator<Item = &'a Subfield> {
         self.take_while(move |subfield| subfield.code() != stop_before)
+    }
+
+    fn subfields_after(self, start_at: &'a str) -> impl Iterator<Item = &'a Subfield> {
+        self.skip_while(move |subfield| subfield.code() != start_at)
     }
 }
 
@@ -93,5 +98,22 @@ mod tests {
             .content()
             .collect();
         assert_eq!(before_t, "dolphinwhale");
+    }
+
+    #[test]
+    fn it_can_take_subfields_after() {
+        let mut field = Field::new("123").unwrap();
+        field.add_subfield("a", "dolphin").unwrap();
+        field.add_subfield("z", "whale").unwrap();
+        field.add_subfield("t", "squid").unwrap();
+        field.add_subfield("b", "orca").unwrap();
+
+        let after_t: String = field
+            .subfields()
+            .iter()
+            .subfields_after("t")
+            .content()
+            .collect();
+        assert_eq!(after_t, "squidorca");
     }
 }

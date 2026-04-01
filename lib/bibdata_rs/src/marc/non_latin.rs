@@ -10,7 +10,7 @@ use crate::marc::{
     },
 };
 use itertools::Itertools;
-use marctk::Record;
+use marctk::{Field, Record};
 
 pub fn non_latin_non_cjk_all(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
@@ -35,6 +35,52 @@ pub fn non_latin_non_cjk_authors(record: &Record) -> impl Iterator<Item = String
                 Some("711") => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n", "p", "q"],
                 _ => Default::default(),
             };
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .subfields_before("t")
+                    .filter_by_code(&desired_subfields)
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_non_cjk_text(joined)
+        },
+    )
+}
+
+pub const NON_LATIN_SERIES_TITLE_TAGS: [&str; 20] = [
+    "440", "490", "534", "760", "762", "765", "767", "770", "772", "773", "774", "775", "776",
+    "777", "780", "785", "786", "787", "800", "840",
+];
+pub fn non_latin_series_title_subfields(field: &Field) -> Vec<&str> {
+    match non_latin_tag(field) {
+        Some("440") => vec!["a", "n", "p", "v", "x"],
+        Some("490") => vec!["a", "v", "x"],
+        Some("534") => vec!["f"],
+        Some("760") | Some("762") => vec!["a", "c", "g", "s", "t"],
+        Some(tag)
+            if [
+                "765", "767", "770", "772", "773", "774", "775", "776", "777", "780", "785", "786",
+                "787",
+            ]
+            .contains(&tag) =>
+        {
+            vec!["k"]
+        }
+        Some("830") => vec![
+            "a", "d", "f", "g", "h", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v",
+        ],
+        Some("840") => vec!["a", "n", "p", "v"],
+        _ => Default::default(),
+    }
+}
+
+pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        non_latin_tag_included_in(&NON_LATIN_SERIES_TITLE_TAGS),
+        |field| {
+            let desired_subfields = non_latin_series_title_subfields(field);
             let joined = trim_punctuation(
                 &field
                     .subfields()
