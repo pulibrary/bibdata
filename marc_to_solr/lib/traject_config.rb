@@ -259,7 +259,6 @@ end
 # Compiled/Created:
 #    245 XX fg
 to_field 'compiled_created_display', extract_marc('245fg')
-to_field 'compiled_created_t', extract_marc('245abchknps')
 
 # Edition
 #    250 XX ab
