@@ -109,92 +109,42 @@ pub fn notes_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
 }
 
 pub fn subjects_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
-    extract_parallel_values(
-        record,
-        "600",
-        "*",
-        "0",
-        &[
-            "a", "b", "c", "d", "f", "k", "l", "m", "n", "o", "p", "q", "r", "t", "v", "x", "y",
-            "z",
-        ],
+    record.extract_field_values_by(
+        non_latin_tag_included_in(&["600", "610", "611", "630", "650", "651"]),
+        |field| {
+            let desired_subfields = match (non_latin_tag(field), field.ind2()) {
+                (Some("600"), "0") => vec![
+                    "a", "b", "c", "d", "f", "k", "l", "m", "n", "o", "p", "q", "r", "t", "v", "x",
+                    "y", "z",
+                ],
+                (Some("610"), "0") => vec![
+                    "a", "b", "f", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v", "x", "y", "z",
+                ],
+                (Some("611"), "0") => vec![
+                    "a", "b", "c", "d", "e", "f", "g", "k", "l", "n", "p", "q", "s", "t", "v", "x",
+                    "y", "z",
+                ],
+                (Some("630"), "0") => vec![
+                    "a", "d", "f", "g", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v", "x", "y",
+                    "z",
+                ],
+                (Some("650"), "0") | (Some("650"), "7") => vec!["a", "b", "c", "v", "x", "y", "z"],
+                (Some("651"), "0") => vec!["a", "v", "x", "y", "z"],
+                _ => Default::default(),
+            };
+            let joined = field
+                .subfields()
+                .iter()
+                .filter_by_code(&desired_subfields)
+                .content()
+                .join(" ");
+            maybe_has_cjk_text(joined)
+        },
     )
-    .chain(extract_parallel_values(
-        record,
-        "610",
-        "*",
-        "0",
-        &[
-            "a", "b", "f", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v", "x", "y", "z",
-        ],
-    ))
-    .chain(extract_parallel_values(
-        record,
-        "611",
-        "*",
-        "0",
-        &[
-            "a", "b", "c", "d", "e", "f", "g", "k", "l", "n", "p", "q", "s", "t", "v", "x", "y",
-            "z",
-        ],
-    ))
-    .chain(extract_parallel_values(
-        record,
-        "630",
-        "*",
-        "0",
-        &[
-            "a", "d", "f", "g", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v", "x", "y", "z",
-        ],
-    ))
-    .chain(extract_parallel_values(
-        record,
-        "650",
-        "*",
-        "0",
-        &["a", "b", "c", "v", "x", "y", "z"],
-    ))
-    .chain(extract_parallel_values(
-        record,
-        "650",
-        "*",
-        "7",
-        &["a", "b", "c", "v", "x", "y", "z"],
-    ))
-    .chain(extract_parallel_values(
-        record,
-        "651",
-        "*",
-        "0",
-        &["a", "v", "x", "y", "z"],
-    ))
-    .filter(|subject| has_cjk_chars(subject))
 }
 
 pub fn has_cjk_chars(value: &str) -> bool {
     value.chars().any(is_cjk)
-}
-
-fn extract_parallel_values<'record>(
-    record: &'record Record,
-    tag: &str,
-    ind1: &'record str,
-    ind2: &'record str,
-    subfields: &'record [&str],
-) -> impl Iterator<Item = String> + 'record + use<'record> {
-    record
-        .get_parallel_fields(tag)
-        .into_iter()
-        .filter(move |field| ind1 == "*" || ind1 == field.ind1())
-        .filter(move |field| ind2 == "*" || ind2 == field.ind2())
-        .map(|field| {
-            field
-                .subfields()
-                .iter()
-                .filter(|subfield| subfields.contains(&subfield.code()))
-                .map(|subfield| subfield.content())
-                .join(" ")
-        })
 }
 
 fn maybe_has_cjk_text(original: String) -> Option<String> {
