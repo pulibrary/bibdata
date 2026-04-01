@@ -1,6 +1,7 @@
 use crate::marc::{
-    extract_values::ExtractValues, subject::hierarchical_heading,
-    variable_length_field::latin_or_non_latin_tag_included_in,
+    extract_values::ExtractValues,
+    subject::hierarchical_heading,
+    variable_length_field::{SubfieldIterator, latin_or_non_latin_tag_included_in},
 };
 
 use super::{
@@ -301,17 +302,36 @@ const SUBJECT_GENRE_VOCABULARIES: &[&str] = &[
     "rbtyp", "homoit",
 ];
 
-fn genres_from_subject_vocabularies(record: &Record) -> Vec<String> {
-    record.fields().iter().fold(Vec::new(), |mut acc, field| {
-        if field.ind2() != "7" { return acc }
-        if !matches!(&field.first_subfield("2"), Some(sf) if SUBJECT_GENRE_VOCABULARIES.contains(&sf.content().trim())) { return acc };
-        acc.extend(field.subfields().iter()
-            .filter(|sf| (field.tag() == "650" && sf.code() == "v") || (field.tag() == "655" && sf.code() == "a") || (field.tag() == "655" && sf.code() == "v"))
-            .map(|sf| trim_punctuation(sf.content()))
-            .map(|genre| genre.trim().to_owned())
-        );
-        acc
-    })
+fn genres_from_subject_vocabularies(record: &Record) -> impl Iterator<Item = String> {
+    record
+        .extract_field_values_by(
+            |field| {
+                ["650", "655"].contains(&field.tag())
+                    && field.ind2() == "7"
+                    && any_vocabularies_match(field, SUBJECT_GENRE_VOCABULARIES)
+            },
+            |field| {
+                Some(
+                    field
+                        .subfields()
+                        .iter()
+                        .filter_by_code(if field.tag() == "650" {
+                            &["v"]
+                        } else {
+                            &["a", "v"]
+                        })
+                        .content()
+                        .map(|genre| trim_punctuation(genre).to_string()),
+                )
+            },
+        )
+        .flatten()
+}
+
+fn any_vocabularies_match(field: &Field, vocabulary_codes: &[&str]) -> bool {
+    field
+        .first_subfield("2")
+        .is_some_and(|subfield| vocabulary_codes.contains(&subfield.content().trim()))
 }
 
 static PRIMARY_SOURCE_LCGFT_GENRES: LazyLock<[Subdivision; 127]> = LazyLock::new(|| {
@@ -522,7 +542,7 @@ mod tests {
         )
         .unwrap();
         assert_eq!(
-            genres_from_subject_vocabularies(&record),
+            genres_from_subject_vocabularies(&record).collect::<Vec<_>>(),
             vec!["Afrofuturist comics".to_string()]
         )
     }
