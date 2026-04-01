@@ -49,9 +49,88 @@ pub fn non_latin_non_cjk_authors(record: &Record) -> impl Iterator<Item = String
     )
 }
 
+pub const NON_LATIN_TITLE_TAGS: [&str; 35] = [
+    "130", "210", "211", "212", "214", "222", "240", "242", "243", "245", "246", "247", "440",
+    "490", "505", "534", "730", "740", "760", "762", "765", "767", "770", "772", "773", "774",
+    "775", "776", "777", "780", "785", "786", "787", "830", "840",
+];
+pub fn non_latin_title_subfields(field: &Field) -> Vec<&str> {
+    match non_latin_tag(field) {
+        // Very common fields
+        Some("245") => vec!["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"],
+        Some("246") => vec!["a", "b", "f", "n", "p"],
+        Some("505") => vec!["t"],
+
+        // Less common fields
+        Some("130") => vec![
+            "a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s", "t",
+        ],
+        Some("210") => vec!["a", "b"],
+        Some("211") | Some("212") | Some("214") => vec!["a"],
+        Some("222") => vec!["a", "b"],
+        Some("240") => vec!["a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s"],
+        Some("242") => vec!["a", "b", "c", "h", "n", "p"],
+        Some("243") => vec!["a", "d", "f", "k", "l", "m", "n", "o", "p", "r", "s"],
+        Some("247") => vec!["a", "b", "f", "h", "n", "p"],
+        Some("440") => vec!["a", "n", "p", "v", "x"],
+        Some("490") => vec!["a", "v", "x"],
+        Some("534") => vec!["f"],
+        Some("730") => vec!["a", "p", "l", "s", "k", "f", "m", "n", "o", "r"],
+        Some("740") => vec!["a", "h", "n", "p"],
+        Some("760") | Some("762") => vec!["a", "c", "g", "s", "t"],
+        Some(tag)
+            if [
+                "765", "767", "770", "772", "773", "774", "775", "776", "777", "780", "785", "786",
+                "787",
+            ]
+            .contains(&tag) =>
+        {
+            vec!["k", "s", "t"]
+        }
+        Some("830") => vec![
+            "a", "d", "f", "g", "h", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v",
+        ],
+        Some("840") => vec!["a", "n", "p", "v"],
+        _ => Default::default(),
+    }
+}
+
+pub fn non_latin_non_cjk_titles(record: &Record) -> impl Iterator<Item = String> {
+    let title_fields =
+        record.extract_field_values_by(non_latin_tag_included_in(&NON_LATIN_TITLE_TAGS), |field| {
+            let desired_subfields = non_latin_title_subfields(field);
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .filter_by_code(&desired_subfields)
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_non_cjk_text(joined)
+        });
+    let fields_with_author_and_title_info = record.extract_field_values_by(
+        non_latin_tag_included_in(&[
+            "100", "110", "111", "400", "410", "411", "700", "710", "711", "800", "810", "811",
+        ]),
+        |field| {
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .subfields_after("t")
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_non_cjk_text(joined)
+        },
+    );
+    title_fields.chain(fields_with_author_and_title_info)
+}
+
 pub const NON_LATIN_SERIES_TITLE_TAGS: [&str; 20] = [
     "440", "490", "534", "760", "762", "765", "767", "770", "772", "773", "774", "775", "776",
-    "777", "780", "785", "786", "787", "800", "840",
+    "777", "780", "785", "786", "787", "830", "840",
 ];
 pub fn non_latin_series_title_subfields(field: &Field) -> Vec<&str> {
     match non_latin_tag(field) {

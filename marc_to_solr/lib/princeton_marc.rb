@@ -250,25 +250,6 @@ def everything_after_t record, fields
   values
 end
 
-def everything_after_t_alt_script record, fields
-  values = []
-  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|
-    next unless field.tag == '880'
-
-    after_t = false
-    title = []
-    field.subfields.each do |s_field|
-      title << s_field.value if after_t
-      if s_field.code == 't'
-        title << s_field.value
-        after_t = true
-      end
-    end
-    values << Traject::Macros::Marc21.trim_punctuation(title.join(' ')) unless title.empty?
-  end
-  values
-end
-
 def everything_through_t record, fields
   values = []
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|
