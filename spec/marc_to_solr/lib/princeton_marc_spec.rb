@@ -320,7 +320,6 @@ describe 'From princeton_marc.rb' do
       no_t = { '700' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'please' }, { 'd' => 'disregard' }, { 'k' => 'no title' }] } }
       sample_marc = MARC::Record.new_from_hash('fields' => [t100, t710, no_t, t880])
       @titles = everything_after_t(sample_marc, '100:700:710')
-      @alt_titles = everything_after_t_alt_script(sample_marc, '100:700:710')
       indicators_marc = MARC::Record.new_from_hash('fields' => [ignore700, t710])
       @indicator_titles = everything_after_t(indicators_marc, '700|12|:710|12|:711|12|')
     end
@@ -343,14 +342,6 @@ describe 'From princeton_marc.rb' do
 
     it 'expects indicator matcher to factor into matching lines' do
       expect(@indicator_titles).to contain_exactly('AWESOME John 1492 dont ignore')
-    end
-
-    it 'alt_titles includes 880 field' do
-      expect(@alt_titles).to include('Τίτλος')
-    end
-
-    it 'alt_titles excludes 100 field' do
-      expect(@alt_titles).not_to include('TITLE')
     end
   end
 

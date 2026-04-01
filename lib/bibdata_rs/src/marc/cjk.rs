@@ -8,6 +8,7 @@ use unicode_blocks::is_cjk;
 
 use crate::marc::{
     extract_values::ExtractValues,
+    non_latin::{NON_LATIN_SERIES_TITLE_TAGS, non_latin_series_title_subfields},
     trim_punctuation,
     variable_length_field::{
         SubfieldIterator, join_subfields_except, non_latin_tag, non_latin_tag_included_in,
@@ -49,6 +50,40 @@ pub fn cjk_authors(record: &Record) -> impl Iterator<Item = String> {
             maybe_has_cjk_text(joined)
         },
     )
+}
+
+pub fn cjk_series_titles(record: &Record) -> impl Iterator<Item = String> {
+    let series_title_fields = record.extract_field_values_by(
+        non_latin_tag_included_in(&NON_LATIN_SERIES_TITLE_TAGS),
+        |field| {
+            let desired_subfields = non_latin_series_title_subfields(field);
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .subfields_before("t")
+                    .filter_by_code(&desired_subfields)
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_cjk_text(joined)
+        },
+    );
+    let fields_with_author_and_title_info = record.extract_field_values_by(
+        non_latin_tag_included_in(&["400", "410", "411", "800", "810", "811"]),
+        |field| {
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .subfields_after("t")
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_cjk_text(joined)
+        },
+    );
+    series_title_fields.chain(fields_with_author_and_title_info)
 }
 
 pub fn notes_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
@@ -230,5 +265,18 @@ mod tests {
         let mut names = cjk_authors(&record);
         assert_eq!(names.next(), Some(String::from("村上 春樹")));
         assert_eq!(names.next(), None);
+    }
+
+    #[test]
+    fn it_can_index_cjk_series_titles() {
+        let record = Record::from_breaker(
+            r#"=880 \\ $6440-01$aフシギダネ
+=880 \\ $6411-01$a コイキング $t ギャラドス"#,
+        )
+        .unwrap();
+        let mut series_titles = cjk_series_titles(&record);
+        assert_eq!(series_titles.next(), Some(String::from("フシギダネ")));
+        assert_eq!(series_titles.next(), Some(String::from("ギャラドス")));
+        assert_eq!(series_titles.next(), None);
     }
 }

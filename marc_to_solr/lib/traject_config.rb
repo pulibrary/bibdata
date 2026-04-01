@@ -252,16 +252,14 @@ to_field 'cjk_title', extract_marc(%w(
   accumulator.flatten!
 end
 
-to_field 'cjk_series_title', extract_marc(%w(
-                                            440anpvx:490avx:534f:
-                                            760acgst:762acgst:765k:767k:
-                                            770k:772k:773k:774k:775k:776k:777k:
-                                            780k:785k:786k:787k:
-                                            830adfghklmnoprstv:840anpv
-                                          ), alternate_script: :only) do |record, accumulator|
-  accumulator << everything_after_t_alt_script(record, '400:410:411:800:810:811')
-  accumulator.flatten!
+to_field 'cjk_series_title' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['cjk_series_title']
 end
+
+to_field 'non_latin_non_cjk_series_title_index' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_series_title_index']
+end
+
 #################################################
 
 # Compiled/Created:
