@@ -77,7 +77,7 @@ pub fn non_latin_series_title_subfields(field: &Field) -> Vec<&str> {
 }
 
 pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = String> {
-    record.extract_field_values_by(
+    let series_title_fields = record.extract_field_values_by(
         non_latin_tag_included_in(&NON_LATIN_SERIES_TITLE_TAGS),
         |field| {
             let desired_subfields = non_latin_series_title_subfields(field);
@@ -85,14 +85,28 @@ pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = 
                 &field
                     .subfields()
                     .iter()
-                    .subfields_before("t")
                     .filter_by_code(&desired_subfields)
                     .content()
                     .join(" "),
             );
             maybe_has_non_cjk_text(joined)
         },
-    )
+    );
+    let fields_with_author_and_title_info = record.extract_field_values_by(
+        non_latin_tag_included_in(&["400", "410", "411", "800", "810", "811"]),
+        |field| {
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .subfields_after("t")
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_non_cjk_text(joined)
+        },
+    );
+    series_title_fields.chain(fields_with_author_and_title_info)
 }
 
 fn maybe_has_non_cjk_text(original: String) -> Option<String> {
