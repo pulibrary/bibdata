@@ -131,8 +131,8 @@ to_field 'cjk_author' do |_record, accumulator, context|
   accumulator.replace context.clipboard[:solr_fields]['cjk_author']
 end
 
-to_field 'non_latin_non_cjk_author' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_author']
+to_field 'non_latin_non_cjk_author_index' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_author_index']
 end
 
 to_field 'author_s' do |record, accumulator|

@@ -26,7 +26,7 @@ pub fn latin_or_non_latin_tag_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
     |field| tags.contains(&field.tag()) || non_latin_tag_in(tags)(field)
 }
 
-pub fn multiscript_tag(field: &Field) -> Option<&str> {
+pub fn non_latin_tag(field: &Field) -> Option<&str> {
     if field.tag() != "880" {
         return None;
     };
@@ -37,7 +37,7 @@ pub fn multiscript_tag(field: &Field) -> Option<&str> {
 }
 
 pub fn non_latin_tag_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
-    move |field| multiscript_tag(field).is_some_and(|field_tag| tags.contains(&field_tag))
+    move |field| non_latin_tag(field).is_some_and(|field_tag| tags.contains(&field_tag))
 }
 
 pub fn join_all_subfields(field: &Field) -> String {
@@ -75,7 +75,7 @@ mod tests {
     fn it_can_find_multiscript_tag() {
         let mut field = Field::new("880").unwrap();
         field.add_subfield("6", "111-01").unwrap();
-        assert_eq!(multiscript_tag(&field), Some("111"));
+        assert_eq!(non_latin_tag(&field), Some("111"));
     }
 
     #[test]

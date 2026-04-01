@@ -142,7 +142,7 @@ fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Erro
         ruby.ary_from_iter(non_latin::non_latin_non_cjk_all(&record)),
     )?;
     hash.aset(
-        "non_latin_non_cjk_author",
+        "non_latin_non_cjk_author_index",
         ruby.ary_from_iter(non_latin::non_latin_non_cjk_authors(&record)),
     )?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
