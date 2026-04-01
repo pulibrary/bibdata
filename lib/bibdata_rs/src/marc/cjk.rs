@@ -6,18 +6,47 @@ use itertools::Itertools;
 use marctk::Record;
 use unicode_blocks::is_cjk;
 
-use crate::marc::{extract_values::ExtractValues, variable_length_field::join_subfields_except};
+use crate::marc::{
+    extract_values::ExtractValues,
+    trim_punctuation,
+    variable_length_field::{
+        SubfieldIterator, join_subfields_except, non_latin_tag, non_latin_tag_included_in,
+    },
+};
 
 pub fn cjk_all(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| field.tag() == "880",
         |field| {
             let joined = join_subfields_except(field, &["6"]);
-            if has_cjk_chars(&joined) {
-                Some(joined)
-            } else {
-                None
-            }
+            maybe_has_cjk_text(joined)
+        },
+    )
+}
+
+pub fn cjk_authors(record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        non_latin_tag_included_in(&["100", "110", "111", "700", "710", "711"]),
+        |field| {
+            let desired_subfields = match non_latin_tag(field) {
+                Some("100") => vec!["a", "q", "b", "c", "d", "k"],
+                Some("110") => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n"],
+                Some("111") => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n", "p", "q"],
+                Some("700") => vec!["a", "q", "b", "c", "d", "k"],
+                Some("710") => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n"],
+                Some("711") => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n", "p", "q"],
+                _ => Default::default(),
+            };
+            let joined = trim_punctuation(
+                &field
+                    .subfields()
+                    .iter()
+                    .subfields_before("t")
+                    .filter_by_code(&desired_subfields)
+                    .content()
+                    .join(" "),
+            );
+            maybe_has_cjk_text(joined)
         },
     )
 }
@@ -133,6 +162,14 @@ fn extract_parallel_values<'record>(
         })
 }
 
+fn maybe_has_cjk_text(original: String) -> Option<String> {
+    if has_cjk_chars(&original) {
+        Some(original)
+    } else {
+        None
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -151,11 +188,14 @@ mod tests {
 
     #[test]
     fn it_can_extract_cjk_from_multiple_880_subfields() {
-        let record = Record::from_breaker(
-            r"=880 \\$6260-03/{dollar}1$a上海 : $b 上海大学出版社, $c 2023.")
-        .unwrap();
+        let record =
+            Record::from_breaker(r"=880 \\$6260-03/{dollar}1$a上海 : $b 上海大学出版社, $c 2023.")
+                .unwrap();
         let mut cjk_all = cjk_all(&record);
-        assert_eq!(cjk_all.next(), Some(String::from("上海 : 上海大学出版社, 2023.")));
+        assert_eq!(
+            cjk_all.next(),
+            Some(String::from("上海 : 上海大学出版社, 2023."))
+        );
         assert_eq!(cjk_all.next(), None);
     }
 
@@ -177,5 +217,18 @@ mod tests {
         let mut cjk_notes = notes_cjk(&record);
         assert_eq!(cjk_notes.next(), Some("石室合選".to_string()));
         assert_eq!(cjk_notes.next(), None);
+    }
+
+    #[test]
+    fn it_can_index_cjk_authors() {
+        let record = Record::from_breaker(
+            r#"=100 \\$aJohn$d1492$tTITLE$kignore
+=880 \\$6100-1$aΚινέζικα$tTITLE$kignore
+=880 \\$6100-2$a村上 春樹$tTITLE$kignore"#,
+        )
+        .unwrap();
+        let mut names = cjk_authors(&record);
+        assert_eq!(names.next(), Some(String::from("村上 春樹")));
+        assert_eq!(names.next(), None);
     }
 }

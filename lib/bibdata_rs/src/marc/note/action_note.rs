@@ -10,7 +10,7 @@ use serde::Serialize;
 use crate::marc::{
     control_field::system_control_number::is_princeton_finding_aid, extract_values::ExtractValues,
     scsb::is_scsb, string_normalize::upcase_first,
-    variable_length_field::latin_or_non_latin_tag_eq,
+    variable_length_field::latin_or_non_latin_tag_included_in,
 };
 
 struct Field583<'a>(&'a Field);
@@ -109,7 +109,7 @@ impl<'a> TryFrom<Field583<'a>> for ActionNote<'a> {
 }
 
 pub fn action_notes<'a>(record: &'a Record) -> impl Iterator<Item = ActionNote<'a>> {
-    record.extract_field_values_by(latin_or_non_latin_tag_eq(&["583"]), |field| {
+    record.extract_field_values_by(latin_or_non_latin_tag_included_in(&["583"]), |field| {
         let field = Field583(field);
         if field.has_field_link() || is_scsb(record) || is_princeton_finding_aid(record) {
             ActionNote::try_from(field).ok()

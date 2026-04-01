@@ -309,12 +309,6 @@ describe 'From princeton_marc.rb' do
       expect(names).not_to include('John 1492 ignore')
       expect(names).to include('Κινέζικα')
     end
-
-    it 'alt_script version only includes the 880' do
-      names = process_alt_script_names(@sample_marc)
-      expect(names).to include('Κινέζικα')
-      expect(names).not_to include('John 1492')
-    end
   end
 
   describe '#everything_after_t, #everything_after_t_alt_script' do
