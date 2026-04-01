@@ -1,11 +1,11 @@
 use std::iter;
 
-use itertools::Itertools;
 use marctk::{Field, Record, Subfield};
 
 use crate::marc::{
-    extract_values::ExtractValues, trim_punctuation,
-    variable_length_field::latin_or_non_latin_tag_included_in,
+    extract_values::ExtractValues,
+    trim_punctuation,
+    variable_length_field::{join_subfields, latin_or_non_latin_tag_included_in},
 };
 
 pub const SEPARATOR: char = '—';
@@ -75,17 +75,17 @@ pub fn fast_subjects<'a>(record: &'a Record) -> Box<dyn Iterator<Item = &'a str>
 
 pub fn icpsr_subjects(record: &Record) -> Vec<String> {
     record
-        .get_fields("650")
-        .iter()
-        .filter(|field| matches!(SubjectVocabulary::from(**field), SubjectVocabulary::Icpsr))
-        .map(|field| {
-            field
-                .get_subfields("a")
-                .iter()
-                .map(|subfield| subfield.content())
-                .join(" ")
-        })
-        .map(|heading| trim_punctuation(&heading))
+        .extract_field_values_by(
+            |field| {
+                field.tag() == "650"
+                    && matches!(SubjectVocabulary::from(field), SubjectVocabulary::Icpsr)
+            },
+            |field| {
+                Some(trim_punctuation(&join_subfields(
+                    field.get_subfields("a").into_iter(),
+                )))
+            },
+        )
         .collect()
 }
 
