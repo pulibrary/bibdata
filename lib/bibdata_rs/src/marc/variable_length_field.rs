@@ -22,8 +22,8 @@ where
     }
 }
 
-pub fn latin_or_non_latin_tag_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
-    |field| tags.contains(&field.tag()) || non_latin_tag_in(tags)(field)
+pub fn latin_or_non_latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
+    |field| tags.contains(&field.tag()) || non_latin_tag_included_in(tags)(field)
 }
 
 pub fn non_latin_tag(field: &Field) -> Option<&str> {
@@ -36,7 +36,7 @@ pub fn non_latin_tag(field: &Field) -> Option<&str> {
         .and_then(|raw| raw.get(0..3))
 }
 
-pub fn non_latin_tag_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
+pub fn non_latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
     move |field| non_latin_tag(field).is_some_and(|field_tag| tags.contains(&field_tag))
 }
 

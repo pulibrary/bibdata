@@ -5,7 +5,7 @@ use marctk::{Field, Record, Subfield};
 
 use crate::marc::{
     extract_values::ExtractValues, trim_punctuation,
-    variable_length_field::latin_or_non_latin_tag_in,
+    variable_length_field::latin_or_non_latin_tag_included_in,
 };
 
 pub const SEPARATOR: char = '—';
@@ -92,7 +92,7 @@ pub fn icpsr_subjects(record: &Record) -> Vec<String> {
 pub fn siku_subjects_display(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| {
-            latin_or_non_latin_tag_in(&["650"])(field)
+            latin_or_non_latin_tag_included_in(&["650"])(field)
                 && matches!(SubjectVocabulary::from(field), SubjectVocabulary::Siku)
         },
         |field| {

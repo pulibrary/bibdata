@@ -1,6 +1,6 @@
 use crate::marc::{
     extract_values::ExtractValues, subject::hierarchical_heading,
-    variable_length_field::latin_or_non_latin_tag_in,
+    variable_length_field::latin_or_non_latin_tag_included_in,
 };
 
 use super::{
@@ -30,7 +30,7 @@ pub fn genres(record: &Record) -> Vec<String> {
 pub fn aat_s(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| {
-            latin_or_non_latin_tag_in(&["655"])(field)
+            latin_or_non_latin_tag_included_in(&["655"])(field)
                 && matches!(
                     GenreVocabulary::from(field),
                     GenreVocabulary::ArtArchitectureThesaurus
@@ -49,7 +49,7 @@ pub fn aat_s(record: &Record) -> impl Iterator<Item = String> {
 pub fn homoit_genre_s(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| {
-            latin_or_non_latin_tag_in(&["655"])(field)
+            latin_or_non_latin_tag_included_in(&["655"])(field)
                 && matches!(GenreVocabulary::from(field), GenreVocabulary::Homosaurus)
         },
         |field| {
@@ -65,7 +65,7 @@ pub fn homoit_genre_s(record: &Record) -> impl Iterator<Item = String> {
 pub fn lcgft_s(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| {
-            latin_or_non_latin_tag_in(&["655"])(field)
+            latin_or_non_latin_tag_included_in(&["655"])(field)
                 && matches!(
                     GenreVocabulary::from(field),
                     GenreVocabulary::LCGenreFormTerms
@@ -84,7 +84,7 @@ pub fn lcgft_s(record: &Record) -> impl Iterator<Item = String> {
 pub fn rbgenr_s(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| {
-            latin_or_non_latin_tag_in(&["655"])(field)
+            latin_or_non_latin_tag_included_in(&["655"])(field)
                 && matches!(
                     GenreVocabulary::from(field),
                     GenreVocabulary::RareBooksManuscriptsGenreVocabularies

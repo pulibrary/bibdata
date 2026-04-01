@@ -10,7 +10,7 @@ use crate::marc::{
     extract_values::ExtractValues,
     trim_punctuation,
     variable_length_field::{
-        SubfieldIterator, join_subfields_except, non_latin_tag, non_latin_tag_in,
+        SubfieldIterator, join_subfields_except, non_latin_tag, non_latin_tag_included_in,
     },
 };
 
@@ -26,7 +26,7 @@ pub fn cjk_all(record: &Record) -> impl Iterator<Item = String> {
 
 pub fn cjk_authors(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
-        non_latin_tag_in(&["100", "110", "111", "700", "710", "711"]),
+        non_latin_tag_included_in(&["100", "110", "111", "700", "710", "711"]),
         |field| {
             let desired_subfields = match non_latin_tag(field) {
                 Some("100") => vec!["a", "q", "b", "c", "d", "k"],
