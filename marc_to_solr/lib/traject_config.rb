@@ -127,9 +127,12 @@ to_field 'author_roles_1display' do |_record, accumulator, context|
   accumulator[0] = context.clipboard[:solr_fields]['author_roles_1display']
 end
 
-to_field 'cjk_author' do |record, accumulator|
-  names = process_alt_script_names(record)
-  accumulator.replace(names)
+to_field 'cjk_author' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['cjk_author']
+end
+
+to_field 'non_latin_non_cjk_author' do |_record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_author']
 end
 
 to_field 'author_s' do |record, accumulator|

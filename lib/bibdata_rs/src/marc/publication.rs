@@ -2,7 +2,7 @@
 
 use crate::marc::{
     extract_values::ExtractValues, trim_punctuation,
-    variable_length_field::latin_or_non_latin_tag_eq,
+    variable_length_field::latin_or_non_latin_tag_in,
 };
 
 use super::{
@@ -21,7 +21,7 @@ pub fn pub_created_display(record: &Record) -> impl Iterator<Item = String> + us
 
 pub fn pub_citation_display(record: &Record) -> impl Iterator<Item = String> {
     record
-        .extract_field_values_by(latin_or_non_latin_tag_eq(&["260", "264"]), |field| {
+        .extract_field_values_by(latin_or_non_latin_tag_in(&["260", "264"]), |field| {
             let place = field.first_subfield("a");
             let name = field.first_subfield("b");
             match (place, name) {
