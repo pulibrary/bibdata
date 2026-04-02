@@ -475,7 +475,7 @@ fn genres_from_primary_source_lcgft_mapping(record: &Record) -> Vec<String> {
         .extract_fields(
             "655",
         )
-        .filter(|field| field.ind2() == "7" && matches!(field.first_subfield("2"), Some(vocabulary) if vocabulary.content().trim() == "lcgft" ))
+        .filter(|field| matches!(GenreVocabulary::from(*field), GenreVocabulary::LCGenreFormTerms))
         .any(|field| field.get_subfields("a").iter().any(|sf| does_lcgft_genre_term_indicate_primary_source(sf.content())))
     {
         vec!["Primary sources".to_string()]
