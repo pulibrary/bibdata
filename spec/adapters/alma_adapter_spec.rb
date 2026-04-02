@@ -243,6 +243,7 @@ RSpec.describe AlmaAdapter do
   describe 'holding availability' do
     let(:library_lewis_reserves) { file_fixture('alma/library_lewis_reserves.json') }
     let(:library_lewis_stacks) { file_fixture('alma/library_lewis_stacks.json') }
+    let(:library_firestone_stacks) { file_fixture('alma/library_firestone_stacks.json') }
 
     before do
       stub_alma_holding_items(mms_id: '9919392043506421', holding_id: '22105104420006421', filename: '9919392043506421_holding_items.json')
@@ -250,12 +251,15 @@ RSpec.describe AlmaAdapter do
       stub_alma_library(library_code: 'firestone', location_code: 'dixn')
       stub_alma_library(library_code: 'firestone', location_code: 'stacks')
 
+      stub_alma_holding_items(mms_id: '99126856502706421', holding_id: '22965530090006421', filename: '99126856502706421_process_type_requested.json')
+
       # https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421/holdings/22752541670006421/items?limit=100&order_by=enum_a
       stub_alma_holding_items(mms_id: '9999362473506421', holding_id: '22752541670006421', filename: '9999362473506421_holding_items.json')
       stub_alma_holding_items(mms_id: '9999362473506421', holding_id: '22752541690006421', filename: '9999362473506421_holding_items_two.json')
 
       stub_alma_library(library_code: 'lewis', location_code: 'resterm', body: library_lewis_reserves)
       stub_alma_library(library_code: 'lewis', location_code: 'stacks', body: library_lewis_stacks)
+      stub_alma_library(library_code: 'firestone', location_code: 'stacks', body: library_firestone_stacks)
     end
 
     it 'reports holdings availability' do
@@ -276,21 +280,31 @@ RSpec.describe AlmaAdapter do
       # but we are not really using this value anymore.
       expect(item[:on_reserve]).to eq 'N'
 
-      # Make sure temp locations are handled and the permanent location is preserved.
-      availability = adapter.get_availability_holding(id: '9999362473506421', holding_id: '22752541690006421')
+      create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
+      availability = adapter.get_availability_holding(id: '99126856502706421', holding_id: '22965530090006421')
       item = availability.first
-      expect(item[:in_temp_library]).to be true
-      expect(item[:temp_library_code]).to eq 'lewis'
+      expect(item[:in_temp_library]).to be false
+      expect(item[:temp_library_code]).to be_nil
 
-      # Test an actual response. These values are not particularly meaningful, but to make sure we don't
-      # inadvertently change them when refactoring.
-      item_test = { barcode: '32101099065268', id: '23752541680006421', holding_id: '22752541690006421', copy_number: '0',
-                    status: 'Available', status_label: 'Item in place', status_source: 'base_status', process_type: nil,
-                    on_reserve: 'Y', item_type: 'Gen', pickup_location_id: 'lewis', pickup_location_code: 'lewis',
-                    location: 'lewis$resterm', label: 'Lewis Library - Term Loan Reserves', description: '', enum_display: '',
-                    chron_display: '', requested: false, in_temp_library: true, temp_library_code: 'lewis',
-                    temp_library_label: 'Lewis Library - Term Loan Reserves', temp_location_code: 'lewis$resterm',
-                    temp_location_label: 'Lewis Library - Term Loan Reserves' }
+      item_test = { barcode: '32101116415405',
+                    id: '23965530080006421',
+                    holding_id: '22965530090006421',
+                    copy_number: '',
+                    status: 'Unavailable',
+                    status_label: 'Unavailable',
+                    status_source: 'process_type',
+                    process_type: 'HOLDSHELF',
+                    on_reserve: 'N',
+                    item_type: 'Gen',
+                    pickup_location_id: 'firestone',
+                    pickup_location_code: 'firestone',
+                    location: 'firestone$stacks',
+                    label: 'Firestone Library - Stacks',
+                    description: '',
+                    enum_display: '',
+                    chron_display: '',
+                    requested: true,
+                    in_temp_library: false }
       expect(item).to eq item_test
     end
 
@@ -312,30 +326,42 @@ RSpec.describe AlmaAdapter do
     before do
       stub_alma_ids(ids: '9965126093506421', status: 200)
       stub_alma_holding_items(mms_id: '9965126093506421', holding_id: '22202918790006421', filename: '9965126093506421_holding_items.json')
+      stub_alma_holding_items(mms_id: '99131644166406421', holding_id: '221091258440006421', filename: '99131644166406421_in_process_acq.json')
       stub_alma_ids(ids: '9943506421', status: 200)
       stub_alma_holding_items(mms_id: '9943506421', holding_id: '22261963850006421', filename: '9943506421_holding_items.json')
       stub_alma_library(library_code: 'firestone', location_code: 'stacks')
       stub_alma_library(library_code: 'recap', location_code: 'xr')
     end
 
-    it 'uses the work_order to calculate status' do
-      availability = adapter.get_availability_holding(id: '9965126093506421', holding_id: '22202918790006421')
-      item = availability.first
-      expect(item[:status]).to eq 'Unavailable'
-      expect(item[:status_label]).to eq 'Holdings Management'
-      expect(item[:status_source]).to eq 'work_order'
+    context 'item with process type value' do
+      # PROCESS_TYPE_VALUES = ACQ CLAIM_RETURNED_LOAN HOLDSHELF ILL LOAN LOST_ILL LOST_LOAN LOST_LOAN_AND_PAID MISSING REQUESTED TECHNICAL TRANSIT TRANSIT_TO_REMOTE_STORAGE WORK_ORDER_DEPARTMENT
+      it '-WORK_ORDER_DEPARTMENT- and work order not AcqWorkOrder or Firestone it has status and label Unavailable' do
+        availability = adapter.get_availability_holding(id: '9965126093506421', holding_id: '22202918790006421')
+        item = availability.first
+        expect(item[:status]).to eq 'Unavailable'
+        expect(item[:status_label]).to eq 'Unavailable'
+        expect(item[:status_source]).to eq 'process_type'
+      end
+
+      it '-WORK_ORDER_DEPARTMENT- and work order is AcqWorkOrder it has status Unavailable and label Acquisitions and Cataloging' do
+        availability = adapter.get_availability_holding(id: '99131644166406421', holding_id: '221091258440006421')
+        item = availability.first
+        expect(item[:status]).to eq 'Unavailable'
+        expect(item[:status_label]).to eq 'Acquisitions and Cataloging'
+        expect(item[:status_source]).to eq 'work_order'
+      end
     end
 
     it 'uses the process_type to calculate status' do
       availability = adapter.get_availability_holding(id: '9943506421', holding_id: '22261963850006421')
       item = availability.find { |bib_item| bib_item[:id] == '23261963800006421' }
       expect(item[:status]).to eq 'Unavailable'
-      expect(item[:status_label]).to eq 'Transit'
+      expect(item[:status_label]).to eq 'Unavailable'
       expect(item[:status_source]).to eq 'process_type'
       expect(item[:process_type]).to eq 'TRANSIT'
     end
 
-    it 'uses the base_status to calculate status' do
+    it 'when there is no process_type value it uses the base_status to calculate status' do
       availability = adapter.get_availability_holding(id: '9943506421', holding_id: '22261963850006421')
       item = availability.first
       expect(item[:status]).to eq 'Available'

@@ -180,7 +180,8 @@ RSpec.describe AlmaAdapter::AlmaItem do
           'base_status' => { 'value' => '0', 'desc' => 'Item not in place' },
           'process_type' => { 'value' => 'WORK_ORDER_DEPARTMENT', 'desc' => 'In Process' },
           'work_order_type' => { 'value' => 'AcqWorkOrder', 'desc' => 'Acquisitions and Cataloging' },
-          'work_order_at' => { 'value' => 'AcqDepttechserv', 'desc' => 'Acquisitions and Cataloging' }
+          'work_order_at' => { 'value' => 'AcqDepttechserv', 'desc' => 'Acquisitions and Cataloging' },
+          'requested' => false
         }
       )
     end
@@ -194,7 +195,8 @@ RSpec.describe AlmaAdapter::AlmaItem do
           'base_status' => { 'value' => '0', 'desc' => 'Item not in place' },
           'process_type' => { 'value' => 'WORK_ORDER_DEPARTMENT', 'desc' => 'In Process' },
           'work_order_type' => { 'value' => 'CollDev', 'desc' => 'Collection Development Office' },
-          'work_order_at' => { 'value' => 'CollDev', 'desc' => 'Collection Development Office' }
+          'work_order_at' => { 'value' => 'CollDev', 'desc' => 'Collection Development Office' },
+          'requested' => false
         }
       )
     end
@@ -208,7 +210,8 @@ RSpec.describe AlmaAdapter::AlmaItem do
           'base_status' => { 'value' => '1', 'desc' => 'Item in place' },
           'process_type' => { 'value' => 'TRANSIT', 'desc' => 'Transit' },
           'work_order_type' => { 'value' => 'HMT', 'desc' => 'Holdings Management' },
-          'work_order_at' => { 'value' => 'HMT', 'desc' => 'Holdings Management' }
+          'work_order_at' => { 'value' => 'HMT', 'desc' => 'Holdings Management' },
+          'requested' => false
         }
       )
     end
@@ -220,7 +223,22 @@ RSpec.describe AlmaAdapter::AlmaItem do
         'item_data' => {
           'pid' => '23194161020006421',
           'base_status' => { 'value' => '0', 'desc' => 'Item not in place' },
-          'process_type' => { 'value' => 'ACQ', 'desc' => 'Acquisition' }
+          'process_type' => { 'value' => 'HOLDSHELF', 'desc' => 'Hold Shelf' },
+          'requested' => false
+        }
+      )
+    end
+    let(:item_work_order_firestone_circ) do
+      Alma::BibItem.new(
+        'bib_data' => { 'mms_id' => '997626913506421' },
+        'holding_data' => { 'holding_id' => '22580669980006421' },
+        'item_data' => {
+          'pid' => '23580669780006421',
+          'base_status' => { 'value' => '0', 'desc' => 'Item not in place' },
+          'process_type' => { 'value' => 'WORK_ORDER_DEPARTMENT', 'desc' => 'In Process' },
+          'work_order_type' => { 'value' => 'Firestone', 'desc' => 'Firestone Circulation' },
+          'work_order_at' => { 'value' => 'DEFAULT_CIRC_DESK-Firestone', 'desc' => 'Firestone Circulation Desk' },
+          'requested' => false
         }
       )
     end
@@ -229,7 +247,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       Alma::BibItem.new(
         'bib_data' => { 'mms_id' => '9939075533506421' },
         'holding_data' => { 'holding_id' => '22194161030006421' },
-        'item_data' => { 'pid' => '23194161020006421', 'base_status' => { 'value' => '1', 'desc' => 'Item in place' } }
+        'item_data' => { 'pid' => '23194161020006421', 'process_type' => { 'value' => '' }, 'base_status' => { 'value' => '1', 'desc' => 'Item in place' }, 'requested' => false }
       )
     end
 
@@ -237,32 +255,90 @@ RSpec.describe AlmaAdapter::AlmaItem do
       Alma::BibItem.new(
         'bib_data' => { 'mms_id' => '9939075533506421' },
         'holding_data' => { 'holding_id' => '22194161030006421' },
-        'item_data' => { 'pid' => '23194161020006421', 'base_status' => { 'value' => '0', 'desc' => 'Item not in place' } }
+        'item_data' => { 'pid' => '23194161020006421', 'process_type' => { 'value' => 'ACQ', 'desc' => 'Acquisition' }, 'base_status' => { 'value' => '0', 'desc' => 'Item not in place' }, 'requested' => false }
       )
     end
 
-    it 'Handles items with work order in acquisitions' do
-      item = described_class.new(item_work_order_acq)
-      status = item.calculate_status
-      expect(status[:code]).to eq 'Unavailable'
+    let(:item_no_process_type_and_requested) do
+      Alma::BibItem.new(
+        'bib_data' => { 'mms_id' => '99126856502706421' },
+        'holding_data' => { 'holding_id' => '22965530090006421' },
+        'item_data' => { 'pid' => '23965530080006421', 'process_type' => { 'value' => '' }, 'base_status' => { 'value' => '1', 'desc' => 'Item in place' }, 'requested' => true }
+      )
     end
 
-    it 'Handles items with work order in collection development' do
-      item = described_class.new(item_work_order_coll_dev)
-      status = item.calculate_status
-      expect(status[:code]).to eq 'Unavailable'
+    let(:item_in_place_no_process_type_not_requested) do
+      Alma::BibItem.new(
+        'bib_data' => { 'mms_id' => '99126856502706421' },
+        'holding_data' => { 'holding_id' => '22965530090006421' },
+        'item_data' => { 'pid' => '23965530080006421', 'process_type' => { 'value' => '' }, 'base_status' => { 'value' => '1', 'desc' => 'Item in place' }, 'requested' => false }
+      )
     end
 
-    it 'Handles items with work order in holdings management' do
-      item = described_class.new(item_work_order_holdings_mgmt)
-      status = item.calculate_status
-      expect(status[:code]).to eq 'Unavailable'
+    context 'when process_type value is WORK_ORDER_DEPARTMENT - item with work order in' do
+      it 'Acquisitions and Cataloging has code Unavailable and label Acquisitions and Cataloging' do
+        item = described_class.new(item_work_order_acq)
+        status = item.calculate_status
+        expect(status[:code]).to eq 'Unavailable'
+        expect(status[:label]).to eq 'Acquisitions and Cataloging'
+        expect(status[:source]).to eq 'work_order'
+      end
+
+      it 'Firestone Circulation has code Unavailable and label Firestone Circulation' do
+        item = described_class.new(item_work_order_firestone_circ)
+        status = item.calculate_status
+        expect(status[:code]).to eq 'Unavailable'
+        expect(status[:label]).to eq 'Firestone Circulation'
+        expect(status[:source]).to eq 'work_order'
+      end
     end
 
-    it 'Handles items with process type in acquisitions' do
-      item = described_class.new(item_process_type_acq)
-      status = item.calculate_status
-      expect(status[:code]).to eq 'Unavailable'
+    # Process type values: ACQ CLAIM_RETURNED_LOAN HOLDSHELF ILL LOAN LOST_ILL LOST_LOAN LOST_LOAN_AND_PAID MISSING REQUESTED TECHNICAL TRANSIT TRANSIT_TO_REMOTE_STORAGE WORK_ORDER_DEPARTMENT
+    { 'ACQ' => 'Acquisition', 'CLAIM_RETURNED_LOAN' => 'Claimed Returned', 'HOLDSHELF' => 'Hold Shelf', 'ILL' => 'Resource Sharing Request', 'LOAN' => 'Loan', 'LOST_ILL' => 'Lost Resource Sharing Item', 'LOST_LOAN' => 'Lost', 'LOST_LOAN_AND_PAID' => 'Lost and paid', 'MISSING' => 'Missing', 'REQUESTED' => 'Requested', 'TECHNICAL' => 'Technical - Migration', 'TRANSIT' => 'Transit', 'TRANSIT_TO_REMOTE_STORAGE' => 'In Transit to Remote Storage', 'WORK_ORDER_DEPARTMENT' => 'In Process' }.each do |process_type_value, process_type_label|
+      context "when process_type value is #{process_type_value} - items with work order in" do
+        { 'AcqWorkOrder' => 'Acquisitions and Cataloging', 'CollDev' => 'Collection Development Office', 'HMT' => 'Holdings Management', 'Pres' => 'Preservation' }.each do |work_order_type_value, work_order_type_desc|
+          let(:item_process_types) do
+            Alma::BibItem.new(
+              'bib_data' => { 'mms_id' => '99122455086806421' },
+              'holding_data' => { 'holding_id' => '22477860740006421' },
+              'item_data' => {
+                'pid' => '23477860730006421',
+                'base_status' => { 'value' => '1', 'desc' => 'Item in place' },
+                'process_type' => { 'value' => process_type_value, 'desc' => process_type_label },
+                'work_order_type' => { 'value' => work_order_type_value, 'desc' => work_order_type_desc },
+                'work_order_at' => { 'value' => 'HMT', 'desc' => 'Holdings Management' },
+                'requested' => false
+              }
+            )
+          end
+
+          it "#{work_order_type_desc} has status code and label Unavailable" do
+            item = described_class.new(item_process_types)
+            status = item.calculate_status
+            expect(status[:code]).to eq 'Unavailable'
+            expect(status[:label]).to eq 'Unavailable'
+            expect(status[:source]).to eq 'process_type'
+          end
+        end
+      end
+    end
+
+    context 'when there is no process_type value' do
+      it 'and the item is requested, it has status code and label Unavailable' do
+        item = described_class.new(item_no_process_type_and_requested)
+        status = item.calculate_status
+        expect(status[:code]).to eq 'Unavailable'
+        expect(status[:label]).to eq 'Unavailable'
+        expect(status[:source]).to eq 'requested_true'
+      end
+
+      it 'the item is not requested and Item is in Place it has status code and label Unavailable' do
+        item = described_class.new(item_in_place_no_process_type_not_requested)
+        status = item.calculate_status
+        expect(status[:code]).to eq 'Available'
+        expect(status[:label]).to eq 'Item in place'
+        expect(status[:source]).to eq 'base_status'
+      end
     end
 
     it 'Handles items with base status (in place)' do

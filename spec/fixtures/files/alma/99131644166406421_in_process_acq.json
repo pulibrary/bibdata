@@ -1,0 +1,144 @@
+{
+    "item": [
+        {
+            "bib_data": {
+                "title": "Zhongguo sheng tai huan jing tong ji nian bao Annual statistic report on ecology and environment in China / Ministry of Ecology and Environment of hte People's Republic of China.",
+                "author": "China. Sheng tai huan jing bu,",
+                "mms_id": "99131644166406421",
+                "bib_suppress_from_publishing": "false",
+                "complete_edition": "",
+                "network_number": [
+                    "(OCoLC)on1312743503",
+                    "(OCoLC)1312743503"
+                ],
+                "place_of_publication": "Beijing :",
+                "date_of_publication": "2021-",
+                "publisher_const": "Zhongguo huan jing chu ban ji tuan",
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99131644166406421"
+            },
+            "holding_data": {
+                "holding_id": "221091258440006421",
+                "holding_suppress_from_publishing": "false",
+                "calculated_suppress_from_publishing": "false",
+                "permanent_call_number_type": {
+                    "value": "0",
+                    "desc": "Library of Congress classification"
+                },
+                "permanent_call_number": "",
+                "call_number_type": {
+                    "value": "0",
+                    "desc": "Library of Congress classification"
+                },
+                "call_number": "",
+                "accession_number": "",
+                "copy_id": "1",
+                "in_temp_location": false,
+                "temp_library": {},
+                "temp_location": {},
+                "temp_call_number_type": {
+                    "value": ""
+                },
+                "temp_call_number": "",
+                "temp_call_number_source": "",
+                "temp_policy": {
+                    "value": ""
+                },
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99131644166406421/holdings/221091258440006421"
+            },
+            "item_data": {
+                "pid": "231109641340006421",
+                "barcode": "32101123992420",
+                "policy": {
+                    "value": "Gen",
+                    "desc": "Gen"
+                },
+                "provenance": {
+                    "value": ""
+                },
+                "description": "2021 ",
+                "library": {
+                    "value": "recap",
+                    "desc": "ReCAP"
+                },
+                "location": {
+                    "value": "pa",
+                    "desc": "rcppa: RECAP"
+                },
+                "pages": "",
+                "pieces": "1",
+                "requested": true,
+                "creation_date": "2026-04-06Z",
+                "modification_date": "2026-04-06Z",
+                "base_status": {
+                    "value": "0",
+                    "desc": "Item not in place"
+                },
+                "awaiting_reshelving": false,
+                "physical_material_type": {
+                    "value": "ISSUE",
+                    "desc": "Issue"
+                },
+                "po_line": "POL-516687",
+                "is_magnetic": false,
+                "arrival_date": "2026-04-06Z",
+                "year_of_issue": "",
+                "enumeration_a": "2021",
+                "enumeration_b": "",
+                "enumeration_c": "",
+                "enumeration_d": "",
+                "enumeration_e": "",
+                "enumeration_f": "",
+                "enumeration_g": "",
+                "enumeration_h": "",
+                "chronology_i": "",
+                "chronology_j": "",
+                "chronology_k": "",
+                "chronology_l": "",
+                "chronology_m": "",
+                "break_indicator": {
+                    "value": ""
+                },
+                "pattern_type": {
+                    "value": ""
+                },
+                "linking_number": "",
+                "type_of_unit": "",
+                "receiving_operator": "940007589",
+                "process_type": {
+                    "value": "WORK_ORDER_DEPARTMENT",
+                    "desc": "In Process"
+                },
+                "work_order_type": {
+                    "value": "AcqWorkOrder",
+                    "desc": "Acquisitions and Cataloging"
+                },
+                "work_order_at": {
+                    "value": "AcqDepttechserv",
+                    "desc": "Acquisitions and Cataloging"
+                },
+                "inventory_number": "",
+                "inventory_price": "",
+                "alternative_call_number": "",
+                "alternative_call_number_type": {
+                    "value": ""
+                },
+                "storage_location_id": "",
+                "public_note": "",
+                "fulfillment_note": "",
+                "internal_note_1": "",
+                "internal_note_2": "",
+                "internal_note_3": "",
+                "statistics_note_1": "",
+                "statistics_note_2": "",
+                "statistics_note_3": "",
+                "physical_condition": {},
+                "committed_to_retain": {},
+                "retention_reason": {
+                    "value": ""
+                },
+                "retention_note": ""
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99131644166406421/holdings/221091258440006421/items/231109641340006421"
+        }
+    ]
+}
