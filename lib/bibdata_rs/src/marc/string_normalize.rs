@@ -56,6 +56,13 @@ pub fn upcase_first(string: &str) -> Cow<'_, str> {
     }
 }
 
+pub fn maybe_not_empty<S>(s: S) -> Option<S>
+where
+    S: AsRef<str>,
+{
+    if s.as_ref().is_empty() { None } else { Some(s) }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
