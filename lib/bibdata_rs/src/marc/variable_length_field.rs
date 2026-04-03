@@ -3,6 +3,7 @@ use marctk::{Field, Subfield};
 
 pub trait SubfieldIterator<'a>: Iterator<Item = &'a Subfield> {
     fn content(self) -> impl Iterator<Item = &'a str>;
+    fn join(self, delimiter: &'a str) -> String;
     fn filter_by_code(self, codes: &'a [&str]) -> impl Iterator<Item = &'a Subfield>;
     fn subfields_before(self, stop_before: &'a str) -> impl Iterator<Item = &'a Subfield>;
     fn subfields_after(self, start_at: &'a str) -> impl Iterator<Item = &'a Subfield>;
@@ -13,6 +14,9 @@ where
 {
     fn content(self) -> impl Iterator<Item = &'a str> {
         self.map(|subfield| subfield.content())
+    }
+    fn join(self, delimiter: &'a str) -> String {
+        self.content().join(delimiter)
     }
     fn filter_by_code(self, codes: &'a [&str]) -> impl Iterator<Item = &'a Subfield> {
         self.filter(move |subfield| codes.contains(&subfield.code()))

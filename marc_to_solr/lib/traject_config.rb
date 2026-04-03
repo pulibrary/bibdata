@@ -221,8 +221,8 @@ to_field 'series_statement_index', extract_marc('490avx')
 
 to_field 'content_title_index', extract_marc('505t')
 
-to_field 'contains_title_index' do |record, accumulator|
-  accumulator.replace(everything_after_t(record, '700:710:711'))
+to_field 'contains_title_index' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['contains_title_index'])
 end
 
 to_field 'linked_title_index', extract_marc('765st:767st:770st:772st:773st:774st:775st:776st:777st:780st:785st:786st:787st')
