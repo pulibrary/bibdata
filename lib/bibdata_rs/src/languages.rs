@@ -43,7 +43,7 @@ pub fn language_name(code: &str) -> Result<&'static str, NoSuchLanguageCode> {
 }
 
 // A wrapper for use in Ruby that uses owned strings
-pub fn language_code_to_name(code: String) -> Option<String> {
+pub fn language_name_owned(code: String) -> Option<String> {
     language_name(&code).ok().map(|name| name.to_owned())
 }
 
@@ -70,21 +70,25 @@ pub fn two_letter_code_owned(code: String) -> Option<String> {
     two_letter_code(&code).map(|two_letter_code| two_letter_code.to_owned())
 }
 
+// A wrapper for use in Ruby that uses owned strings
 pub fn macrolanguage_codes_owned(individual_language_code: String) -> Vec<String> {
     macrolanguage_codes(&individual_language_code)
+        .into_iter()
+        .map(String::from)
+        .collect()
 }
 
-pub fn macrolanguage_codes(individual_language_code: &str) -> Vec<String> {
+pub fn macrolanguage_codes(individual_language_code: &str) -> Vec<&str> {
     iso_639_3::from_iso_639_3_code(individual_language_code)
         .and_then(|language| language.macrolanguage_code)
         .map_or(Vec::default(), |macrolanguage_code| {
-            let mut macrolanguage_codes = vec![macrolanguage_code.to_string()];
+            let mut macrolanguage_codes = vec![macrolanguage_code];
             let macrolanguage = iso_639_3::from_iso_639_3_code(macrolanguage_code);
             let bibliographic_code = macrolanguage.and_then(|language| language.iso_639_2b_code);
             if let Some(code) = bibliographic_code {
                 // only add it if it is unique
                 if code != macrolanguage_code {
-                    macrolanguage_codes.push(code.to_string())
+                    macrolanguage_codes.push(code)
                 }
             }
             macrolanguage_codes
@@ -160,6 +164,28 @@ mod tests {
             two_letter_code("zxx"),
             None,
             "it handles non-languages from the MARC standard"
+        );
+    }
+
+    #[test]
+    fn it_can_return_owned_language_name() {
+        assert_eq!(
+            language_name_owned(String::from("ben")),
+            Some(String::from("Bengali"))
+        )
+    }
+
+    #[test]
+    fn it_can_tell_if_a_language_code_is_valid() {
+        assert!(is_valid_language_code(String::from("ben")));
+        assert!(!is_valid_language_code(String::from("WRONG WRONG WRONG!")));
+    }
+
+    #[test]
+    fn it_can_get_owned_macrolanguage_code() {
+        assert_eq!(
+            macrolanguage_codes_owned(String::from("wuu")),
+            vec![String::from("zho"), String::from("chi")]
         );
     }
 }
