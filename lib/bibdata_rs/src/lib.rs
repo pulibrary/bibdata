@@ -34,10 +34,8 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "all_legacy_documents_as_solr",
         function!(legacy_collection::legacy_collections_as_solr, 3),
     )?;
-    submodule_languages.define_singleton_method(
-        "code_to_name",
-        function!(languages::language_code_to_name, 1),
-    )?;
+    submodule_languages
+        .define_singleton_method("code_to_name", function!(languages::language_name_owned, 1))?;
     submodule_languages.define_singleton_method(
         "macrolanguage_codes",
         function!(languages::macrolanguage_codes_owned, 1),
@@ -52,4 +50,21 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     marc::register_ruby_methods(&module)?;
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use magnus::Ruby;
+    use rb_sys_test_helpers::ruby_test;
+
+    #[ruby_test]
+    fn it_creates_bibdata_rs_module() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+
+        init(&ruby).unwrap();
+
+        let module_exists: bool = ruby.eval("Module.const_defined? :BibdataRs").unwrap();
+        assert!(module_exists);
+    }
 }

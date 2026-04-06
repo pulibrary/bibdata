@@ -11,8 +11,7 @@ const REDIS_CACHE_KEY: &str = "figgy_marc:mms_id_report:json_string";
 static REDIS_CONNECTION_POOL: LazyLock<Pool<redis::Client>> = LazyLock::new(|| {
     let client =
         redis_client(&RedisConfig::from(env::var)).expect("Could not create a new redis client");
-    connection_pool(client)
-        .expect("Could not create a connection pool")
+    connection_pool(client).expect("Could not create a connection pool")
 });
 
 pub fn write(figgy_documents: &FiggyMmsIdCache) {

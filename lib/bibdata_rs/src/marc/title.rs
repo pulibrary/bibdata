@@ -12,11 +12,7 @@ pub fn contains_titles_index(record: &Record) -> impl Iterator<Item = String> {
         latin_or_non_latin_tag_included_in(&["700", "710", "711"]),
         |field| {
             maybe_not_empty(trim_punctuation(
-                &field
-                    .subfields()
-                    .iter()
-                    .subfields_after("t")
-                    .join(" "),
+                &field.subfields().iter().subfields_after("t").join(" "),
             ))
         },
     )
