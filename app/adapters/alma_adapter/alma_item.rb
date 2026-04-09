@@ -1,4 +1,5 @@
 class AlmaAdapter
+  # rubocop:disable Metrics/ClassLength
   class AlmaItem < SimpleDelegator
     attr_reader :item
 
@@ -242,7 +243,7 @@ class AlmaAdapter
         copy_number: holding_data['copy_id'],
         status: status[:code],        # Available
         status_label: status[:label], # Item in place
-        status_source: status[:source], # e.g. work_order, process_type, base_status
+        status_source: status[:source], # e.g. work_order, process_type, base_status, requested_true
         process_type: status[:process_type],
         on_reserve: on_reserve? ? 'Y' : 'N',
         item_type:, # e.g., Gen
@@ -291,36 +292,74 @@ class AlmaAdapter
       item_data.dig('policy', 'value')
     end
 
+    def process_type_value
+      item_data.dig('process_type', 'value')
+    end
+
+    def process_type_desc
+      item_data.dig('process_type', 'desc')
+    end
+
+    def base_status_value
+      item_data.dig('base_status', 'value')
+    end
+
+    def base_status_desc
+      item_data.dig('base_status', 'desc')
+    end
+
+    def work_order_type_value
+      item_data.dig('work_order_type', 'value')
+    end
+
+    def work_order_type_desc
+      item_data.dig('work_order_type', 'desc')
+    end
+
+    def requested?
+      item_data['requested'] == true
+    end
+
+    # Currently we handle the 'In Process' logic in the orangelight codebase
+    def in_process_work_order_type_values
+      ['AcqWorkOrder', 'Firestone']
+    end
+
     def calculate_status
-      return status_from_work_order_type if item_data.dig('work_order_type', 'value').present?
-      return status_from_process_type if item_data.dig('process_type', 'value').present?
+      return process_type_status_unavailable unless process_type_value.empty?
+
+      return no_process_type_calculate_status if process_type_value.empty?
+
+      # keep status_from_base_status until we confirm that the alma items
+      # will always have the process_type attribute with or without "value"
 
       status_from_base_status
     end
 
-    def status_from_work_order_type
-      value = item_data['work_order_type']['value']
-      desc = item_data['work_order_type']['desc']
-
-      # [Source for values](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/)
-      # [Work Order documentation](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770142/Work+Orders)
-      code = if value.in?(%w[Pres AcqWorkOrder CollDev HMT Firestone])
-               'Unavailable'
-             else
-               # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
-               'Available'
-             end
-      { code:, label: desc, source: 'work_order' }
+    PROCESS_TYPE_VALUES = %w[ACQ CLAIM_RETURNED_LOAN HOLDSHELF ILL LOAN LOST_ILL LOST_LOAN LOST_LOAN_AND_PAID MISSING REQUESTED TECHNICAL TRANSIT TRANSIT_TO_REMOTE_STORAGE WORK_ORDER_DEPARTMENT].freeze
+    def process_type_status_unavailable
+      label, source = if process_type_value.in?(PROCESS_TYPE_VALUES)
+                        if process_type_value == 'WORK_ORDER_DEPARTMENT' && in_process_work_order_type_values.include?(work_order_type_value)
+                          [work_order_type_desc, 'work_order']
+                        else
+                          ['Unavailable', 'process_type']
+                        end
+                      end
+      { code: 'Unavailable', label:, source:, process_type: process_type_value }
     end
 
-    def status_from_process_type
-      # For now we return "Unavailable" for any item that has a process_type.
-      # You can see a list of all the possible values here:
-      #   https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      value = item_data.dig('process_type', 'value')
-      desc = item_data.dig('process_type', 'desc')
+    def no_process_type_calculate_status
+      # no process type and requested true sends to illiad
+      code, value, source = if requested?
+                              ['Unavailable', 'Unavailable', 'requested_true']
+                            elsif !requested? && base_status_value == '1'
+                              # Currently Orangelight is looking for Item in place for alma items
+                              # this is why we keep base_status_desc
+                              # we can replace this with Available when we refactor Orangelight to look for Available
+                              ['Available', base_status_desc, 'base_status']
+                            end
 
-      { code: 'Unavailable', label: desc, source: 'process_type', process_type: value }
+      { code:, label: value, source:, process_type: process_type_value }
     end
 
     def status_from_base_status
@@ -339,4 +378,5 @@ class AlmaAdapter
       [composite_library_label_display, label].compact_blank.join(' - ')
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end
