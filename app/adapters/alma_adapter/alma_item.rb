@@ -162,13 +162,13 @@ class AlmaAdapter
       return unless recap_item?
       return 'PG' if item.location[0].casecmp('x').zero?
 
-      item.location.upcase
+      item.location[0..1].upcase
     end
 
     def recap_use_restriction
       return unless recap_item?
 
-      case item.location
+      case item.location[0..1]
       when *in_library_recap_groups
         'In Library Use'
       when *supervised_recap_groups
@@ -180,7 +180,7 @@ class AlmaAdapter
       return unless recap_item?
       return 'Committed' if item_cgd_committed?
 
-      case item.location
+      case item.location[0..1]
       when 'pv', 'pa', 'gp', 'qk', 'pf'
         'Shared'
       when *(in_library_recap_groups_and_private + supervised_recap_groups + no_access_recap_groups)
@@ -189,7 +189,7 @@ class AlmaAdapter
     end
 
     def recap_item?
-      all_recap_groups.include?(holding_location)
+      holding_location[0..1].in?(all_recap_groups)
     end
 
     def all_recap_groups
