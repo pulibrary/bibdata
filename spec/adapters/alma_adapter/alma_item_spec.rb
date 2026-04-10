@@ -81,6 +81,16 @@ RSpec.describe AlmaAdapter::AlmaItem do
         expect(item.recap_customer_code).to eq 'PA'
       end
     end
+
+    context 'When location has three characters' do
+      it 'creates the customer code using the first two and capitalizes them' do
+        item = described_class.new(
+          build_item(code: 'pjm', retention_reason: 'other')
+        )
+
+        expect(item.recap_customer_code).to eq 'PJ'
+      end
+    end
   end
 
   describe '#group_designation' do
@@ -104,7 +114,8 @@ RSpec.describe AlmaAdapter::AlmaItem do
 
     context "When it's not committed to retain and in committed retention reason" do
       %w[ReCAPItalianImprints IPLCBrill ReCAPSACAP].each do |retention_reason|
-        %w[pv pa gp qk pf].each do |code|
+        # pfh is a fake location to test the first two letters of the location code
+        %w[pv pa gp qk pf pfh].each do |code|
           context "when retention reason is #{retention_reason} and not committed to retain and location is #{code}" do
             it 'is checking the location and returns Shared' do
               item = described_class.new(
@@ -132,7 +143,8 @@ RSpec.describe AlmaAdapter::AlmaItem do
   end
 
   describe '#recap_use_restriction' do
-    %w[pj pk pl pm pn pt].each do |code|
+    # pjg is a fake location to test the first two letters of the location code
+    %w[pj pk pl pm pn pt pjg].each do |code|
       context "When location is #{code}" do
         it 'returns In Library Use' do
           item = described_class.new(
