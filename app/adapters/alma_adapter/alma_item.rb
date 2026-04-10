@@ -23,16 +23,6 @@ class AlmaAdapter
       "#{library}$#{location}"
     end
 
-    def composite_temp_location
-      return unless in_temp_location?
-
-      "#{temp_library}$#{temp_location}"
-    end
-
-    def composite_perm_location
-      "#{holding_library}$#{holding_location}"
-    end
-
     def composite_location_display
       if in_temp_location?
         composite_temp_location
@@ -49,25 +39,8 @@ class AlmaAdapter
       end
     end
 
-    def composite_library_label_display
-      if in_temp_location?
-        holding_data.dig('temp_library', 'desc')
-      else
-        item_data.dig('library', 'desc')
-      end
-    end
-
     def on_reserve?
       AlmaItem.reserve_location?(library, location)
-    end
-
-    # @note This is called type because item_type is the value used in the
-    #   /items endpoint. In migrating to Alma this is largely the policy value
-    #   with a fallback.
-    def type
-      return 'Gen' if item_data['policy']['value'].blank?
-
-      item_data['policy']['value']
     end
 
     # 876 field used for enrichment in
@@ -77,65 +50,6 @@ class AlmaAdapter
         '876', ' ', ' ',
         *subfields_for_876
       )
-    end
-
-    def subfields_for_876
-      [
-        MARC::Subfield.new('0', holding_id),
-        MARC::Subfield.new('3', enum_cron),
-        MARC::Subfield.new('a', item_id),
-        MARC::Subfield.new('p', barcode),
-        MARC::Subfield.new('t', copy_number)
-      ] + recap_876_fields
-    end
-
-    def recap_876_fields
-      return [] unless recap_item?
-
-      [
-        MARC::Subfield.new('h', recap_use_restriction),
-        MARC::Subfield.new('x', group_designation),
-        MARC::Subfield.new('z', recap_customer_code),
-        MARC::Subfield.new('j', recap_status),
-        MARC::Subfield.new('l', 'RECAP'),
-        MARC::Subfield.new('k', item.holding_library)
-      ]
-    end
-
-    # Status isn't used for recap records, but 876j is a required field.
-    def recap_status
-      'Not Used'
-    end
-
-    def enum_cron
-      return if enumeration.blank? && chronology.blank?
-      return enumeration if chronology.blank?
-      return chronology if enumeration.blank?
-
-      "#{enumeration} (#{chronology})"
-    end
-
-    def enumeration
-      enums = []
-      enums << item.item_data['enumeration_a']
-      enums << item.item_data['enumeration_b']
-      enums << item.item_data['enumeration_c']
-      enums << item.item_data['enumeration_d']
-      enums << item.item_data['enumeration_e']
-      enums << item.item_data['enumeration_f']
-      enums << item.item_data['enumeration_g']
-      enums << item.item_data['enumeration_h']
-      enums.compact_blank.join(', ')
-    end
-
-    def chronology
-      chrons = []
-      chrons << item.item_data['chronology_i']
-      chrons << item.item_data['chronology_j']
-      chrons << item.item_data['chronology_k']
-      chrons << item.item_data['chronology_l']
-      chrons << item.item_data['chronology_m']
-      chrons.compact_blank.join(', ')
     end
 
     def holding_id
@@ -165,17 +79,6 @@ class AlmaAdapter
       item.location[0..1].upcase
     end
 
-    def recap_use_restriction
-      return unless recap_item?
-
-      case item.location[0..1]
-      when *in_library_recap_groups
-        'In Library Use'
-      when *supervised_recap_groups
-        'Supervised Use'
-      end
-    end
-
     def group_designation
       return unless recap_item?
       return 'Committed' if item_cgd_committed?
@@ -188,39 +91,20 @@ class AlmaAdapter
       end
     end
 
-    def recap_item?
-      holding_location[0..1].in?(all_recap_groups)
+    # Status isn't used for recap records, but 876j is a required field.
+    def recap_status
+      'Not Used'
     end
 
-    def all_recap_groups
-      default_recap_groups +
-        in_library_recap_groups +
-        supervised_recap_groups +
-        no_access_recap_groups
-    end
+    def recap_use_restriction
+      return unless recap_item?
 
-    def default_recap_groups
-      %w[pa gp qk pf]
-    end
-
-    def in_library_recap_groups
-      in_library_recap_groups_and_shared + in_library_recap_groups_and_private
-    end
-
-    def in_library_recap_groups_and_shared
-      ['pv']
-    end
-
-    def in_library_recap_groups_and_private
-      %w[pj pk pl pm pn pt]
-    end
-
-    def supervised_recap_groups
-      %w[pb ph ps pw pz xc xg xm xn xp xr xw xx xgr xcr phr xrr xmr]
-    end
-
-    def no_access_recap_groups
-      %w[jq pe pg ph pq qb ql qv qx]
+      case item.location[0..1]
+      when *in_library_recap_groups
+        'In Library Use'
+      when *supervised_recap_groups
+        'Supervised Use'
+      end
     end
 
     # Returns a JSON representation used for the /items endpoint.
@@ -258,73 +142,6 @@ class AlmaAdapter
       }.merge(temp_library_availability_summary)
     end
 
-    def temp_library_availability_summary
-      if in_temp_location?
-        {
-          in_temp_library: true,
-          temp_library_code: temp_library,
-          temp_library_label: holding_location_label(composite_temp_location),
-          temp_location_code: composite_temp_location,
-          temp_location_label: holding_location_label(composite_temp_location)
-        }
-      else
-        { in_temp_library: false }
-      end
-    end
-
-    def item_cgd_committed?
-      item_committed_to_retain == 'true' && committed_retention_reasons.include?(item_retention_reason)
-    end
-
-    def committed_retention_reasons
-      %w[ReCAPItalianImprints IPLCBrill ReCAPSACAP]
-    end
-
-    def item_retention_reason
-      item_data.dig('retention_reason', 'value')
-    end
-
-    def item_committed_to_retain
-      item_data.dig('committed_to_retain', 'value')
-    end
-
-    def item_type
-      item_data.dig('policy', 'value')
-    end
-
-    def process_type_value
-      item_data.dig('process_type', 'value')
-    end
-
-    def process_type_desc
-      item_data.dig('process_type', 'desc')
-    end
-
-    def base_status_value
-      item_data.dig('base_status', 'value')
-    end
-
-    def base_status_desc
-      item_data.dig('base_status', 'desc')
-    end
-
-    def work_order_type_value
-      item_data.dig('work_order_type', 'value')
-    end
-
-    def work_order_type_desc
-      item_data.dig('work_order_type', 'desc')
-    end
-
-    def requested?
-      item_data['requested'] == true
-    end
-
-    # Currently we handle the 'In Process' logic in the orangelight codebase
-    def in_process_work_order_type_values
-      ['AcqWorkOrder', 'Firestone']
-    end
-
     def calculate_status
       return process_type_status_unavailable unless process_type_value.empty?
 
@@ -337,46 +154,232 @@ class AlmaAdapter
     end
 
     PROCESS_TYPE_VALUES = %w[ACQ CLAIM_RETURNED_LOAN HOLDSHELF ILL LOAN LOST_ILL LOST_LOAN LOST_LOAN_AND_PAID MISSING REQUESTED TECHNICAL TRANSIT TRANSIT_TO_REMOTE_STORAGE WORK_ORDER_DEPARTMENT].freeze
-    def process_type_status_unavailable
-      label, source = if process_type_value.in?(PROCESS_TYPE_VALUES)
-                        if process_type_value == 'WORK_ORDER_DEPARTMENT' && in_process_work_order_type_values.include?(work_order_type_value)
-                          [work_order_type_desc, 'work_order']
-                        else
-                          ['Unavailable', 'process_type']
+
+    private
+
+      def composite_temp_location
+        return unless in_temp_location?
+
+        "#{temp_library}$#{temp_location}"
+      end
+
+      def composite_perm_location
+        "#{holding_library}$#{holding_location}"
+      end
+
+      def composite_library_label_display
+        if in_temp_location?
+          holding_data.dig('temp_library', 'desc')
+        else
+          item_data.dig('library', 'desc')
+        end
+      end
+
+      # @note This is called type because item_type is the value used in the
+      #   /items endpoint. In migrating to Alma this is largely the policy value
+      #   with a fallback.
+      def type
+        return 'Gen' if item_data['policy']['value'].blank?
+
+        item_data['policy']['value']
+      end
+
+      def subfields_for_876
+        [
+          MARC::Subfield.new('0', holding_id),
+          MARC::Subfield.new('3', enum_cron),
+          MARC::Subfield.new('a', item_id),
+          MARC::Subfield.new('p', barcode),
+          MARC::Subfield.new('t', copy_number)
+        ] + recap_876_fields
+      end
+
+      def recap_876_fields
+        return [] unless recap_item?
+
+        [
+          MARC::Subfield.new('h', recap_use_restriction),
+          MARC::Subfield.new('x', group_designation),
+          MARC::Subfield.new('z', recap_customer_code),
+          MARC::Subfield.new('j', recap_status),
+          MARC::Subfield.new('l', 'RECAP'),
+          MARC::Subfield.new('k', item.holding_library)
+        ]
+      end
+
+      def enum_cron
+        return if enumeration.blank? && chronology.blank?
+        return enumeration if chronology.blank?
+        return chronology if enumeration.blank?
+
+        "#{enumeration} (#{chronology})"
+      end
+
+      def enumeration
+        enums = []
+        enums << item.item_data['enumeration_a']
+        enums << item.item_data['enumeration_b']
+        enums << item.item_data['enumeration_c']
+        enums << item.item_data['enumeration_d']
+        enums << item.item_data['enumeration_e']
+        enums << item.item_data['enumeration_f']
+        enums << item.item_data['enumeration_g']
+        enums << item.item_data['enumeration_h']
+        enums.compact_blank.join(', ')
+      end
+
+      def chronology
+        chrons = []
+        chrons << item.item_data['chronology_i']
+        chrons << item.item_data['chronology_j']
+        chrons << item.item_data['chronology_k']
+        chrons << item.item_data['chronology_l']
+        chrons << item.item_data['chronology_m']
+        chrons.compact_blank.join(', ')
+      end
+
+      def recap_item?
+        holding_location[0..1].in?(all_recap_groups)
+      end
+
+      def all_recap_groups
+        default_recap_groups +
+          in_library_recap_groups +
+          supervised_recap_groups +
+          no_access_recap_groups
+      end
+
+      def default_recap_groups
+        %w[pa gp qk pf]
+      end
+
+      def in_library_recap_groups
+        in_library_recap_groups_and_shared + in_library_recap_groups_and_private
+      end
+
+      def in_library_recap_groups_and_shared
+        ['pv']
+      end
+
+      def in_library_recap_groups_and_private
+        %w[pj pk pl pm pn pt]
+      end
+
+      def supervised_recap_groups
+        %w[pb ph ps pw pz xc xg xm xn xp xr xw xx xgr xcr phr xrr xmr]
+      end
+
+      def no_access_recap_groups
+        %w[jq pe pg ph pq qb ql qv qx]
+      end
+
+      def temp_library_availability_summary
+        if in_temp_location?
+          {
+            in_temp_library: true,
+            temp_library_code: temp_library,
+            temp_library_label: holding_location_label(composite_temp_location),
+            temp_location_code: composite_temp_location,
+            temp_location_label: holding_location_label(composite_temp_location)
+          }
+        else
+          { in_temp_library: false }
+        end
+      end
+
+      def item_cgd_committed?
+        item_committed_to_retain == 'true' && committed_retention_reasons.include?(item_retention_reason)
+      end
+
+      def committed_retention_reasons
+        %w[ReCAPItalianImprints IPLCBrill ReCAPSACAP]
+      end
+
+      def item_retention_reason
+        item_data.dig('retention_reason', 'value')
+      end
+
+      def item_committed_to_retain
+        item_data.dig('committed_to_retain', 'value')
+      end
+
+      def status_from_base_status
+        value = item_data.dig('base_status', 'value')
+        desc = item_data.dig('base_status', 'desc')
+
+        # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+        code = value == '1' ? 'Available' : 'Unavailable'
+        { code:, label: desc, source: 'base_status' }
+      end
+
+      def process_type_status_unavailable
+        label, source = if process_type_value.in?(PROCESS_TYPE_VALUES)
+                          if process_type_value == 'WORK_ORDER_DEPARTMENT' && in_process_work_order_type_values.include?(work_order_type_value)
+                            [work_order_type_desc, 'work_order']
+                          else
+                            ['Unavailable', 'process_type']
+                          end
                         end
-                      end
-      { code: 'Unavailable', label:, source:, process_type: process_type_value }
-    end
+        { code: 'Unavailable', label:, source:, process_type: process_type_value }
+      end
 
-    def no_process_type_calculate_status
-      # no process type and requested true sends to illiad
-      code, value, source = if requested?
-                              ['Unavailable', 'Unavailable', 'requested_true']
-                            elsif !requested? && base_status_value == '1'
-                              # Currently Orangelight is looking for Item in place for alma items
-                              # this is why we keep base_status_desc
-                              # we can replace this with Available when we refactor Orangelight to look for Available
-                              ['Available', base_status_desc, 'base_status']
-                            end
+      def no_process_type_calculate_status
+        # no process type and requested true sends to illiad
+        code, value, source = if requested?
+                                ['Unavailable', 'Unavailable', 'requested_true']
+                              elsif !requested? && base_status_value == '1'
+                                # Currently Orangelight is looking for Item in place for alma items
+                                # this is why we keep base_status_desc
+                                # we can replace this with Available when we refactor Orangelight to look for Available
+                                ['Available', base_status_desc, 'base_status']
+                              end
 
-      { code:, label: value, source:, process_type: process_type_value }
-    end
+        { code:, label: value, source:, process_type: process_type_value }
+      end
 
-    def status_from_base_status
-      value = item_data.dig('base_status', 'value')
-      desc = item_data.dig('base_status', 'desc')
+      # Create the label by retrieving the value from the holding library label (external_name in Alma)
+      # Add the library label in front if it exists
+      def holding_location_label(code)
+        label = HoldingLocation.find_by(code:)&.label
+        [composite_library_label_display, label].compact_blank.join(' - ')
+      end
 
-      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      code = value == '1' ? 'Available' : 'Unavailable'
-      { code:, label: desc, source: 'base_status' }
-    end
+      def item_type
+        item_data.dig('policy', 'value')
+      end
 
-    # Create the label by retrieving the value from the holding library label (external_name in Alma)
-    # Add the library label in front if it exists
-    def holding_location_label(code)
-      label = HoldingLocation.find_by(code:)&.label
-      [composite_library_label_display, label].compact_blank.join(' - ')
-    end
+      def process_type_value
+        item_data.dig('process_type', 'value')
+      end
+
+      def process_type_desc
+        item_data.dig('process_type', 'desc')
+      end
+
+      def base_status_value
+        item_data.dig('base_status', 'value')
+      end
+
+      def base_status_desc
+        item_data.dig('base_status', 'desc')
+      end
+
+      def work_order_type_value
+        item_data.dig('work_order_type', 'value')
+      end
+
+      def work_order_type_desc
+        item_data.dig('work_order_type', 'desc')
+      end
+
+      def requested?
+        item_data['requested'] == true
+      end
+
+      # Currently we handle the 'In Process' logic in the orangelight codebase
+      def in_process_work_order_type_values
+        ['AcqWorkOrder', 'Firestone']
+      end
   end
   # rubocop:enable Metrics/ClassLength
 end
