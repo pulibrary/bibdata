@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class ProcessHoldingsHelpers
-  attr_reader :record, :marc_breaker
+  attr_reader :record
 
-  def initialize(record:, marc_breaker:)
+  def initialize(record:)
     @record = record
-    @marc_breaker = marc_breaker
   end
 
   def holding_id(field_852)
-    BibdataRs::Marc.holding_id(marc_breaker_field(field_852), marc_breaker)
+    BibdataRs::Marc.holding_id(field_852, record)
   end
 
   def alma?(field_852)
@@ -35,15 +34,13 @@ class ProcessHoldingsHelpers
 
   # Build the current location code from 876$y and 876$z
   def current_location_code(field_876)
-    marc_breaker_876 = marc_breaker_field(field_876)
-    BibdataRs::Marc.current_location_code(marc_breaker_876)
+    BibdataRs::Marc.current_location_code(field_876)
   end
 
   # Build the permanent location code from 852$b and 852$c
   # Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
   def permanent_location_code(field_852)
-    marc_breaker_852 = marc_breaker_field(field_852)
-    BibdataRs::Marc.permanent_location_code(marc_breaker_852)
+    BibdataRs::Marc.permanent_location_code(field_852)
   end
 
   # Select 876 fields (items) with permanent location. 876 location is equal to the 852 permanent location.
@@ -63,12 +60,12 @@ class ProcessHoldingsHelpers
   # rubocop:disable Naming/PredicateMethod
   def in_temporary_location(field_876, field_852)
     # temporary location is any item whose 876 and 852 do not match
-    BibdataRs::Marc.current_location_code(marc_breaker_field(field_876)) != BibdataRs::Marc.permanent_location_code(marc_breaker_field(field_852))
+    BibdataRs::Marc.current_location_code(field_876) != BibdataRs::Marc.permanent_location_code(field_852)
   end
   # rubocop:enable Naming/PredicateMethod
 
   def build_call_number(field_852)
-    BibdataRs::Marc.build_call_number(marc_breaker_field(field_852))
+    BibdataRs::Marc.build_call_number(field_852)
   end
 
   # Builds the holding, without any item-specific information
@@ -146,12 +143,4 @@ class ProcessHoldingsHelpers
     textual_holdings << field['z'] if field.tag == field_tag && field['z']
     textual_holdings.presence&.join(' ')
   end
-
-  private
-
-    # Convert a Marc::Datafield to a string so that we can send it to the Rust marctk
-    # The string will look like: =245 \\ $aMy title $b My subtitle
-    def marc_breaker_field(field)
-      MarcBreaker.new('').datafield_to_breaker(field)
-    end
 end

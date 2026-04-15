@@ -355,9 +355,9 @@ def alma_954(record)
   record.fields('954').select { |f| alma_code_start_53?(f['a']) }
 end
 
-def process_holdings(record, marc_breaker)
+def process_holdings(record)
   all_holdings = {}
-  holdings_helpers = ProcessHoldingsHelpers.new(record:, marc_breaker:)
+  holdings_helpers = ProcessHoldingsHelpers.new(record:)
   holdings_helpers.fields_852_alma.each do |field_852|
     holding_id = holdings_helpers.holding_id(field_852)
     # Calculate the permanent holding
