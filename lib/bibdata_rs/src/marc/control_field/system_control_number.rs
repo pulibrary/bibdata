@@ -30,7 +30,7 @@ pub fn system_control_numbers(record: &Record) -> Vec<SystemControlNumber> {
     record
         .extract_values("035a")
         .iter()
-        .map(|value| SystemControlNumber::from(value.as_str()))
+        .map(|value| SystemControlNumber::from(*value))
         .collect()
 }
 
