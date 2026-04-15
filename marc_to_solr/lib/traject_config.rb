@@ -175,12 +175,8 @@ to_field 'title_a_index', extract_marc('245a', trim_punctuation: true)
 to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :only, first: true)
 
 # to_field 'title_sort', marc_sortable_title
-to_field 'title_sort' do |record, accumulator|
-  MarcExtractor.cached('245abcfghknps', alternate_script: false).collect_matching_lines(record) do |field, spec, extractor|
-    str = extractor.collect_subfields(field, spec).first
-    str = str.slice(field.indicator2.to_i, str.length) if str
-    accumulator << str if accumulator[0].nil?
-  end
+to_field 'title_sort' do |_record, accumulator, context|
+  accumulator << context.clipboard[:solr_fields]['title_sort'] if context.clipboard[:solr_fields]['title_sort']
 end
 
 to_field 'title_vern_sort' do |record, accumulator|

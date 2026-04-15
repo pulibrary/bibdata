@@ -31,6 +31,10 @@ where
     }
 }
 
+pub fn latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
+    |field| tags.contains(&field.tag())
+}
+
 pub fn latin_or_non_latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
     |field| tags.contains(&field.tag()) || non_latin_tag_included_in(tags)(field)
 }
@@ -53,13 +57,23 @@ pub fn join_all_subfields(field: &Field) -> String {
     join_subfields(field.subfields().iter())
 }
 
+pub fn join_subfields_by_code(field: &Field, include: &[&str]) -> String {
+    join_subfields(filter_subfields(field, |subfield| {
+        include.contains(&subfield.code())
+    }))
+}
+
 pub fn join_subfields_except(field: &Field, exclude: &[&str]) -> String {
-    join_subfields(
-        field
-            .subfields()
-            .iter()
-            .filter(|subfield| !exclude.contains(&subfield.code())),
-    )
+    join_subfields(filter_subfields(field, |subfield| {
+        !exclude.contains(&subfield.code())
+    }))
+}
+
+fn filter_subfields(
+    field: &Field,
+    filter: impl Fn(&&Subfield) -> bool,
+) -> impl Iterator<Item = &Subfield> {
+    field.subfields().iter().filter(filter)
 }
 
 pub fn join_subfields<'a>(subfields: impl Iterator<Item = &'a Subfield>) -> String {
