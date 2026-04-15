@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   coveralls: coveralls/coveralls@2.2.5
   node: circleci/node@5.0.3
+  ruby: circleci/ruby@2.6.0
   rust: circleci/rust@1.6.2
 jobs:
   lint:
@@ -14,20 +15,7 @@ jobs:
 
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-bibdata-{{ checksum "Gemfile.lock" }}
-            # use a partial cache restore
-            - v4-bibdata-
-      - run: gem install bundler -v '~> 2.0'
-      - run:
-          name: Install dependencies
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
-      - save_cache:
-          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+      - ruby/install-deps
       - run:
           name: Lint with Rubocop
           command: bundle exec rubocop
@@ -55,23 +43,10 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '22.14.0'
-      - restore_cache:
-          keys:
-            # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-bibdata-{{ checksum "Gemfile.lock" }}
-            # use a partial cache restore
-            - v4-bibdata-
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
-      - run: gem install bundler -v '~> 2.0'
       - run: bundle config set --local without production
-      - run:
-          name: Install dependencies
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
-      - save_cache:
-          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+      - ruby/install-deps
 
       - run:
           name: Load config into solr
@@ -136,13 +111,14 @@ jobs:
       - image: cimg/ruby:3.4
     steps:
       - checkout
+      - ruby/install-deps
       - rust/install
       - run:
           name: Install cargo-llvm-cov
           command: cargo +stable install cargo-llvm-cov --locked
       - run:
           name: Run tests with coverage
-          command: cargo llvm-cov --lcov --output-path lcov.info --ignore-filename-regex iso_639
+          command: bundle exec cargo llvm-cov --lcov --output-path lcov.info --ignore-filename-regex iso_639
       - coveralls/upload:
           coverage_file: lcov.info
           coverage_format: lcov
