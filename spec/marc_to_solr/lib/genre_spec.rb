@@ -230,16 +230,16 @@ RSpec.describe 'genre indexing', :rust do
         g655_2 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Poetry' }, { 'x' => 'Translations into French' }, { 'v' => 'Maps' }, { '2' => 'homoit' }] } }
         g655_3 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Manuscript' }, { 'x' => 'Translations into French' }, { 'v' => 'Genre' }, { '2' => 'lcsh' }] } }
         g655_4 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Watermarks' }, { '2' => 'rbgenr' }] } }
-        g655_5 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'lluminated manuscripts' }, { '2' => 'lcgft' }] } }
+        g655_5 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Illuminated manuscripts' }, { '2' => 'lcgft' }] } }
 
         sample_marc = MARC::Record.new_from_hash('fields' => [g600, g635, g655, g655_2, g655_3, g655_4, g655_5], 'leader' => '')
-        IndexerService.build.map_record(sample_marc)['genre_facet']
+        IndexerService.build.map_record(sample_marc)['jsonld_genre_display']
       end
 
       it 'includes all 655 fields with 2nd indicator of 7' do
-        expect(genres).to include('Culture')
-        expect(genres).to include('Poetry')
-        expect(genres).to include('Manuscript')
+        expect(genres).to include('Culture. Dramatic rendition Awesome')
+        expect(genres).to include('Poetry Translations into French Maps')
+        expect(genres).to include('Manuscript Translations into French Genre')
         expect(genres).to include('Watermarks')
         expect(genres).to include('Illuminated manuscripts')
       end
