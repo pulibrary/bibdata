@@ -979,7 +979,7 @@ to_field 'rbgenr_genre_facet' do |record, accumulator|
 end
 
 # used for the JSONLD output. Uses all the 655 fields to get all genre data
-to_field 'jsonld_genre_facet', extract_marc('655|*7|avxyz')
+to_field 'jsonld_genre_display', extract_marc('655|*7|avxyz')
 
 to_field 'cjk_subject' do |_record, accumulator, context|
   accumulator.replace(context.clipboard[:solr_fields]['cjk_subject'])
