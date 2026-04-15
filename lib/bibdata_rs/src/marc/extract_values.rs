@@ -5,6 +5,11 @@ pub trait ExtractValues<'a> {
     where
         C: Fn(&'a Field) -> bool,
         E: Fn(&'a Field) -> Option<T>;
+
+    fn first_matching_field_value<C, E, T>(self, criteria: C, extractor: E) -> Option<T>
+    where
+        C: Fn(&'a Field) -> bool,
+        E: Fn(&'a Field) -> Option<T>;
 }
 
 impl<'a> ExtractValues<'a> for &'a Record {
@@ -20,5 +25,13 @@ impl<'a> ExtractValues<'a> for &'a Record {
                 None
             }
         })
+    }
+
+    fn first_matching_field_value<C, E, T>(self, criteria: C, extractor: E) -> Option<T>
+    where
+        C: Fn(&'a Field) -> bool,
+        E: Fn(&'a Field) -> Option<T>,
+    {
+        self.extract_field_values_by(criteria, extractor).next()
     }
 }

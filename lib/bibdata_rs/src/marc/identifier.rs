@@ -41,10 +41,10 @@ fn linked_record_control_numbers(record: &Record) -> impl Iterator<Item = String
         .extract_values("776w:787w")
         .into_iter()
         .filter_map(|value| {
-            if is_oclc_number(&value) {
-                Some(normalize_oclc_number(&value))
+            if is_oclc_number(value) {
+                Some(normalize_oclc_number(value))
             } else if value.contains('(') {
-                Some(format!("BIB{}", strip_non_numeric(&value)))
+                Some(format!("BIB{}", strip_non_numeric(value)))
             } else {
                 None
             }

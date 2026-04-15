@@ -1,6 +1,5 @@
 /// This module is responsible for converting Marc data from Ruby's Marc gem to
 /// Rust's marctk
-
 use magnus::{
     Object, RArray, RClass, RObject, RString, Ruby,
     value::{InnerRef, Lazy, LazyId, ReprValue},
