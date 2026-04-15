@@ -265,7 +265,7 @@ mod tests {
     #[ruby_test]
     fn it_includes_rbgenr_s_in_solr_fields() {
         let ruby = unsafe { Ruby::get_unchecked() };
-        let ruby_record: magnus::RObject = ruby.eval(r"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new( '655', '', '7', ['a', 'Dictionaries', 'x', 'French', 'y', '18th century.', '2', 'rbgenr']));record").unwrap();
+        let ruby_record: magnus::RObject = ruby.eval(r"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new( '655', '', '7', ['a', 'Dictionaries'], ['x', 'French'], ['y', '18th century.'], ['2', 'rbgenr']));record").unwrap();
         let hash = solr_fields(&ruby, ruby_record).unwrap();
 
         let rbgenr_s_value = hash.aref::<&str, Vec<String>>("rbgenr_s").unwrap();
