@@ -221,5 +221,28 @@ RSpec.describe 'genre indexing', :rust do
         expect(genres).to contain_exactly 'Primary sources', 'Biography'
       end
     end
+
+    context 'when indexing the jsonld_genre_display field' do
+      let(:genres) do
+        g600 = { '600' => { 'ind1' => '', 'ind2' => '0', 'subfields' => [{ 'a' => 'Exclude' }, { 'v' => 'John' }, { 'x' => 'Join' }] } }
+        g635 = { '635' => { 'ind1' => '', 'ind2' => '0', 'subfields' => [{ 'x' => 'Fiction.' }] } }
+        g655 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Culture.' }, { 'x' => 'Dramatic rendition' }, { 'v' => 'Awesome' }, { '2' => 'aat'}] } }
+        g655_2 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Poetry' }, { 'x' => 'Translations into French' }, { 'v' => 'Maps' }, { '2' => 'homoit' }] } }
+        g655_3 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Manuscript' }, { 'x' => 'Translations into French' }, { 'v' => 'Genre' }, { '2' => 'lcsh' }] } }
+        g655_4 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Watermarks' },  { '2' => 'rbgenr' }] } }
+        g655_5 = { '655' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'lluminated manuscripts' }, { '2' => 'lcgft' }] } }
+
+        sample_marc = MARC::Record.new_from_hash('fields' => [g600, g635, g655, g655_2, g655_3, g655_4, g655_5], 'leader' => '')
+        IndexerService.build.map_record(sample_marc)['genre_facet']
+      end
+
+      it 'includes all 655 fields with 2nd indicator of 7' do
+        expect(genres).to include('Culture.')
+        expect(genres).to include('Poetry')
+        expect(genres).to include('Manuscript')
+        expect(genres).to include('Watermarks')
+        expect(genres).to include('Illuminated manuscripts')
+      end
+    end
   end
 end
