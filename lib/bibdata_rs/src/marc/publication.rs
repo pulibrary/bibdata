@@ -12,7 +12,7 @@ use super::{
 use itertools::Itertools;
 use marctk::Record;
 
-pub fn pub_created_display(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+pub fn pub_created_display(record: &Record) -> impl Iterator<Item = String> {
     statements_from_260(record)
         .chain(statements_from_parallel_260(record))
         .chain(statements_from_264(record))
@@ -41,7 +41,7 @@ pub fn pub_citation_display(record: &Record) -> impl Iterator<Item = String> {
         .unique()
 }
 
-fn statements_from_264(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+fn statements_from_264(record: &Record) -> impl Iterator<Item = String> {
     record
         .extract_partial_fields("264abcefg3")
         .into_iter()
@@ -49,7 +49,7 @@ fn statements_from_264(record: &Record) -> impl Iterator<Item = String> + use<'_
         .map(|field| join_all_subfields(&field))
 }
 
-fn statements_from_260(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+fn statements_from_260(record: &Record) -> impl Iterator<Item = String> {
     record
         .extract_partial_fields("260abcefg")
         .into_iter()
@@ -59,7 +59,7 @@ fn statements_from_260(record: &Record) -> impl Iterator<Item = String> + use<'_
         })
 }
 
-fn statements_from_parallel_264(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+fn statements_from_parallel_264(record: &Record) -> impl Iterator<Item = String> {
     record
         .get_parallel_fields("264")
         .into_iter()
@@ -72,7 +72,7 @@ fn statements_from_parallel_264(record: &Record) -> impl Iterator<Item = String>
         })
 }
 
-fn statements_from_parallel_260(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+fn statements_from_parallel_260(record: &Record) -> impl Iterator<Item = String> {
     record
         .get_parallel_fields("260")
         .into_iter()

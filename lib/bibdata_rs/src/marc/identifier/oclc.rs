@@ -6,7 +6,7 @@ use marctk::Record;
 use regex::Regex;
 use std::sync::LazyLock;
 
-pub fn normalized_oclc_numbers(record: &Record) -> impl Iterator<Item = String> + use<> {
+pub fn normalized_oclc_numbers(record: &Record) -> impl Iterator<Item = String> {
     system_control_numbers(record)
         .into_iter()
         .filter_map(|number| match number {

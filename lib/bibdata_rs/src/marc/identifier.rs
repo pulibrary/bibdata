@@ -36,7 +36,7 @@ pub fn map_024_indicators_to_labels(indicator: char) -> &'static str {
 
 // Record control numbers can either be OCLC numbers (which are normalized to a format like ocn991350412)
 // or some other type of control number (which are normalized and include the prefix BIB)
-fn linked_record_control_numbers(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+fn linked_record_control_numbers(record: &Record) -> impl Iterator<Item = String> {
     record
         .extract_values("776w:787w")
         .into_iter()
