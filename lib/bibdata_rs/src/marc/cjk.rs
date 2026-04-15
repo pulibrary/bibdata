@@ -123,7 +123,7 @@ pub fn cjk_series_titles(record: &Record) -> impl Iterator<Item = String> {
     series_title_fields.chain(fields_with_author_and_title_info)
 }
 
-pub fn notes_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+pub fn notes_cjk(record: &Record) -> impl Iterator<Item = String> {
     // These notes are supposedly in Latin script, but still may contain some
     // CJK characters
     let latin_script_note_fields = record.extract_fields(500..=599);
@@ -145,7 +145,7 @@ pub fn notes_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
         .filter(|note| has_cjk_chars(note))
 }
 
-pub fn subjects_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+pub fn subjects_cjk(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         non_latin_tag_included_in(&["600", "610", "611", "630", "650", "651"]),
         |field| {
