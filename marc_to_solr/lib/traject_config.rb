@@ -58,9 +58,8 @@ each_record do |record, context|
 end
 
 each_record do |record, context|
-  context.clipboard[:marc_breaker] = MarcBreaker.break record
-  context.clipboard[:solr_fields] = BibdataRs::Marc.solr_fields(context.clipboard[:marc_breaker])
-  context.clipboard[:is_scsb] = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
+  context.clipboard[:solr_fields] = BibdataRs::Marc.solr_fields record
+  context.clipboard[:is_scsb] = BibdataRs::Marc.is_scsb?(record)
 end
 
 after_processing do
@@ -1320,9 +1319,9 @@ to_field 'subject_era_facet', marc_era_facet
 
 to_field 'holdings_1display' do |record, accumulator, context|
   if context.clipboard[:is_scsb]
-    accumulator[0] = BibdataRs::Marc.partner_holdings_1display(context.clipboard[:marc_breaker])
+    accumulator[0] = BibdataRs::Marc.partner_holdings_1display(record)
   else
-    all_holdings = process_holdings(record, context.clipboard[:marc_breaker])
+    all_holdings = process_holdings(record)
     accumulator[0] = all_holdings.to_json unless all_holdings.empty?
   end
 end

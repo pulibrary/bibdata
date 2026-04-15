@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 use std::fs;
 
+pub mod marc_gem;
+
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
 use crate::marc::control_field::system_control_number::standard_numbers;
@@ -12,6 +14,7 @@ use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
+use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
@@ -56,7 +59,6 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         "permanent_location_code",
         function!(permanent_location_code, 1),
     )?;
-    submodule_marc.define_singleton_method("private_items?", function!(private_items, 2))?;
     submodule_marc.define_singleton_method(
         "index_test_figgy_data_into_redis",
         function!(index_test_figgy_data_into_redis, 0),
@@ -67,8 +69,8 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     Ok(())
 }
 
-fn solr_fields(ruby: &Ruby, record_string: String) -> Result<RHash, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
+fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Error> {
+    let record = marctk_from_ruby_marc_record(ruby, &record)?;
 
     let action_notes_1display = ruby.ary_new();
     let action_notes = action_notes(&record).collect::<Vec<_>>();
@@ -216,9 +218,9 @@ fn location_label(code: String) -> Option<String> {
 
 fn partner_holdings_1display(
     ruby: &Ruby,
-    record_string: String,
+    record: magnus::RObject,
 ) -> Result<Option<String>, magnus::Error> {
-    let record = get_record(ruby, &record_string)?;
+    let record = marctk_from_ruby_marc_record(ruby, &record)?;
     let holdings: Vec<holdings::partner::PartnerHolding<'_>> = partner_holdings(&record).collect();
     if holdings.is_empty() {
         Ok(None)
@@ -263,8 +265,8 @@ mod tests {
     #[ruby_test]
     fn it_includes_rbgenr_s_in_solr_fields() {
         let ruby = unsafe { Ruby::get_unchecked() };
-        let record_string = String::from(r"=655 \7$aDictionaries$xFrench$y18th century.$2rbgenr");
-        let hash = solr_fields(&ruby, record_string).unwrap();
+        let ruby_record: magnus::RObject = ruby.eval(r"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new( '655', '', '7', ['a', 'Dictionaries'], ['x', 'French'], ['y', '18th century.'], ['2', 'rbgenr']));record").unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
 
         let rbgenr_s_value = hash.aref::<&str, Vec<String>>("rbgenr_s").unwrap();
         assert_eq!(
