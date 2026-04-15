@@ -102,6 +102,12 @@ Rails/ApplicationRecord:
 Rails/Pluck:
   Enabled: false
 
+# The marc_to_solr directory does not load the Rails delegate
+# method, so we should not use it there!
+Rails/Delegate:
+  Exclude:
+    - 'marc_to_solr/**/*'
+
 RSpec/NoExpectationExample:
   Enabled: false
 

@@ -35,11 +35,9 @@ module MARC
   end
 end
 
-# rubocop :disable Rails/Delegate
 def map_024_indicators_to_labels i
   BibdataRs::Marc.map_024_indicators_to_labels(i)
 end
-# rubocop :enable Rails/Delegate
 
 def subfield_specified_hash_key subfield_value, fallback
   key = subfield_value.capitalize.gsub(/[[:punct:]]?$/, '')
