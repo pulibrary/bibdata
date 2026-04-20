@@ -4,7 +4,7 @@ source 'https://gems.contribsys.com/' do
 end
 
 # pin the alma gem until we adress https://github.com/pulibrary/bibdata/pull/2502
-gem 'alma', '~> 0.5.0'
+gem 'alma', '~> 0.6.2'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
 gem 'bcrypt_pbkdf'

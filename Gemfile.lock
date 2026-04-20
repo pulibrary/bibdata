@@ -108,7 +108,7 @@ GEM
       public_suffix (>= 2.0.2, < 8.0)
     airbrussh (1.6.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    alma (0.5.1)
+    alma (0.6.2)
       activesupport
       httparty
       xml-simple
@@ -304,7 +304,7 @@ GEM
     http-cookie (1.1.0)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
-    httparty (0.24.0)
+    httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -379,12 +379,12 @@ GEM
     mime-types-data (3.2024.1203)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (6.0.3)
+    minitest (6.0.4)
       drb (~> 2.0)
       prism (~> 1.5)
     mize (0.6.1)
     msgpack (1.8.0)
-    multi_xml (0.8.0)
+    multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
     multipart-post (2.4.1)
     mutex_m (0.3.0)
@@ -723,7 +723,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  alma (~> 0.5.0)
+  alma (~> 0.6.2)
   aws-sdk-s3
   aws-sdk-sqs
   axe-core-api
