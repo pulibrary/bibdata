@@ -64,7 +64,6 @@ pub fn is_scsb(ruby: &Ruby, record: magnus::RObject) -> Result<bool, magnus::Err
     Ok(scsb::is_scsb(&record))
 }
 
-/// Returns a Vec<String> of location codes for each 852 field, using 876 for current location if temporary, otherwise permanent location.
 pub fn location_codes(ruby: &Ruby, record: RObject) -> Result<Vec<String>, magnus::Error> {
     let record = marctk_from_ruby_marc_record(ruby, &record)?;
     let mut codes = Vec::new();
@@ -75,7 +74,6 @@ pub fn location_codes(ruby: &Ruby, record: RObject) -> Result<Vec<String>, magnu
             .first_subfield("8")
             .map(|sf| sf.content().to_string());
 
-        // Find matching 876 field (by 876$0 == 852$8)
         let field_876 = holding_id.as_ref().and_then(|id| {
             let all_876 = record.get_fields("876");
 
@@ -94,7 +92,6 @@ pub fn location_codes(ruby: &Ruby, record: RObject) -> Result<Vec<String>, magnu
         let perm_code = permanent_location_code(&field_852)?;
         let curr_code = field_876.and_then(|field| current_location_code(field));
 
-        // If current and permanent differ and both are Some, use current (temporary), else permanent
         let location_code = match (curr_code, perm_code) {
             (Some(curr), Some(perm)) if curr == "RES_SHARE$IN_RS_REQ" => Some(perm),
             (Some(curr), Some(perm)) if curr != perm => Some(curr),
@@ -136,12 +133,9 @@ fn permanent_location_code(field: &Field) -> Result<Option<String>, magnus::Erro
                 Some(format!("{b}${c}"))
             }
         }
-        None if field.first_subfield("0").is_some() => {
-            // SCSB record with 852$0 but no 852$8 - use $b as location code
-            field
-                .first_subfield("b")
-                .map(|subfield| subfield.content().to_string())
-        }
+        None if field.first_subfield("0").is_some() => field
+            .first_subfield("b")
+            .map(|subfield| subfield.content().to_string()),
         _ => None,
     })
 }
