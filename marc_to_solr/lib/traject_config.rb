@@ -1356,21 +1356,7 @@ end
 # Process location code once
 # 852|b and 852|c
 each_record do |record, context|
-  location_codes = MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
-    holding_b = nil
-    is_alma = BibdataRs::Marc.alma_code_start_22?(field['8'].to_s)
-    field.subfields.each do |s_field|
-      # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
-      if s_field.code == 'b'
-        # update the logged error. It doesn't look right as it is and we need to see in alma if we
-        # still need to log multiple $b in 852.
-        # logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
-        holding_b ||= s_field.value if is_alma || context.clipboard[:is_scsb]
-        holding_b += "$#{field['c']}" if field['c'] && is_alma
-      end
-    end
-    holding_b
-  end.compact
+  location_codes = BibdataRs::Marc.location_codes(record)
   if location_codes.any?
     location_codes.uniq!
     ## need to go through any location code that isn't from voyager, thesis, or graphic arts

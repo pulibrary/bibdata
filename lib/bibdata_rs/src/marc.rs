@@ -1,6 +1,6 @@
 use itertools::Itertools;
 use magnus::{RObject, Ruby};
-use marctk::Record;
+use marctk::{Field, Record};
 
 pub mod alma;
 pub mod call_number;
@@ -64,13 +64,62 @@ pub fn is_scsb(ruby: &Ruby, record: magnus::RObject) -> Result<bool, magnus::Err
     Ok(scsb::is_scsb(&record))
 }
 
+/// Returns a Vec<String> of location codes for each 852 field, using 876 for current location if temporary, otherwise permanent location.
+pub fn location_codes(ruby: &Ruby, record: RObject) -> Result<Vec<String>, magnus::Error> {
+    let record = marctk_from_ruby_marc_record(ruby, &record)?;
+    let mut codes = Vec::new();
+    for field_852_ref in record.get_fields("852") {
+        let field_852 = field_852_ref.clone();
+
+        let holding_id = field_852
+            .first_subfield("8")
+            .map(|sf| sf.content().to_string());
+
+        // Find matching 876 field (by 876$0 == 852$8)
+        let field_876 = holding_id.as_ref().and_then(|id| {
+            let all_876 = record.get_fields("876");
+
+            all_876
+                .iter()
+                .find(|field_876| {
+                    field_876
+                        .first_subfield("0")
+                        .map(|sf| sf.content().to_string())
+                        == Some(id.clone())
+                })
+                .cloned()
+        });
+
+        // Calculate permanent and current location codes
+        let perm_code = permanent_location_code(&field_852)?;
+        let curr_code = field_876.and_then(|field| current_location_code(field));
+
+        // If current and permanent differ and both are Some, use current (temporary), else permanent
+        let location_code = match (curr_code, perm_code) {
+            (Some(curr), Some(perm)) if curr == "RES_SHARE$IN_RS_REQ" => Some(perm),
+            (Some(curr), Some(perm)) if curr != perm => Some(curr),
+            (Some(curr), _) => Some(curr),
+            (None, Some(perm)) => Some(perm),
+            _ => None,
+        };
+        if let Some(c) = location_code {
+            codes.push(c);
+        }
+    }
+    Ok(codes)
+}
+
 // Build the permanent location code from 852$b and 852$c
 // Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
-pub fn permanent_location_code(
+pub fn ruby_permanent_location_code(
     ruby: &Ruby,
     field: RObject,
 ) -> Result<Option<String>, magnus::Error> {
     let field = marctk_data_field_from_ruby_marc(ruby, &field).ok_or(invalid_field_error(ruby))?;
+    permanent_location_code(&field)
+}
+
+fn permanent_location_code(field: &Field) -> Result<Option<String>, magnus::Error> {
     Ok(match field.first_subfield("8") {
         Some(alma_code) if alma_code_start_22(alma_code.content().to_string()) => {
             let b = field
@@ -81,22 +130,35 @@ pub fn permanent_location_code(
                 .first_subfield("c")
                 .map(|subfield| subfield.content())
                 .unwrap_or_default();
-            Some(format!("{b}${c}"))
+            if c.is_empty() {
+                Some(b.to_string())
+            } else {
+                Some(format!("{b}${c}"))
+            }
         }
-        _ => field
-            .first_subfield("b")
-            .map(|subfield| subfield.content().to_string()),
+        None if field.first_subfield("0").is_some() => {
+            // SCSB record with 852$0 but no 852$8 - use $b as location code
+            field
+                .first_subfield("b")
+                .map(|subfield| subfield.content().to_string())
+        }
+        _ => None,
     })
 }
 
-pub fn current_location_code(ruby: &Ruby, field: RObject) -> Result<Option<String>, magnus::Error> {
+pub fn ruby_current_location_code(
+    ruby: &Ruby,
+    field: RObject,
+) -> Result<Option<String>, magnus::Error> {
     let field_876 = marctk_data_field_from_ruby_marc(ruby, &field);
-    Ok(field_876.and_then(
-        |field| match (field.first_subfield("y"), field.first_subfield("z")) {
-            (Some(y), Some(z)) => Some(format!("{}${}", y.content(), z.content())),
-            _ => None,
-        },
-    ))
+    Ok(field_876.and_then(|field| current_location_code(&field)))
+}
+
+fn current_location_code(field: &Field) -> Option<String> {
+    match (field.first_subfield("y"), field.first_subfield("z")) {
+        (Some(y), Some(z)) => Some(format!("{}${}", y.content(), z.content())),
+        _ => None,
+    }
 }
 pub fn build_call_number(ruby: &Ruby, field: RObject) -> Result<Option<String>, magnus::Error> {
     // call_number = [field_852['h'], field_852['i'], field_852['k'], field_852['j']].reject(&:blank?)

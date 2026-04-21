@@ -29,8 +29,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc
         .define_singleton_method("alma_code_start_22?", function!(alma_code_start_22, 1))?;
     submodule_marc.define_singleton_method("build_call_number", function!(build_call_number, 1))?;
-    submodule_marc
-        .define_singleton_method("current_location_code", function!(current_location_code, 1))?;
+    submodule_marc.define_singleton_method(
+        "current_location_code",
+        function!(ruby_current_location_code, 1),
+    )?;
     submodule_marc.define_singleton_method(
         "has_main_term_related_to_indigenous_studies",
         function!(has_main_term_related_to_indigenous_studies, 1),
@@ -43,6 +45,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_module_function("solr_fields", function!(solr_fields, 1))?;
     submodule_marc.define_singleton_method("is_oclc_number?", function!(is_oclc_number, 1))?;
     submodule_marc.define_singleton_method("is_scsb?", function!(is_scsb, 1))?;
+    submodule_marc.define_module_function("location_codes", function!(location_codes, 1))?;
     submodule_marc.define_singleton_method("library_label", function!(library_label, 1))?;
     submodule_marc.define_singleton_method("location_label", function!(location_label, 1))?;
     submodule_marc.define_singleton_method(
@@ -57,7 +60,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     )?;
     submodule_marc.define_singleton_method(
         "permanent_location_code",
-        function!(permanent_location_code, 1),
+        function!(ruby_permanent_location_code, 1),
     )?;
     submodule_marc.define_singleton_method(
         "index_test_figgy_data_into_redis",
