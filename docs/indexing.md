@@ -142,7 +142,7 @@ as deploy user, in `/opt/bibdata/current`
 ```
 $ tmux attach-session -t full-index
 $ cd /opt/bibdata/current 
-$ RUST_LOG=debug bundle exec rake ephemera:full_reindex
+$ SET_URL=http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild RUST_LOG=debug bundle exec rake ephemera:full_reindex
 CTRL+b d (to detach from tmux)
 ```
 - If you want more detailed output while you're running the rake task set RUST_LOG=trace.
