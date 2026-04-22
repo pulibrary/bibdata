@@ -175,4 +175,18 @@ mod tests {
             r#""electronic_access_1display":"{\"http://arks.princeton.edu/ark:/88435/dsp01b2773v788\":[\"DataSpace\",\"Full text\"]}""#
         ))
     }
+
+    #[test]
+    fn it_can_serialize_an_author_roles() {
+        let document = SolrDocument::builder()
+            .with_author_roles_1display(AuthorRoles {
+                primary_author: Some(String::from("Prang, Louis")),
+                ..Default::default()
+            })
+            .build();
+        let serialized = serde_json::to_string(&document).unwrap();
+        assert!(serialized.contains(
+            r#""author_roles_1display":"{\"primary_author\":\"Prang, Louis\",\"secondary_authors\":[],\"translators\":[],\"editors\":[],\"compilers\":[]}""#
+        ))
+    }
 }

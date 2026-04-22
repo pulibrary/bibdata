@@ -24,20 +24,19 @@ pub fn contains_titles_index(record: &Record) -> impl Iterator<Item = String> {
 }
 
 pub fn latin_script_title(record: &Record) -> Option<String> {
-    record
-        .first_matching_field_value(
-            |field| field.tag() == "245",
-            |field| {
-                Some(
-                    field
-                        .subfields()
-                        .iter()
-                        .filter(|subfield| ["abchknps"].contains(&subfield.code()))
-                        .map(|subfield| subfield.content())
-                        .join(" "),
-                )
-            },
-        )
+    record.first_matching_field_value(
+        |field| field.tag() == "245",
+        |field| {
+            Some(
+                field
+                    .subfields()
+                    .iter()
+                    .filter(|subfield| ["abchknps"].contains(&subfield.code()))
+                    .map(|subfield| subfield.content())
+                    .join(" "),
+            )
+        },
+    )
 }
 
 pub fn title_sort(record: &Record) -> Option<String> {

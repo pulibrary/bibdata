@@ -1,16 +1,36 @@
 // This module is responsible for creating a JSON formatted list of authors
 // and their roles.
 
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize, ser::Error};
 
-#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 pub struct AuthorRoles {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub primary_author: Option<String>,
     pub secondary_authors: Vec<String>,
     pub translators: Vec<String>,
     pub editors: Vec<String>,
     pub compilers: Vec<String>,
+}
+
+impl Serialize for AuthorRoles {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        let mut hash = serde_json::Map::new();
+        let cloned = self.clone();
+        if let Some(primary) = cloned.primary_author {
+            hash.insert(String::from("primary_author"), primary.into());
+        }
+        hash.insert(
+            String::from("secondary_authors"),
+            cloned.secondary_authors.into(),
+        );
+        hash.insert(String::from("translators"), cloned.translators.into());
+        hash.insert(String::from("editors"), cloned.editors.into());
+        hash.insert(String::from("compilers"), cloned.compilers.into());
+        serializer.serialize_str(&serde_json::to_string(&hash).map_err(S::Error::custom)?)
+    }
 }
 
 #[cfg(test)]
@@ -21,7 +41,7 @@ mod tests {
     fn it_serializes_correctly() {
         assert_eq!(
             serde_json::to_string(&AuthorRoles::default()).unwrap(),
-            r#"{"secondary_authors":[],"translators":[],"editors":[],"compilers":[]}"#
+            r#""{\"secondary_authors\":[],\"translators\":[],\"editors\":[],\"compilers\":[]}""#
         );
         assert_eq!(
             serde_json::to_string(&AuthorRoles {
@@ -29,7 +49,7 @@ mod tests {
                 ..Default::default()
             })
             .unwrap(),
-            r#"{"primary_author":"Ginger","secondary_authors":[],"translators":[],"editors":[],"compilers":[]}"#
+            r#""{\"primary_author\":\"Ginger\",\"secondary_authors\":[],\"translators\":[],\"editors\":[],\"compilers\":[]}""#
         );
         assert_eq!(
             serde_json::to_string(&AuthorRoles {
@@ -38,7 +58,7 @@ mod tests {
                 ..Default::default()
             })
             .unwrap(),
-            r#"{"primary_author":"Ginger","secondary_authors":[],"translators":[],"editors":[],"compilers":["Galangal"]}"#
+            r#""{\"primary_author\":\"Ginger\",\"secondary_authors\":[],\"translators\":[],\"editors\":[],\"compilers\":[\"Galangal\"]}""#
         );
         assert_eq!(
             serde_json::to_string(&AuthorRoles {
@@ -46,7 +66,7 @@ mod tests {
                 ..Default::default()
             })
             .unwrap(),
-            r#"{"secondary_authors":["Cardamom","Turmeric"],"translators":[],"editors":[],"compilers":[]}"#
+            r#""{\"secondary_authors\":[\"Cardamom\",\"Turmeric\"],\"translators\":[],\"editors\":[],\"compilers\":[]}""#
         );
     }
 }
