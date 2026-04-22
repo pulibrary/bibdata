@@ -27,7 +27,13 @@ pub fn read() -> FiggyMmsIdCache {
     let mut connection = REDIS_CONNECTION_POOL
         .get()
         .expect("Could not get a redis connection from the connection pool");
-    serde_json::from_str(&connection.get(REDIS_CACHE_KEY).unwrap().unwrap()).unwrap()
+    serde_json::from_str(
+        &connection
+            .get(REDIS_CACHE_KEY)
+            .expect("It cannot connect to redis to get the data")
+            .expect("It can connect to redis but the data is empty. Try running `cargo run --bin cache_figgy_data` with the correct FIGGY_URL and FIGGY_TOKEN to populate the cache"),
+    )
+    .expect("It can get data but the data is not valid")
 }
 
 fn redis_client(config: &'_ RedisConfig) -> Result<redis::Client, FiggyMarcError<'_>> {
