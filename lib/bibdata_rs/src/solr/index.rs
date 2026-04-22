@@ -21,16 +21,19 @@ pub fn index_string(ruby: &Ruby, solr_url: String, documents: String) -> Result<
             "No documents to index",
         ));
     }
-    let document_vec: Vec<SolrDocument> = serde_json::from_str(&documents).map_err(|e| {
-        magnus::Error::new(
-            ruby.exception_runtime_error(),
-            format!(
-                "Coulld not parse documents from JSON string: {:?}, {}",
-                e, documents
-            ),
-        )
-    })?;
-    index(&solr_url, &document_vec).expect("Failed to index documents");
+    let client = reqwest::blocking::Client::new();
+    let commit_url = format!("{solr_url}/update?commit=true");
+    client
+        .post(&commit_url)
+        .body(documents)
+        .header(CONTENT_TYPE, "application/json")
+        .send()
+        .map_err(|e| {
+            magnus::Error::new(
+                ruby.exception_runtime_error(),
+                format!("Error posting to solr, {}", e),
+            )
+        })?;
     Ok(())
 }
 
