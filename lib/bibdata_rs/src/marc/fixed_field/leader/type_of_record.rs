@@ -1,19 +1,34 @@
 use marctk::Record;
 
+/// The Type of Record is taken from LDR/06 of a MARC record
 pub enum TypeOfRecord {
+    /// LDR/06 a
     LanguageMaterial,
+    /// LDR/06 c
     NotatedMusic,
+    /// LDR/06 d
     ManuscriptNotatedMusic,
+    /// LDR/06 e
     CartographicMaterial,
+    /// LDR/06 f
     ManuscriptCartographicMaterial,
+    /// LDR/06 g
     ProjectedMedium,
+    /// LDR/06 i
     NonmusicalSoundRecording,
+    /// LDR/06 j
     MusicalSoundRecording,
+    /// LDR/06 k
     TwoDimensionalNonProjectableGraphic,
+    /// LDR/06 m
     ComputerFile,
+    /// LDR/06 o
     Kit,
+    /// LDR/06 p
     MixedMaterials,
+    /// LDR/06 r
     ThreeDimensionalArtifactOrNaturallyOcurringObject,
+    /// LDR/06 t
     ManuscriptLanguageMaterial,
 }
 

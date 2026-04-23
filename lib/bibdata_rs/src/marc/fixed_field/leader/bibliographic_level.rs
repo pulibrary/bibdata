@@ -1,12 +1,20 @@
 use marctk::Record;
 
+/// The Bibliographic Level is taken from LDR/07 of a MARC record
 pub enum BibliographicLevel {
+    /// LDR/07 a
     MonographicComponentPart,
+    /// LDR/07 b
     SerialComponentPart,
+    /// LDR/07 c
     Collection,
+    /// LDR/07 d
     Subunit,
+    /// LDR/07 i
     IntegratingResource,
+    /// LDR/07 m
     MonographItem,
+    /// LDR/07 s
     Serial,
 }
 

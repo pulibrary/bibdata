@@ -1,17 +1,29 @@
 use marctk::Record;
 
+/// The Literary Form is taken from 008/33 in the MARC record
 #[derive(Debug, PartialEq)]
 pub enum LiteraryForm {
+    /// 008/33 0
     NotFiction,
+    /// 008/33 1
     Fiction,
+    /// 008/33 d
     Dramas,
+    /// 008/33 e
     Essays,
+    /// 008/33 f
     Novels,
+    /// 008/33 h
     HumorSatireEtc,
+    /// 008/33 i
     Letters,
+    /// 008/33 j
     ShortStories,
+    /// 008/33 m
     MixedForms,
+    /// 008/33 p
     Poetry,
+    /// 008/33 s
     Speeches,
 }
 
