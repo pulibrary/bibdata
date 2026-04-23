@@ -5,7 +5,6 @@ require 'uri'
 require_relative 'cache_adapter'
 require_relative 'cache_manager'
 require_relative 'cache_map'
-require_relative 'composite_cache_map'
 require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
 require_relative 'hierarchical_heading'
@@ -180,7 +179,7 @@ def electronic_access_links(record, figgy_dir_path)
       cache_manager = build_cache_manager(figgy_dir_path:)
 
       # Orangelight links
-      catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache, fragment: fragment_value(fragment_index))
+      catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, fragment: fragment_value(fragment_index))
       orangelight_url = catalog_url_builder.build(url: electronic_access_link.ark)
 
       if orangelight_url

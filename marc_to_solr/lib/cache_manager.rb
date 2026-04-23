@@ -45,12 +45,6 @@ class CacheManager
     @figgy_ark_cache ||= CacheMap.new(cache: @figgy_cache, host: 'figgy.princeton.edu', logger: @logger)
   end
 
-  # Retrieve the stored (or seed) the cache for the ARK's in all repositories
-  # @return [CompositeCacheMap]
-  def ark_cache
-    @cache_maps ||= CompositeCacheMap.new(cache_maps: [figgy_ark_cache])
-  end
-
   # Ensure the the CacheMap and CompositeCacheMap instances are memoized
   delegate :seed!, to: :figgy_ark_cache
 end

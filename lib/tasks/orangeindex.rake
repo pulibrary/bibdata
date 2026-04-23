@@ -8,7 +8,6 @@ require 'zlib'
 require_relative '../../marc_to_solr/lib/cache_adapter'
 require_relative '../../marc_to_solr/lib/cache_manager'
 require_relative '../../marc_to_solr/lib/cache_map'
-require_relative '../../marc_to_solr/lib/composite_cache_map'
 
 default_bibdata_url = 'https://bibdata-staging.lib.princeton.edu'
 bibdata_url = ENV.fetch('BIBDATA_URL', nil) || default_bibdata_url
