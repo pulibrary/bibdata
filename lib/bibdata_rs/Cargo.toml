@@ -23,7 +23,7 @@ codes-iso-639 = "0.1.5"
 parse_datetime = "0.14.0"
 env_logger = "0.11.10"
 log = "0.4.27"
-rayon = "1.10.0"
+rayon = "1.12.0"
 anyhow = "1.0.98"
 rb-sys = "0.9.126"
 marctk = {version = "0.7.0", features = ["marc21_bibliographic"] }
