@@ -310,7 +310,7 @@ GEM
       multi_xml (>= 0.5.2)
     httpclient (2.9.0)
       mutex_m
-    human_languages (0.10.1)
+    human_languages (1.0.0)
       csv (~> 3.0)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
@@ -752,7 +752,7 @@ DEPENDENCIES
   health-monitor-rails (= 12.9.0)
   high_voltage (~> 5.0)
   honeybadger
-  human_languages (~> 0.10)
+  human_languages (~> 1.0)
   jbuilder
   jquery-rails
   jquery-tablesorter (~> 1.28)
