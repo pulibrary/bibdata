@@ -1,0 +1,3137 @@
+{
+    "links": {
+        "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=",
+        "prev": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=1\u0026per_page=100\u0026q=",
+        "next": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=3\u0026per_page=100\u0026q=",
+        "last": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=4\u0026per_page=100\u0026q="
+    },
+    "meta": {
+        "pages": {
+            "current_page": 2,
+            "next_page": 3,
+            "prev_page": 1,
+            "total_pages": 4,
+            "limit_value": 100,
+            "offset_value": 100,
+            "total_count": 391,
+            "first_page?": false,
+            "last_page?": false
+        }
+    },
+    "data": [
+        {
+            "id": "452c81c6-f6d1-4922-8327-1e1853ca1d6e",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Demand-side assessment of primary health care in Chhattisgarh",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/452c81c6-f6d1-4922-8327-1e1853ca1d6e#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/452c81c6-f6d1-4922-8327-1e1853ca1d6e#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Demand-side assessment of primary health care in Chhattisgarh",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/452c81c6-f6d1-4922-8327-1e1853ca1d6e"
+            }
+        },
+        {
+            "id": "bc9fcd2d-7f68-40c4-af4d-15aabf2262e3",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Charter of peace",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/bc9fcd2d-7f68-40c4-af4d-15aabf2262e3#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/bc9fcd2d-7f68-40c4-af4d-15aabf2262e3#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Charter of peace",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/bc9fcd2d-7f68-40c4-af4d-15aabf2262e3"
+            }
+        },
+        {
+            "id": "f4e58e9f-623d-41aa-9a8c-0919f3f7d4ed",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Countering digital threats : toolkit",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/f4e58e9f-623d-41aa-9a8c-0919f3f7d4ed#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/f4e58e9f-623d-41aa-9a8c-0919f3f7d4ed#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Countering digital threats : toolkit",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/f4e58e9f-623d-41aa-9a8c-0919f3f7d4ed"
+            }
+        },
+        {
+            "id": "375f2c38-5067-4b7c-a490-a6d8560ae8b6",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Climate-resilient education planning : module for climate-resilient integrated planning to enhance education for children in states of India",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/375f2c38-5067-4b7c-a490-a6d8560ae8b6#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/375f2c38-5067-4b7c-a490-a6d8560ae8b6#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Climate-resilient education planning : module for climate-resilient integrated planning to enhance education for children in states of India",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/375f2c38-5067-4b7c-a490-a6d8560ae8b6"
+            }
+        },
+        {
+            "id": "057ef7e2-fd91-45a1-80b5-e7a9bd247d84",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Future of Kashmir\u0026#39;s self determination movement : research report",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/057ef7e2-fd91-45a1-80b5-e7a9bd247d84#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/057ef7e2-fd91-45a1-80b5-e7a9bd247d84#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Future of Kashmir\u0026#39;s self determination movement : research report",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/057ef7e2-fd91-45a1-80b5-e7a9bd247d84"
+            }
+        },
+        {
+            "id": "fbfdda03-e5e4-41bf-99e1-8fd329cee1c9",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Abandoned widows : visible yet invisible, voiced yet voiceless",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/fbfdda03-e5e4-41bf-99e1-8fd329cee1c9#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/fbfdda03-e5e4-41bf-99e1-8fd329cee1c9#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Abandoned widows : visible yet invisible, voiced yet voiceless",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/fbfdda03-e5e4-41bf-99e1-8fd329cee1c9"
+            }
+        },
+        {
+            "id": "9468b592-6ecd-4c9d-8748-6dbfa590fe3b",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Disparity in access to education in the aspirational Districts in Odisha, Jharkhand and Chhattisgarh",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/9468b592-6ecd-4c9d-8748-6dbfa590fe3b#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/9468b592-6ecd-4c9d-8748-6dbfa590fe3b#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Disparity in access to education in the aspirational Districts in Odisha, Jharkhand and Chhattisgarh",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/9468b592-6ecd-4c9d-8748-6dbfa590fe3b"
+            }
+        },
+        {
+            "id": "f9ba8272-7436-4df3-84ed-46537a987d62",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "A different kind of motherhood: what it means to be a woman in Gaza",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/f9ba8272-7436-4df3-84ed-46537a987d62#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/f9ba8272-7436-4df3-84ed-46537a987d62#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "A different kind of motherhood: what it means to be a woman in Gaza",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/f9ba8272-7436-4df3-84ed-46537a987d62"
+            }
+        },
+        {
+            "id": "b448c3dd-3275-4f73-921b-c9b368eeec1d",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Rooftop solar PV in India : scaling up by discom-driven demand aggregation",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/b448c3dd-3275-4f73-921b-c9b368eeec1d#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/b448c3dd-3275-4f73-921b-c9b368eeec1d#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Rooftop solar PV in India : scaling up by discom-driven demand aggregation",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/b448c3dd-3275-4f73-921b-c9b368eeec1d"
+            }
+        },
+        {
+            "id": "ef896f8f-5a51-43c8-92da-176696c85139",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Water and wastewater visioning for large, dense unplanned urban settlements in an era of climate risk : a case study of Sangam Vihar, Delhi",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/ef896f8f-5a51-43c8-92da-176696c85139#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/ef896f8f-5a51-43c8-92da-176696c85139#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Water and wastewater visioning for large, dense unplanned urban settlements in an era of climate risk : a case study of Sangam Vihar, Delhi",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/ef896f8f-5a51-43c8-92da-176696c85139"
+            }
+        },
+        {
+            "id": "0a54fbc5-d89e-46e8-8d7c-d50441160364",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Challenges and possibilities to prevent and contain AMR : key takeaways from the perspective of low-and middle income countries",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/0a54fbc5-d89e-46e8-8d7c-d50441160364#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/0a54fbc5-d89e-46e8-8d7c-d50441160364#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Challenges and possibilities to prevent and contain AMR : key takeaways from the perspective of low-and middle income countries",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/0a54fbc5-d89e-46e8-8d7c-d50441160364"
+            }
+        },
+        {
+            "id": "effe5704-5c72-420b-8f69-6bcf2acc8b97",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Implementation challenges of the PM-Kusum Scheme : case studies from selected Indian states",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/effe5704-5c72-420b-8f69-6bcf2acc8b97#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/effe5704-5c72-420b-8f69-6bcf2acc8b97#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Implementation challenges of the PM-Kusum Scheme : case studies from selected Indian states",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/effe5704-5c72-420b-8f69-6bcf2acc8b97"
+            }
+        },
+        {
+            "id": "319f9d1a-986e-4a30-a600-9650b49e81ce",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Global Plastic treaty negotiations : country positions",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/319f9d1a-986e-4a30-a600-9650b49e81ce#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/319f9d1a-986e-4a30-a600-9650b49e81ce#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Global Plastic treaty negotiations : country positions",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/319f9d1a-986e-4a30-a600-9650b49e81ce"
+            }
+        },
+        {
+            "id": "404198f3-f89c-429a-8d6a-c0ba9b74cebf",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The Global South\u0026#39;s response to a changing trade regime in the era of climate change : Carbon Border Adjustment Mechanism (CBAM)",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/404198f3-f89c-429a-8d6a-c0ba9b74cebf#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/404198f3-f89c-429a-8d6a-c0ba9b74cebf#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The Global South\u0026#39;s response to a changing trade regime in the era of climate change : Carbon Border Adjustment Mechanism (CBAM)",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/404198f3-f89c-429a-8d6a-c0ba9b74cebf"
+            }
+        },
+        {
+            "id": "78e13e37-ebe0-4d42-86f5-1dc0052e1048",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "National clean air programme : an agenda for reform",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/78e13e37-ebe0-4d42-86f5-1dc0052e1048#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/78e13e37-ebe0-4d42-86f5-1dc0052e1048#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "National clean air programme : an agenda for reform",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/78e13e37-ebe0-4d42-86f5-1dc0052e1048"
+            }
+        },
+        {
+            "id": "a63a5237-4a77-436c-a479-919e08f16472",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Compressed biogas landscape in Uttar Pradesh : the leading state in potential, policies and projects",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/a63a5237-4a77-436c-a479-919e08f16472#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/a63a5237-4a77-436c-a479-919e08f16472#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Compressed biogas landscape in Uttar Pradesh : the leading state in potential, policies and projects",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/a63a5237-4a77-436c-a479-919e08f16472"
+            }
+        },
+        {
+            "id": "2a73c5c8-7d61-44d3-8cf0-441ed70966dd",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "India\u0026#39;s Transition to E-Cooking : Opportunities, challenges and a roadmap for large-scale adoption",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/2a73c5c8-7d61-44d3-8cf0-441ed70966dd#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/2a73c5c8-7d61-44d3-8cf0-441ed70966dd#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "India\u0026#39;s Transition to E-Cooking : Opportunities, challenges and a roadmap for large-scale adoption",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/2a73c5c8-7d61-44d3-8cf0-441ed70966dd"
+            }
+        },
+        {
+            "id": "82a8f7f6-9d72-422d-8db9-570119390913",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan\u0026#39;s Internet landscape 2023",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/82a8f7f6-9d72-422d-8db9-570119390913#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/82a8f7f6-9d72-422d-8db9-570119390913#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan\u0026#39;s Internet landscape 2023",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/82a8f7f6-9d72-422d-8db9-570119390913"
+            }
+        },
+        {
+            "id": "cec5bf20-999e-4707-aafe-f1541c6c0a40",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Energy finance outlook 2023 : a case of Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/cec5bf20-999e-4707-aafe-f1541c6c0a40#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/cec5bf20-999e-4707-aafe-f1541c6c0a40#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Energy finance outlook 2023 : a case of Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/cec5bf20-999e-4707-aafe-f1541c6c0a40"
+            }
+        },
+        {
+            "id": "8a3c8826-ff91-4238-aa14-313c6e228780",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "In the shadow of the Taliban: community conversations with Afghan refugee women in Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/8a3c8826-ff91-4238-aa14-313c6e228780#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/8a3c8826-ff91-4238-aa14-313c6e228780#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "In the shadow of the Taliban: community conversations with Afghan refugee women in Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/8a3c8826-ff91-4238-aa14-313c6e228780"
+            }
+        },
+        {
+            "id": "e38cd6d4-9989-49d6-8e6e-9b2552e947d8",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Fossil gas expansion : socio-economic and environmental impacts on Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e38cd6d4-9989-49d6-8e6e-9b2552e947d8#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e38cd6d4-9989-49d6-8e6e-9b2552e947d8#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Fossil gas expansion : socio-economic and environmental impacts on Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e38cd6d4-9989-49d6-8e6e-9b2552e947d8"
+            }
+        },
+        {
+            "id": "1a0371de-44c8-45fb-aa7f-ddcc3a0c771a",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Single national curriculum : critical analysis \u0026amp; policy recommendations",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/1a0371de-44c8-45fb-aa7f-ddcc3a0c771a#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/1a0371de-44c8-45fb-aa7f-ddcc3a0c771a#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Single national curriculum : critical analysis \u0026amp; policy recommendations",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/1a0371de-44c8-45fb-aa7f-ddcc3a0c771a"
+            }
+        },
+        {
+            "id": "db516fa7-f25f-4e12-ac5e-3fd82d959b13",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "An analytical assessment : local government and civic services in Multan, Layyah \u0026amp; Bahawalpur:",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/db516fa7-f25f-4e12-ac5e-3fd82d959b13#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/db516fa7-f25f-4e12-ac5e-3fd82d959b13#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "An analytical assessment : local government and civic services in Multan, Layyah \u0026amp; Bahawalpur:",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/db516fa7-f25f-4e12-ac5e-3fd82d959b13"
+            }
+        },
+        {
+            "id": "9f9c504d-9d78-4cc4-a2a9-e6056636bb2c",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The Issue of bonded labour in Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/9f9c504d-9d78-4cc4-a2a9-e6056636bb2c#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/9f9c504d-9d78-4cc4-a2a9-e6056636bb2c#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The Issue of bonded labour in Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/9f9c504d-9d78-4cc4-a2a9-e6056636bb2c"
+            }
+        },
+        {
+            "id": "f3f0b795-47f9-46df-823b-b04a5192d3d7",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Khyber Pakhtunkhwa climate change action plan 2022",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/f3f0b795-47f9-46df-823b-b04a5192d3d7#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/f3f0b795-47f9-46df-823b-b04a5192d3d7#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Khyber Pakhtunkhwa climate change action plan 2022",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/f3f0b795-47f9-46df-823b-b04a5192d3d7"
+            }
+        },
+        {
+            "id": "c8fd8082-32ab-49a6-a32c-aaa7b3fdab5a",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Khyber Pakhtunkhwa climate change policy 2022",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/c8fd8082-32ab-49a6-a32c-aaa7b3fdab5a#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/c8fd8082-32ab-49a6-a32c-aaa7b3fdab5a#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Khyber Pakhtunkhwa climate change policy 2022",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/c8fd8082-32ab-49a6-a32c-aaa7b3fdab5a"
+            }
+        },
+        {
+            "id": "ca0fb533-7e72-42f4-83bb-1683a0f1c82c",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Socio-environmental de-risking instruments for Solar power in India",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/ca0fb533-7e72-42f4-83bb-1683a0f1c82c#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/ca0fb533-7e72-42f4-83bb-1683a0f1c82c#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Socio-environmental de-risking instruments for Solar power in India",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/ca0fb533-7e72-42f4-83bb-1683a0f1c82c"
+            }
+        },
+        {
+            "id": "bad34912-22f1-4199-999b-0a087d647cf9",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Mormon parallels: a bibliographic source",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/bad34912-22f1-4199-999b-0a087d647cf9#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/bad34912-22f1-4199-999b-0a087d647cf9#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Mormon parallels: a bibliographic source",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/bad34912-22f1-4199-999b-0a087d647cf9"
+            }
+        },
+        {
+            "id": "c2c725f2-1b02-4610-b2e4-97a33f114b59",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Accountability pathways : a practitioner\u0026#39;s guide to addressing alleged serious human rights violations and international crimes committed by the IRGC in Iran and abroad",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/c2c725f2-1b02-4610-b2e4-97a33f114b59#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/c2c725f2-1b02-4610-b2e4-97a33f114b59#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Accountability pathways : a practitioner\u0026#39;s guide to addressing alleged serious human rights violations and international crimes committed by the IRGC in Iran and abroad",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/c2c725f2-1b02-4610-b2e4-97a33f114b59"
+            }
+        },
+        {
+            "id": "cad2946a-3e2c-474a-a535-47c16116606d",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "A long wait for justice : a compliance analysis of the Supreme Court\u0026#39;s verdict on 19 June 2014",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/cad2946a-3e2c-474a-a535-47c16116606d#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/cad2946a-3e2c-474a-a535-47c16116606d#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "A long wait for justice : a compliance analysis of the Supreme Court\u0026#39;s verdict on 19 June 2014",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/cad2946a-3e2c-474a-a535-47c16116606d"
+            }
+        },
+        {
+            "id": "d8e0025e-96d7-4d92-81bf-a5c7de438644",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Faculty Letter",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/d8e0025e-96d7-4d92-81bf-a5c7de438644#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/d8e0025e-96d7-4d92-81bf-a5c7de438644#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Faculty Letter",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/d8e0025e-96d7-4d92-81bf-a5c7de438644"
+            }
+        },
+        {
+            "id": "1b758984-cbb2-4ec0-8caf-df260322cda1",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The economic consequences of climate change for Afghanistan : losses, projections …. and pathways to mitigation",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/1b758984-cbb2-4ec0-8caf-df260322cda1#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/1b758984-cbb2-4ec0-8caf-df260322cda1#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The economic consequences of climate change for Afghanistan : losses, projections …. and pathways to mitigation",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/1b758984-cbb2-4ec0-8caf-df260322cda1"
+            }
+        },
+        {
+            "id": "854ef9f4-8667-4606-b563-9d58590235c8",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Mass incarceration trends",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/854ef9f4-8667-4606-b563-9d58590235c8#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/854ef9f4-8667-4606-b563-9d58590235c8#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Mass incarceration trends",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/854ef9f4-8667-4606-b563-9d58590235c8"
+            }
+        },
+        {
+            "id": "aee547cd-874e-4329-b7af-a8a32363ed45",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Floods in Pakistan : the infrastructure and drainage problem",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/aee547cd-874e-4329-b7af-a8a32363ed45#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/aee547cd-874e-4329-b7af-a8a32363ed45#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Floods in Pakistan : the infrastructure and drainage problem",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/aee547cd-874e-4329-b7af-a8a32363ed45"
+            }
+        },
+        {
+            "id": "e4e062b1-3af3-4a00-abfd-789333bea332",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan and sustainable development goals-data book of challenges and achievements",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e4e062b1-3af3-4a00-abfd-789333bea332#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e4e062b1-3af3-4a00-abfd-789333bea332#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan and sustainable development goals-data book of challenges and achievements",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e4e062b1-3af3-4a00-abfd-789333bea332"
+            }
+        },
+        {
+            "id": "a12eb508-9f26-47e9-960f-9b48132d8807",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "State of competition in the key markets in Pakistan with significant presence of state-owned enterprises",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/a12eb508-9f26-47e9-960f-9b48132d8807#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/a12eb508-9f26-47e9-960f-9b48132d8807#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "State of competition in the key markets in Pakistan with significant presence of state-owned enterprises",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/a12eb508-9f26-47e9-960f-9b48132d8807"
+            }
+        },
+        {
+            "id": "ac53d2f6-d72d-4aa5-8afc-6bc69aee6adf",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Rural women\u0026#39;s access to health in Afghanistan : most of the time we just don’t go",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/ac53d2f6-d72d-4aa5-8afc-6bc69aee6adf#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/ac53d2f6-d72d-4aa5-8afc-6bc69aee6adf#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Rural women\u0026#39;s access to health in Afghanistan : most of the time we just don’t go",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/ac53d2f6-d72d-4aa5-8afc-6bc69aee6adf"
+            }
+        },
+        {
+            "id": "d7441286-0da2-4df9-a554-707ed78bdb00",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Future of Pakistan water : limitations, actions, projections",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/d7441286-0da2-4df9-a554-707ed78bdb00#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/d7441286-0da2-4df9-a554-707ed78bdb00#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Future of Pakistan water : limitations, actions, projections",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/d7441286-0da2-4df9-a554-707ed78bdb00"
+            }
+        },
+        {
+            "id": "e17bb3dd-59fe-423a-8281-e637d514a861",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "8th June Baloch missing persons day",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e17bb3dd-59fe-423a-8281-e637d514a861#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e17bb3dd-59fe-423a-8281-e637d514a861#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "8th June Baloch missing persons day",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e17bb3dd-59fe-423a-8281-e637d514a861"
+            }
+        },
+        {
+            "id": "e861f57c-d5c8-499f-8be0-0bd672c411ae",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Energy landscape of Pakistan\u0026#39;s textile sector: pathways to decarbonization",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e861f57c-d5c8-499f-8be0-0bd672c411ae#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e861f57c-d5c8-499f-8be0-0bd672c411ae#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Energy landscape of Pakistan\u0026#39;s textile sector: pathways to decarbonization",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e861f57c-d5c8-499f-8be0-0bd672c411ae"
+            }
+        },
+        {
+            "id": "0aae3339-ffe5-4130-8dab-ffd88e1357c8",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Bytes behind bars : decoding Pakistan\u0026#39;s digital expression legislation",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/0aae3339-ffe5-4130-8dab-ffd88e1357c8#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/0aae3339-ffe5-4130-8dab-ffd88e1357c8#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Bytes behind bars : decoding Pakistan\u0026#39;s digital expression legislation",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/0aae3339-ffe5-4130-8dab-ffd88e1357c8"
+            }
+        },
+        {
+            "id": "aa7e7b23-7894-4326-a272-8a66e8cf5176",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The Emergent Taleban-Defined University: enforcing a top-down reorientation and unquestioning obedience under ‘a war of thoughts’",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/aa7e7b23-7894-4326-a272-8a66e8cf5176#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/aa7e7b23-7894-4326-a272-8a66e8cf5176#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The Emergent Taleban-Defined University: enforcing a top-down reorientation and unquestioning obedience under ‘a war of thoughts’",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/aa7e7b23-7894-4326-a272-8a66e8cf5176"
+            }
+        },
+        {
+            "id": "0379f1af-4b26-4373-a6bd-ea53f754bfa3",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The fallen comrades of BSO AZAD",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/0379f1af-4b26-4373-a6bd-ea53f754bfa3#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/0379f1af-4b26-4373-a6bd-ea53f754bfa3#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The fallen comrades of BSO AZAD",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/0379f1af-4b26-4373-a6bd-ea53f754bfa3"
+            }
+        },
+        {
+            "id": "b9ccddd3-e21e-434b-a802-2af530367761",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Efficiency-seeking FDI in Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/b9ccddd3-e21e-434b-a802-2af530367761#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/b9ccddd3-e21e-434b-a802-2af530367761#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Efficiency-seeking FDI in Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/b9ccddd3-e21e-434b-a802-2af530367761"
+            }
+        },
+        {
+            "id": "9e52961d-d178-4a01-b39e-c5233bfa0e70",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Improving Pakistan\u0026#39;s investment climate : lessons from select peer countries",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/9e52961d-d178-4a01-b39e-c5233bfa0e70#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/9e52961d-d178-4a01-b39e-c5233bfa0e70#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Improving Pakistan\u0026#39;s investment climate : lessons from select peer countries",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/9e52961d-d178-4a01-b39e-c5233bfa0e70"
+            }
+        },
+        {
+            "id": "26ff9637-8f0e-436f-96d0-a0122e57e358",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The road ahead : opportunities in a Turkiye-Pakistan free trade agreement",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/26ff9637-8f0e-436f-96d0-a0122e57e358#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/26ff9637-8f0e-436f-96d0-a0122e57e358#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The road ahead : opportunities in a Turkiye-Pakistan free trade agreement",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/26ff9637-8f0e-436f-96d0-a0122e57e358"
+            }
+        },
+        {
+            "id": "4d3c3fe5-168b-48c8-8e6c-1d90ae2b4321",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Complex terrorism landscape in Pakistan-Afghanistan region : Afghan Emirate as counter-terror partner",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/4d3c3fe5-168b-48c8-8e6c-1d90ae2b4321#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/4d3c3fe5-168b-48c8-8e6c-1d90ae2b4321#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Complex terrorism landscape in Pakistan-Afghanistan region : Afghan Emirate as counter-terror partner",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/4d3c3fe5-168b-48c8-8e6c-1d90ae2b4321"
+            }
+        },
+        {
+            "id": "ff215a93-539e-4668-be59-4d23a84f837d",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Iran\u0026#39;s criminal statecraft : how Tehran weaponizes illicit markets",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/ff215a93-539e-4668-be59-4d23a84f837d#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/ff215a93-539e-4668-be59-4d23a84f837d#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Iran\u0026#39;s criminal statecraft : how Tehran weaponizes illicit markets",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/ff215a93-539e-4668-be59-4d23a84f837d"
+            }
+        },
+        {
+            "id": "e4c3fea2-e3ef-479f-927f-07c825777235",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Voter data privacy in Pakistan : privacy risks, data protection, and legislative shortcomings during data-driven elections",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e4c3fea2-e3ef-479f-927f-07c825777235#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e4c3fea2-e3ef-479f-927f-07c825777235#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Voter data privacy in Pakistan : privacy risks, data protection, and legislative shortcomings during data-driven elections",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e4c3fea2-e3ef-479f-927f-07c825777235"
+            }
+        },
+        {
+            "id": "e16ab041-dd1d-40a4-adb6-671f227a09d1",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "In pursuit of virtue : men\u0026#39;s views on the Islamic Emirate\u0026#39;s restrictions on Afghan women",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e16ab041-dd1d-40a4-adb6-671f227a09d1#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e16ab041-dd1d-40a4-adb6-671f227a09d1#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "In pursuit of virtue : men\u0026#39;s views on the Islamic Emirate\u0026#39;s restrictions on Afghan women",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e16ab041-dd1d-40a4-adb6-671f227a09d1"
+            }
+        },
+        {
+            "id": "a41b6ec5-1c4c-4c93-8e7f-76144be4e3e6",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Evolution of intellectual property rights in Pakistan : OICCI\u0026#39;s perspective",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/a41b6ec5-1c4c-4c93-8e7f-76144be4e3e6#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/a41b6ec5-1c4c-4c93-8e7f-76144be4e3e6#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Evolution of intellectual property rights in Pakistan : OICCI\u0026#39;s perspective",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/a41b6ec5-1c4c-4c93-8e7f-76144be4e3e6"
+            }
+        },
+        {
+            "id": "7bd45892-da09-4131-baab-d08f9a3f8830",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Raising the bar : women\u0026#39;s participation and representation in the bar.",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/7bd45892-da09-4131-baab-d08f9a3f8830#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/7bd45892-da09-4131-baab-d08f9a3f8830#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Raising the bar : women\u0026#39;s participation and representation in the bar.",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/7bd45892-da09-4131-baab-d08f9a3f8830"
+            }
+        },
+        {
+            "id": "e3342f2d-eadc-47bd-9943-60f2856a27ac",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Green financing : an inceptive analysis of the commercial banks",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e3342f2d-eadc-47bd-9943-60f2856a27ac#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e3342f2d-eadc-47bd-9943-60f2856a27ac#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Green financing : an inceptive analysis of the commercial banks",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e3342f2d-eadc-47bd-9943-60f2856a27ac"
+            }
+        },
+        {
+            "id": "fe256c85-da9d-43c7-8c13-f29668f187fd",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Sports industry : assessing decarbonization and growth potential",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/fe256c85-da9d-43c7-8c13-f29668f187fd#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/fe256c85-da9d-43c7-8c13-f29668f187fd#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Sports industry : assessing decarbonization and growth potential",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/fe256c85-da9d-43c7-8c13-f29668f187fd"
+            }
+        },
+        {
+            "id": "bb847685-316f-4bc5-b731-1b3ab35278c3",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Fostering Solar PV in high-loss feeders : mapping solutions",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/bb847685-316f-4bc5-b731-1b3ab35278c3#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/bb847685-316f-4bc5-b731-1b3ab35278c3#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Fostering Solar PV in high-loss feeders : mapping solutions",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/bb847685-316f-4bc5-b731-1b3ab35278c3"
+            }
+        },
+        {
+            "id": "781463f3-f18e-4ab3-8356-b96a32cfda8d",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The death penalty in the Islamic Republic of Iran",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/781463f3-f18e-4ab3-8356-b96a32cfda8d#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/781463f3-f18e-4ab3-8356-b96a32cfda8d#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The death penalty in the Islamic Republic of Iran",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/781463f3-f18e-4ab3-8356-b96a32cfda8d"
+            }
+        },
+        {
+            "id": "e005bf9f-88de-4fd7-a456-343c0bad37e1",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "The evolving information environment in Afghanistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e005bf9f-88de-4fd7-a456-343c0bad37e1#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e005bf9f-88de-4fd7-a456-343c0bad37e1#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "The evolving information environment in Afghanistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e005bf9f-88de-4fd7-a456-343c0bad37e1"
+            }
+        },
+        {
+            "id": "e471a3fb-4a1a-4f96-b5bb-638fe56a48a4",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Climate change and urban resilience in Nepal : looking through the lens of urban poor",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e471a3fb-4a1a-4f96-b5bb-638fe56a48a4#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e471a3fb-4a1a-4f96-b5bb-638fe56a48a4#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Climate change and urban resilience in Nepal : looking through the lens of urban poor",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e471a3fb-4a1a-4f96-b5bb-638fe56a48a4"
+            }
+        },
+        {
+            "id": "e8ba458a-a2cd-4870-afc5-e95eb7cd6a0f",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Climate-induced migration and displacement in Bangladesh : a case study of riverbank erosion from Naria Upazila Shariatpur",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e8ba458a-a2cd-4870-afc5-e95eb7cd6a0f#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e8ba458a-a2cd-4870-afc5-e95eb7cd6a0f#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Climate-induced migration and displacement in Bangladesh : a case study of riverbank erosion from Naria Upazila Shariatpur",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e8ba458a-a2cd-4870-afc5-e95eb7cd6a0f"
+            }
+        },
+        {
+            "id": "ea662090-0618-4f20-ad10-7b7c01d4f577",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Afghanistan analyst bibliography 2024",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/ea662090-0618-4f20-ad10-7b7c01d4f577#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/ea662090-0618-4f20-ad10-7b7c01d4f577#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Afghanistan analyst bibliography 2024",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/ea662090-0618-4f20-ad10-7b7c01d4f577"
+            }
+        },
+        {
+            "id": "0c01d807-c5d6-4986-b0e1-2136fb40c2b0",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Textile and Sports Industry : assessing decarbonization and growth potential",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/0c01d807-c5d6-4986-b0e1-2136fb40c2b0#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/0c01d807-c5d6-4986-b0e1-2136fb40c2b0#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Textile and Sports Industry : assessing decarbonization and growth potential",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/0c01d807-c5d6-4986-b0e1-2136fb40c2b0"
+            }
+        },
+        {
+            "id": "8a9c0628-3e17-448e-a4ba-f2fbccbaacca",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Bridging the energy gap : navigating decentralized micro grid potential in off-grid areas of Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/8a9c0628-3e17-448e-a4ba-f2fbccbaacca#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/8a9c0628-3e17-448e-a4ba-f2fbccbaacca#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Bridging the energy gap : navigating decentralized micro grid potential in off-grid areas of Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/8a9c0628-3e17-448e-a4ba-f2fbccbaacca"
+            }
+        },
+        {
+            "id": "a2a91e54-a262-4a52-b88d-3ceea851db49",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan’s off-shore wind energy potential : social, economic and financial challenges to its realization",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/a2a91e54-a262-4a52-b88d-3ceea851db49#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/a2a91e54-a262-4a52-b88d-3ceea851db49#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan’s off-shore wind energy potential : social, economic and financial challenges to its realization",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/a2a91e54-a262-4a52-b88d-3ceea851db49"
+            }
+        },
+        {
+            "id": "f6262952-860d-49c3-9404-ce269848f662",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Powering Pakistan\u0026#39;s Future : pathways to optimize affordable and sustainable electricity generation, beyond IGCEP 2024-34",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/f6262952-860d-49c3-9404-ce269848f662#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/f6262952-860d-49c3-9404-ce269848f662#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Powering Pakistan\u0026#39;s Future : pathways to optimize affordable and sustainable electricity generation, beyond IGCEP 2024-34",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/f6262952-860d-49c3-9404-ce269848f662"
+            }
+        },
+        {
+            "id": "5bc035c4-9665-4a2d-8cf4-f079cb4d60b9",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Thar’s livelihood loss : hope and despair in the land of black gold",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/5bc035c4-9665-4a2d-8cf4-f079cb4d60b9#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/5bc035c4-9665-4a2d-8cf4-f079cb4d60b9#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Thar’s livelihood loss : hope and despair in the land of black gold",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/5bc035c4-9665-4a2d-8cf4-f079cb4d60b9"
+            }
+        },
+        {
+            "id": "c4f50970-4c55-44a8-95e9-f6fee8c32082",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Uraan Pakistan: 5Es national economic transformation plan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/c4f50970-4c55-44a8-95e9-f6fee8c32082#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/c4f50970-4c55-44a8-95e9-f6fee8c32082#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Uraan Pakistan: 5Es national economic transformation plan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/c4f50970-4c55-44a8-95e9-f6fee8c32082"
+            }
+        },
+        {
+            "id": "fb49c0c8-8eeb-4e32-afbe-04d8d14edacf",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Gendered online hate in Pakistan : right-wing religious campaigns against women journalists",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/fb49c0c8-8eeb-4e32-afbe-04d8d14edacf#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/fb49c0c8-8eeb-4e32-afbe-04d8d14edacf#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Gendered online hate in Pakistan : right-wing religious campaigns against women journalists",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/fb49c0c8-8eeb-4e32-afbe-04d8d14edacf"
+            }
+        },
+        {
+            "id": "811e05ff-9ee1-4c8e-a87f-cf154d2ab1b1",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Trendlines of Pakistan\u0026#39;s security challenges",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/811e05ff-9ee1-4c8e-a87f-cf154d2ab1b1#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/811e05ff-9ee1-4c8e-a87f-cf154d2ab1b1#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Trendlines of Pakistan\u0026#39;s security challenges",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/811e05ff-9ee1-4c8e-a87f-cf154d2ab1b1"
+            }
+        },
+        {
+            "id": "3fea478b-7f3a-4ed8-a798-752be37a4ff1",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "NCHR investigation into blasphemy cases : October 2023 to October 2024",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/3fea478b-7f3a-4ed8-a798-752be37a4ff1#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/3fea478b-7f3a-4ed8-a798-752be37a4ff1#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "NCHR investigation into blasphemy cases : October 2023 to October 2024",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/3fea478b-7f3a-4ed8-a798-752be37a4ff1"
+            }
+        },
+        {
+            "id": "40ff054f-e71a-4f46-b3b4-234f7b511eaf",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Situation analysis of child labour in Punjab",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/40ff054f-e71a-4f46-b3b4-234f7b511eaf#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/40ff054f-e71a-4f46-b3b4-234f7b511eaf#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Situation analysis of child labour in Punjab",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/40ff054f-e71a-4f46-b3b4-234f7b511eaf"
+            }
+        },
+        {
+            "id": "05effb1b-ecc9-430a-9490-43809815cc9d",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Military dynamics of Indian Ocean region’s maritime security : imperatives for Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/05effb1b-ecc9-430a-9490-43809815cc9d#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/05effb1b-ecc9-430a-9490-43809815cc9d#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Military dynamics of Indian Ocean region’s maritime security : imperatives for Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/05effb1b-ecc9-430a-9490-43809815cc9d"
+            }
+        },
+        {
+            "id": "08495dde-c304-4ac2-8364-8ae7e2333c4b",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Railway sector assessment for Afghanistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/08495dde-c304-4ac2-8364-8ae7e2333c4b#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/08495dde-c304-4ac2-8364-8ae7e2333c4b#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Railway sector assessment for Afghanistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/08495dde-c304-4ac2-8364-8ae7e2333c4b"
+            }
+        },
+        {
+            "id": "4da8183a-fd46-4715-a157-55df756d7b11",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Suffering unveiled: Afghan women\u0026#39;s struggles under the Taliban",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/4da8183a-fd46-4715-a157-55df756d7b11#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/4da8183a-fd46-4715-a157-55df756d7b11#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Suffering unveiled: Afghan women\u0026#39;s struggles under the Taliban",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/4da8183a-fd46-4715-a157-55df756d7b11"
+            }
+        },
+        {
+            "id": "588ba0c2-7afd-44bc-b921-a09c0603d792",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Surviving the crisis : a socioeconomic assessment of the middle class in Kabul",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/588ba0c2-7afd-44bc-b921-a09c0603d792#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/588ba0c2-7afd-44bc-b921-a09c0603d792#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Surviving the crisis : a socioeconomic assessment of the middle class in Kabul",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/588ba0c2-7afd-44bc-b921-a09c0603d792"
+            }
+        },
+        {
+            "id": "c88963d4-8a56-467f-8dce-b69422e6652d",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Return, reintegration \u0026amp; political restructuring in Afghanistan : survey of return migration to Kabul and Kandahar",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/c88963d4-8a56-467f-8dce-b69422e6652d#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/c88963d4-8a56-467f-8dce-b69422e6652d#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Return, reintegration \u0026amp; political restructuring in Afghanistan : survey of return migration to Kabul and Kandahar",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/c88963d4-8a56-467f-8dce-b69422e6652d"
+            }
+        },
+        {
+            "id": "bf500277-5576-4b6e-9c73-9d9e31c48b5f",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Targeted crackdown on human rights defenders",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/bf500277-5576-4b6e-9c73-9d9e31c48b5f#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/bf500277-5576-4b6e-9c73-9d9e31c48b5f#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Targeted crackdown on human rights defenders",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/bf500277-5576-4b6e-9c73-9d9e31c48b5f"
+            }
+        },
+        {
+            "id": "065a8529-3ef2-4fa1-a402-c1dd22598706",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Massacre in Javanrud : state atrocities against protesters in Iran’s Kurdish regions",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/065a8529-3ef2-4fa1-a402-c1dd22598706#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/065a8529-3ef2-4fa1-a402-c1dd22598706#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Massacre in Javanrud : state atrocities against protesters in Iran’s Kurdish regions",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/065a8529-3ef2-4fa1-a402-c1dd22598706"
+            }
+        },
+        {
+            "id": "93ec9cbe-d8e5-44dc-ac9c-d220ec8b1817",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Analysis of public attitudes towards COVID-19 vaccination in selected CAREC countries (Georgia, Kazakhstan, Kyrgyzstan, Mongolia, Pakistan, Tajikistan and Uzbekistan) : Research report (April 2021)",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/93ec9cbe-d8e5-44dc-ac9c-d220ec8b1817#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/93ec9cbe-d8e5-44dc-ac9c-d220ec8b1817#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Analysis of public attitudes towards COVID-19 vaccination in selected CAREC countries (Georgia, Kazakhstan, Kyrgyzstan, Mongolia, Pakistan, Tajikistan and Uzbekistan) : Research report (April 2021)",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/93ec9cbe-d8e5-44dc-ac9c-d220ec8b1817"
+            }
+        },
+        {
+            "id": "855963c5-77c7-45ce-b4f4-957daa848ad4",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Iran: upholding human rights \u0026amp; dignity of the Kurdish Kulbar community",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/855963c5-77c7-45ce-b4f4-957daa848ad4#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/855963c5-77c7-45ce-b4f4-957daa848ad4#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Iran: upholding human rights \u0026amp; dignity of the Kurdish Kulbar community",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/855963c5-77c7-45ce-b4f4-957daa848ad4"
+            }
+        },
+        {
+            "id": "cc8453c0-bc86-4a3a-9a5c-446de94b052f",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Ruling uncharted territory : Islamic Emirate governance in northeastern Afghanistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/cc8453c0-bc86-4a3a-9a5c-446de94b052f#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/cc8453c0-bc86-4a3a-9a5c-446de94b052f#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Ruling uncharted territory : Islamic Emirate governance in northeastern Afghanistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/cc8453c0-bc86-4a3a-9a5c-446de94b052f"
+            }
+        },
+        {
+            "id": "7f13373d-cc16-46e9-9d7d-1e563c3f4ea2",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan :  on the frontline of climate change",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/7f13373d-cc16-46e9-9d7d-1e563c3f4ea2#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/7f13373d-cc16-46e9-9d7d-1e563c3f4ea2#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan :  on the frontline of climate change",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/7f13373d-cc16-46e9-9d7d-1e563c3f4ea2"
+            }
+        },
+        {
+            "id": "30de2478-e43e-45e7-9a58-fd22d39b2d21",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "How fares the Afghan private sector? : trying to run a business in a “stagnant” economy",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/30de2478-e43e-45e7-9a58-fd22d39b2d21#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/30de2478-e43e-45e7-9a58-fd22d39b2d21#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "How fares the Afghan private sector? : trying to run a business in a “stagnant” economy",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/30de2478-e43e-45e7-9a58-fd22d39b2d21"
+            }
+        },
+        {
+            "id": "8ea0b552-a447-4c38-9e2a-9f68402ecf49",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Democracy\u0026#39;s vanguard: youth\u0026#39;s electoral participation in Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/8ea0b552-a447-4c38-9e2a-9f68402ecf49#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/8ea0b552-a447-4c38-9e2a-9f68402ecf49#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Democracy\u0026#39;s vanguard: youth\u0026#39;s electoral participation in Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/8ea0b552-a447-4c38-9e2a-9f68402ecf49"
+            }
+        },
+        {
+            "id": "7bd6504b-c887-4854-a3ef-c7ad3b44b898",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Overview of Pakistan’s power sector and its future outlook",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/7bd6504b-c887-4854-a3ef-c7ad3b44b898#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/7bd6504b-c887-4854-a3ef-c7ad3b44b898#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Overview of Pakistan’s power sector and its future outlook",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/7bd6504b-c887-4854-a3ef-c7ad3b44b898"
+            }
+        },
+        {
+            "id": "3aeb3ca6-687b-4bce-8906-4c8b98ee585c",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "پاکستانی انتخابات اور بلوچ قومی ذمہ داریاں",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/3aeb3ca6-687b-4bce-8906-4c8b98ee585c#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/3aeb3ca6-687b-4bce-8906-4c8b98ee585c#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "پاکستانی انتخابات اور بلوچ قومی ذمہ داریاں",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/3aeb3ca6-687b-4bce-8906-4c8b98ee585c"
+            }
+        },
+        {
+            "id": "d015e22f-2d3c-4766-b0b7-6679bc378b8f",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "ریکوڈک منگ نامگ ءُ بلوچستان ءِ مڈیانی لٹ ءُ پل",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/d015e22f-2d3c-4766-b0b7-6679bc378b8f#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/d015e22f-2d3c-4766-b0b7-6679bc378b8f#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "ریکوڈک منگ نامگ ءُ بلوچستان ءِ مڈیانی لٹ ءُ پل",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/d015e22f-2d3c-4766-b0b7-6679bc378b8f"
+            }
+        },
+        {
+            "id": "5f4f1f4b-b3f6-4dfb-b6d4-2b633b0416c1",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "اقدامات شاخص دولت تدبیر و امید٬ ۱۳۹۲-۱۴۰۰",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/5f4f1f4b-b3f6-4dfb-b6d4-2b633b0416c1#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/5f4f1f4b-b3f6-4dfb-b6d4-2b633b0416c1#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "اقدامات شاخص دولت تدبیر و امید٬ ۱۳۹۲-۱۴۰۰",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/5f4f1f4b-b3f6-4dfb-b6d4-2b633b0416c1"
+            }
+        },
+        {
+            "id": "eb9e270c-ac91-4666-a678-25f80af1abee",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "شہید فدااحمد: ڈیِھ ءِ فدائین استال",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/eb9e270c-ac91-4666-a678-25f80af1abee#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/eb9e270c-ac91-4666-a678-25f80af1abee#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "شہید فدااحمد: ڈیِھ ءِ فدائین استال",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/eb9e270c-ac91-4666-a678-25f80af1abee"
+            }
+        },
+        {
+            "id": "ee0d48e4-61c5-495a-949f-5997b6008f51",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Between facing reality and saving face : interim report of the German parliament on the Afghan mission",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/ee0d48e4-61c5-495a-949f-5997b6008f51#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/ee0d48e4-61c5-495a-949f-5997b6008f51#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Between facing reality and saving face : interim report of the German parliament on the Afghan mission",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/ee0d48e4-61c5-495a-949f-5997b6008f51"
+            }
+        },
+        {
+            "id": "ee51df9e-588c-4bb5-8921-55d69806efa2",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Wetlands \u0026amp; lakes of Baltistan region in Gilgiat Baltistan Pakistan : study report 2023",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/ee51df9e-588c-4bb5-8921-55d69806efa2#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/ee51df9e-588c-4bb5-8921-55d69806efa2#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Wetlands \u0026amp; lakes of Baltistan region in Gilgiat Baltistan Pakistan : study report 2023",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/ee51df9e-588c-4bb5-8921-55d69806efa2"
+            }
+        },
+        {
+            "id": "96405117-b3c7-4027-bc63-51b2a59a899c",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan\u0026#39;s perspective on climate action and role of women : a study on the contributions and challenges in combating climate change",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/96405117-b3c7-4027-bc63-51b2a59a899c#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/96405117-b3c7-4027-bc63-51b2a59a899c#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan\u0026#39;s perspective on climate action and role of women : a study on the contributions and challenges in combating climate change",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/96405117-b3c7-4027-bc63-51b2a59a899c"
+            }
+        },
+        {
+            "id": "c7342d38-034f-4cd8-9ae4-36f31287c8bc",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Public financing of education in Pakistan : analysis of federal, provincial and district budgets 2010-11 to 2022-2023 /",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/c7342d38-034f-4cd8-9ae4-36f31287c8bc#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/c7342d38-034f-4cd8-9ae4-36f31287c8bc#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Public financing of education in Pakistan : analysis of federal, provincial and district budgets 2010-11 to 2022-2023 /",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/c7342d38-034f-4cd8-9ae4-36f31287c8bc"
+            }
+        },
+        {
+            "id": "5f72d2d3-9db4-4a8b-aac4-34b92f22229a",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Annual statistical report of Human Rights conditions in Iran :  Annual report 2024",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/5f72d2d3-9db4-4a8b-aac4-34b92f22229a#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/5f72d2d3-9db4-4a8b-aac4-34b92f22229a#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Annual statistical report of Human Rights conditions in Iran :  Annual report 2024",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/5f72d2d3-9db4-4a8b-aac4-34b92f22229a"
+            }
+        },
+        {
+            "id": "fc6b75ab-e221-44ce-b193-2d04e10ae160",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Journalism in the shadow of violence : state of media freedoms and safety of journalists and other media professionals in Sindh",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/fc6b75ab-e221-44ce-b193-2d04e10ae160#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/fc6b75ab-e221-44ce-b193-2d04e10ae160#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Journalism in the shadow of violence : state of media freedoms and safety of journalists and other media professionals in Sindh",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/fc6b75ab-e221-44ce-b193-2d04e10ae160"
+            }
+        },
+        {
+            "id": "5d4305d2-8650-46fa-9849-d6ea7775b38b",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan freedom of expression and media report 2024: erosion of free speech, the silencing of citizens, political parties and media",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/5d4305d2-8650-46fa-9849-d6ea7775b38b#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/5d4305d2-8650-46fa-9849-d6ea7775b38b#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan freedom of expression and media report 2024: erosion of free speech, the silencing of citizens, political parties and media",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/5d4305d2-8650-46fa-9849-d6ea7775b38b"
+            }
+        },
+        {
+            "id": "e67a395a-77d6-4ab4-baed-99c38550527f",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Newstribes of the northwest: saving journalism in Pakistan\u0026#39;s tribal districts",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/e67a395a-77d6-4ab4-baed-99c38550527f#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/e67a395a-77d6-4ab4-baed-99c38550527f#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Newstribes of the northwest: saving journalism in Pakistan\u0026#39;s tribal districts",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/e67a395a-77d6-4ab4-baed-99c38550527f"
+            }
+        },
+        {
+            "id": "b9d7ee0b-1074-4ef5-a914-9571423a3081",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Sam Altman is not a blithering idiot",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/b9d7ee0b-1074-4ef5-a914-9571423a3081#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/b9d7ee0b-1074-4ef5-a914-9571423a3081#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Sam Altman is not a blithering idiot",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/b9d7ee0b-1074-4ef5-a914-9571423a3081"
+            }
+        },
+        {
+            "id": "8196e844-79c4-4a34-a809-262a1fb2a320",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan\u0026#39;s evolving militant landscape : state responses and policy options",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/8196e844-79c4-4a34-a809-262a1fb2a320#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/8196e844-79c4-4a34-a809-262a1fb2a320#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan\u0026#39;s evolving militant landscape : state responses and policy options",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/8196e844-79c4-4a34-a809-262a1fb2a320"
+            }
+        },
+        {
+            "id": "a3159229-7690-4248-9cd4-3cdffa890e47",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Regulating platform work in Pakistan",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/a3159229-7690-4248-9cd4-3cdffa890e47#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/a3159229-7690-4248-9cd4-3cdffa890e47#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Regulating platform work in Pakistan",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/a3159229-7690-4248-9cd4-3cdffa890e47"
+            }
+        },
+        {
+            "id": "dbd54538-719a-4951-8f06-58bfdca453cb",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Pakistan ratings 2023 : labour standards in the platform economy",
+                "state_ssim": {
+                    "id": "https://figgy.princeton.edu/catalog/dbd54538-719a-4951-8f06-58bfdca453cb#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy.princeton.edu/catalog/dbd54538-719a-4951-8f06-58bfdca453cb#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Pakistan ratings 2023 : labour standards in the platform economy",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/dbd54538-719a-4951-8f06-58bfdca453cb"
+            }
+        }
+    ],
+    "included": [
+        {
+            "type": "facet",
+            "id": "member_of_collection_titles_ssim",
+            "attributes": {
+                "label": "Collections",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "Monographic reports and papers (Publicly Accessible)",
+                            "value": "Monographic reports and papers (Publicly Accessible)",
+                            "hits": 113
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bmember_of_collection_titles_ssim%5D%5B%5D=Monographic+reports+and+papers+%28Publicly+Accessible%29\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Monographic reports and papers (Access Limited to Princeton)",
+                            "value": "Monographic reports and papers (Access Limited to Princeton)",
+                            "hits": 1
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bmember_of_collection_titles_ssim%5D%5B%5D=Monographic+reports+and+papers+%28Access+Limited+to+Princeton%29\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/member_of_collection_titles_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "human_readable_type_ssim",
+            "attributes": {
+                "label": "Type of Work",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "Ephemera Folder",
+                            "value": "Ephemera Folder",
+                            "hits": 391
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/human_readable_type_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "ephemera_project_ssim",
+            "attributes": {
+                "label": "Ephemera Project",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "Born Digital Monographic Reports and Papers",
+                            "value": "Born Digital Monographic Reports and Papers",
+                            "hits": 391
+                        },
+                        "links": {
+                            "remove": "/catalog.json?f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/ephemera_project_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "display_subject_ssim",
+            "attributes": {
+                "label": "Subject",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "Environment and ecology",
+                            "value": "Environment and ecology",
+                            "hits": 117
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_subject_ssim%5D%5B%5D=Environment+and+ecology\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Politics and government",
+                            "value": "Politics and government",
+                            "hits": 102
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_subject_ssim%5D%5B%5D=Politics+and+government\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Economics",
+                            "value": "Economics",
+                            "hits": 90
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_subject_ssim%5D%5B%5D=Economics\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Human and civil rights",
+                            "value": "Human and civil rights",
+                            "hits": 77
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_subject_ssim%5D%5B%5D=Human+and+civil+rights\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Socioeconomic conditions and development",
+                            "value": "Socioeconomic conditions and development",
+                            "hits": 68
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_subject_ssim%5D%5B%5D=Socioeconomic+conditions+and+development\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Health",
+                            "value": "Health",
+                            "hits": 51
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_subject_ssim%5D%5B%5D=Health\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/display_subject_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "display_language_ssim",
+            "attributes": {
+                "label": "Language",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "English",
+                            "value": "English",
+                            "hits": 363
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_language_ssim%5D%5B%5D=English\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Persian",
+                            "value": "Persian",
+                            "hits": 12
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_language_ssim%5D%5B%5D=Persian\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Spanish",
+                            "value": "Spanish",
+                            "hits": 11
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_language_ssim%5D%5B%5D=Spanish\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Baluchi",
+                            "value": "Baluchi",
+                            "hits": 3
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_language_ssim%5D%5B%5D=Baluchi\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Arabic",
+                            "value": "Arabic",
+                            "hits": 1
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_language_ssim%5D%5B%5D=Arabic\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Gujarati",
+                            "value": "Gujarati",
+                            "hits": 1
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdisplay_language_ssim%5D%5B%5D=Gujarati\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/display_language_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "state_ssim",
+            "attributes": {
+                "label": "State",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "complete",
+                            "value": "complete",
+                            "hits": 391
+                        },
+                        "links": {
+                            "remove": "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/state_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "rights_ssim",
+            "attributes": {
+                "label": "Rights",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "Copyright Not Evaluated",
+                            "value": "Copyright Not Evaluated",
+                            "hits": 382
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Brights_ssim%5D%5B%5D=Copyright+Not+Evaluated\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "In Copyright",
+                            "value": "In Copyright",
+                            "hits": 9
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Brights_ssim%5D%5B%5D=In+Copyright\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/rights_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "has_structure_bsi",
+            "attributes": {
+                "label": "Has Structure",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "false",
+                            "value": "false",
+                            "hits": 391
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bhas_structure_bsi%5D%5B%5D=false\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/has_structure_bsi.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "depositor_ssim",
+            "attributes": {
+                "label": "Depositor",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "alpanam",
+                            "value": "alpanam",
+                            "hits": 292
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdepositor_ssim%5D%5B%5D=alpanam\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "ls5454",
+                            "value": "ls5454",
+                            "hits": 75
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdepositor_ssim%5D%5B%5D=ls5454\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "dvuong",
+                            "value": "dvuong",
+                            "hits": 13
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdepositor_ssim%5D%5B%5D=dvuong\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "jdarring",
+                            "value": "jdarring",
+                            "hits": 7
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdepositor_ssim%5D%5B%5D=jdarring\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "ameerson",
+                            "value": "ameerson",
+                            "hits": 3
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdepositor_ssim%5D%5B%5D=ameerson\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "ppeixoto",
+                            "value": "ppeixoto",
+                            "hits": 1
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bdepositor_ssim%5D%5B%5D=ppeixoto\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/depositor_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "visibility_ssim",
+            "attributes": {
+                "label": "Visibility",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "open",
+                            "value": "open",
+                            "hits": 390
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026f%5Bvisibility_ssim%5D%5B%5D=open\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "on_campus",
+                            "value": "on_campus",
+                            "hits": 1
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026f%5Bvisibility_ssim%5D%5B%5D=on_campus\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/visibility_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "facet",
+            "id": "claimed_by_ssim",
+            "attributes": {
+                "label": "Claimed",
+                "items": [
+                    {
+                        "attributes": {
+                            "label": "Unclaimed",
+                            "value": "unclaimed",
+                            "hits": 381
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bclaimed_by_ssim%5D%5B%5D=unclaimed\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "label": "Claimed",
+                            "value": "claimed",
+                            "hits": 10
+                        },
+                        "links": {
+                            "self": "https://figgy.princeton.edu/catalog.json?f%5Bclaimed_by_ssim%5D%5B%5D=claimed\u0026f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+                        }
+                    }
+                ]
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog/facet/claimed_by_ssim.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026per_page=100\u0026q="
+            }
+        },
+        {
+            "type": "search_field",
+            "id": "all_fields",
+            "attributes": {
+                "label": "All Fields"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026search_field=all_fields"
+            }
+        },
+        {
+            "type": "sort",
+            "id": "score desc, updated_at_dtsi desc",
+            "attributes": {
+                "label": "relevance ▼"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026sort=score+desc%2C+updated_at_dtsi+desc"
+            }
+        },
+        {
+            "type": "sort",
+            "id": "title_ssort asc",
+            "attributes": {
+                "label": "title (A-Z)"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026sort=title_ssort+asc"
+            }
+        },
+        {
+            "type": "sort",
+            "id": "title_ssort desc",
+            "attributes": {
+                "label": "title (Z-A)"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026sort=title_ssort+desc"
+            }
+        },
+        {
+            "type": "sort",
+            "id": "created_at_dtsi desc",
+            "attributes": {
+                "label": "date created ▼"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026sort=created_at_dtsi+desc"
+            }
+        },
+        {
+            "type": "sort",
+            "id": "created_at_dtsi asc",
+            "attributes": {
+                "label": "date created ▲"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026sort=created_at_dtsi+asc"
+            }
+        },
+        {
+            "type": "sort",
+            "id": "updated_at_dtsi desc",
+            "attributes": {
+                "label": "date modified ▼"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026sort=updated_at_dtsi+desc"
+            }
+        },
+        {
+            "type": "sort",
+            "id": "updated_at_dtsi asc",
+            "attributes": {
+                "label": "date modified ▲"
+            },
+            "links": {
+                "self": "https://figgy.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers\u0026f%5Bstate_ssim%5D%5B%5D=complete\u0026page=2\u0026per_page=100\u0026q=\u0026sort=updated_at_dtsi+asc"
+            }
+        }
+    ]
+}
