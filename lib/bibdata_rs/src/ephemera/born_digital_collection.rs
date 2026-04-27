@@ -1,11 +1,32 @@
-use crate::solr::SolrDocument;
-
 use super::CatalogClient;
+use crate::solr::SolrDocument;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct FoldersResponse {
     pub data: Vec<BornDigitalCollection>,
+    pub meta: Option<Meta>,
+}
+
+impl FoldersResponse {
+    pub fn response_ids(
+        response: FoldersResponse,
+    ) -> std::iter::Map<
+        std::vec::IntoIter<BornDigitalCollection>,
+        impl FnMut(BornDigitalCollection) -> String,
+    > {
+        response.data.into_iter().map(|item| item.id)
+    }
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Meta {
+    pub pages: Pages,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Pages {
+    pub total_pages: u32,
 }
 
 #[allow(dead_code)]
@@ -25,10 +46,26 @@ pub async fn read_ephemera_folders(
     url: impl Into<String>,
 ) -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let client = CatalogClient::new(url.into());
-    let response = client.get_folder_data().await?;
 
-    let ids: Vec<String> = response.data.into_iter().map(|item| item.id).collect();
-    Ok(ids)
+    let mut all_ids: Vec<String> = Vec::new();
+    let mut page_number = 1;
+    // call the first page page=1 to get the responce meta info, total_pages etc.
+    let response = client.get_folder_data(page_number).await?;
+    let total_pages = response
+        .meta
+        .as_ref()
+        .map(|m| m.pages.total_pages)
+        .unwrap_or(1);
+
+    all_ids.extend(FoldersResponse::response_ids(response));
+
+    while page_number < total_pages {
+        page_number += 1;
+
+        let response = client.get_folder_data(page_number).await?;
+        all_ids.extend(FoldersResponse::response_ids(response));
+    }
+    Ok(all_ids)
 }
 
 pub async fn ephemera_folders_iterator(
@@ -77,26 +114,38 @@ mod tests {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
             let mut server = mockito::Server::new_async().await;
 
-            let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-            d.push("../../spec/fixtures/files/ephemera/ephemera_folders.json");
-            let path = "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=";
-            // let path = std::env::var("FIGGY_BORN_DIGITAL_EPHEMERA_URL").unwrap();
-            let mock = server
-                .mock("GET", path)
+            // fixture for page 1
+            let mut d1 = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+            d1.push("../../spec/fixtures/files/ephemera/ephemera_folders.json");
+            // fixture for page 2 
+            let mut d2 = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+            d2.push("../../spec/fixtures/files/ephemera/ephemera_folders_page2.json");
+
+            let mock1 = server
+                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&page=1&q=")
                 .with_status(200)
                 .with_header("content-type", "application/json")
-                .with_body_from_file(d.to_string_lossy().to_string())
+                .with_body_from_file(d1.to_string_lossy().to_string())
+                .create_async()
+                .await;
+
+            let mock2 = server
+                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&page=2&q=")
+                .with_status(200)
+                .with_header("content-type", "application/json")
+                .with_body_from_file(d2.to_string_lossy().to_string())
                 .create_async()
                 .await;
 
             let result = read_ephemera_folders(server.url()).await.unwrap();
             assert!(!result.is_empty());
-            assert!(result.contains(
-                &"https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd"
-                    .to_string()
-            ));
+            // Id from fixture page 1
+            assert!(result.contains(&"https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd".to_string()));
+            // Id from fixture page 2
+            assert!(result.contains(&"https://figgy-staging.princeton.edu/catalog/5d4305d2-8650-46fa-9849-d6ea7775b38b".to_string()));
 
-            mock.assert_async().await;
+            mock1.assert_async().await;
+            mock2.assert_async().await;
         })
         .await;
     }
@@ -106,7 +155,7 @@ mod tests {
         let mut server = mockito::Server::new_async().await;
 
         let mock1 = server
-                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
+                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&page=1&q=")
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")
