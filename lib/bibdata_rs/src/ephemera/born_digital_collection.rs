@@ -8,6 +8,17 @@ pub struct FoldersResponse {
     pub meta: Option<Meta>,
 }
 
+impl FoldersResponse {
+    pub fn response_ids(
+        response: FoldersResponse,
+    ) -> std::iter::Map<
+        std::vec::IntoIter<BornDigitalCollection>,
+        impl FnMut(BornDigitalCollection) -> String,
+    > {
+        response.data.into_iter().map(|item| item.id)
+    }
+}
+
 #[derive(Deserialize, Debug)]
 pub struct Meta {
     pub pages: Pages,
@@ -15,13 +26,7 @@ pub struct Meta {
 
 #[derive(Deserialize, Debug)]
 pub struct Pages {
-    // pub current_page: Option<u32>,
-    // pub next_page: Option<u32>,
-    // pub prev_page: Option<u32>,
     pub total_pages: u32,
-    // pub limit_value: Option<u32>,
-    // pub offset_value: Option<u32>,
-    // pub total_count: Option<u32>,
 }
 
 #[allow(dead_code)]
@@ -52,13 +57,13 @@ pub async fn read_ephemera_folders(
         .map(|m| m.pages.total_pages)
         .unwrap_or(1);
 
-    all_ids.extend(response.data.into_iter().map(|item| item.id));
+    all_ids.extend(FoldersResponse::response_ids(response));
 
     while page_number < total_pages {
         page_number += 1;
 
         let response = client.get_folder_data(page_number).await?;
-        all_ids.extend(response.data.into_iter().map(|item| item.id));
+        all_ids.extend(FoldersResponse::response_ids(response));
     }
     Ok(all_ids)
 }
