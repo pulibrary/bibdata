@@ -9,13 +9,8 @@ pub struct FoldersResponse {
 }
 
 impl FoldersResponse {
-    pub fn response_ids(
-        response: FoldersResponse,
-    ) -> std::iter::Map<
-        std::vec::IntoIter<BornDigitalCollection>,
-        impl FnMut(BornDigitalCollection) -> String,
-    > {
-        response.data.into_iter().map(|item| item.id)
+    pub fn response_ids(&self) -> impl Iterator<Item = String> {
+        self.data.iter().map(|item| item.id.clone())
     }
 }
 
@@ -57,13 +52,13 @@ pub async fn read_ephemera_folders(
         .map(|m| m.pages.total_pages)
         .unwrap_or(1);
 
-    all_ids.extend(FoldersResponse::response_ids(response));
+    all_ids.extend(response.response_ids());
 
     while page_number < total_pages {
         page_number += 1;
 
         let response = client.get_folder_data(page_number).await?;
-        all_ids.extend(FoldersResponse::response_ids(response));
+        all_ids.extend(response.response_ids());
     }
     Ok(all_ids)
 }
