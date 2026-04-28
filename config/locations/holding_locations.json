@@ -43,7 +43,6 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
             "QT",
             "PW",
             "PL",
@@ -99,7 +98,6 @@
         "holding_library": null,
         "delivery_locations": [
             "PA",
-            "PQ",
             "PW",
             "PM",
             "PL",
@@ -301,7 +299,6 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
             "QT",
             "PW",
             "PL",
@@ -1817,7 +1814,6 @@
             "order": 0
         },
         "delivery_locations": [
-            "PQ",
             "PW",
             "PL",
             "PT",
@@ -2203,7 +2199,6 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
             "PW",
             "PL",
             "PT",
@@ -5628,7 +5623,6 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
             "PW",
             "PL",
             "PT",
@@ -6332,7 +6326,6 @@
             "order": 0
         },
         "delivery_locations": [
-            "PQ",
             "PW",
             "PL",
             "PT",
@@ -6594,7 +6587,6 @@
             "order": 0
         },
         "delivery_locations": [
-            "PQ",
             "QT",
             "PW",
             "PL",
@@ -6685,7 +6677,6 @@
             "order": 0
         },
         "delivery_locations": [
-            "PQ",
             "QT",
             "PW",
             "PL",
@@ -6745,7 +6736,6 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
             "QT",
             "PW",
             "PL",
@@ -6807,7 +6797,6 @@
             "order": 0
         },
         "delivery_locations": [
-            "PQ",
             "QT",
             "QA",
             "QC",
@@ -6863,7 +6852,6 @@
             "order": 0
         },
         "delivery_locations": [
-            "PQ",
             "QT",
             "PW",
             "PL",
