@@ -134,7 +134,7 @@ $ curl 'http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild
 CTRL+b d (to detach from tmux)
 ```
 
-### Index Epehemera
+### Index Ephemera
 SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L14-L15) that is used for indexing and start a tmux session. `ssh deploy@bibdata-worker-prod1`
 
 as deploy user, in `/opt/bibdata/current`
@@ -154,7 +154,7 @@ Currently there are not many ephemera resources in Figgy. This step takes around
 Before running this task, turn off the sneakers workers on production so that any updates that come through after the full index has been generated will be included in the new index and not lost when you swap out the old index.
 
 To turn off sneakers workers:
-- cd in your local princeton_ansible directory → pipenv shell → ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
+- cd in your local princeton_ansible directory → ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
 
 To index the coins:
 
@@ -202,7 +202,6 @@ You can see the progress of the SCSB indexing in sidekiq/Busy tab.
 Turn off sneakers in catalog-qa:
 - cd in your local princeton_ansible directory
 ```
-$ pipenv shell   
 $ ansible orangelight_qa -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
 ```
 
@@ -265,7 +264,7 @@ Then swap the rebuild collection to the production alias.
 ```
 
 Then turn sneakers workers back on:
-- cd in your local princeton_ansible directory → pipenv shell → ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers start"
+- cd in your local princeton_ansible directory → ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers start"
 
 Then expire the rails cache to get the updated values on the front page of the catalog. You can do this by deploying the app.
 
