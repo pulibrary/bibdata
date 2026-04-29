@@ -344,14 +344,6 @@ def alma_951_active(record)
   alma_951&.select { |f| f['a'] == 'Available' }
 end
 
-def alma_953(record)
-  record.fields('953').select { |f| alma_code_start_53?(f['a']) }
-end
-
-def alma_954(record)
-  record.fields('954').select { |f| alma_code_start_53?(f['a']) }
-end
-
 def process_holdings(record)
   all_holdings = {}
   holdings_helpers = ProcessHoldingsHelpers.new(record:)
