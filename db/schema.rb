@@ -10,16 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_07_09_181404) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_29_174421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
-
-  create_table "cached_marc_records", force: :cascade do |t|
-    t.string "bib_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.text "marc"
-    t.datetime "updated_at", precision: nil, null: false
-  end
 
   create_table "dump_file_types", id: :serial, force: :cascade do |t|
     t.string "constant"
