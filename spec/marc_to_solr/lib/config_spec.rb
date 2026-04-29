@@ -885,7 +885,11 @@ describe 'From traject_config.rb', :indexing do
       it 'indexes the temp_location_code when holding in a temporary location' do
         @holdings_v2 = JSON.parse(@record_temporary_location_v2['holdings_1display'][0])
         expect(@holdings_v2['lewis$res']['temp_location_code']).to eq 'lewis$res'
+      end
+
+      it 'indexes the temporary location in location and advanced_location_s fields' do
         expect(@record_temporary_location_v2['location']).to eq ['Lewis Library']
+        expect(@record_temporary_location_v2['advanced_location_s']).to eq ['lewis$res', 'Lewis Library']
       end
 
       it 'does not index the temp_location_code when holding in a permanent location' do
