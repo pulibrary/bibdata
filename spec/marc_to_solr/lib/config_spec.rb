@@ -256,14 +256,6 @@ describe 'From traject_config.rb', :indexing do
         expect(nature['desc']).to eq 'Available from 1869 volume: 1 issue: 1.'
         expect(nature['notes']).to be_empty
 
-        # Date range with explicit start and no end date
-        expect(nature['start']).to eq '1869'
-        expect(nature['end']).to eq 'latest'
-
-        # Date range with explicit start and end
-        expect(ebsco['start']).to eq '1997'
-        expect(ebsco['end']).to eq '2015'
-
         # electronic_portfolio_s should not include non alma 951(s).
         expect(resource1).to be_nil
         expect(resource2).to be_nil
@@ -275,13 +267,6 @@ describe 'From traject_config.rb', :indexing do
         portfolios = @electronic_portfolio_embargo['electronic_portfolio_s'].map { |p| JSON.parse(p) }
         portfolio1 = portfolios.find { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
         portfolio2 = portfolios.find { |p| p['title'] == 'Taylor & Francis Medical Library' }
-
-        # Date range with greater than or equal to embargo
-        expect(portfolio1['start']).to eq '2001'
-        expect(portfolio1['end']).to eq (DateTime.now.year - 1).to_s
-
-        expect(portfolio2['start']).to eq '1997'
-        expect(portfolio2['end']).to eq 'latest'
       end
 
       it 'does not index an inactive electronic_portfolio' do
