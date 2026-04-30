@@ -45,7 +45,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_module_function("solr_fields", function!(solr_fields, 1))?;
     submodule_marc.define_singleton_method("is_oclc_number?", function!(is_oclc_number, 1))?;
     submodule_marc.define_singleton_method("is_scsb?", function!(is_scsb, 1))?;
-    submodule_marc.define_module_function("location_codes", function!(location_codes, 1))?;
+    submodule_marc.define_module_function("location_codes", function!(ruby_location_codes, 1))?;
     submodule_marc.define_singleton_method("library_label", function!(library_label, 1))?;
     submodule_marc.define_singleton_method("location_label", function!(location_label, 1))?;
     submodule_marc.define_singleton_method(
@@ -247,6 +247,30 @@ fn standard_numbers_for_ruby(ruby: &Ruby, record: &Record) -> RArray {
         standard_numbers(record)
             .map(|number| ruby.enc_str_new(number.as_bytes(), ruby.utf8_encoding())),
     )
+}
+
+fn ruby_location_codes(ruby: &Ruby, record: RObject) -> Result<Vec<String>, magnus::Error> {
+    let record = marctk_from_ruby_marc_record(ruby, &record)?;
+    let codes = holdings::holding_location::location_codes(record);
+    Ok(codes)
+}
+
+// Build the permanent location code from 852$b and 852$c
+// Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
+fn ruby_permanent_location_code(
+    ruby: &Ruby,
+    field: RObject,
+) -> Result<Option<String>, magnus::Error> {
+    let field = marctk_data_field_from_ruby_marc(ruby, &field).ok_or(invalid_field_error(ruby))?;
+    Ok(holdings::holding_location::permanent_location_code(&field))
+}
+
+fn ruby_current_location_code(
+    ruby: &Ruby,
+    field: RObject,
+) -> Result<Option<String>, magnus::Error> {
+    let field_876 = marctk_data_field_from_ruby_marc(ruby, &field);
+    Ok(field_876.and_then(|field| holdings::holding_location::current_location_code(&field)))
 }
 
 #[cfg(test)]
