@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/marc_cleanup.git
-  revision: d4e26cd53dcd75ccde8781307c87e7ed8bf96000
+  revision: 48b6dc80aa18fffaadd2cfbf17f7aa0a9a822f00
   specs:
     marc_cleanup (1.0.1)
       marc (~> 1.0)
@@ -407,20 +407,20 @@ GEM
     net-ssh (7.3.0)
     netrc (0.11.0)
     nio4r (2.7.5)
-    nokogiri (1.19.2)
+    nokogiri (1.19.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.19.2-aarch64-linux-gnu)
+    nokogiri (1.19.3-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.2-aarch64-linux-musl)
+    nokogiri (1.19.3-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.19.2-arm-linux-gnu)
+    nokogiri (1.19.3-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.2-arm-linux-musl)
+    nokogiri (1.19.3-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.19.2-x86_64-linux-gnu)
+    nokogiri (1.19.3-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.2-x86_64-linux-musl)
+    nokogiri (1.19.3-x86_64-linux-musl)
       racc (~> 1.4)
     omniauth (2.1.4)
       hashie (>= 3.4.6)
