@@ -107,7 +107,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(37);
+    let hash = ruby.hash_new_capa(38);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -150,6 +150,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     )?;
     hash.aset("icpsr_subject_unstem_search", icpsr_subject_unstem_search)?;
     hash.aset("lcgft_s", ruby.ary_from_iter(genre::lcgft_s(&record)))?;
+    hash.aset("location", holdings::library::location_facet(&record))?;
     hash.aset("marcxml", marcxml_compressed(&record))?;
     hash.aset(
         "non_latin_non_cjk_all_index",
@@ -251,7 +252,7 @@ fn standard_numbers_for_ruby(ruby: &Ruby, record: &Record) -> RArray {
 
 fn ruby_location_codes(ruby: &Ruby, record: RObject) -> Result<Vec<String>, magnus::Error> {
     let record = marctk_from_ruby_marc_record(ruby, &record)?;
-    let codes = holdings::holding_location::location_codes(record);
+    let codes = holdings::holding_location::location_codes(&record);
     Ok(codes)
 }
 

@@ -1362,7 +1362,7 @@ each_record do |record, context|
     ## need to go through any location code that isn't from voyager, thesis, or graphic arts
     ## issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
-    context.output_hash['location'] = Traject::TranslationMap.new('location_display').translate_array(location_codes)
+    location_names = Traject::TranslationMap.new('location_display').translate_array(location_codes).uniq
     mapped_codes = Traject::TranslationMap.new('locations')
 
     # The holding_library is used with some locations to add an additional owning library,
@@ -1376,17 +1376,16 @@ each_record do |record, context|
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
     end
-    context.output_hash['location'].uniq!
 
     # Add library and location for advanced multi-select facet
     context.output_hash['advanced_location_s'] = Array.new(location_codes)
-    context.output_hash['advanced_location_s'] << context.output_hash['location']
+    context.output_hash['advanced_location_s'] << location_names
     context.output_hash['advanced_location_s'].flatten!
-
-    # do not index location field if empty (when location code invalid or online)
-    context.output_hash['location'].delete('Online')
-    context.output_hash.delete('location') if context.output_hash['location'].empty?
   end
+end
+
+to_field 'location' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['location']) if context.clipboard[:solr_fields]['location']
 end
 
 # For name-title browse - fields get deleted at end

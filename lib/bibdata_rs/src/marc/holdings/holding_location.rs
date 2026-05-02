@@ -38,7 +38,7 @@ pub fn library_label(code: &str) -> Option<&str> {
     LOCATIONS.get(code).map(|location| location.library.label)
 }
 
-pub fn location_codes(record: Record) -> Vec<String> {
+pub fn location_codes(record: &Record) -> Vec<String> {
     let mut codes = Vec::new();
     for field_852_ref in record.get_fields("852") {
         let field_852 = field_852_ref.clone();

@@ -1,4 +1,5 @@
 pub mod holding_location;
+pub mod library;
 pub mod partner;
 
 use itertools::Itertools;
