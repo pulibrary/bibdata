@@ -272,6 +272,7 @@ GEM
     ffi (1.17.3-aarch64-linux-musl)
     ffi (1.17.3-arm-linux-gnu)
     ffi (1.17.3-arm-linux-musl)
+    ffi (1.17.3-arm64-darwin)
     ffi (1.17.3-x86-linux-gnu)
     ffi (1.17.3-x86-linux-musl)
     ffi (1.17.3-x86_64-linux-gnu)
@@ -336,10 +337,13 @@ GEM
     lcsort (0.9.1)
     libdatadog (29.0.0.1.0)
     libdatadog (29.0.0.1.0-aarch64-linux)
+    libdatadog (29.0.0.1.0-arm64-darwin)
     libdatadog (29.0.0.1.0-x86_64-linux)
     libddwaf (1.30.0.0.2)
       ffi (~> 1.0)
     libddwaf (1.30.0.0.2-aarch64-linux)
+      ffi (~> 1.0)
+    libddwaf (1.30.0.0.2-arm64-darwin)
       ffi (~> 1.0)
     libddwaf (1.30.0.0.2-x86_64-linux)
       ffi (~> 1.0)
@@ -418,6 +422,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.3-arm-linux-musl)
       racc (~> 1.4)
+    nokogiri (1.19.3-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.19.3-x86_64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.3-x86_64-linux-musl)
@@ -445,6 +451,7 @@ GEM
     pg (1.6.3)
     pg (1.6.3-aarch64-linux)
     pg (1.6.3-aarch64-linux-musl)
+    pg (1.6.3-arm64-darwin)
     pg (1.6.3-x86_64-linux)
     pg (1.6.3-x86_64-linux-musl)
     pp (0.6.3)
@@ -715,6 +722,7 @@ PLATFORMS
   aarch64-linux-musl
   arm-linux-gnu
   arm-linux-musl
+  arm64-darwin
   ruby
   x86-linux-gnu
   x86-linux-musl
