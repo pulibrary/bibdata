@@ -86,17 +86,7 @@ class AugmentTheSubject
   # For example, "Alaska-Antiquities" should be a match, but "Alaska" by itself should not,
   # nor should "Antiquities" by itself.
   def subfield_a_with_required_subfields_match?(term)
-    subfields = term.split(SEPARATOR)
-    subfields = subfields.map { |subfield| normalize(subfield) }
-    subfield_a = subfields.shift.to_sym
-
-    required_subfields = indigenous_studies_required[subfield_a]
-    return false unless required_subfields
-
-    required_subfields.map do |req_terms|
-      return true if req_terms.subset?(subfields.to_set)
-    end
-    false
+    BibdataRs::Marc.has_combined_term_related_to_indigenous_studies(term)
   end
 
   # In order to re-write the fixture file based on a new CSV, run the rake task
