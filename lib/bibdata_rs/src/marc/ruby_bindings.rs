@@ -34,6 +34,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         function!(ruby_current_location_code, 1),
     )?;
     submodule_marc.define_singleton_method(
+        "has_combined_term_related_to_indigenous_studies",
+        function!(has_combined_term_related_to_indigenous_studies, 1),
+    )?;
+    submodule_marc.define_singleton_method(
         "has_main_term_related_to_indigenous_studies",
         function!(has_main_term_related_to_indigenous_studies, 1),
     )?;
@@ -195,6 +199,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("title_t", title_t)?;
 
     Ok(hash)
+}
+
+fn has_combined_term_related_to_indigenous_studies(term: String) -> Result<bool, magnus::Error> {
+    Ok(indigenous_studies::has_combined_term_related_to_indigenous_studies(&term))
 }
 
 fn has_subfield_related_to_indigenous_studies(term: String) -> Result<bool, magnus::Error> {

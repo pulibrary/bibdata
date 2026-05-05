@@ -1,7 +1,5 @@
 use crate::marc::{
-    extract_values::ExtractValues,
-    subject::hierarchical_heading,
-    variable_length_field::{SubfieldIterator, latin_or_non_latin_tag_included_in},
+    extract_values::ExtractValues, subject::hierarchical_heading, utils::slice::contains_subslice, variable_length_field::{SubfieldIterator, latin_or_non_latin_tag_included_in}
 };
 
 use super::{
@@ -209,11 +207,7 @@ impl ComparableTerm {
         //   * Fox art
         //   * art Pictorial
         //   * Pictorial works -- which is a match!!
-        self.0.windows(part.len()).any(|window| window == part.0)
-    }
-
-    pub fn len(&self) -> usize {
-        self.0.len()
+        contains_subslice(&self.0, &part.0)
     }
 }
 impl From<&str> for ComparableTerm {

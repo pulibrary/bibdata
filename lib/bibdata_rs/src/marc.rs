@@ -28,6 +28,7 @@ mod non_latin;
 mod ruby_bindings;
 mod string_normalize;
 mod title;
+mod utils;
 
 pub use ruby_bindings::register_ruby_methods;
 pub use string_normalize::trim_punctuation;
