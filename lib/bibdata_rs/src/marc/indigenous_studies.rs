@@ -80,18 +80,32 @@ static LCSH_SUBFIELDS: LazyLock<LcshIndigenousStudiesSubfields> = LazyLock::new(
         .expect("Could not parse AugmentTheSubject standalone_subfield_x file")
 });
 
-pub fn has_subfield_related_to_indigenous_studies(term: &str) -> bool {
+pub fn indicates_indigenous_studies<T: AsRef<str>>(terms: &[T]) -> bool {
+    terms.iter().any(|term| has_subfield_related_to_indigenous_studies(term.as_ref()) || has_main_term_related_to_indigenous_studies(term.as_ref()) || has_combined_term_related_to_indigenous_studies(term.as_ref()))
+}
+
+
+/// For some subfield terms, only a single subfield needs to match.
+/// E.g., any subject term that includes "Indian authors" should be assigned Indigenous Studies
+fn has_subfield_related_to_indigenous_studies(term: &str) -> bool {
     term.split(SEPARATOR)
         .any(|subfield| LCSH_SUBFIELDS.contains(&subfield.to_lowercase()))
 }
 
-pub fn has_main_term_related_to_indigenous_studies(term: &str) -> bool {
+/// For some subject terms, only the first part needs to match.
+/// E.g., "Quinnipiac Indians-History", "Quinnipiac Indians-Culture" should both
+/// be assigned an Indigenous Studies term even though that entire term doesn't
+/// appear in our terms list.
+fn has_main_term_related_to_indigenous_studies(term: &str) -> bool {
     term.split(SEPARATOR).next().is_some_and(|main_term| {
         LCSH_MAIN_TERMS.contains(normalize(main_term).trim_end_matches('.'))
     })
 }
 
-pub fn has_combined_term_related_to_indigenous_studies(term: &str) -> bool {
+/// Some subject terms require a combination of terms in order to be assigned Indigenous Studies.
+/// For example, "Alaska-Antiquities" should be a match, but "Alaska" by itself should not,
+/// nor should "Antiquities" by itself.
+fn has_combined_term_related_to_indigenous_studies(term: &str) -> bool {
     // Return early if the term has no subdivisions
     if !term.contains(SEPARATOR) {
         return false;
@@ -126,6 +140,26 @@ mod tests {
     }
 
     #[test]
+    fn it_can_match_a_subfield() {
+        assert!(has_subfield_related_to_indigenous_studies("ABC123—Indian authors—History"));
+        assert!(indicates_indigenous_studies(&["ABC123—Indian authors—History"]));
+
+        // It is case-insensitive
+        assert!(has_subfield_related_to_indigenous_studies("ABC123—Indian AUThors—History"));
+        assert!(indicates_indigenous_studies(&["ABC123—Indian AUThors—History"]));
+
+        assert!(!has_subfield_related_to_indigenous_studies("ABC123—History—United States"));
+        assert!(!indicates_indigenous_studies(&["ABC123—History—United States"]));
+    }
+
+    #[test]
+    fn it_can_match_a_main_term_despite_incorrect_capitalization() {
+        assert!(has_main_term_related_to_indigenous_studies("Abipon language"));
+        assert!(has_main_term_related_to_indigenous_studies("Abipon Language"));
+        assert!(indicates_indigenous_studies(&["Abipon language"]));
+    }
+
+    #[test]
     fn it_can_find_a_combined_term() {
         assert!(has_combined_term_related_to_indigenous_studies(
             "Embroidery—Arctic regions"
@@ -139,5 +173,10 @@ mod tests {
         assert!(!has_combined_term_related_to_indigenous_studies(
             "Embroidery—Conservation and restoration"
         ));
+    }
+
+    #[test]
+    fn it_can_find_a_combined_term_with_extra_punctuation() {
+        assert!(indicates_indigenous_studies(&["Quinnipiac Indians."]))
     }
 }
