@@ -6,29 +6,12 @@ class AugmentTheSubject
   LCSH_TERMS_CSV_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies.csv')
 
   ##
-  # Normalize lcsh terms so they can match at index time.
-  # 1. downcase
-  # 2. replace ǂ terms with SEPARATOR
-  def normalize(lcsh_term)
-    lcsh_term.chomp.downcase.gsub(/ ǂ. /, SEPARATOR)
-  end
-
-  ##
   # Given an array of terms, add "Indigenous Studies" if any of the terms match
   # @param [<String>] terms
   # @return [<String>]
   def add_indigenous_studies(terms)
-    terms << 'Indigenous Studies' if indigenous_studies?(terms)
+    terms << 'Indigenous Studies' if BibdataRs::Marc.indicates_indigenous_studies?(terms)
     terms
-  end
-
-  ##
-  # Given an array of terms, check whether this set of terms should have an
-  # additional subject heading of "Indigenous Studies" added
-  # @param [<String>] terms
-  # @return [Boolean]
-  def indigenous_studies?(terms)
-    BibdataRs::Marc.indicates_indigenous_studies? terms
   end
 
   # In order to re-write the fixture file based on a new CSV, run the rake task
