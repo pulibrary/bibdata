@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
 ##
-# The creation and management of metadata are not neutral activities.
+# This class is responsible for preparing data from a CSV file into hashes that can be
+# used to determine whether or not subjects are relevant to the field of Indigenous Studies
 class AugmentTheSubject
   LCSH_TERMS_CSV_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies.csv')
-
-  ##
-  # Given an array of terms, add "Indigenous Studies" if any of the terms match
-  # @param [<String>] terms
-  # @return [<String>]
-  def add_indigenous_studies(terms)
-    terms << 'Indigenous Studies' if BibdataRs::Marc.indicates_indigenous_studies?(terms)
-    terms
-  end
 
   # In order to re-write the fixture file based on a new CSV, run the rake task
   # `bundle exec rake augment:recreate_fixtures`

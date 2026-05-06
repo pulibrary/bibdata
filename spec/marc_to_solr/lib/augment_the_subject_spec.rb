@@ -17,14 +17,6 @@ RSpec.describe AugmentTheSubject, :indexing do
     end
   end
 
-  context 'subject terms about Indigenous people' do
-    let(:subject_terms) { ["Indians of North America#{SEPARATOR}Connecticut", 'Quinnipiac Indians.'] }
-
-    it 'adds Indigenous Studies as a subject' do
-      expect(ats.add_indigenous_studies(subject_terms)).to eq subject_terms << 'Indigenous Studies'
-    end
-  end
-
   context 'required subfields' do
     it 'creates a list of terms with required subfields' do
       subfields = described_class.parse_required_subfields

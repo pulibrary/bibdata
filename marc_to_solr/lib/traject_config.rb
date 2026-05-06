@@ -41,7 +41,6 @@ end
 
 $LOAD_PATH.unshift(File.expand_path('..', __dir__)) # include marc_to_solr directory so local translation_maps can be loaded
 
-augment_the_subject = AugmentTheSubject.new
 language_service = LanguageService.new
 change_the_subject = ChangeTheSubject.new
 
@@ -806,7 +805,9 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  subjects = augment_the_subject.add_indigenous_studies(subjects)
+  if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
+    subjects += ['Indigenous Studies']
+  end
   subjects = change_the_subject.fix(subject_terms: subjects)
   local_subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| local_heading? field }
   accumulator.replace(subjects | local_subjects)
@@ -815,8 +816,10 @@ end
 # A field to include both archaic and replaced terms, for search purposes
 to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  new_subjects = augment_the_subject.add_indigenous_studies(subjects)
-  new_subjects = change_the_subject.fix(subject_terms: new_subjects)
+  if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
+    subjects += ['Indigenous Studies']
+  end
+  new_subjects = change_the_subject.fix(subject_terms: subjects)
   combined_subjects = Array(subjects).concat(Array(new_subjects))&.uniq
   accumulator.replace(combined_subjects)
 end
@@ -886,7 +889,9 @@ end
 # used for the browse lists and hierarchical subject/genre facet
 to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  subjects = augment_the_subject.add_indigenous_studies(subjects)
+  if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
+    subjects += ['Indigenous Studies']
+  end
   subjects = change_the_subject.fix(subject_terms: subjects)
   additional_subject_thesauri = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit]) }
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft aat rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp homoit] }
@@ -898,7 +903,9 @@ end
 # the facet[lc_subject_facet] field
 to_field 'lc_subject_facet' do |record, accumulator|
   lc_subjects = accumulate_hierarchy_per_field(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  lc_subjects = augment_the_subject.add_indigenous_studies(lc_subjects)
+  if BibdataRs::Marc.indicates_indigenous_studies?(lc_subjects)
+    lc_subjects += ['Indigenous Studies']
+  end
   lc_subjects = change_the_subject.fix(subject_terms: lc_subjects)
 
   accumulator.replace(lc_subjects)
@@ -983,7 +990,9 @@ end
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|
   subjects = process_subject_topic_facet(record)
-  subjects = augment_the_subject.add_indigenous_studies(subjects)
+  if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
+    subjects += ['Indigenous Studies']
+  end
   subjects = change_the_subject.fix(subject_terms: subjects)
   accumulator.replace(subjects)
 end
