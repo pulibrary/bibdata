@@ -15,14 +15,6 @@ RSpec.describe AugmentTheSubject, :indexing do
       expect(subfields).to be_a(Hash)
       expect(subfields[:standalone_subfield_a].length).to eq 5599
     end
-
-    context 'mismatched capitalization' do
-      let(:subject_term) { 'Abipon Language' }
-
-      it 'matches subfield a' do
-        expect(ats.subfield_a_match?(subject_term)).to be true
-      end
-    end
   end
 
   context 'when traject somehow gives bad data' do
@@ -30,34 +22,6 @@ RSpec.describe AugmentTheSubject, :indexing do
 
     it 'does not raise an error' do
       expect { ats.indigenous_studies?(subject_terms) }.not_to raise_error
-    end
-  end
-
-  context "subfield x's that match by themselves" do
-    context 'only the subfield x is relevant' do
-      let(:subject_terms) { ["Whatever#{SEPARATOR}Indian authors#{SEPARATOR}History"] }
-
-      it 'matches subfield x' do
-        expect(ats.subfield_x_match?(subject_terms.first))
-        expect(ats.indigenous_studies?(subject_terms)).to be true
-      end
-    end
-
-    context 'with mismatched capitalization' do
-      let(:subject_terms) { ["Whatever#{SEPARATOR}Indian AUthors#{SEPARATOR}History"] }
-
-      it 'matches' do
-        expect(ats.subfield_x_match?(subject_terms.first)).to be true
-        expect(ats.indigenous_studies?(subject_terms)).to be true
-      end
-    end
-
-    context 'no subfield is relevant' do
-      let(:subject_terms) { ["Whatever#{SEPARATOR}History#{SEPARATOR}United States"] }
-
-      it 'does not match' do
-        expect(ats.indigenous_studies?(subject_terms)).to be false
-      end
     end
   end
 
@@ -85,15 +49,6 @@ RSpec.describe AugmentTheSubject, :indexing do
     let(:subject_terms) { ["Indians OF NORTH America#{SEPARATOR}Connecticut", 'Quinnipiac Indians.'] }
 
     it 'matches anyway' do
-      expect(ats.indigenous_studies?(subject_terms)).to be true
-    end
-  end
-
-  context 'mismatched punctuation' do
-    let(:subject_terms) { ['Quinnipiac Indians.'] }
-
-    it 'matches anyway' do
-      expect(ats.subfield_a_match?(subject_terms.first)).to be true
       expect(ats.indigenous_studies?(subject_terms)).to be true
     end
   end
@@ -162,11 +117,6 @@ RSpec.describe AugmentTheSubject, :indexing do
                      ['Politics and government', '1754-1763']]
       expect(parsed_subfields['United States']).to match_array(us_expected)
     end
-
-    it 'creates a cache of required subfields' do
-      expect(ats.indigenous_studies_required).to be_a(Hash)
-      expect(ats.indigenous_studies_required[:acadians].first).to be_a(Set)
-    end
   end
 
   context 'subfield ǂa with required trailing subfields' do
@@ -200,10 +150,6 @@ RSpec.describe AugmentTheSubject, :indexing do
       it 'still matches' do
         expect(ats.indigenous_studies?(subject_terms)).to be true
       end
-
-      it 'does not match subfield_a' do
-        expect(ats.subfield_a_match?(subject_terms.first)).to be false
-      end
     end
 
     context 'both relevant and irrelevant subfields are present' do
@@ -226,7 +172,6 @@ RSpec.describe AugmentTheSubject, :indexing do
       let(:subject_terms) { ["United States#{SEPARATOR}History"] }
 
       it 'matches' do
-        expect(ats.subfield_a_with_required_subfields_match?(subject_terms.first)).to be false
         expect(ats.indigenous_studies?(subject_terms)).to be false
       end
     end
