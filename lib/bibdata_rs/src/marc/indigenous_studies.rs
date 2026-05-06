@@ -1,4 +1,5 @@
 use crate::marc::{subject::SEPARATOR, utils::slice::contains_subslice};
+use regex::Regex;
 use serde::{Deserialize, Deserializer};
 use std::{
     collections::{HashMap, HashSet},
@@ -16,8 +17,11 @@ const COMBINED_TERMS_JSON: &str = include_str!(
 const SUBFIELDS_JSON: &str =
     include_str!("../../../../marc_to_solr/lib/augment_the_subject/standalone_subfield_x.json");
 
+static SEPARATOR_STRING: LazyLock<String> = LazyLock::new(||SEPARATOR.to_string());
+
+static SUBFIELD_INDICATOR: LazyLock<Regex> = LazyLock::new(|| Regex::new(" ǂ. ").expect("Could not compile regex"));
 fn normalize(raw: impl AsRef<str>) -> String {
-    raw.as_ref().to_lowercase()
+    SUBFIELD_INDICATOR.replace_all(raw.as_ref(), &*SEPARATOR_STRING).to_lowercase()
 }
 
 // Normalize terms as we deserialize, so that we don't have to do it for every comparison
@@ -140,6 +144,30 @@ mod tests {
     }
 
     #[test]
+    fn it_can_identify_that_subjects_are_related_to_indigenous_studies() {
+        assert!(indicates_indigenous_studies(&["Indians of North America—Connecticut", "Quinnipiac Indians."]));
+        assert!(indicates_indigenous_studies(&["Quinnipiac Indians."]));
+        assert!(indicates_indigenous_studies(&["Quinnipiac Indians—History"]));
+        assert!(indicates_indigenous_studies(&["United States.—Army—Indian troops"]));
+        assert!(indicates_indigenous_studies(&["United States—History—King George's War, 1744-1748"]));
+        assert!(indicates_indigenous_studies(&["Alaska—Antiquities"]));
+        assert!(indicates_indigenous_studies(&["alaska—antiquities"]));
+        assert!(indicates_indigenous_studies(&["Alaska—Antiquities—ABC123"]));
+        assert!(indicates_indigenous_studies(&["Navajo Nation, Arizona, New Mexico & Utah"]));
+        assert!(indicates_indigenous_studies(&[r#"Behdzi Ahda" First Nation"#]));
+        assert!(indicates_indigenous_studies(&["Fort Apache Indian Reservation (Ariz.)"]));
+
+        assert!(!indicates_indigenous_studies(&["Daffodils", "Tulips"]));
+        assert!(!indicates_indigenous_studies(&["United States", "History"]));
+        assert!(!indicates_indigenous_studies(&["Alaska"]));
+    }
+
+    #[test]
+    fn it_is_case_insensitive() {
+        assert!(indicates_indigenous_studies(&["Indians of NORTH America—Connecticut"]));
+    }
+
+    #[test]
     fn it_can_match_a_subfield() {
         assert!(has_subfield_related_to_indigenous_studies("ABC123—Indian authors—History"));
         assert!(indicates_indigenous_studies(&["ABC123—Indian authors—History"]));
@@ -178,5 +206,15 @@ mod tests {
     #[test]
     fn it_can_find_a_combined_term_with_extra_punctuation() {
         assert!(indicates_indigenous_studies(&["Quinnipiac Indians."]))
+    }
+
+    #[test]
+    fn it_returns_false_on_empty_string() {
+        assert!(!indicates_indigenous_studies(&[""]))
+    }
+
+    #[test]
+    fn it_can_normalize() {
+        assert_eq!(normalize("Indian architecture ǂz North America"), "indian architecture—north america")
     }
 }
