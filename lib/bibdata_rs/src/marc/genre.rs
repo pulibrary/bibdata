@@ -1,5 +1,8 @@
 use crate::marc::{
-    extract_values::ExtractValues, subject::hierarchical_heading, utils::slice::contains_subslice, variable_length_field::{SubfieldIterator, latin_or_non_latin_tag_included_in}
+    extract_values::ExtractValues,
+    subject::hierarchical_heading,
+    utils::slice::contains_subslice,
+    variable_length_field::{SubfieldIterator, latin_or_non_latin_tag_included_in},
 };
 
 use super::{

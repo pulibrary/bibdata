@@ -17,11 +17,14 @@ const COMBINED_TERMS_JSON: &str = include_str!(
 const SUBFIELDS_JSON: &str =
     include_str!("../../../../marc_to_solr/lib/augment_the_subject/standalone_subfield_x.json");
 
-static SEPARATOR_STRING: LazyLock<String> = LazyLock::new(||SEPARATOR.to_string());
+static SEPARATOR_STRING: LazyLock<String> = LazyLock::new(|| SEPARATOR.to_string());
 
-static SUBFIELD_INDICATOR: LazyLock<Regex> = LazyLock::new(|| Regex::new(" ǂ. ").expect("Could not compile regex"));
+static SUBFIELD_INDICATOR: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(" ǂ. ").expect("Could not compile regex"));
 fn normalize(raw: impl AsRef<str>) -> String {
-    SUBFIELD_INDICATOR.replace_all(raw.as_ref(), &*SEPARATOR_STRING).to_lowercase()
+    SUBFIELD_INDICATOR
+        .replace_all(raw.as_ref(), &*SEPARATOR_STRING)
+        .to_lowercase()
 }
 
 // Normalize terms as we deserialize, so that we don't have to do it for every comparison
@@ -85,9 +88,12 @@ static LCSH_SUBFIELDS: LazyLock<LcshIndigenousStudiesSubfields> = LazyLock::new(
 });
 
 pub fn indicates_indigenous_studies<T: AsRef<str>>(terms: &[T]) -> bool {
-    terms.iter().any(|term| has_subfield_related_to_indigenous_studies(term.as_ref()) || has_main_term_related_to_indigenous_studies(term.as_ref()) || has_combined_term_related_to_indigenous_studies(term.as_ref()))
+    terms.iter().any(|term| {
+        has_subfield_related_to_indigenous_studies(term.as_ref())
+            || has_main_term_related_to_indigenous_studies(term.as_ref())
+            || has_combined_term_related_to_indigenous_studies(term.as_ref())
+    })
 }
-
 
 /// For some subfield terms, only a single subfield needs to match.
 /// E.g., any subject term that includes "Indian authors" should be assigned Indigenous Studies
@@ -128,7 +134,6 @@ fn has_combined_term_related_to_indigenous_studies(term: &str) -> bool {
         })
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -145,17 +150,32 @@ mod tests {
 
     #[test]
     fn it_can_identify_that_subjects_are_related_to_indigenous_studies() {
-        assert!(indicates_indigenous_studies(&["Indians of North America—Connecticut", "Quinnipiac Indians."]));
+        assert!(indicates_indigenous_studies(&[
+            "Indians of North America—Connecticut",
+            "Quinnipiac Indians."
+        ]));
         assert!(indicates_indigenous_studies(&["Quinnipiac Indians."]));
-        assert!(indicates_indigenous_studies(&["Quinnipiac Indians—History"]));
-        assert!(indicates_indigenous_studies(&["United States.—Army—Indian troops"]));
-        assert!(indicates_indigenous_studies(&["United States—History—King George's War, 1744-1748"]));
+        assert!(indicates_indigenous_studies(&[
+            "Quinnipiac Indians—History"
+        ]));
+        assert!(indicates_indigenous_studies(&[
+            "United States.—Army—Indian troops"
+        ]));
+        assert!(indicates_indigenous_studies(&[
+            "United States—History—King George's War, 1744-1748"
+        ]));
         assert!(indicates_indigenous_studies(&["Alaska—Antiquities"]));
         assert!(indicates_indigenous_studies(&["alaska—antiquities"]));
         assert!(indicates_indigenous_studies(&["Alaska—Antiquities—ABC123"]));
-        assert!(indicates_indigenous_studies(&["Navajo Nation, Arizona, New Mexico & Utah"]));
-        assert!(indicates_indigenous_studies(&[r#"Behdzi Ahda" First Nation"#]));
-        assert!(indicates_indigenous_studies(&["Fort Apache Indian Reservation (Ariz.)"]));
+        assert!(indicates_indigenous_studies(&[
+            "Navajo Nation, Arizona, New Mexico & Utah"
+        ]));
+        assert!(indicates_indigenous_studies(&[
+            r#"Behdzi Ahda" First Nation"#
+        ]));
+        assert!(indicates_indigenous_studies(&[
+            "Fort Apache Indian Reservation (Ariz.)"
+        ]));
 
         assert!(!indicates_indigenous_studies(&["Daffodils", "Tulips"]));
         assert!(!indicates_indigenous_studies(&["United States", "History"]));
@@ -164,26 +184,44 @@ mod tests {
 
     #[test]
     fn it_is_case_insensitive() {
-        assert!(indicates_indigenous_studies(&["Indians of NORTH America—Connecticut"]));
+        assert!(indicates_indigenous_studies(&[
+            "Indians of NORTH America—Connecticut"
+        ]));
     }
 
     #[test]
     fn it_can_match_a_subfield() {
-        assert!(has_subfield_related_to_indigenous_studies("ABC123—Indian authors—History"));
-        assert!(indicates_indigenous_studies(&["ABC123—Indian authors—History"]));
+        assert!(has_subfield_related_to_indigenous_studies(
+            "ABC123—Indian authors—History"
+        ));
+        assert!(indicates_indigenous_studies(&[
+            "ABC123—Indian authors—History"
+        ]));
 
         // It is case-insensitive
-        assert!(has_subfield_related_to_indigenous_studies("ABC123—Indian AUThors—History"));
-        assert!(indicates_indigenous_studies(&["ABC123—Indian AUThors—History"]));
+        assert!(has_subfield_related_to_indigenous_studies(
+            "ABC123—Indian AUThors—History"
+        ));
+        assert!(indicates_indigenous_studies(&[
+            "ABC123—Indian AUThors—History"
+        ]));
 
-        assert!(!has_subfield_related_to_indigenous_studies("ABC123—History—United States"));
-        assert!(!indicates_indigenous_studies(&["ABC123—History—United States"]));
+        assert!(!has_subfield_related_to_indigenous_studies(
+            "ABC123—History—United States"
+        ));
+        assert!(!indicates_indigenous_studies(&[
+            "ABC123—History—United States"
+        ]));
     }
 
     #[test]
     fn it_can_match_a_main_term_despite_incorrect_capitalization() {
-        assert!(has_main_term_related_to_indigenous_studies("Abipon language"));
-        assert!(has_main_term_related_to_indigenous_studies("Abipon Language"));
+        assert!(has_main_term_related_to_indigenous_studies(
+            "Abipon language"
+        ));
+        assert!(has_main_term_related_to_indigenous_studies(
+            "Abipon Language"
+        ));
         assert!(indicates_indigenous_studies(&["Abipon language"]));
     }
 
@@ -215,6 +253,9 @@ mod tests {
 
     #[test]
     fn it_can_normalize() {
-        assert_eq!(normalize("Indian architecture ǂz North America"), "indian architecture—north america")
+        assert_eq!(
+            normalize("Indian architecture ǂz North America"),
+            "indian architecture—north america"
+        )
     }
 }
