@@ -1,4 +1,4 @@
-use std::{collections::HashMap, hash::Hash, sync::LazyLock};
+use std::{collections::HashMap, sync::LazyLock};
 
 use marctk::{Field, Record};
 use serde::Deserialize;
@@ -130,5 +130,16 @@ mod tests {
     #[test]
     fn it_can_get_the_library_label() {
         assert_eq!(library_label("scsbcul"), Some("ReCAP"));
+    }
+
+    #[test]
+    fn it_can_return_mapped_codes_to_location_labels() {
+        let mapped_code = mapped_codes_location_label("firestone$pf");
+        let mut expected = std::collections::HashMap::new();
+        expected.insert(
+            "firestone$pf",
+            "Remote Storage (ReCAP): Firestone Library Use Only",
+        );
+        assert_eq!(mapped_code, expected);
     }
 }
