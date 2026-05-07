@@ -12,7 +12,6 @@ pub fn contains_subslice<T: PartialEq>(slice: &[T], subslice: &[T]) -> bool {
     slice.windows(subslice.len()).any(|w| w == subslice)
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -33,7 +33,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         "current_location_code",
         function!(ruby_current_location_code, 1),
     )?;
-    submodule_marc.define_singleton_method("indicates_indigenous_studies?", function!(indicates_indigenous_studies, 1))?;
+    submodule_marc.define_singleton_method(
+        "indicates_indigenous_studies?",
+        function!(indicates_indigenous_studies, 1),
+    )?;
     submodule_marc.define_singleton_method("holding_id", function!(holding_id, 2))?;
     submodule_marc.define_module_function("solr_fields", function!(solr_fields, 1))?;
     submodule_marc.define_singleton_method("is_oclc_number?", function!(is_oclc_number, 1))?;
@@ -192,9 +195,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
 }
 
 fn indicates_indigenous_studies(terms: magnus::RArray) -> Result<bool, magnus::Error> {
-    Ok(indigenous_studies::indicates_indigenous_studies(&terms.to_vec::<String>()?))
+    Ok(indigenous_studies::indicates_indigenous_studies(
+        &terms.to_vec::<String>()?,
+    ))
 }
-
 
 fn index_test_figgy_data_into_redis() {
     let json_fixture_path = APPLICATION_ROOT.join("spec/fixtures/files/figgy/figgy_report.json");
