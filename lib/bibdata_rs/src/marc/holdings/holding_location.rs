@@ -1,4 +1,4 @@
-use std::{collections::HashMap, sync::LazyLock};
+use std::{collections::HashMap, hash::Hash, sync::LazyLock};
 
 use marctk::{Field, Record};
 use serde::Deserialize;
@@ -36,6 +36,14 @@ pub fn location_label(code: &str) -> Option<&str> {
 
 pub fn library_label(code: &str) -> Option<&str> {
     LOCATIONS.get(code).map(|location| location.library.label)
+}
+
+pub fn mapped_codes_location_label(code: &str) -> HashMap<&str, &str> {
+    let mut mapped = HashMap::new();
+    if let Some(label) = location_label(code) {
+        mapped.insert(code, label);
+    }
+    mapped
 }
 
 pub fn location_codes(record: &Record) -> Vec<String> {

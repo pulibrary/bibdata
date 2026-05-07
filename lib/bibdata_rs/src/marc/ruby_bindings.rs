@@ -45,6 +45,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_singleton_method("library_label", function!(library_label, 1))?;
     submodule_marc.define_singleton_method("location_label", function!(location_label, 1))?;
     submodule_marc.define_singleton_method(
+        "mapped_codes_location_label",
+        function!(mapped_codes_location_label, 1),
+    )?;
+    submodule_marc.define_singleton_method(
         "map_024_indicators_to_labels",
         function!(map_024_indicators_to_labels, 1),
     )?;
@@ -213,6 +217,13 @@ fn library_label(code: String) -> Option<String> {
 
 fn location_label(code: String) -> Option<String> {
     holdings::holding_location::location_label(&code).map(|label| label.to_owned())
+}
+
+fn mapped_codes_location_label(code: String) -> HashMap<String, String> {
+    holdings::holding_location::mapped_codes_location_label(&code)
+        .into_iter()
+        .map(|(code, label)| (code.to_owned(), label.to_owned()))
+        .collect()
 }
 
 fn partner_holdings_1display(
