@@ -1,4 +1,4 @@
-use std::{collections::HashMap, hash::Hash, sync::LazyLock};
+use std::{collections::HashMap, sync::LazyLock};
 
 use marctk::{Field, Record};
 use serde::Deserialize;
