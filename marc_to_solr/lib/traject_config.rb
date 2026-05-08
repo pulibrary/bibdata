@@ -1368,8 +1368,6 @@ each_record do |record, context|
   location_codes = BibdataRs::Marc.location_codes(record)
   if location_codes.any?
     location_codes.uniq!
-    ## need to go through any location code that isn't from voyager, thesis, or graphic arts
-    ## issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
     location_names = Traject::TranslationMap.new('location_display').translate_array(location_codes).uniq
 
