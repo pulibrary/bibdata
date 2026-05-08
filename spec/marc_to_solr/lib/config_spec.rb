@@ -156,6 +156,7 @@ describe 'From traject_config.rb', :indexing do
       it 'indexes the location_code_s' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
         expect(record['location_code_s']).to eq ['lewis$stacks', 'firestone$stacks']
+        expect(record['advanced_location_s']).to eq ['lewis$stacks', 'firestone$stacks', 'Lewis Library', 'Firestone Library']
       end
     end
 

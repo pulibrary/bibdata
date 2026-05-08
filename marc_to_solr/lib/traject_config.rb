@@ -1369,25 +1369,24 @@ each_record do |record, context|
   if location_codes.any?
     location_codes.uniq!
     context.output_hash['location_code_s'] = location_codes
-    location_names = Traject::TranslationMap.new('location_display').translate_array(location_codes).uniq
 
     # The holding_library is used with some locations to add an additional owning library,
     # which is included in advanced search but not facets.
     holding_library = Traject::TranslationMap.new('holding_library')
+
+    # Add library and location for advanced multi-select facet
+    context.output_hash['advanced_location_s'] = Array.new(location_codes)
+
     location_codes.each do |l|
       code_location_label = BibdataRs::Marc.mapped_codes_location_label(l)
       if code_location_label.any?
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << code_location_label[l]
+        context.output_hash['advanced_location_s'] << BibdataRs::Marc.library_label(l)
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
     end
-
-    # Add library and location for advanced multi-select facet
-    context.output_hash['advanced_location_s'] = Array.new(location_codes)
-    context.output_hash['advanced_location_s'] << location_names
-    context.output_hash['advanced_location_s'].flatten!
   end
 end
 
