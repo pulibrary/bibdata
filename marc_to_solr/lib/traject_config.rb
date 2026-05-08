@@ -1375,14 +1375,14 @@ each_record do |record, context|
     holding_library = Traject::TranslationMap.new('holding_library')
 
     # Add library and location for advanced multi-select facet
-    advanced_search_location = context.output_hash['advanced_location_s'] = Array.new(location_codes)
+    context.output_hash['advanced_location_s'] = Array.new(location_codes)
 
     location_codes.each do |l|
       code_location_label = BibdataRs::Marc.mapped_codes_location_label(l)
       if code_location_label.any?
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << code_location_label[l]
-        advanced_search_location << BibdataRs::Marc.library_label(l)
+        context.output_hash['advanced_location_s'] << BibdataRs::Marc.library_label(l)
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
