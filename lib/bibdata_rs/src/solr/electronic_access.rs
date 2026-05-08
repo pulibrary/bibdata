@@ -1,4 +1,4 @@
-use serde::{Deserialize, Deserializer, Serialize, ser::Error};
+use serde::{Deserialize, Deserializer, Serialize, ser::SerializeMap};
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct ElectronicAccess {
@@ -46,7 +46,11 @@ impl Serialize for ElectronicAccess {
             );
         }
 
-        serializer.serialize_str(&serde_json::to_string(&hash).map_err(S::Error::custom)?)
+        let mut map = serializer.serialize_map(Some(hash.len()))?;
+        for (key, val) in hash {
+            map.serialize_entry(&key, &val)?;
+        }
+        map.end()
     }
 }
 
@@ -113,7 +117,7 @@ mod tests {
         };
         assert_eq!(
             serde_json::to_string(&access).unwrap(),
-            r#""{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\"]}""#
+            "{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\"]}"
         );
     }
 
@@ -140,5 +144,19 @@ mod tests {
         );
         assert_eq!(parsed.link_text, "Electronic Resource");
         assert_eq!(parsed.link_description.unwrap(), "My nice description");
+    }
+
+    #[test]
+    fn it_does_not_serialize_twice() {
+        let access = ElectronicAccess {
+            url: "http://arks.princeton.edu/ark:/88435/dch989rf19q".to_owned(),
+            link_text: "Electronic Resource".to_owned(),
+            link_description: None,
+            iiif_manifest_paths: None,
+        };
+        assert_eq!(
+            serde_json::to_string(&access).unwrap(),
+            "{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\"]}"
+        );
     }
 }

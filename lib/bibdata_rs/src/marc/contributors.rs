@@ -141,4 +141,29 @@ mod tests {
             }
         )
     }
+
+    #[test]
+    fn it_does_not_serialize_twice() {
+        let record = Record::from_breaker(
+            r#"=700 1\$aSethi, Bishnupada,$d1967-$1https://id.oclc.org/worldcat/entity/E39PCjvwtBJYbmJmWPHmjpwRGb
+=700 1\$India$bDirector of Census Operations, Odisha.
+=700 1\$aIndia$bOffice of the Registrar General & Census Commissioner."#,
+        )
+        .unwrap();
+        let json_string= serde_json::to_string(&AuthorRoles::from(&record)).unwrap_or_default();
+        assert_eq!(json_string, "{\"secondary_authors\":[\"Sethi, Bishnupada\",\"India\"],\"translators\":[],\"editors\":[],\"compilers\":[]}");
+        assert_eq!(
+            AuthorRoles::from(&record),
+            AuthorRoles {
+                primary_author: None,
+                secondary_authors: vec![
+                    "Sethi, Bishnupada".to_owned(),
+                    "India".to_owned()
+                ],
+                translators: vec![],
+                editors: vec![],
+                compilers: vec![]
+            }
+        )
+    }
 }

@@ -172,7 +172,7 @@ mod tests {
             .build();
         let serialized = serde_json::to_string(&document).unwrap();
         assert!(serialized.contains(
-            r#""electronic_access_1display":"{\"http://arks.princeton.edu/ark:/88435/dsp01b2773v788\":[\"DataSpace\",\"Full text\"]}""#
+            "\"electronic_access_1display\":{\"http://arks.princeton.edu/ark:/88435/dsp01b2773v788\":[\"DataSpace\",\"Full text\"]}"
         ))
     }
 
@@ -186,7 +186,7 @@ mod tests {
             .build();
         let serialized = serde_json::to_string(&document).unwrap();
         assert!(serialized.contains(
-            r#""author_roles_1display":"{\"primary_author\":\"Prang, Louis\",\"secondary_authors\":[],\"translators\":[],\"editors\":[],\"compilers\":[]}""#
+            "{\"author_roles_1display\":{\"primary_author\":\"Prang, Louis\",\"secondary_authors\":[],\"translators\":[],\"editors\":[],\"compilers\":[]}"
         ))
     }
 }
