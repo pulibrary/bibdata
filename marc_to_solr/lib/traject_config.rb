@@ -1370,10 +1370,6 @@ each_record do |record, context|
     location_codes.uniq!
     context.output_hash['location_code_s'] = location_codes
 
-    # The holding_library is used with some locations to add an additional owning library,
-    # which is included in advanced search but not facets.
-    holding_library = Traject::TranslationMap.new('holding_library')
-
     # Add library and location for advanced multi-select facet
     context.output_hash['advanced_location_s'] = Array.new(location_codes)
 
