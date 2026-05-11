@@ -24,7 +24,7 @@ GIT
 GEM
   remote: https://gems.contribsys.com/
   specs:
-    sidekiq-pro (7.3.4)
+    sidekiq-pro (7.3.7)
       sidekiq (>= 7.3.7, < 8)
 
 GEM
@@ -525,7 +525,7 @@ GEM
       tsort
     readline (0.0.4)
       reline
-    redis-client (0.23.0)
+    redis-client (0.29.0)
       connection_pool
     regexp_parser (2.12.0)
     reline (0.6.3)
@@ -620,11 +620,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    sidekiq (7.3.7)
-      connection_pool (>= 2.3.0)
+    sidekiq (7.3.10)
+      base64
+      connection_pool (>= 2.3.0, < 3)
       logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
+      rack (>= 2.2.4, < 3.3)
+      redis-client (>= 0.23.0, < 1)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -744,7 +745,7 @@ DEPENDENCIES
   capistrano-rails-console
   capybara
   change_the_subject!
-  connection_pool (~> 2.5)
+  connection_pool (< 3)
   coveralls_reborn
   datadog
   devise
@@ -802,7 +803,7 @@ DEPENDENCIES
   rubyzip
   sass-rails
   selenium-webdriver
-  sidekiq
+  sidekiq (< 8)
   sidekiq-pro!
   simplecov
   stringex!
