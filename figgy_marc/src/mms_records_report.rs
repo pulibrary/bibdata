@@ -54,12 +54,26 @@ pub fn only_open(full_cache: &FiggyMmsIdCache) -> FiggyMmsIdCache {
         .collect()
 }
 
+pub fn ark_eq(ark: &str, json: &serde_json::Value) -> bool {
+    json.as_object()
+        .and_then(|object| object.get("ark"))
+        .map(|json_ark| json_ark.as_str() == Some(ark))
+        .unwrap_or(false)
+}
+
+pub fn iiif_manifest_url(json: &serde_json::Value) -> Option<&str> {
+    json.as_object()
+        .and_then(|object| object.get("iiif_manifest_url"))
+        .and_then(|manifest| manifest.as_str())
+}
+
 #[cfg(test)]
 mod tests {
     use crate::test_helpers::FiggyConfigBuilder;
 
     use super::*;
     use mockito::Matcher;
+    use serde_json::json;
 
     const BASIC_RESPONSE: &str = r#"{
   "99129146648906421": [
@@ -115,5 +129,30 @@ mod tests {
             Err(FiggyMarcError::CouldNotAuthenticateToFiggy(_))
         ));
         mock.assert();
+    }
+
+    #[test]
+    fn it_can_tell_if_ark_is_equal_to_ark_in_json_object() {
+        let json = json!({"ark":"http://arks.princeton.edu/ark:/88435/dc08613099f","iiif_manifest_url":"https://figgy.princeton.edu/concern/scanned_resources/4abf0d8c-a64a-4422-a3f4-229fd9b3b28d/manifest","label":{"@value":"Stress Analysis of Coil Support Frames for B-3 Machine.","@language":"en"},"portion_note":null,"visibility":{"value":"open","label":"open","definition":"Open to the world. Anyone can view."}});
+        assert!(ark_eq(
+            "http://arks.princeton.edu/ark:/88435/dc08613099f",
+            &json
+        ));
+        assert!(!ark_eq(
+            "http://arks.princeton.edu/ark:/i/do/not/match",
+            &json
+        ));
+    }
+
+    #[test]
+    fn it_can_get_the_iiif_manifest_url_from_json_object() {
+        let json = json!({"ark":"http://arks.princeton.edu/ark:/88435/dc08613099f","iiif_manifest_url":"https://figgy.princeton.edu/concern/scanned_resources/4abf0d8c-a64a-4422-a3f4-229fd9b3b28d/manifest","label":{"@value":"Stress Analysis of Coil Support Frames for B-3 Machine.","@language":"en"},"portion_note":null,"visibility":{"value":"open","label":"open","definition":"Open to the world. Anyone can view."}});
+        assert_eq!(
+            iiif_manifest_url(&json),
+            Some(
+                "https://figgy.princeton.edu/concern/scanned_resources/4abf0d8c-a64a-4422-a3f4-229fd9b3b28d/manifest"
+            )
+        );
+        assert_eq!(iiif_manifest_url(&json!({})), None);
     }
 }

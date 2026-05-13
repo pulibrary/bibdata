@@ -8,7 +8,6 @@ require_relative 'cache_map'
 require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
 require_relative 'hierarchical_heading'
-require_relative 'iiif_manifest_url_builder'
 require_relative 'linked_fields_extractor'
 require_relative 'orangelight_url_builder'
 require_relative 'process_holdings_helpers'
@@ -195,8 +194,10 @@ def electronic_access_links(record, figgy_dir_path)
       end
 
       # Figgy URL's
-      figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, service_host: 'figgy.princeton.edu')
-      figgy_iiif_manifest = figgy_url_builder.build(url: electronic_access_link.ark)
+      url = electronic_access_link.ark
+      figgy_iiif_manifest = if url.is_a? URI::ARK
+                              BibdataRs::Marc.manifest_url("#{url.scheme}://#{url.hostname}/ark:/#{url.naan}/#{url.name}")
+                            end
       if figgy_iiif_manifest
         figgy_iiif_manifest_link = electronic_access_link.clone url_key: figgy_iiif_manifest.to_s
         iiif_manifest_paths[electronic_access_link.url_key] = figgy_iiif_manifest_link.url.to_s

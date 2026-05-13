@@ -1,4 +1,16 @@
 {
+  "9947652213506421": [
+    {
+      "visibility": {
+        "value":"open",
+        "label":"open",
+        "definition":"Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "ark": "http://arks.princeton.edu/ark:/88435/00000140q",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/181f7a9d-7e3c-4519-a79f-90113f65a14d/manifest"
+    }
+  ],
   "99129146648906421": [
     {
       "visibility": {
