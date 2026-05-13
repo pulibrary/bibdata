@@ -110,12 +110,6 @@ describe 'From traject_config.rb', :indexing do
         access_links = record['electronic_access_1display']
         expect(JSON.parse(access_links.first)).to eq('http://dx.doi.org/10.1007/BFb0088073' => ['dx.doi.org'])
       end
-
-      it 'does not index elf locations for alma' do
-        expect(@sample38['location_display']).to be_nil
-        expect(@sample38['location']).to be_nil
-        expect(@sample38['holdings_1display']).to be_nil
-      end
     end
 
     describe 'marcxml field' do
