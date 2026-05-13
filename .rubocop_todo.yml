@@ -132,7 +132,6 @@ Naming/MemoizedInstanceVariableName:
   Exclude:
     - 'app/adapters/alma_adapter/availability_status.rb'
     - 'marc_to_solr/lib/alma_reader.rb'
-    - 'marc_to_solr/lib/cache_manager.rb'
     - 'marc_to_solr/lib/electronic_access_link.rb'
     - 'marc_to_solr/lib/genre.rb'
 
@@ -576,8 +575,6 @@ Style/GlobalStdStream:
     - 'config/environments/staging.rb'
     - 'config/lando_env.rb'
     - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/cache_manager.rb'
-    - 'marc_to_solr/lib/cache_map.rb'
     - 'marc_to_solr/lib/electronic_access_link.rb'
 
 # Offense count: 9
@@ -587,7 +584,6 @@ Style/GuardClause:
     - 'config/initializers/monkeypatches/alma_api_limit_patch.rb'
     - 'marc_to_solr/lib/augment_the_subject.rb'
     - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/iiif_manifest_url_builder.rb'
     - 'marc_to_solr/lib/orangelight_url_builder.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/solr_deleter.rb'
@@ -752,12 +748,6 @@ Style/RedundantArgument:
     - 'app/controllers/concerns/formatting_concern.rb'
     - 'spec/support/stub_alma.rb'
 
-# Offense count: 1
-# This cop supports safe auto-correction (--auto-correct).
-Style/RedundantBegin:
-  Exclude:
-    - 'marc_to_solr/lib/cache_map.rb'
-
 # Offense count: 2
 # This cop supports unsafe auto-correction (--auto-correct-all).
 # Configuration parameters: SafeForConstants.
@@ -847,7 +837,6 @@ Style/StringConcatenation:
 Style/SymbolProc:
   Exclude:
     - 'app/models/dump.rb'
-    - 'marc_to_solr/lib/composite_cache_map.rb'
     - 'marc_to_solr/lib/format/bib_types.rb'
 
 # Offense count: 2

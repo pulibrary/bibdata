@@ -1,13 +1,8 @@
 require 'faraday'
 require 'json'
-require 'lightly'
 require 'rsolr'
 require 'time'
 require 'zlib'
-
-require_relative '../../marc_to_solr/lib/cache_adapter'
-require_relative '../../marc_to_solr/lib/cache_manager'
-require_relative '../../marc_to_solr/lib/cache_map'
 
 default_bibdata_url = 'https://bibdata-staging.lib.princeton.edu'
 bibdata_url = ENV.fetch('BIBDATA_URL', nil) || default_bibdata_url
@@ -126,32 +121,6 @@ namespace :liberate do
     abort 'DUMP_ID file name must be indicated via environment variable' unless dump_id > 0
     service = DumpLogIdsService.new
     service.process_dump(dump_id)
-  end
-
-  namespace :arks do
-    desc 'Seed the ARK cache'
-    task :seed_cache, [:figgy_dir_path] do |_t, args|
-      figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
-      figgy_lightly = Lightly.new(dir: figgy_dir_path, life: 0, hash: false)
-      figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
-
-      logger = Logger.new(STDOUT)
-      cache_manager = CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger:)
-      cache_manager.seed!
-    end
-
-    desc 'Clear the ARK cache'
-    task :clear_cache, [:figgy_dir_path] do |_t, args|
-      figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
-      CacheManager.clear(dir: figgy_dir_path)
-    end
-
-    desc 'Clear, then seed, the ARK cache'
-    task :clear_and_seed_cache, [:figgy_dir_path] do |_t, args|
-      figgy_dir_path = ENV.fetch('FIGGY_ARK_CACHE_PATH', nil) || args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
-      Rake::Task['liberate:arks:clear_cache'].invoke(figgy_dir_path)
-      Rake::Task['liberate:arks:seed_cache'].invoke(figgy_dir_path)
-    end
   end
 end
 
