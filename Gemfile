@@ -52,7 +52,7 @@ gem 'rest-client', require: false
 gem 'rsolr', '~> 2.5.0'
 gem 'rubyzip'
 gem 'sass-rails'
-gem 'sidekiq', '~> 8.0.10'
+gem 'sidekiq', '~> 8.1.4'
 gem 'stringex', github: 'pulibrary/stringex', tag: 'vpton.2.5.2.2'
 gem 'terser'
 gem 'traject'
