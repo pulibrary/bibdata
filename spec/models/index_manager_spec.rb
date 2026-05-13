@@ -10,15 +10,23 @@ RSpec.describe IndexManager, :indexing, :sidekiq, type: :model do
     solr.commit
   end
 
+  # rubocop:disable Rails/NegateInclude
   def run_all_callbacks
-    old_batch = nil
-    while (batch = Sidekiq::BatchSet.new.to_a.last).bid != old_batch&.bid
-      old_batch = batch
+    batches_processed = []
+    loop do
+      batch = Sidekiq::BatchSet.new.to_a.find do |b|
+        !batches_processed.include?(b.bid) && b.parent_bid.present?
+      end
+      break unless batch
+
+      batches_processed << batch.bid
       run_callback(batch)
     end
-    # Run callback for the parent batch.
-    run_callback(Sidekiq::BatchSet.new.to_a.first)
+
+    parent_batch = Sidekiq::BatchSet.new.to_a.find { |b| b.parent_bid.nil? }
+    run_callback(parent_batch) if parent_batch
   end
+  # rubocop:enable Rails/NegateInclude
 
   describe '.rebuild_solr_url' do
     it 'appends -rebuild to the URL' do
