@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'From princeton_marc.rb' do
+describe 'From princeton_marc.rb', :indexing do
   before(:all) do
     @indexer = IndexerService.build
   end

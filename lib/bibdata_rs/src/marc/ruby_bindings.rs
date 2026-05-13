@@ -44,6 +44,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_module_function("location_codes", function!(ruby_location_codes, 1))?;
     submodule_marc.define_singleton_method("library_label", function!(library_label, 1))?;
     submodule_marc.define_singleton_method("location_label", function!(location_label, 1))?;
+    submodule_marc.define_singleton_method("manifest_url", function!(manifest_url, 1))?;
     submodule_marc.define_singleton_method(
         "mapped_codes_location_label",
         function!(mapped_codes_location_label, 1),
@@ -277,6 +278,13 @@ fn ruby_current_location_code(
 ) -> Result<Option<String>, magnus::Error> {
     let field_876 = marctk_data_field_from_ruby_marc(ruby, &field);
     Ok(field_876.and_then(|field| holdings::holding_location::current_location_code(&field)))
+}
+
+fn manifest_url(
+    ruby: &Ruby,
+    ark: magnus::RString,
+) -> Result<Option<magnus::RString>, magnus::Error> {
+    Ok(figgy::manifest_url(&ark.to_string()?, None).map(|manifest_url| ruby.str_new(manifest_url)))
 }
 
 #[cfg(test)]

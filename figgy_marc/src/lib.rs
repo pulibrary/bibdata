@@ -9,7 +9,9 @@ mod mms_records_report;
 mod visibility;
 
 pub use config::FiggyConfig;
-pub use mms_records_report::{FiggyItems, FiggyMmsIdCache, fetch_report, only_open};
+pub use mms_records_report::{
+    FiggyItems, FiggyMmsIdCache, ark_eq, fetch_report, iiif_manifest_url, only_open,
+};
 pub use visibility::Visibility;
 
 #[cfg(test)]
