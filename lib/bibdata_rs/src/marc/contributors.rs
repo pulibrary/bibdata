@@ -150,16 +150,16 @@ mod tests {
 =700 1\$aIndia$bOffice of the Registrar General & Census Commissioner."#,
         )
         .unwrap();
-        let json_string= serde_json::to_string(&AuthorRoles::from(&record)).unwrap_or_default();
-        assert_eq!(json_string, "{\"secondary_authors\":[\"Sethi, Bishnupada\",\"India\"],\"translators\":[],\"editors\":[],\"compilers\":[]}");
+        let json_string = serde_json::to_string(&AuthorRoles::from(&record)).unwrap_or_default();
+        assert_eq!(
+            json_string,
+            "{\"secondary_authors\":[\"Sethi, Bishnupada\",\"India\"],\"translators\":[],\"editors\":[],\"compilers\":[]}"
+        );
         assert_eq!(
             AuthorRoles::from(&record),
             AuthorRoles {
                 primary_author: None,
-                secondary_authors: vec![
-                    "Sethi, Bishnupada".to_owned(),
-                    "India".to_owned()
-                ],
+                secondary_authors: vec!["Sethi, Bishnupada".to_owned(), "India".to_owned()],
                 translators: vec![],
                 editors: vec![],
                 compilers: vec![]
