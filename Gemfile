@@ -57,6 +57,7 @@ gem 'stringex', github: 'pulibrary/stringex', tag: 'vpton.2.5.2.2'
 gem 'terser'
 gem 'traject'
 gem 'turbolinks'
+gem 'vernier'
 gem 'whenever'
 gem 'yard'
 

@@ -690,6 +690,7 @@ GEM
     unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
+    vernier (1.10.1)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -810,6 +811,7 @@ DEPENDENCIES
   timecop
   traject
   turbolinks
+  vernier
   webmock
   whenever
   yard
