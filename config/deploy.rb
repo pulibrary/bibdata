@@ -28,7 +28,6 @@ set :linked_dirs, %w{
   target
   tmp/pids
   tmp/cache
-  tmp/figgy_ark_cache
   tmp/sockets
   vendor/bundle
   public/system

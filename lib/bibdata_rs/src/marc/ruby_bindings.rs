@@ -53,6 +53,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         "map_024_indicators_to_labels",
         function!(map_024_indicators_to_labels, 1),
     )?;
+    submodule_marc.define_singleton_method("mms_id", function!(mms_id, 1))?;
     submodule_marc
         .define_singleton_method("normalize_oclc_number", function!(normalize_oclc_number, 1))?;
     submodule_marc.define_singleton_method(
@@ -285,6 +286,10 @@ fn manifest_url(
     ark: magnus::RString,
 ) -> Result<Option<magnus::RString>, magnus::Error> {
     Ok(figgy::manifest_url(&ark.to_string()?, None).map(|manifest_url| ruby.str_new(manifest_url)))
+}
+
+fn mms_id(ruby: &Ruby, ark: magnus::RString) -> Result<Option<magnus::RString>, magnus::Error> {
+    Ok(figgy::mms_id(&ark.to_string()?, None).map(|mms_id| ruby.str_new(mms_id)))
 }
 
 #[cfg(test)]

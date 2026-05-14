@@ -77,9 +77,7 @@ describe 'From princeton_marc.rb', :indexing do
   end
 
   describe '#electronic_access_links' do
-    subject(:links) { electronic_access_links(marc_record, figgy_dir_path) }
-
-    let(:figgy_dir_path) { ENV.fetch('FIGGY_ARK_CACHE_PATH', nil) || 'spec/fixtures/marc_to_solr/figgy_ark_cache' }
+    subject(:links) { electronic_access_links(marc_record) }
 
     let(:url) { 'https://domain.edu/test-resource' }
     # rubocop:disable RSpec/IndexedLet
@@ -110,9 +108,9 @@ describe 'From princeton_marc.rb', :indexing do
       let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2, l856_3]) }
 
       it 'retrieves the URL for the current resource' do
-        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['Digital content'])
-        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view_1' => ['Digital content', 'label'])
-        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view_2' => ['Selected images'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/9947652213506421#view' => ['Digital content'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/9947652213506421#view_1' => ['Digital content', 'label'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/9947652213506421#view_2' => ['Selected images'])
         expect(links).not_to include('http://arks.princeton.edu/ark:/88435/00000140q' => ['arks.princeton.edu'])
       end
 

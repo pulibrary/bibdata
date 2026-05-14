@@ -84,7 +84,6 @@ jobs:
           command: bundle exec rspec spec
           environment:
             RAILS_ENV: test
-            FIGGY_ARK_CACHE_PATH: spec/fixtures/marc_to_solr/figgy_ark_cache
             TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
             BIBDATA_ADMIN_NETIDS: admin123
 

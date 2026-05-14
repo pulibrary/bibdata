@@ -1,10 +1,6 @@
 require 'active_support'
 require 'library_standard_numbers'
-require 'lightly'
 require 'uri'
-require_relative 'cache_adapter'
-require_relative 'cache_manager'
-require_relative 'cache_map'
 require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
 require_relative 'hierarchical_heading'
@@ -137,24 +133,11 @@ def process_subject_topic_facet record
   lcsh_subjects + other_thesaurus_subjects
 end
 
-# Construct (or retrieve) the cache manager service
-# @return [CacheManager] the cache manager service
-def build_cache_manager(figgy_dir_path:)
-  return @cache_manager unless @cache_manager.nil?
-
-  figgy_lightly = Lightly.new(dir: figgy_dir_path, life: 0, hash: false)
-  figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
-
-  CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger:)
-
-  @cache_manager = CacheManager.current
-end
-
 # returns hash of links ($u) (key),
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
 # @param [MARC::Record] the MARC record being parsed
 # @return [Hash] the values used to construct the links
-def electronic_access_links(record, figgy_dir_path)
+def electronic_access_links(record)
   solr_field_values = {}
   holding_856s = {}
   iiif_manifest_paths = {}
@@ -174,11 +157,8 @@ def electronic_access_links(record, figgy_dir_path)
 
     # If the electronic access link is an ARK...
     if electronic_access_link.ark
-      # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
-      cache_manager = build_cache_manager(figgy_dir_path:)
-
       # Orangelight links
-      catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, fragment: fragment_value(fragment_index))
+      catalog_url_builder = OrangelightUrlBuilder.new(fragment: fragment_value(fragment_index))
       orangelight_url = catalog_url_builder.build(url: electronic_access_link.ark)
 
       if orangelight_url
