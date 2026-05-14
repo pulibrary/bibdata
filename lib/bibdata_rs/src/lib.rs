@@ -6,6 +6,7 @@ use theses::legacy_dataspace::collection as legacy_collection;
 
 mod ephemera;
 pub mod languages;
+pub mod locations;
 pub mod marc;
 mod paths;
 pub mod solr;
