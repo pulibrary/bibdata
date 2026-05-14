@@ -44,7 +44,7 @@ class AccessFacetBuilder
     # it's second indicator is 0, 1, or blank
     def marc_indicator
       field = record.find { |f| f.tag == '856' }
-      indicator = field.try(:indicator2)
+      indicator = field&.indicator2
 
       'Online' if ['0', '1', ' '].include?(indicator)
     end
