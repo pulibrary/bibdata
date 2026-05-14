@@ -1,41 +1,17 @@
-use std::{collections::HashMap, sync::LazyLock};
+use std::collections::HashMap;
 
 use marctk::{Field, Record};
-use serde::Deserialize;
 
-use crate::marc::alma_code_start_22;
-
-const HOLDING_LOCATION_JSON: &str =
-    include_str!("../../../../../config/locations/holding_locations.json");
-
-#[derive(Deserialize)]
-pub struct Library<'a> {
-    label: &'a str,
-}
-
-#[derive(Deserialize)]
-pub struct Location<'a> {
-    label: &'a str,
-    code: &'a str,
-    library: Library<'a>,
-}
-
-static LOCATIONS: LazyLock<HashMap<&str, Location>> = LazyLock::new(|| {
-    let locations: Vec<Location> = serde_json::from_str(HOLDING_LOCATION_JSON)
-        .expect("Could not parse the holding_locations.json");
-    let mut hash = HashMap::new();
-    for location in locations {
-        hash.insert(location.code, location);
-    }
-    hash
-});
+use crate::{locations::HOLDING_LOCATIONS, marc::alma_code_start_22};
 
 pub fn location_label(code: &str) -> Option<&str> {
-    LOCATIONS.get(code).map(|location| location.label)
+    HOLDING_LOCATIONS.get(code).map(|location| location.label)
 }
 
 pub fn library_label(code: &str) -> Option<&str> {
-    LOCATIONS.get(code).map(|location| location.library.label)
+    HOLDING_LOCATIONS
+        .get(code)
+        .map(|location| location.library.label)
 }
 
 pub fn mapped_codes_location_label(code: &str) -> HashMap<&str, &str> {
