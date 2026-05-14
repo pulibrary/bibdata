@@ -17,8 +17,6 @@ describe 'accessibility', :axe, :js, type: :feature do
         .excluding('a[href$="libraries"]')
         .excluding('.deployment-version')
         .excluding('span')
-        .excluding('.form-group')
-        .excluding('input[value="1"][name="holdings_only"][type="hidden"]')
         .excluding('a[rel="nofollow"]')
     end
   end
