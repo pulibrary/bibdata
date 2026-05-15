@@ -64,7 +64,7 @@ gem 'whenever'
 gem 'yard'
 
 group :production do
-  gem 'datadog', require: 'datadog/auto_instrument'
+  gem 'datadog'
 end
 
 group :development do
