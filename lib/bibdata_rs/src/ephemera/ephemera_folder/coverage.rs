@@ -8,6 +8,17 @@ pub struct Coverage {
     pub label: String,
 }
 
+impl Coverage {
+    /// Returns true if this coverage uses an
+    /// accepted vocabulary, false if it uses an
+    /// unaccepted one, or no vocabulary at all
+    pub fn accepted_vocabulary(&self) -> bool {
+        self.exact_match
+            .as_ref()
+            .is_some_and(|em| em.accepted_vocabulary())
+    }
+}
+
 impl<'de> Deserialize<'de> for Coverage {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where

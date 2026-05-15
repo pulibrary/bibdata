@@ -153,12 +153,7 @@ impl EphemeraFolder {
         match &self.coverage {
             Some(coverage_vector) => coverage_vector
                 .iter()
-                .filter(|coverage| {
-                    coverage
-                        .exact_match
-                        .as_ref()
-                        .is_some_and(|em| em.accepted_vocabulary())
-                })
+                .filter(|coverage| coverage.accepted_vocabulary())
                 .map(|coverage| coverage.label.clone())
                 .collect(),
             None => vec![],
@@ -196,18 +191,29 @@ impl EphemeraFolder {
         })
     }
 
+    /// All LC Subjects, including LCSH and LC Countries (geographic subject)
     pub fn lc_subject_labels(&self) -> Option<Vec<String>> {
-        self.subject.as_ref().map(|subjects| {
-            subjects
-                .iter()
-                .filter(|s| {
-                    s.exact_match
-                        .as_ref()
-                        .map(|em| em.accepted_loc_vocabulary())
-                        .unwrap_or(false)
-                })
-                .map(|s| s.label.clone())
-                .collect()
+        let subjects: Vec<String> = self
+            .lcsh_topic_subjects()
+            .map(|subject| subject.to_owned())
+            .chain(self.coverage_labels())
+            .collect();
+        if subjects.is_empty() {
+            None
+        } else {
+            Some(subjects)
+        }
+    }
+
+    fn lcsh_topic_subjects(&self) -> impl Iterator<Item = &str> {
+        self.subject.iter().flat_map(|subjects| {
+            subjects.iter().filter_map(|subject| {
+                if subject.uses_loc_vocabulary() {
+                    Some(subject.label.as_str())
+                } else {
+                    None
+                }
+            })
         })
     }
 
