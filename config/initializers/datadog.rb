@@ -10,7 +10,8 @@ if Rails.env.production?
     c.tracing.instrument :redis
   
     # Net::HTTP
-    c.tracing.instrument :http
+    # THis appears to conflict with open telemetry's instrumentation
+    # c.tracing.instrument :http
   
     # Sidekiq
     c.tracing.instrument :sidekiq

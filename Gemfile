@@ -43,6 +43,9 @@ gem 'omniauth-cas'
 gem 'omniauth-rails_csrf_protection'
 gem 'open3'
 gem 'openssl'
+gem 'opentelemetry-exporter-otlp'
+gem 'opentelemetry-instrumentation-all'
+gem 'opentelemetry-sdk'
 gem 'pg'
 gem 'rack'
 gem 'rails', '~> 8.1'
@@ -61,7 +64,7 @@ gem 'whenever'
 gem 'yard'
 
 group :production do
-  gem 'datadog', require: 'datadog/auto_instrument'
+  gem 'datadog'
 end
 
 group :development do
