@@ -15,8 +15,8 @@ class HoldingLocationsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_holding_location
-      # nosemgrep
       @holding_location_rust = BibdataRs::Location.holding_location(params[:id])
+      # nosemgrep
       @holding_location = HoldingLocation.friendly.find(params[:id])
     end
 end
