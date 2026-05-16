@@ -1,7 +1,8 @@
 // This module is responsible for creating a JSON formatted list of authors
 // and their roles.
 
-use serde::{Deserialize, Serialize, ser::Error};
+use serde::{Deserialize, Serialize};
+use std::fmt::Display;
 
 #[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 pub struct AuthorRoles {
@@ -12,11 +13,19 @@ pub struct AuthorRoles {
     pub compilers: Vec<String>,
 }
 
+/// Serialize the author roles to be a json string, with all the necessary escaping
 impl Serialize for AuthorRoles {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,
     {
+        serializer.serialize_str(&self.to_string())
+    }
+}
+
+/// Serialize the author roles to be a regular string, with no JSON escaping
+impl Display for AuthorRoles {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let mut hash = serde_json::Map::new();
         let cloned = self.clone();
         if let Some(primary) = cloned.primary_author {
@@ -29,7 +38,11 @@ impl Serialize for AuthorRoles {
         hash.insert(String::from("translators"), cloned.translators.into());
         hash.insert(String::from("editors"), cloned.editors.into());
         hash.insert(String::from("compilers"), cloned.compilers.into());
-        serializer.serialize_str(&serde_json::to_string(&hash).map_err(S::Error::custom)?)
+        if let Ok(str) = serde_json::to_string(&hash) {
+            f.write_str(&str)
+        } else {
+            Ok(())
+        }
     }
 }
 
