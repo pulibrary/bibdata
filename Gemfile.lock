@@ -859,7 +859,7 @@ GEM
     thor (1.5.0)
     thread_safe (0.3.6)
     tilt (2.5.0)
-    timecop (0.9.10)
+    timecop (0.9.11)
     timeout (0.6.1)
     tins (1.52.0)
       bigdecimal
