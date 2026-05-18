@@ -3,6 +3,20 @@
 require 'rails_helper'
 
 describe 'HoldingLocation', type: :request do
+  def stub_holding_location_rust(holding_location, label: nil, code: nil)
+    rust_holding_location = instance_double(
+      BibdataRs::Location,
+      label: label || "Rust #{holding_location.label}",
+      code: code || "rust:#{holding_location.code}"
+    )
+
+    allow(BibdataRs::Location).to receive(:holding_location)
+      .with(holding_location.code)
+      .and_return(rust_holding_location)
+
+    rust_holding_location
+  end
+
   context 'with a json view' do
     it 'Renders the json template' do
       get holding_locations_path, params: { format: :json }
@@ -73,14 +87,15 @@ describe 'HoldingLocation', type: :request do
         create(:library)
         create(:delivery_location)
         holding_location = create(:holding_location)
+        holding_location_rust = stub_holding_location_rust(holding_location)
         2.times do
           dl = create(:delivery_location)
           holding_location.delivery_locations << dl
         end
         holding_location.reload
         expected = {
-          label: holding_location.label,
-          code: holding_location.code,
+          label: holding_location_rust.label,
+          code: holding_location_rust.code,
           aeon_location: holding_location.aeon_location,
           recap_electronic_delivery_location: holding_location.recap_electronic_delivery_location,
           open: holding_location.open,
@@ -122,6 +137,7 @@ describe 'HoldingLocation', type: :request do
         create(:library)
         create(:delivery_location)
         holding_location = create(:holding_location)
+        holding_location_rust = stub_holding_location_rust(holding_location)
         2.times do
           dl = create(:delivery_location)
           holding_location.delivery_locations << dl
@@ -129,8 +145,8 @@ describe 'HoldingLocation', type: :request do
         holding_location.update(holding_library: create(:library))
         holding_location.reload
         expected = {
-          label: holding_location.label,
-          code: holding_location.code,
+          label: holding_location_rust.label,
+          code: holding_location_rust.code,
           aeon_location: holding_location.aeon_location,
           recap_electronic_delivery_location: holding_location.recap_electronic_delivery_location,
           open: holding_location.open,
@@ -227,14 +243,15 @@ describe 'HoldingLocation', type: :request do
         create(:library)
         create(:delivery_location)
         holding_location = create(:holding_location)
+        holding_location_rust = stub_holding_location_rust(holding_location)
         2.times do
           dl = create(:delivery_location)
           holding_location.delivery_locations << dl
         end
         holding_location.reload
         expected = [
-          CGI.escapeHTML(holding_location.label),
-          holding_location.code,
+          CGI.escapeHTML(holding_location_rust.label),
+          holding_location_rust.code,
           holding_location.aeon_location,
           holding_location.recap_electronic_delivery_location,
           holding_location.open,

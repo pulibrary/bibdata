@@ -50,6 +50,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(languages::two_letter_code_owned, 1),
     )?;
     marc::register_ruby_methods(&module)?;
+    locations::register_ruby_methods(ruby, &module)?;
     Ok(())
 }
 
