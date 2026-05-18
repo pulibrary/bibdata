@@ -86,13 +86,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         action_notes_1display.push(notes)?;
     }
 
-    let author_roles_1display =
-        serde_json::to_string(&AuthorRoles::from(&record)).map_err(|err| {
-            magnus::Error::new(
-                ruby.exception_runtime_error(),
-                format!("Found error {} while serializing author roles", err),
-            )
-        })?;
+    let author_roles_1display = AuthorRoles::from(&record).to_string();
     let format: Vec<_> = record_facet_mapping::format_facets(&record)
         .iter()
         .map(|facet| format!("{facet}"))
@@ -319,6 +313,21 @@ mod tests {
         assert_eq!(
             rbgenr_s_value,
             vec![String::from("Dictionaries—French—18th century")]
+        );
+    }
+
+    #[ruby_test]
+    fn it_includes_author_roles_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby.eval(r"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new( '700', '1', '', ['a', 'Sethi, Bishnupada, '], ['d', '1967-']));record").unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+
+        let author_roles_value = hash.aref::<&str, String>("author_roles_1display").unwrap();
+        assert_eq!(
+            author_roles_value,
+            String::from(
+                r#"{"secondary_authors":["Sethi, Bishnupada"],"translators":[],"editors":[],"compilers":[]}"#
+            )
         );
     }
 }
