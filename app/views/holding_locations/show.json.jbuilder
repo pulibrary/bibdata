@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+json.partial! 'holding_locations/json_partials/show_rust_fields',
+              holding_location_rust: @holding_location_rust
+
 json.partial! 'holding_locations/json_partials/show_fields',
               holding_location: @holding_location
 

@@ -6,6 +6,19 @@ describe 'Holding Location views link to other associated locations' do
   let(:library) { create(:library) }
   let(:delivery_location) { create(:delivery_location) }
   let(:holding_location) { create(:holding_location) }
+  let(:holding_location_rust) do
+    instance_double(
+      BibdataRs::Location,
+      label: "Rust #{holding_location.label}",
+      code: "rust:#{holding_location.code}"
+    )
+  end
+
+  before do
+    allow(BibdataRs::Location).to receive(:holding_location)
+      .with(holding_location.code)
+      .and_return(holding_location_rust)
+  end
 
   it 'Link to library from library label rather than extra show link' do
     library
@@ -17,6 +30,8 @@ describe 'Holding Location views link to other associated locations' do
     holding_location
     visit holding_locations_path
     click_link holding_location.code
+    expect(page).to have_content(holding_location_rust.label)
+    expect(page).to have_content(holding_location_rust.code)
   end
 
   it 'Link to delivery location from delivery location label rather than extra show link' do
