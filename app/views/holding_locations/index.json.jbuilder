@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 json.array!(@holding_locations) do |holding_location|
+  json.extract! holding_location, :label, :code
   json.partial! 'holding_locations/json_partials/show_fields',
                 holding_location: holding_location
 
