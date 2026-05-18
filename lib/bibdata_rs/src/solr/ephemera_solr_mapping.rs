@@ -44,6 +44,7 @@ impl From<&EphemeraFolder> for SolrDocument {
 mod tests {
 
     use crate::ephemera;
+    use crate::ephemera::ephemera_folder;
     use crate::ephemera::ephemera_folder::Thumbnail;
     use crate::ephemera::ephemera_folder::country;
     use crate::ephemera::ephemera_folder::coverage::Coverage;
@@ -541,6 +542,26 @@ mod tests {
         assert_eq!(
             solr_document.thumbnail_display,
             Some("https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/square/225,/0/default.jpg".to_string())
+        );
+    }
+
+    #[test]
+    fn it_includes_geographic_coverage_labels_in_subject() {
+        let ephemera_folder = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .coverage(vec![Coverage {
+                label: String::from("Pakistan"),
+                exact_match: Some(ephemera_folder::country::ExactMatch {
+                    id: String::from("http://id.loc.gov/vocabulary/countries/pk"),
+                }),
+            }])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_folder);
+        assert_eq!(
+            solr_document.lc_subject_display,
+            Some(vec!["Pakistan".to_string()])
         );
     }
 }

@@ -49,6 +49,15 @@ impl Subject {
             trace!("Subject missing exact_match: {:?}", self);
         }
     }
+
+    /// Returns true if this subject uses LCSH as its vocabulary,
+    /// returns false if it uses some other vocabulary, or no vocabulary at all
+    pub fn uses_loc_vocabulary(&self) -> bool {
+        self.exact_match
+            .as_ref()
+            .map(|em| em.accepted_loc_vocabulary())
+            .unwrap_or(false)
+    }
 }
 
 pub fn log_subjects_without_exact_match(subjects: &[Subject]) {
@@ -114,5 +123,29 @@ mod tests {
             "http://id.loc.gov/authorities/subjects/sh85088762"
         );
         assert_eq!(subject[0].label, "Music")
+    }
+
+    #[test]
+    fn it_can_tell_if_it_uses_lc_vocabulary() {
+        let uses_lc = Subject {
+            label: String::from("Music"),
+            exact_match: Some(ExactMatch {
+                id: Id {
+                    id: String::from("http://id.loc.gov/authorities/subjects/sh85088762"),
+                },
+            }),
+        };
+
+        let uses_something_else = Subject {
+            label: String::from("Music"),
+            exact_match: Some(ExactMatch {
+                id: Id {
+                    id: String::from("I AM NOT AN ACCEPTED VOCABULARY"),
+                },
+            }),
+        };
+
+        assert!(uses_lc.uses_loc_vocabulary());
+        assert!(!uses_something_else.uses_loc_vocabulary());
     }
 }
