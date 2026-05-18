@@ -31,7 +31,7 @@ gem 'library_standard_numbers'
 gem 'lograge'
 gem 'logstash-event'
 gem 'loofah', '>= 2.22'
-gem 'marc', '~> 1.0'
+gem 'marc', '~> 1.4'
 gem 'marc_cleanup', github: 'pulibrary/marc_cleanup', require: false
 gem 'mutex_m'
 gem 'net-imap', require: false
