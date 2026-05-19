@@ -1373,6 +1373,8 @@ describe 'From traject_config.rb', :indexing do
           expect(@local_subject_heading['lc_subject_display']).to include("Undocumented immigrants#{SEPARATOR}Europe")
           expect(@local_subject_heading['local_subject_display']).to eq(["Undocumented immigrants#{SEPARATOR}Europe"])
           expect(@siku_subject_headings['siku_subject_display']).to contain_exactly('Zi bu—Zhu jia lei—Jidu jiao zhi shu', '子部—諸家類—基督教之屬', 'Zi bu—Tian wen suan fa lei—Li fa.', '子部—天文算法類—曆法.')
+          byebug
+          expect(@siku_subject_headings['expanded_author_display']).to contian_exactly('', '')
         end
       end
 

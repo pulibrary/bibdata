@@ -54,6 +54,8 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub electronic_portfolio_s: Option<String>,
 
+    pub expanded_author_display: Option<Vec<String>>,
+
     pub format: Option<Vec<FormatFacet>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]

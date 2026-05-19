@@ -10,6 +10,7 @@ pub struct SolrDocumentBuilder {
     author_roles_1display: Option<AuthorRoles>,
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<Vec<String>>,
+    expanded_author_display: Option<Vec<String>>,
     format: Option<Vec<FormatFacet>>,
     geographic_facet: Option<Vec<String>>,
     id: String,
@@ -74,6 +75,11 @@ impl SolrDocumentBuilder {
 
     pub fn with_geographic_facet(&mut self, geographic_facet: Option<Vec<String>>) -> &mut Self {
         self.geographic_facet = geographic_facet;
+        self
+    }
+
+    pub fn with_expanded_author(&mut self, expanded_author: Option<Vec<String>>) -> &mut Self {
+        self.expanded_author_display = expanded_author;
         self
     }
 
@@ -335,6 +341,7 @@ impl SolrDocumentBuilder {
             call_number_display: self.call_number_display.clone(),
             call_number_browse_s: self.call_number_browse_s.clone(),
             electronic_access_1display: self.electronic_access_1display.clone(),
+            expanded_author_display: self.expanded_author_display.clone(),
             geographic_facet: self.geographic_facet.clone(),
             id: self.id.clone(),
             restrictions_display_text: self.restrictions_display_text.clone(),

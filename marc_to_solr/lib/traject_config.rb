@@ -137,6 +137,10 @@ to_field 'author_s' do |record, accumulator|
   accumulator.replace(names)
 end
 
+to_field 'expanded_author_display' do |record, accumulator, context|
+  accumulator.replace context.clipboard[:solr_fields]['expanded_author_display']
+end
+
 # for now not separate
 # to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
 
