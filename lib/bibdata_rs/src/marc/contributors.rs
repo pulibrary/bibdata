@@ -1,6 +1,7 @@
+use itertools::Itertools;
 use marctk::{Field, Record};
 
-use crate::{marc::trim_punctuation, solr::AuthorRoles};
+use crate::{marc::trim_punctuation, solr::AuthorRoles, solr::ExpandedAuthor};
 
 impl From<&Record> for AuthorRoles {
     fn from(record: &Record) -> Self {
@@ -38,6 +39,31 @@ impl From<&Record> for AuthorRoles {
             compilers,
             editors,
             translators,
+        }
+    }
+}
+
+impl From<&Record> for ExpandedAuthor {
+    fn from(record: &Record) -> Self {
+        let author_fields = record.extract_fields("100");
+        let parallel_fields =
+            record
+                .get_fields("880")
+                .into_iter()
+                .filter(|field| matches!(field.first_subfield("6"), Some(subfield) if subfield.content().starts_with("100")));
+        let expanded_author = author_fields
+            .chain(parallel_fields)
+            .map(|field| {
+                field
+                    .subfields()
+                    .iter()
+                    .filter(|subfield| subfield.code() == "a")
+                    .map(|subfield| subfield.content())
+                    .join(" ")
+            })
+            .collect::<Vec<String>>();
+        Self {
+            author: Some(expanded_author),
         }
     }
 }
@@ -138,6 +164,38 @@ mod tests {
                 ],
                 editors: vec!["Eugenides, Jeffrey".to_owned()],
                 compilers: vec!["Cole, Teju".to_owned()]
+            }
+        );
+        assert_eq!(
+            ExpandedAuthor::from(&record),
+            ExpandedAuthor {
+                author: Some(vec!("".to_owned(), "".to_owned()))
+            }
+        );
+    }
+
+    #[test]
+    fn it_can_find_expanded_author_from_marc_record() {
+        let record = Record::from_breaker(
+            r#"=100 \\$6880-01$aṢaffūrī, ʻAlī ibn ʻAbd al-Raḥmān,
+=880 \\$6100-01$aصفوري، علي بن عبد الرحمن.
+=700 \\$aEugenides, Jeffrey$4edt
+=700 \\$aCole, Teju$4com
+=700 \\$aNikolakopoulou, Evangelia$4trl
+=700 \\$aMorrison, Toni$4aaa
+=700 \\$aOates, Joyce Carol
+=700 \\$aMarchesi, Simone$etranslator.
+=700 \\$aFitzgerald, F. Scott$eed."#
+        )
+        .unwrap();
+
+        assert_eq!(
+            ExpandedAuthor::from(&record),
+            ExpandedAuthor {
+                author: Some(vec!(
+                    "Ṣaffūrī, ʻAlī ibn ʻAbd al-Raḥmān,".to_owned(),
+                    "صفوري، علي بن عبد الرحمن.".to_owned()
+                ))
             }
         )
     }
