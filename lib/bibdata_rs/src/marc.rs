@@ -21,6 +21,7 @@ pub mod publication;
 pub mod record_facet_mapping;
 pub mod scsb;
 pub mod subject;
+pub mod suggest;
 pub mod variable_length_field;
 
 mod figgy;
