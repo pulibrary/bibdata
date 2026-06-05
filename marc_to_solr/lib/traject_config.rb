@@ -1578,3 +1578,9 @@ each_record do |_record, context|
     context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
 end
+
+
+to_field 'south_asian_latin_suggest' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['south_asian_latin_suggest'])
+end
+
