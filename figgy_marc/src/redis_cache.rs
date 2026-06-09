@@ -31,7 +31,7 @@ pub fn read() -> FiggyMmsIdCache {
         &connection
             .get(REDIS_CACHE_KEY)
             .expect("It cannot connect to redis to get the data")
-            .expect("It can connect to redis but the data is empty. Try running `cargo run --bin cache_figgy_data` with the correct FIGGY_URL and FIGGY_TOKEN to populate the cache"),
+            .expect("It can connect to redis but the data is empty. Try running `cargo run --bin cache_figgy_data` with the correct FIGGY_URL and CATALOG_SYNC_TOKEN to populate the cache"),
     )
     .expect("It can get data but the data is not valid")
 }
