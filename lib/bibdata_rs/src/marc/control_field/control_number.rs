@@ -2,6 +2,7 @@
 
 use marctk::Record;
 
+#[derive(Debug)]
 pub enum ControlNumber<'a> {
     Alma(&'a str),
     SCSB(&'a str),
@@ -25,5 +26,20 @@ impl<'a> From<&'a str> for ControlNumber<'a> {
             string if string.starts_with("99") && string.ends_with("06421") => Self::Alma(string),
             _ => Self::Unknown(string),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::assert_matches;
+
+    #[test]
+    fn it_can_detect_alma_record() {
+        let record = Record::from_breaker("=001 9912606733506421").unwrap();
+        assert_matches!(
+            ControlNumber::from(&record),
+            ControlNumber::Alma("9912606733506421")
+        );
     }
 }
