@@ -5,6 +5,7 @@ pub mod marc_gem;
 
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
+use crate::marc::control_field::control_number::ControlNumber;
 use crate::marc::control_field::system_control_number::standard_numbers;
 use crate::marc::date::cataloged_date;
 use crate::marc::figgy::figgy_1display;
@@ -103,7 +104,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(38);
+    let hash = ruby.hash_new_capa(39);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -163,6 +164,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "non_latin_non_cjk_title_index",
         ruby.ary_from_iter(non_latin::non_latin_non_cjk_titles(&record)),
+    )?;
+    hash.aset(
+        "numeric_id_b",
+        matches!(ControlNumber::from(&record), ControlNumber::Alma(_)),
     )?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
     hash.aset(

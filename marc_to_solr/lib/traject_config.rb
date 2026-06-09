@@ -84,8 +84,8 @@ to_field 'marcxml' do |_record, accumulator, context|
 end
 
 # if the id contains only numbers we know it's a princeton item
-to_field 'numeric_id_b', extract_marc('001', first: true) do |_record, accumulator|
-  accumulator.map! { |v| /^[0-9]+$/.match?(v) || false }
+to_field 'numeric_id_b' do |_record, accumulator, context|
+  accumulator << context.clipboard[:solr_fields]['numeric_id_b']
 end
 
 # for scsb local system id
