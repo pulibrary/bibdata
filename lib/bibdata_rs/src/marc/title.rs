@@ -10,7 +10,14 @@ use crate::marc::{
     },
 };
 use itertools::Itertools;
-use marctk::Record;
+use marctk::{Field, Record};
+
+struct Field245<'a>(&'a Field);
+impl<'a> Field245<'a> {
+    pub fn non_filing_characters(&'a self) -> u8 {
+        self.0.ind2().parse().unwrap_or_default()
+    }
+}
 
 pub fn contains_titles_index(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
@@ -41,15 +48,11 @@ pub fn latin_script_title(record: &Record) -> Option<String> {
 
 pub fn title_sort(record: &Record) -> Option<String> {
     record.first_matching_field_value(latin_tag_included_in(&["245"]), |field| {
+        let field = Field245(field);
         let joined =
-            join_subfields_by_code(field, &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"]);
-        let non_filing_characters = field.ind2().parse::<u8>();
-        let trimmed = match non_filing_characters {
-            Ok(non_filing_characters) => {
-                without_non_filing_characters(&joined, non_filing_characters).to_string()
-            }
-            Err(_) => joined,
-        };
+            join_subfields_by_code(field.0, &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"]);
+        let trimmed =
+            without_non_filing_characters(&joined, field.non_filing_characters()).to_string();
         maybe_not_empty(trimmed)
     })
 }
@@ -70,15 +73,32 @@ fn without_non_filing_characters<'a>(title: &'a str, non_filing_characters: u8) 
 /// with non-filing characters removed.  Looks at 880 fields pointing to 245.
 pub fn non_latin_title_sort(record: &Record) -> Option<String> {
     record.first_matching_field_value(non_latin_tag_included_in(&["245"]), |field| {
+        let field = Field245(field);
         let joined =
-            join_subfields_by_code(field, &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"]);
-        let non_filing_characters = field.ind2().parse::<u8>();
-        let trimmed = match non_filing_characters {
-            Ok(count) => without_non_filing_characters(&joined, count).to_string(),
-            Err(_) => joined,
-        };
+            join_subfields_by_code(field.0, &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"]);
+        let trimmed =
+            without_non_filing_characters(&joined, field.non_filing_characters()).to_string();
         maybe_not_empty(trimmed)
     })
+}
+
+/// Returns titles from field 245 (both Latin and non-Latin scripts),
+/// excluding subfield $h, with two versions per field:
+/// one including non-filing characters and one without.
+pub fn title_no_h_index(record: &Record) -> impl Iterator<Item = String> {
+    record
+        .extract_field_values_by(latin_or_non_latin_tag_included_in(&["245"]), |field| {
+            let field = Field245(field);
+            let joined =
+                join_subfields_by_code(field.0, &["a", "b", "c", "f", "g", "k", "n", "p", "s"]);
+            if joined.is_empty() {
+                return None;
+            }
+            let without_nf_chars =
+                without_non_filing_characters(&joined, field.non_filing_characters()).to_string();
+            Some(vec![joined, without_nf_chars])
+        })
+        .flatten()
 }
 
 #[cfg(test)]
@@ -127,5 +147,75 @@ mod tests {
     fn it_returns_non_latin_title_sort_none_when_no_880() {
         let record = Record::from_breaker(r"=245 \0 $aPlain title").unwrap();
         assert_eq!(non_latin_title_sort(&record), None);
+    }
+
+    #[test]
+    fn it_returns_two_versions_for_title_no_h_index() {
+        let record = Record::from_breaker(
+            r#"=245 10 $aThe great novel : $b a subtitle / $c by the author."#,
+        )
+        .unwrap();
+        let title_values: Vec<_> = title_no_h_index(&record).collect();
+        // Two entries: original and "stripped" (same when ind2=0)
+        assert_eq!(title_values.len(), 2);
+        assert_eq!(
+            title_values[0],
+            "The great novel : a subtitle / by the author."
+        );
+        assert_eq!(
+            title_values[1],
+            "The great novel : a subtitle / by the author."
+        );
+    }
+
+    #[test]
+    fn it_strips_non_filing_characters_for_title_no_h_index() {
+        let record = Record::from_breaker(r#"=245 12 $aA great novel : $b a subtitle."#).unwrap();
+        let title_values: Vec<_> = title_no_h_index(&record).collect();
+        assert_eq!(title_values.len(), 2);
+        assert_eq!(title_values[0], "A great novel : a subtitle.");
+        assert_eq!(title_values[1], "great novel : a subtitle.");
+    }
+
+    #[test]
+    fn it_includes_non_latin_880_for_title_no_h_index() {
+        let record = Record::from_breaker(
+            r#"=245 10 $aLatin title.
+=880 10$6245-01/ $aNon-Latin title."#,
+        )
+        .unwrap();
+        let title_values: Vec<_> = title_no_h_index(&record).collect();
+        // Latin field: 2 entries (original + stripped), non-Latin field: 2 entries
+        assert_eq!(title_values.len(), 4);
+        assert_eq!(title_values[0], "Latin title.");
+        assert_eq!(title_values[1], "Latin title.");
+        assert_eq!(title_values[2], "Non-Latin title.");
+        assert_eq!(title_values[3], "Non-Latin title.");
+    }
+
+    #[test]
+    fn it_excludes_subfield_h_for_title_no_h_index() {
+        let record =
+            Record::from_breaker(r#"=245 10 $aThe book : $h [voluminous pages] $b a subtitle."#)
+                .unwrap();
+        let title_values: Vec<_> = title_no_h_index(&record).collect();
+        assert_eq!(title_values.len(), 2);
+        // Should NOT include "$h" content
+        assert_eq!(title_values[0], "The book : a subtitle.");
+        assert!(title_values[0].contains("book") && !title_values[0].contains("voluminous"));
+    }
+
+    #[test]
+    fn it_returns_empty_iterator_for_missing_245() {
+        let record = Record::from_breaker(r#"=300 \ $a100 pages."#).unwrap();
+        let title_values: Vec<_> = title_no_h_index(&record).collect();
+        assert!(title_values.is_empty());
+    }
+
+    #[test]
+    fn it_returns_empty_iterator_for_blank_245() {
+        let record = Record::from_breaker(r"=245 10 $a   ").unwrap();
+        let title_values: Vec<_> = title_no_h_index(&record).collect();
+        assert!(title_values.is_empty());
     }
 }

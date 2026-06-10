@@ -182,16 +182,8 @@ to_field 'title_vern_sort' do |_record, accumulator, context|
 end
 
 # roman and alt-script title with and without non-filing characters, excluding $h
-to_field 'title_no_h_index' do |record, accumulator|
-  MarcExtractor.cached('245abcfgknps').collect_matching_lines(record) do |field, spec, extractor|
-    str = extractor.collect_subfields(field, spec).first
-    if str
-      accumulator << str
-      str = str.slice(field.indicator2.to_i, str.length)
-      accumulator << str
-    end
-  end
-  accumulator
+to_field 'title_no_h_index' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:solr_fields]['title_no_h_index'])
 end
 
 to_field 'title_t' do |_record, accumulator, context|
