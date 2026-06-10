@@ -6,7 +6,7 @@ use crate::marc::{
     trim_punctuation,
     variable_length_field::{
         SubfieldIterator, join_subfields_by_code, latin_or_non_latin_tag_included_in,
-        latin_tag_included_in,
+        latin_tag_included_in, non_latin_tag_included_in,
     },
 };
 use itertools::Itertools;
@@ -66,6 +66,21 @@ fn without_non_filing_characters<'a>(title: &'a str, non_filing_characters: u8) 
     }
 }
 
+/// Returns the non-Latin version of the main title,
+/// with non-filing characters removed.  Looks at 880 fields pointing to 245.
+pub fn non_latin_title_sort(record: &Record) -> Option<String> {
+    record.first_matching_field_value(non_latin_tag_included_in(&["245"]), |field| {
+        let joined =
+            join_subfields_by_code(field, &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"]);
+        let non_filing_characters = field.ind2().parse::<u8>();
+        let trimmed = match non_filing_characters {
+            Ok(count) => without_non_filing_characters(&joined, count).to_string(),
+            Err(_) => joined,
+        };
+        maybe_not_empty(trimmed)
+    })
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -92,5 +107,25 @@ mod tests {
         let record = Record::from_breaker(r"=245 \4 $a  ").unwrap();
         let title_sort = title_sort(&record);
         assert_eq!(title_sort, None);
+    }
+
+    #[test]
+    fn it_can_find_non_latin_title_sort() {
+        let record = Record::from_breaker(
+            r#"=245 10 $aal-Dulfīn al-alīf / $c [taʼlīf Muḥyī al-Dīn Salīmah].
+=880 10$6245-02/ $a الدلفين الاليف / $c [تأليف محيي الدين سليمة]."#,
+        )
+        .unwrap();
+        let non_latin_title_sort = non_latin_title_sort(&record).unwrap();
+        assert_eq!(
+            non_latin_title_sort,
+            "الدلفين الاليف / [تأليف محيي الدين سليمة]."
+        );
+    }
+
+    #[test]
+    fn it_returns_non_latin_title_sort_none_when_no_880() {
+        let record = Record::from_breaker(r"=245 \0 $aPlain title").unwrap();
+        assert_eq!(non_latin_title_sort(&record), None);
     }
 }
