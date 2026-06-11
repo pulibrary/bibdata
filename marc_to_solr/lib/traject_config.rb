@@ -14,6 +14,19 @@ require_relative '../../app/services/marcxml_compressor'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
+# Index a field that is defined in the Rust solr_fields function
+def rust_single_value_field(field_name)
+  to_field field_name do |_record, accumulator, context|
+    accumulator << context.clipboard[:solr_fields][field_name] if context.clipboard[:solr_fields][field_name]
+  end
+end
+
+def rust_multi_value_field(field_name)
+  to_field field_name do |_record, accumulator, context|
+    accumulator.replace context.clipboard[:solr_fields][field_name] if context.clipboard[:solr_fields][field_name]
+  end
+end
+
 # rubocop:disable Style/GuardClause
 error_count = Concurrent::AtomicFixnum.new(0)
 settings do
@@ -91,23 +104,14 @@ end
 # for scsb local system id
 to_field 'other_id_s', extract_marc('009', first: true)
 
-to_field 'cjk_all' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['cjk_all']
-end
-
-to_field 'non_latin_non_cjk_all_index' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_all_index']
-end
+rust_multi_value_field 'cjk_all'
+rust_multi_value_field 'non_latin_non_cjk_all_index'
 
 # 880 field is "vernacular" and may link to a translation in a 5xx
 # Only add 880 alt script values associated with a 5xx field
-to_field 'cjk_notes' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['cjk_notes'])
-end
+rust_multi_value_field 'cjk_notes'
 
-to_field 'figgy_1display' do |_record, accumulator, context|
-  accumulator << context.clipboard[:solr_fields]['figgy_1display'] if context.clipboard[:solr_fields]['figgy_1display']
-end
+rust_single_value_field 'figgy_1display'
 
 # Author/Artist:
 #    100 XX aqbcdek A aq
@@ -120,17 +124,9 @@ to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq',
 to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true)
 to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
 
-to_field 'author_roles_1display' do |_record, accumulator, context|
-  accumulator[0] = context.clipboard[:solr_fields]['author_roles_1display']
-end
-
-to_field 'cjk_author' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['cjk_author']
-end
-
-to_field 'non_latin_non_cjk_author_index' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_author_index']
-end
+rust_single_value_field 'author_roles_1display'
+rust_multi_value_field 'cjk_author'
+rust_multi_value_field 'non_latin_non_cjk_author_index'
 
 to_field 'author_s' do |record, accumulator|
   names = process_names(record)
@@ -172,23 +168,14 @@ to_field 'title_a_index', extract_marc('245a', trim_punctuation: true)
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :only, first: true)
 
-# to_field 'title_sort', marc_sortable_title
-to_field 'title_sort' do |_record, accumulator, context|
-  accumulator << context.clipboard[:solr_fields]['title_sort'] if context.clipboard[:solr_fields]['title_sort']
-end
-
-to_field 'title_vern_sort' do |_record, accumulator, context|
-  accumulator << context.clipboard[:solr_fields]['title_vern_sort'] if context.clipboard[:solr_fields]['title_vern_sort']
-end
+rust_single_value_field 'title_sort'
+rust_single_value_field 'title_vern_sort'
 
 # roman and alt-script title with and without non-filing characters, excluding $h
-to_field 'title_no_h_index' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['title_no_h_index'])
-end
+rust_multi_value_field 'title_no_h_index'
 
-to_field 'title_t' do |_record, accumulator, context|
-  accumulator << context.clipboard[:solr_fields]['title_t'] if context.clipboard[:solr_fields]['title_t']
-end
+# I'm not sure if this title_t field is used anywhere...
+rust_single_value_field 'title_t'
 to_field 'title_citation_display', extract_marc('245ab', trim_punctuation: true)
 
 ## Series, Title, and Title starts with index-only fields ##
@@ -202,9 +189,7 @@ to_field 'series_statement_index', extract_marc('490avx')
 
 to_field 'content_title_index', extract_marc('505t')
 
-to_field 'contains_title_index' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['contains_title_index'])
-end
+rust_multi_value_field 'contains_title_index'
 
 to_field 'linked_title_index', extract_marc('765st:767st:770st:772st:773st:774st:775st:776st:777st:780st:785st:786st:787st')
 
@@ -219,21 +204,10 @@ to_field 'linked_series_index', extract_marc('760acgst:762acgst')
 
 to_field 'original_version_series_index', extract_marc('534f')
 
-to_field 'cjk_title' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['cjk_title']
-end
-
-to_field 'non_latin_non_cjk_title_index' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_title_index']
-end
-
-to_field 'cjk_series_title' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['cjk_series_title']
-end
-
-to_field 'non_latin_non_cjk_series_title_index' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['non_latin_non_cjk_series_title_index']
-end
+rust_multi_value_field 'cjk_title'
+rust_multi_value_field 'non_latin_non_cjk_title_index'
+rust_multi_value_field 'cjk_series_title'
+rust_multi_value_field 'non_latin_non_cjk_series_title_index'
 
 #################################################
 
@@ -252,15 +226,11 @@ to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', altern
 # Published/Created:
 #    260 XX abcefg
 #    264 XX abc
-to_field 'pub_created_display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['pub_created_display'])
-end
+rust_multi_value_field 'pub_created_display'
 
 to_field 'pub_created_s', extract_marc('260abcefg:264abcefg3')
 
-to_field 'pub_citation_display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['pub_citation_display'])
-end
+rust_multi_value_field 'pub_citation_display'
 
 to_field 'publication_location_citation_display', extract_marc('260a:264|*1|a', trim_punctuation: true, first: true)
 to_field 'publisher_citation_display', extract_marc('260b:264|*1|b', trim_punctuation: true, first: true)
@@ -273,9 +243,7 @@ to_field 'pub_date_start_sort' do |record, accumulator|
   accumulator << record.date_from_008
 end
 
-to_field 'pub_date_end_sort' do |_record, accumulator, context|
-  accumulator << context.clipboard[:solr_fields]['pub_date_end_sort']
-end
+rust_single_value_field 'pub_date_end_sort'
 
 to_field 'publication_date_citation_display' do |record, accumulator|
   next unless record['008']
@@ -291,14 +259,10 @@ end
 # Bibliographic Enrichment -> Create date subfield 950b
 # Physical Items Enrichment -> Create date subfield 876d
 # Electronic Inventory Enrichment -> Activation date subfield 951w
-to_field 'cataloged_tdt' do |_record, accumulator, context|
-  accumulator[0] = context.clipboard[:solr_fields]['cataloged_tdt']
-end
+rust_single_value_field 'cataloged_tdt'
 
 # format - allow multiple - "first" one is used for thumbnail
-to_field 'format' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['format']
-end
+rust_multi_value_field 'format'
 
 # Medium/Support:
 #    340 XX 3abcdefhl
@@ -670,9 +634,7 @@ to_field 'language_facet' do |record, accumulator|
   accumulator.append('Indigenous Languages (Western Hemisphere)') if language_service.in_an_indigenous_language?(record)
 end
 
-to_field 'original_language_of_translation_facet' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['original_language_of_translation_facet']
-end
+rust_multi_value_field 'original_language_of_translation_facet'
 
 to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|
   places = accumulator.compact.map { |c| Traject::TranslationMap.new('marc_countries')[c.strip] }
@@ -745,9 +707,7 @@ to_field 'source_acquisition_display', extract_marc('541|1*|abcdefhno36:541| *|a
 to_field 'publications_about_display', extract_marc('581az36')
 
 # Action note - formatted with link
-to_field 'action_notes_1display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['action_notes_1display'])
-end
+rust_multi_value_field 'action_notes_1display'
 
 # Indexed in:
 #    510 0X 3abc
@@ -811,9 +771,7 @@ to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator
   accumulator.replace(combined_subjects)
 end
 
-to_field 'siku_subject_display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['siku_subject_display'])
-end
+rust_multi_value_field 'siku_subject_display'
 
 # used for the Browse lists and hierarchical subject facet
 # used in the record page -> Details section to search for Siku subject headings and their subdivisions using
@@ -859,9 +817,7 @@ to_field 'fast_subject_display' do |_record, accumulator, context|
   accumulator.replace context.clipboard[:solr_fields]['fast_subject_display']
 end
 
-to_field 'icpsr_subject_unstem_search' do |_record, accumulator, context|
-  accumulator.replace context.clipboard[:solr_fields]['icpsr_subject_unstem_search']
-end
+rust_multi_value_field 'icpsr_subject_unstem_search'
 
 # Adds lc, siku, local, and homoit subject unstem_search fields
 # Note that lc unstem search should include both archaic and replaced terms
@@ -919,9 +875,7 @@ to_field 'geographic_facet', marc_geo_facet do |_record, accumulator|
   accumulator.replace(subjects)
 end
 
-to_field 'homoit_genre_s' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['homoit_genre_s'])
-end
+rust_multi_value_field 'homoit_genre_s'
 
 # used for the Browse lists and hierarchical subject facet
 # used in the record page -> Details section to search for homoit genre headings and their subdivisions using
@@ -931,9 +885,7 @@ to_field 'homoit_genre_facet' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'lcgft_s' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['lcgft_s'])
-end
+rust_multi_value_field 'lcgft_s'
 
 # used for the Browse lists and hierarchical subject facet
 # used in the record page -> Details section to search for LC genre headings and their subdivisions using
@@ -943,9 +895,7 @@ to_field 'lcgft_genre_facet' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'aat_s' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['aat_s'])
-end
+rust_multi_value_field 'aat_s'
 
 # used for the Browse lists and hierarchical subject facet
 # used in the record page -> Details section to search for AAT genre headings and their subdivisions using
@@ -955,9 +905,7 @@ to_field 'aat_genre_facet' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'rbgenr_s' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['rbgenr_s'])
-end
+rust_multi_value_field 'rbgenr_s'
 
 # used for the Browse lists and hierarchical subject facet
 # used in the record page -> Details section to search for Rare Books genre headings and their subdivisions using
@@ -970,9 +918,7 @@ end
 # used for the JSONLD output. Uses all the 655 fields to get all genre data
 to_field 'jsonld_genre_display', extract_marc('655|*7|avxyz')
 
-to_field 'cjk_subject' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['cjk_subject'])
-end
+rust_multi_value_field 'cjk_subject'
 
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|
@@ -1094,9 +1040,7 @@ end
 
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
-to_field 'genre_facet' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['genre_facet'])
-end
+rust_multi_value_field 'genre_facet'
 
 # Related name(s):
 #    700 XX aqbcdefghklmnoprstx A aq
@@ -1289,9 +1233,7 @@ to_field 'oclc_s', extract_marc('035a') do |_record, accumulator|
   accumulator.replace(oclcs)
 end
 
-to_field 'standard_no_index' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['standard_no_index'])
-end
+rust_multi_value_field 'standard_no_index'
 
 # Other version(s):
 #    3500 BBID776W
@@ -1300,9 +1242,7 @@ end
 #    3500 022A776X
 #    3500 020A776Z
 #    3500 776Z020A
-to_field 'other_version_s' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['other_version_s'])
-end
+rust_multi_value_field 'other_version_s'
 
 # Original language:
 #    880 XX abc
@@ -1331,15 +1271,8 @@ each_record do |record, context|
   context.skip!("Skipped #{id} because record includes only private items.")
 end
 
-## for recap notes
-to_field 'recap_notes_display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['recap_notes_display'])
-end
-
-to_field 'access_restrictions_note_display' do |_record, accumulator, context|
-  notes = context.clipboard[:solr_fields]['access_restrictions_note_display']
-  accumulator.replace(notes) if notes
-end
+rust_multi_value_field 'recap_notes_display'
+rust_multi_value_field 'access_restrictions_note_display'
 
 each_record do |_record, context|
   dissertation_note = context.output_hash['dissertation_notes_display']
@@ -1373,9 +1306,7 @@ each_record do |record, context|
   end
 end
 
-to_field 'location' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['location']) if context.clipboard[:solr_fields]['location']
-end
+rust_multi_value_field 'location'
 
 # For name-title browse - fields get deleted at end
 to_field 'name_title_100', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: false, first: true, trim_punctuation: true)
@@ -1515,15 +1446,11 @@ end
 #    852 XX hik
 # Position 852|k in the beginning of the call_number_display
 # The call_number_display is used in the catalog record page.
-to_field 'call_number_display' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['call_number_display'])
-end
+rust_multi_value_field 'call_number_display'
 
 # Position 852|k at the end of the call_number_browse_s
 # The call_number_browse_s is used in the call number browse page in the catalog
-to_field 'call_number_browse_s' do |_record, accumulator, context|
-  accumulator.replace(context.clipboard[:solr_fields]['call_number_browse_s'])
-end
+rust_multi_value_field 'call_number_browse_s'
 
 to_field 'electronic_portfolio_s' do |record, accumulator|
   # Don't check for scsb
