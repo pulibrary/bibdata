@@ -35,6 +35,7 @@ settings do
   provide 'reader_class_name', 'AlmaReader'
   provide 'marc_source.type', 'xml'
   provide 'solr_writer.max_skipped', '50'
+  provide 'solr_writer.thread_pool', 3
   provide 'marc4j_reader.source_encoding', 'UTF-8'
   provide 'log.error_file', './log/traject-error.log'
   provide 'allow_duplicate_values', false
