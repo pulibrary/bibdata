@@ -102,7 +102,7 @@ to_field 'numeric_id_b' do |_record, accumulator, context|
 end
 
 # for scsb local system id
-to_field 'other_id_s', extract_marc('009', first: true)
+rust_single_value_field 'other_id_s'
 
 rust_multi_value_field 'cjk_all'
 rust_multi_value_field 'non_latin_non_cjk_all_index'
