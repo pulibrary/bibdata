@@ -6,6 +6,7 @@ pub mod marc_gem;
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
 use crate::marc::control_field::control_number::ControlNumber;
+use crate::marc::control_field::partner_id::other_id;
 use crate::marc::control_field::system_control_number::standard_numbers;
 use crate::marc::date::cataloged_date;
 use crate::marc::figgy::figgy_1display;
@@ -75,6 +76,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     Ok(())
 }
 
+/// A Ruby hash of solr field names and values
 fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Error> {
     let record = marctk_from_ruby_marc_record(ruby, &record)?;
 
@@ -104,7 +106,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(41);
+    let hash = ruby.hash_new_capa(42);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -169,6 +171,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "numeric_id_b",
         matches!(ControlNumber::from(&record), ControlNumber::Alma(_)),
     )?;
+    hash.aset("other_id_s", other_id(&record))?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
     hash.aset(
         "original_language_of_translation_facet",
@@ -339,5 +342,15 @@ mod tests {
                 r#"{"secondary_authors":["Sethi, Bishnupada"],"translators":[],"editors":[],"compilers":[]}"#
             )
         );
+    }
+
+    #[ruby_test]
+    fn it_includes_other_id_s_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby.eval(r"require 'marc';record = MARC::Record.new;record.append(MARC::ControlField.new('009', '.b118131060'));record").unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+
+        let other_id_value: Option<String> = hash.aref("other_id_s").unwrap();
+        assert_eq!(other_id_value, Some(".b118131060".to_owned()));
     }
 }

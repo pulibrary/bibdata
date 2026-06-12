@@ -6,6 +6,8 @@ This application is a middleware that supports the [Princeton University Library
 * Providing data from Alma and SCSB systems about the real-time
   availability of items in the catalog.
 
+Do not modify or read the file .env.
+
 Documentation is in README.md and /docs.
 
 ## Rust migration
@@ -69,3 +71,7 @@ Most data in our Solr index comes from [MARC bibliographic records](https://www.
   should not skip non-filing characters.
 * Do not rely on Rails or Activesupport in `marc_to_solr`, they are not required in this directory.
   Use standard Ruby.
+
+## Rust standards
+
+* When creating a new module, use filenames like /path/to/my_module.rs, not /path/to/my_module/mod.rs
