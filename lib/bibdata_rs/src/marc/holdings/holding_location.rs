@@ -25,6 +25,9 @@ pub fn mapped_codes_location_label(code: &str) -> HashMap<&str, &str> {
 pub fn location_codes(record: &Record) -> Vec<String> {
     let mut codes = Vec::new();
     for field_852_ref in record.get_fields("852") {
+        if !field_852_ref.has_subfield("b") {
+            continue;
+        }
         let field_852 = field_852_ref.clone();
 
         let holding_id = field_852
@@ -117,5 +120,24 @@ mod tests {
             "Remote Storage (ReCAP): Firestone Library Use Only",
         );
         assert_eq!(mapped_code, expected);
+    }
+
+    #[test]
+    fn it_does_not_include_location_codes_without_library() {
+        let record = Record::from_breaker(
+            r#"=852 0\$bmarquand$cstacks$hND1053.4$i.K5 1934$822617214130006421
+=852 0\$cpa$hND1053.4$i.K5 1934$822617214130006421
+=852 0\$beastasian$cpl$hND1053.4$i.K5 1934$822966900120006421
+=876 \\$022966900120006421$zpl$yeastasian"#,
+        )
+        .unwrap();
+        assert!(
+            !location_codes(&record).contains(&String::from("$pa")),
+            "it does not include a partial location code $pa that has no library attached (no 852$b)"
+        );
+        assert_eq!(
+            location_codes(&record),
+            vec!["marquand$stacks", "eastasian$pl"]
+        )
     }
 }
