@@ -15,6 +15,15 @@ pub fn normalized_oclc_numbers(record: &Record) -> impl Iterator<Item = String> 
         })
 }
 
+pub fn oclc_numbers_numeric(record: &Record) -> impl Iterator<Item = String> {
+    system_control_numbers(record)
+        .into_iter()
+        .filter_map(|number| match number {
+            SystemControlNumber::OCLCNumber(oclc) => Some(strip_non_numeric(&oclc)),
+            _ => None,
+        })
+}
+
 pub fn normalize_oclc_number(original: &str) -> String {
     let cleaned = strip_non_numeric(original);
     match cleaned.len() {

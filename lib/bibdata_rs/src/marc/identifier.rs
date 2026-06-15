@@ -2,14 +2,13 @@ use super::string_normalize::strip_non_numeric;
 use isbn::normalized_isbns_for_all_versions;
 use issn::normalized_issns_for_all_versions;
 use marctk::Record;
-use oclc::normalized_oclc_numbers;
+use oclc::normalize_oclc_number;
 
 mod isbn;
 mod issn;
 pub mod oclc;
 
-pub use oclc::is_oclc_number;
-pub use oclc::normalize_oclc_number;
+pub use oclc::{is_oclc_number, normalized_oclc_numbers, oclc_numbers_numeric};
 
 // Get identifier numbers for all known versions of this title from the record.
 // This is used to link records together in the catalog's Other Versions feature.

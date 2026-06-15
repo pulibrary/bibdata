@@ -41,7 +41,6 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     )?;
     submodule_marc.define_singleton_method("holding_id", function!(holding_id, 2))?;
     submodule_marc.define_module_function("solr_fields", function!(solr_fields, 1))?;
-    submodule_marc.define_singleton_method("is_oclc_number?", function!(is_oclc_number, 1))?;
     submodule_marc.define_singleton_method("is_scsb?", function!(is_scsb, 1))?;
     submodule_marc.define_module_function("location_codes", function!(ruby_location_codes, 1))?;
     submodule_marc.define_singleton_method("library_label", function!(library_label, 1))?;
@@ -56,8 +55,6 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         function!(map_024_indicators_to_labels, 1),
     )?;
     submodule_marc.define_singleton_method("mms_id", function!(mms_id, 1))?;
-    submodule_marc
-        .define_singleton_method("normalize_oclc_number", function!(normalize_oclc_number, 1))?;
     submodule_marc.define_singleton_method(
         "partner_holdings_1display",
         function!(partner_holdings_1display, 1),
@@ -106,7 +103,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(42);
+    let hash = ruby.hash_new_capa(43);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -172,6 +169,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         matches!(ControlNumber::from(&record), ControlNumber::Alma(_)),
     )?;
     hash.aset("other_id_s", other_id(&record))?;
+    hash.aset(
+        "oclc_s",
+        ruby.ary_from_iter(identifier::oclc_numbers_numeric(&record)),
+    )?;
     hash.aset("other_version_s", identifiers_of_all_versions(&record))?;
     hash.aset(
         "original_language_of_translation_facet",
@@ -352,5 +353,15 @@ mod tests {
 
         let other_id_value: Option<String> = hash.aref("other_id_s").unwrap();
         assert_eq!(other_id_value, Some(".b118131060".to_owned()));
+    }
+
+    #[ruby_test]
+    fn it_includes_oclc_s_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby.eval(r"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new('035', '', '', ['a', '(OCoLC)ocn989083934 ']));record").unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+
+        let oclc_value = hash.aref::<&str, Vec<String>>("oclc_s").unwrap();
+        assert_eq!(oclc_value, vec![String::from("989083934")]);
     }
 }
