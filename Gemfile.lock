@@ -373,8 +373,6 @@ GEM
       ffi (~> 1.0)
     libddwaf (1.30.0.0.2-x86_64-linux)
       ffi (~> 1.0)
-    library_standard_numbers (0.1.0)
-      rb_sys (~> 0.9.91)
     lint_roller (1.1.0)
     llhttp-ffi (0.5.1)
       ffi-compiler (~> 1.0)
@@ -966,7 +964,6 @@ DEPENDENCIES
   jquery-rails
   jquery-tablesorter (~> 1.28)
   lcsort
-  library_standard_numbers
   lograge
   logstash-event
   loofah (>= 2.22)
