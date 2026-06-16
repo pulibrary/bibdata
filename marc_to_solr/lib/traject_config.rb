@@ -235,14 +235,8 @@ rust_multi_value_field 'pub_citation_display'
 to_field 'publication_location_citation_display', extract_marc('260a:264|*1|a', trim_punctuation: true, first: true)
 to_field 'publisher_citation_display', extract_marc('260b:264|*1|b', trim_punctuation: true, first: true)
 
-to_field 'pub_date_display' do |record, accumulator|
-  accumulator << record.date_from_008
-end
-
-to_field 'pub_date_start_sort' do |record, accumulator|
-  accumulator << record.date_from_008
-end
-
+rust_single_value_field 'pub_date_display'
+rust_single_value_field 'pub_date_start_sort'
 rust_single_value_field 'pub_date_end_sort'
 
 to_field 'publication_date_citation_display' do |record, accumulator|
