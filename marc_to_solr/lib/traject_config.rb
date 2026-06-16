@@ -1470,4 +1470,10 @@ each_record do |_record, context|
     logger.error "#{context.output_hash['id'].first} - Multiple titles"
     context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
+
+  # to_field 'text_embeddings' do |_record, accumulator, context|
+  #   we want to pass title author content as a concatenated text to the embedding service
+  #   embeddings = BibdataRs::EmbeddingService.get_embedding(context.output_hash)
+  #   accumulator.replace(embeddings) if embeddings.any?
+  # end
 end

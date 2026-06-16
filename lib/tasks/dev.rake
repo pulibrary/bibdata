@@ -50,7 +50,7 @@ namespace :server do
       end
 
       def url_for_file(file, config_path)
-        "https://raw.githubusercontent.com/pulibrary/pul_solr/catalog-denseVector/solr_configs/#{config_path}/conf/#{file}"
+        "https://raw.githubusercontent.com/pulibrary/pul_solr/catalog-denseVector/solr_configs/catalog-production-v3/#{file}"
       end
     end
   end

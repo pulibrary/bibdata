@@ -1,5 +1,5 @@
 [workspace]
-members = ["figgy_marc", "./lib/bibdata_rs"]
+members = ["figgy_marc", "./lib/bibdata_rs", "embedding_service"]
 resolver = "2"
 
 [profile.profiling]
