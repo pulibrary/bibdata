@@ -7,27 +7,6 @@ require_relative 'linked_fields_extractor'
 require_relative 'orangelight_url_builder'
 require_relative 'process_holdings_helpers'
 
-module MARC
-  class Record
-    def date_from_008
-      if self['008']
-        d = self['008'].value[7, 4]
-        return d unless d
-
-        d = d.tr 'u', '0' unless d == 'uuuu'
-        d = d.tr ' ', '0' unless d == '    '
-        d if /^[0-9]{4}$/.match?(d)
-      end
-    end
-
-    def date_display
-      date = nil
-      date = self['260']['c'] if self['260'] && self['260']['c']
-      date ||= self.date_from_008
-    end
-  end
-end
-
 def map_024_indicators_to_labels i
   BibdataRs::Marc.map_024_indicators_to_labels(i)
 end

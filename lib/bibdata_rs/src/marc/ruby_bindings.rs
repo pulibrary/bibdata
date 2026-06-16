@@ -10,6 +10,7 @@ use crate::marc::control_field::partner_id::other_id;
 use crate::marc::control_field::system_control_number::standard_numbers;
 use crate::marc::date::cataloged_date;
 use crate::marc::figgy::figgy_1display;
+use crate::marc::fixed_field::dates::BeginDate;
 use crate::marc::holdings::partner::partner_holdings;
 use crate::marc::identifier::identifiers_of_all_versions;
 use crate::marc::identifier::map_024_indicators_to_labels;
@@ -103,11 +104,14 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
             .iter()
             .map(|language| language.english_name.to_owned())
             .collect();
+    let pub_date_start_sort = BeginDate::try_from(&record)
+        .ok()
+        .and_then(|date| date.maybe_to_string());
     let pub_date_end_sort = EndDate::try_from(&record)
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(43);
+    let hash = ruby.hash_new_capa(45);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -190,6 +194,8 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "pub_created_display",
         ruby.ary_from_iter(publication::pub_created_display(&record)),
     )?;
+    hash.aset("pub_date_display", pub_date_start_sort.clone())?;
+    hash.aset("pub_date_start_sort", pub_date_start_sort)?;
     hash.aset("pub_date_end_sort", pub_date_end_sort)?;
     hash.aset("rbgenr_s", ruby.ary_from_iter(genre::rbgenr_s(&record)))?;
     hash.aset("recap_notes_display", recap_partner_notes(&record))?;

@@ -143,9 +143,68 @@ impl<'a> Display for EndDate<'a> {
     }
 }
 
+#[derive(Debug, PartialEq)]
+pub struct BeginDate<'a>(Date<'a>);
+
+#[derive(Debug)]
+pub struct NoBeginDate;
+
+impl<'a> BeginDate<'a> {
+    pub fn maybe_to_string(&self) -> Option<String> {
+        match &self.0 {
+            Date::KnownYear(year) => Some(year.to_string()),
+            Date::PartiallyKnownYear(year) => Some(year.replace('u', "0")),
+            _ => None,
+        }
+    }
+}
+
+impl<'a> TryFrom<&'a Record> for BeginDate<'a> {
+    type Error = NoBeginDate;
+
+    fn try_from(record: &'a Record) -> Result<Self, Self::Error> {
+        let year = record
+            .get_control_fields("008")
+            .into_iter()
+            .next()
+            .ok_or(NoBeginDate)?
+            .content()
+            .get(7..11)
+            .ok_or(NoBeginDate)?;
+
+        match Date::try_from(year) {
+            Ok(date) => Ok(Self(date)),
+            Err(_) => Err(NoBeginDate),
+        }
+    }
+}
+
+impl<'a> Display for BeginDate<'a> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self.maybe_to_string() {
+            Some(year) => write!(f, "{year}"),
+            _ => Ok(()),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn it_gets_the_begin_date_from_a_record() {
+        let record = Record::from_breaker("=008 940720d19761979it mr 0 a0ita d").unwrap();
+        let end_date = BeginDate::try_from(&record).unwrap();
+        assert_eq!(end_date, BeginDate(Date::KnownYear("1976")));
+    }
+
+    #[test]
+    fn it_gets_partially_unknown_begin_date_from_a_record() {
+        let record = Record::from_breaker("=008 940720d197u1979it mr 0 a0ita d").unwrap();
+        let end_date = BeginDate::try_from(&record).unwrap();
+        assert_eq!(end_date, BeginDate(Date::PartiallyKnownYear("197u")));
+    }
 
     #[test]
     fn it_gets_the_end_date_from_a_record() {
@@ -182,6 +241,12 @@ mod tests {
     }
 
     #[test]
+    fn it_does_not_get_the_begin_date_from_an_incomplete_008() {
+        let record = Record::from_breaker("=008 251231").unwrap();
+        assert!(BeginDate::try_from(&record).is_err());
+    }
+
+    #[test]
     fn it_does_not_get_the_end_date_from_an_incomplete_008() {
         let record = Record::from_breaker("=008 940720d1976197").unwrap();
         assert!(EndDate::try_from(&record).is_err());
@@ -192,6 +257,20 @@ mod tests {
         let record = Record::from_breaker("=008 220203e17040506xx 000 0cara d").unwrap();
         let end_date = EndDate::try_from(&record).unwrap();
         assert_eq!(end_date, EndDate(Date::KnownYear("1704")));
+    }
+
+    #[test]
+    fn it_displays_begin_date_correctly() {
+        assert_eq!(
+            BeginDate(Date::KnownYear("1999")).maybe_to_string(),
+            Some("1999".to_owned())
+        );
+        assert_eq!(
+            BeginDate(Date::PartiallyKnownYear("19uu")).maybe_to_string(),
+            Some("1900".to_owned())
+        );
+        assert_eq!(BeginDate(Date::UnknownYear).maybe_to_string(), None);
+        assert_eq!(BeginDate(Date::YearNotAvailable).maybe_to_string(), None);
     }
 
     #[test]
