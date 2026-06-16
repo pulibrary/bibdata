@@ -1,5 +1,4 @@
 require 'active_support'
-require 'library_standard_numbers'
 require 'uri'
 require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
