@@ -1443,13 +1443,9 @@ rust_multi_value_field 'call_number_browse_s'
 to_field 'electronic_portfolio_s' do |record, accumulator|
   # Don't check for scsb
   fields = alma_951_active(record)
-  dates = alma_953(record)
-  embargoes = alma_954(record)
 
   fields.map do |field|
-    date = dates.find { |d| d['a'] == field['8'] }
-    embargo = embargoes.find { |e| e['a'] == field['8'] }
-    accumulator << ElectronicPortfolioBuilder.build(field:, date:, embargo:)
+    accumulator << ElectronicPortfolioBuilder.build(field:)
   end
 end
 
