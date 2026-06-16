@@ -1,6 +1,6 @@
 // This module describes the dates from the 008
 
-use std::{fmt::Display, str::FromStr, sync::LazyLock};
+use std::{fmt::Display, sync::LazyLock};
 
 use marctk::Record;
 use regex::Regex;
@@ -60,25 +60,25 @@ impl From<&Record> for DateType {
 }
 
 #[derive(Debug, PartialEq)]
-pub enum Date {
-    KnownYear(String),          // e.g. 1995
-    PartiallyKnownYear(String), // e.g. 198u
-    UnknownYear,                // e.g. uuuu
-    YearNotAvailable,           // e.g. 9999
+pub enum Date<'a> {
+    KnownYear(&'a str),          // e.g. 1995
+    PartiallyKnownYear(&'a str), // e.g. 198u
+    UnknownYear,                 // e.g. uuuu
+    YearNotAvailable,            // e.g. 9999
 }
 
 #[derive(Debug)]
 pub struct InvalidDateString;
 
-impl FromStr for Date {
-    type Err = InvalidDateString;
+impl<'a> TryFrom<&'a str> for Date<'a> {
+    type Error = InvalidDateString;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
+    fn try_from(s: &'a str) -> Result<Self, Self::Error> {
         match s {
             "9999" => Ok(Self::YearNotAvailable),
             "uuuu" => Ok(Self::UnknownYear),
-            s if is_known_year(s) => Ok(Self::KnownYear(s.to_string())),
-            s if is_partially_known_year(s) => Ok(Self::PartiallyKnownYear(s.to_string())),
+            s if is_known_year(s) => Ok(Self::KnownYear(s)),
+            s if is_partially_known_year(s) => Ok(Self::PartiallyKnownYear(s)),
             _ => Err(InvalidDateString),
         }
     }
@@ -95,12 +95,12 @@ fn is_partially_known_year(s: &str) -> bool {
 }
 
 #[derive(Debug, PartialEq)]
-pub struct EndDate(Date);
+pub struct EndDate<'a>(Date<'a>);
 
 #[derive(Debug)]
 pub struct NoEndDate;
 
-impl EndDate {
+impl<'a> EndDate<'a> {
     pub fn maybe_to_string(&self) -> Option<String> {
         match &self.0 {
             Date::KnownYear(year) => Some(year.to_string()),
@@ -110,10 +110,10 @@ impl EndDate {
     }
 }
 
-impl TryFrom<&Record> for EndDate {
+impl<'a> TryFrom<&'a Record> for EndDate<'a> {
     type Error = NoEndDate;
 
-    fn try_from(record: &Record) -> Result<Self, Self::Error> {
+    fn try_from(record: &'a Record) -> Result<Self, Self::Error> {
         let range = match DateType::from(record) {
             DateType::DetailedDate => 7..11,
             _ => 11..15,
@@ -127,14 +127,14 @@ impl TryFrom<&Record> for EndDate {
             .get(range)
             .ok_or(NoEndDate)?;
 
-        match Date::from_str(year) {
+        match Date::try_from(year) {
             Ok(date) => Ok(Self(date)),
             Err(_) => Err(NoEndDate),
         }
     }
 }
 
-impl Display for EndDate {
+impl<'a> Display for EndDate<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.maybe_to_string() {
             Some(year) => write!(f, "{year}"),
@@ -151,17 +151,14 @@ mod tests {
     fn it_gets_the_end_date_from_a_record() {
         let record = Record::from_breaker("=008 940720d19761979it mr 0 a0ita d").unwrap();
         let end_date = EndDate::try_from(&record).unwrap();
-        assert_eq!(end_date, EndDate(Date::KnownYear("1979".to_owned())));
+        assert_eq!(end_date, EndDate(Date::KnownYear("1979")));
     }
 
     #[test]
     fn it_gets_partially_unknown_end_date_from_a_record() {
         let record = Record::from_breaker("=008 940720d1976197uit mr 0 a0ita d").unwrap();
         let end_date = EndDate::try_from(&record).unwrap();
-        assert_eq!(
-            end_date,
-            EndDate(Date::PartiallyKnownYear("197u".to_owned()))
-        );
+        assert_eq!(end_date, EndDate(Date::PartiallyKnownYear("197u")));
     }
 
     #[test]
@@ -194,17 +191,17 @@ mod tests {
     fn it_gets_end_date_year_with_detailed_date() {
         let record = Record::from_breaker("=008 220203e17040506xx 000 0cara d").unwrap();
         let end_date = EndDate::try_from(&record).unwrap();
-        assert_eq!(end_date, EndDate(Date::KnownYear("1704".to_owned())));
+        assert_eq!(end_date, EndDate(Date::KnownYear("1704")));
     }
 
     #[test]
     fn it_displays_end_date_correctly() {
         assert_eq!(
-            EndDate(Date::KnownYear("1999".to_owned())).maybe_to_string(),
+            EndDate(Date::KnownYear("1999")).maybe_to_string(),
             Some("1999".to_owned())
         );
         assert_eq!(
-            EndDate(Date::PartiallyKnownYear("19uu".to_owned())).maybe_to_string(),
+            EndDate(Date::PartiallyKnownYear("19uu")).maybe_to_string(),
             Some("1999".to_owned())
         );
         assert_eq!(EndDate(Date::UnknownYear).maybe_to_string(), None);
