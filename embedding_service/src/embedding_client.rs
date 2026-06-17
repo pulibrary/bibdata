@@ -42,7 +42,7 @@ impl EmbeddingClient {
 }
 pub fn get_embedding(text: String) -> Result<Vec<i32>, magnus::Error> {
     let base_url = std::env::var("EMBEDDING_SERVICE_URL")
-        .unwrap_or_else(|_| "https://localhost:8000".to_string());
+        .unwrap_or_else(|_| "http://localhost:8000".to_string());
     let client = EmbeddingClient::new(base_url);
     client.get_embedding(&text).map_err(|error| {
         magnus::Error::new(
