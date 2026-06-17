@@ -87,7 +87,7 @@ after_processing do
   end
 end
 
-to_field 'id', extract_marc('001', first: true)
+rust_single_value_field 'id'
 
 # Store the full MARCXML record as compressed string (gzip + base64) for SCSB records only
 to_field 'marcxml' do |_record, accumulator, context|
@@ -118,9 +118,7 @@ rust_single_value_field 'figgy_1display'
 #    110 XX abcdefgkln A ab
 #    111 XX abcdefgklnpq A ab
 
-# previously set to not include alternate script and to have only first value
-# to put back in add: alternate_script: false, first: true
-to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true)
+rust_multi_value_field 'author_display'
 to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true)
 to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
 
@@ -164,7 +162,7 @@ end
 #    245 XX abchknps
 to_field 'title_display', extract_marc('245abcfghknps', alternate_script: false)
 
-to_field 'title_a_index', extract_marc('245a', trim_punctuation: true)
+rust_multi_value_field 'title_a_index'
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :only, first: true)
 
