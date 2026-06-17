@@ -314,7 +314,7 @@ to_field 'geocode_display' do |record, acc|
   )
 end
 
-to_field 'scale_display', extract_marc('255a')
+rust_multi_value_field 'scale_display'
 
 to_field 'projection_display', extract_marc('255b:342a')
 

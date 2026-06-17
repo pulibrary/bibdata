@@ -18,6 +18,7 @@ use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
+use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
@@ -111,7 +112,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(45);
+    let hash = ruby.hash_new_capa(46);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -199,6 +200,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("pub_date_end_sort", pub_date_end_sort)?;
     hash.aset("rbgenr_s", ruby.ary_from_iter(genre::rbgenr_s(&record)))?;
     hash.aset("recap_notes_display", recap_partner_notes(&record))?;
+    hash.aset("scale_display", extract_marc!("255a")(&record))?;
     hash.aset(
         "siku_subject_display",
         ruby.ary_from_iter(subject::siku_subjects_display(&record)),
@@ -385,5 +387,20 @@ mod tests {
 
         let oclc_value = hash.aref::<&str, Vec<String>>("oclc_s").unwrap();
         assert_eq!(oclc_value, vec![String::from("989083934")]);
+    }
+
+    #[ruby_test]
+    fn it_includes_scale_display_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby.eval(r#"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new('255', '', '', ['a', 'Scale [1:6,336,000]. 1" = 100 miles. Vertical scale [1:192,000]. 1/16" = approx. 1000\'.']));record"#).unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+
+        let scale_display_value = hash.aref::<&str, Vec<String>>("scale_display").unwrap();
+        assert_eq!(
+            scale_display_value,
+            vec![String::from(
+                r#"Scale [1:6,336,000]. 1" = 100 miles. Vertical scale [1:192,000]. 1/16" = approx. 1000'."#
+            )]
+        );
     }
 }
