@@ -112,13 +112,19 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(63);
+    let hash = ruby.hash_new_capa(109);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
     hash.aset("alt_title_246_display", extract_marc!("246abfnp")(&record))?;
     hash.aset("arrangement_display", extract_marc!("351abc")(&record))?;
     hash.aset("author_roles_1display", author_roles_1display)?;
+    hash.aset("bib_ref_notes_display", extract_marc!("504ab")(&record))?;
+    hash.aset("binding_note_display", extract_marc!("563au3")(&record))?;
+    hash.aset(
+        "biographical_historical_note_display",
+        extract_marc!("545ab")(&record),
+    )?;
     hash.aset(
         "call_number_browse_s",
         call_number_labels_for_browse(&record),
@@ -127,7 +133,12 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "call_number_display",
         call_number_labels_for_display(&record),
     )?;
+    hash.aset(
+        "case_file_notes_display",
+        extract_marc!("5653abcde")(&record),
+    )?;
     hash.aset("cataloged_date_tdt", cataloged_date(&record))?;
+    hash.aset("cite_as_display", extract_marc!("52423a")(&record))?;
     hash.aset("cjk_author", ruby.ary_from_iter(cjk::cjk_authors(&record)))?;
     hash.aset("cjk_all", ruby.ary_from_iter(cjk::cjk_all(&record)))?;
     hash.aset("cjk_notes", ruby.ary_from_iter(cjk::notes_cjk(&record)))?;
@@ -140,12 +151,26 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         ruby.ary_from_iter(cjk::subjects_cjk(&record)),
     )?;
     hash.aset("cjk_title", ruby.ary_from_iter(cjk::cjk_titles(&record)))?;
+    hash.aset("coden_display", extract_marc!("030a")(&record))?;
     hash.aset("compiled_created_display", extract_marc!("245fg")(&record))?;
     hash.aset(
         "contains_title_index",
         ruby.ary_from_iter(title::contains_titles_index(&record)),
     )?;
     hash.aset("content_title_index", extract_marc!("505t")(&record))?;
+    hash.aset(
+        "copy_version_notes_display",
+        extract_marc!("5623abcde")(&record),
+    )?;
+    hash.aset("credits_notes_display", extract_marc!("508a")(&record))?;
+    hash.aset(
+        "data_quality_notes_display",
+        extract_marc!("514abcdefghijkm")(&record),
+    )?;
+    hash.aset(
+        "date_place_event_notes_display",
+        extract_marc!("5183adop")(&record),
+    )?;
     hash.aset(
         "description_display",
         extract_marc!(
@@ -183,19 +208,42 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
             "362az"
         )(&record),
     )?;
+    hash.aset(
+        "dissertation_notes_display",
+        extract_marc!("502abcdgo")(&record),
+    )?;
     hash.aset("edition_display", extract_marc!("250ab")(&record))?;
+    hash.aset("exhibitions_note_display", extract_marc!("5853a")(&record))?;
     hash.aset(
         "fast_subject_display",
         ruby.ary_from_iter(subject::fast_subjects(&record)),
     )?;
     hash.aset("figgy_1display", figgy_1display(&record))?;
     hash.aset("format", format)?;
+    hash.aset("former_frequency_display", extract_marc!("321ab")(&record))?;
+    hash.aset(
+        "former_title_complex_notes_display",
+        extract_marc!("547a")(&record),
+    )?;
+    hash.aset("frequency_display", extract_marc!("310ab")(&record))?;
+    hash.aset(
+        "funding_info_notes_display",
+        extract_marc!("536abcdefgh")(&record),
+    )?;
     hash.aset("genre_facet", genre::genres(&record))?;
+    hash.aset("geo_cov_notes_display", extract_marc!("522a")(&record))?;
     hash.aset(
         "homoit_genre_s",
         ruby.ary_from_iter(genre::homoit_genre_s(&record)),
     )?;
     hash.aset("icpsr_subject_unstem_search", icpsr_subject_unstem_search)?;
+    hash.aset(
+        "info_document_notes_display",
+        extract_marc!("556a")(&record),
+    )?;
+    hash.aset("issn_display", extract_marc!("022a")(&record))?;
+    hash.aset("issuing_body_notes_display", extract_marc!("550a")(&record))?;
+    hash.aset("language_display", extract_marc!("5463a")(&record))?;
     hash.aset(
         "linked_series_index",
         extract_marc!("760acgst", "762acgst")(&record),
@@ -216,8 +264,18 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     )?;
     hash.aset("lccn_display", extract_marc!("010a")(&record))?;
     hash.aset("lcgft_s", ruby.ary_from_iter(genre::lcgft_s(&record)))?;
+    hash.aset("linking_notes_display", extract_marc!("580a")(&record))?;
     hash.aset("location", holdings::library::location_facet(&record))?;
+    hash.aset(
+        "location_originals_notes_display",
+        extract_marc!("5353abcdg")(&record),
+    )?;
+    hash.aset(
+        "location_other_arch_notes_display",
+        extract_marc!("5443abcden")(&record),
+    )?;
     hash.aset("marcxml", marcxml_compressed(&record))?;
+    hash.aset("methodology_notes_display", extract_marc!("567a")(&record))?;
     hash.aset(
         "non_latin_non_cjk_all_index",
         ruby.ary_from_iter(non_latin::non_latin_non_cjk_all(&record)),
@@ -236,9 +294,23 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     )?;
     hash.aset("notes_display", extract_marc!("5003a", "590a")(&record))?;
     hash.aset(
+        "numbering_pec_notes_display",
+        extract_marc!("515a")(&record),
+    )?;
+    hash.aset(
         "numeric_id_b",
         matches!(ControlNumber::from(&record), ControlNumber::Alma(_)),
     )?;
+    hash.aset(
+        "original_language_display",
+        extract_marc!("880abc")(&record),
+    )?;
+    hash.aset(
+        "original_version_notes_display",
+        extract_marc!("534abcefklmnpt3")(&record),
+    )?;
+    hash.aset("other_editions_s", extract_marc!("775w")(&record))?;
+    hash.aset("other_format_display", extract_marc!("5303abcd")(&record))?;
     hash.aset(
         "other_title_index",
         extract_marc!(
@@ -270,6 +342,11 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         original_language_of_translation_facet,
     )?;
     hash.aset(
+        "participant_performer_display",
+        extract_marc!("511a")(&record),
+    )?;
+    hash.aset("place_name_display", extract_marc!("752abcd")(&record))?;
+    hash.aset(
         "pub_citation_display",
         ruby.ary_from_iter(publication::pub_citation_display(&record)),
     )?;
@@ -281,22 +358,52 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "pub_created_display",
         ruby.ary_from_iter(publication::pub_created_display(&record)),
     )?;
+    hash.aset(
+        "publications_about_display",
+        extract_marc!("581az36")(&record),
+    )?;
+    hash.aset("publisher_no_display", extract_marc!("028a")(&record))?;
     hash.aset("projection_display", extract_marc!("255b", "342a")(&record))?;
     hash.aset("pub_date_display", pub_date_start_sort.clone())?;
     hash.aset("pub_date_start_sort", pub_date_start_sort)?;
     hash.aset("pub_date_end_sort", pub_date_end_sort)?;
     hash.aset("rbgenr_s", ruby.ary_from_iter(genre::rbgenr_s(&record)))?;
     hash.aset("recap_notes_display", recap_partner_notes(&record))?;
+    hash.aset(
+        "related_record_info_display",
+        extract_marc!("776i")(&record),
+    )?;
+    hash.aset(
+        "reproduction_notes_display",
+        extract_marc!("5333abcdefmn")(&record),
+    )?;
+    hash.aset(
+        "restrictions_note_display",
+        extract_marc!("5063abcde")(&record),
+    )?;
+    hash.aset(
+        "rights_reproductions_note_display",
+        extract_marc!("5403abcd")(&record),
+    )?;
     hash.aset("scale_display", extract_marc!("255a")(&record))?;
+    hash.aset("script_display", extract_marc!("546b")(&record))?;
     hash.aset("series_statement_index", extract_marc!("490avx")(&record))?;
     hash.aset(
         "siku_subject_display",
         ruby.ary_from_iter(subject::siku_subjects_display(&record)),
     )?;
+    hash.aset("standard_no_024_index", extract_marc!("024a")(&record))?;
     hash.aset(
         "standard_no_index",
         standard_numbers_for_ruby(ruby, &record),
     )?;
+    hash.aset("sudoc_no_display", extract_marc!("086a")(&record))?;
+    hash.aset("supplement_notes_display", extract_marc!("525a")(&record))?;
+    hash.aset(
+        "system_details_notes_display",
+        extract_marc!("5383ai")(&record),
+    )?;
+    hash.aset("target_aud_notes_display", extract_marc!("5213ab")(&record))?;
     hash.aset(
         "title_no_h_index",
         ruby.ary_from_iter(title::title_no_h_index(&record)),
@@ -304,6 +411,8 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("title_sort", title::title_sort(&record))?;
     hash.aset("title_vern_sort", title::non_latin_title_sort(&record))?;
     hash.aset("title_t", title_t)?;
+    hash.aset("type_period_notes_display", extract_marc!("513ab")(&record))?;
+    hash.aset("with_notes_display", extract_marc!("501a")(&record))?;
 
     Ok(hash)
 }
