@@ -1825,8 +1825,8 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
-    context "text embeddings" do
-      it "indexes text_embeddings" do
+    context 'text embeddings' do
+      it 'indexes text_embeddings' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
         expect(record['text_embeddings']).to be_an_instance_of(Array)
       end

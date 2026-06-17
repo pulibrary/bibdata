@@ -30,20 +30,20 @@ impl EmbeddingClient {
     }
 }
 pub fn get_embedding(text: String) -> Result<Vec<i32>, magnus::Error> {
-    let base_url = std::env::var("EMBEDDING_SERVICE_URL")
-    .map_err(|e| magnus::Error::new(
-        unsafe { magnus::Ruby::get_unchecked() }.exception_runtime_error(),
-        format!("EMBEDDING_SERVICE_URL is not set: {}", e),
-    ))?;
+    let base_url = std::env::var("EMBEDDING_SERVICE_URL").map_err(|e| {
+        magnus::Error::new(
+            unsafe { magnus::Ruby::get_unchecked() }.exception_runtime_error(),
+            format!("EMBEDDING_SERVICE_URL is not set: {}", e),
+        )
+    })?;
     let client = EmbeddingClient::new(base_url);
-    client
-        .get_embedding(&text)
-        .map_err(|error| magnus::Error::new(
+    client.get_embedding(&text).map_err(|error| {
+        magnus::Error::new(
             unsafe { magnus::Ruby::get_unchecked() }.exception_runtime_error(),
             error.to_string(),
-        ))
+        )
+    })
 }
-
 
 #[cfg(test)]
 

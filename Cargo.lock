@@ -161,6 +161,7 @@ dependencies = [
  "base64",
  "codes-iso-639",
  "criterion",
+ "embedding_service",
  "env_logger",
  "figgy_marc",
  "flate2",
