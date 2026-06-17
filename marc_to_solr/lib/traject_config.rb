@@ -1471,9 +1471,7 @@ each_record do |_record, context|
     context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
 
-  to_field 'text_embeddings' do |_record, accumulator, _context|
-    # we want to pass title author content as a concatenated text to the embedding service
-    text_embeddings = BibdataRs::Marc.get_embedding('Good morning friends of music')
-    accumulator.replace(text_embeddings) if text_embeddings.any?
-  end
+  concatenated_fields = (context.output_hash['title_display']&.join(',') || ' ') + (context.output_hash['author_display']&.join(',') || ' ')
+  text_embeddings = BibdataRs::Marc.get_embedding(concatenated_fields)
+  context.output_hash['text_embeddings'] = text_embeddings
 end

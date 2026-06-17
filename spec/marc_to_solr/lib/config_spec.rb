@@ -11,6 +11,7 @@ describe 'From traject_config.rb', :indexing do
 
   context 'valid records' do
     before(:all) do
+      ENV['EMBEDDING_SERVICE_URL'] = 'http://localhost:8000'
       stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')
       @indexer = IndexerService.build
       @sample1 = @indexer.map_record(fixture_record('99276293506421'))
@@ -1828,7 +1829,8 @@ describe 'From traject_config.rb', :indexing do
     context 'text embeddings' do
       it 'indexes text_embeddings' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
-        expect(record['text_embeddings']).to be_an_instance_of(Array)
+
+        expect(record['text_embeddings']).to eq([106, -94, -29, 123, -49, -58, -86, 82, 22, 66, 19, -94, 94, -19, 23, -56, 17, 49, -64, -48, 104, -59, 73, -37, 105, -1, -100, 58, -123, -2, 15, -17, -84, -79, 21, 71, 43, -14, -4, 121, -14, 14, 39, -51, 123, 106, 65, 72, 94, 6, -101, -124, 121, 10, -46, 24, 84, 79, 34, -88, -8, -17, -38, -50, -54, -65, -118, 39, -5, -83, -125, -5, -13, -126, -62, -74, -23, -33, -12, -78, -31, 23, -111, 105, 91, 57, -79, 120, -116, 42, -7, -74, 30, 24, -27, 12])
       end
     end
   end
