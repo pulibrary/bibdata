@@ -1824,6 +1824,13 @@ describe 'From traject_config.rb', :indexing do
         expect(sample['location']).to eq(['Mendel Music Library'])
       end
     end
+
+    context "text embeddings" do
+      it "indexes text_embeddings" do
+        record = @indexer.map_record(fixture_record('9992320213506421'))
+        expect(record['text_embeddings']).to be_an_instance_of(Array)
+      end
+    end
   end
 
   context 'invalid utf8 record' do
