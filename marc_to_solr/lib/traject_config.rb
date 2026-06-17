@@ -185,25 +185,19 @@ to_field 'series_title_index', extract_marc('440anpvx') do |record, accumulator|
   accumulator.flatten!
 end
 
-to_field 'series_statement_index', extract_marc('490avx')
-
-to_field 'content_title_index', extract_marc('505t')
-
+rust_multi_value_field 'series_statement_index'
+rust_multi_value_field 'content_title_index'
 rust_multi_value_field 'contains_title_index'
-
-to_field 'linked_title_index', extract_marc('765st:767st:770st:772st:773st:774st:775st:776st:777st:780st:785st:786st:787st')
-
-to_field 'linked_series_title_index', extract_marc('765k:767k:770k:772k:773k:774k:775k:776k:777k:780k:785k:786k:787k')
+rust_multi_value_field 'linked_title_index'
+rust_multi_value_field 'linked_series_title_index'
 
 to_field 'series_ae_index', extract_marc('830adfghklmnoprstv:840anpv') do |record, accumulator|
   accumulator << everything_after_t(record, '800:810:811')
   accumulator.flatten!
 end
 
-to_field 'linked_series_index', extract_marc('760acgst:762acgst')
-
-to_field 'original_version_series_index', extract_marc('534f')
-
+rust_multi_value_field 'linked_series_index'
+rust_multi_value_field 'original_version_series_index'
 rust_multi_value_field 'cjk_title'
 rust_multi_value_field 'non_latin_non_cjk_title_index'
 rust_multi_value_field 'cjk_series_title'
@@ -213,11 +207,11 @@ rust_multi_value_field 'non_latin_non_cjk_series_title_index'
 
 # Compiled/Created:
 #    245 XX fg
-to_field 'compiled_created_display', extract_marc('245fg')
+rust_multi_value_field 'compiled_created_display'
 
 # Edition
 #    250 XX ab
-to_field 'edition_display', extract_marc('250ab')
+rust_multi_value_field 'edition_display'
 
 # for browse lists Published/Created
 #    880
@@ -227,9 +221,7 @@ to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', altern
 #    260 XX abcefg
 #    264 XX abc
 rust_multi_value_field 'pub_created_display'
-
-to_field 'pub_created_s', extract_marc('260abcefg:264abcefg3')
-
+rust_multi_value_field 'pub_created_s'
 rust_multi_value_field 'pub_citation_display'
 
 to_field 'publication_location_citation_display', extract_marc('260a:264|*1|a', trim_punctuation: true, first: true)
@@ -293,8 +285,8 @@ to_field 'electronic_access_index', extract_marc('856')
 # 306 XX a
 # 515 XX a
 # 362 XX az
-to_field 'description_display', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:362az')
-to_field 'description_t', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
+rust_multi_value_field 'description_display'
+rust_multi_value_field 'description_t'
 
 to_field 'number_of_pages_citation_display', extract_marc('300a', trim_punctuation: true)
 
@@ -315,12 +307,11 @@ to_field 'geocode_display' do |record, acc|
 end
 
 rust_multi_value_field 'scale_display'
-
-to_field 'projection_display', extract_marc('255b:342a')
+rust_multi_value_field 'projection_display'
 
 # Arrangement:
 # #    351 XX 3abc
-to_field 'arrangement_display', extract_marc('351abc')
+rust_multi_value_field 'arrangement_display'
 
 # Translation of:
 #    765 XX at
@@ -553,7 +544,8 @@ to_field 'content_advice_display', extract_marc('520|4*|3abc')
 #    565 XX 3abcde
 #    567 XX a
 #    570 XX a
-to_field 'notes_display', extract_marc('5003a:590a')
+rust_multi_value_field 'notes_display'
+
 to_field 'with_notes_display', extract_marc('501a')
 to_field 'bibliographic_notes_display', extract_marc('503a') # obsolete
 to_field 'dissertation_notes_display', extract_marc('502abcdgo')
@@ -1098,7 +1090,7 @@ to_field 'place_name_display', extract_marc('752abcd')
 #    247 XX abfhnp
 #    730 XX aplskfmnor
 #    740 XX ahnp
-to_field 'other_title_index', extract_marc('246abfnp:210ab:211a:212a:214a:222ab:242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp')
+rust_multi_value_field 'other_title_index'
 
 # only include 246 as 'other title' when 2nd indicator missing or 3 and missing $i
 to_field 'other_title_display' do |record, accumulator|
@@ -1114,7 +1106,7 @@ to_field 'other_title_display' do |record, accumulator|
   accumulator
 end
 
-to_field 'alt_title_246_display', extract_marc('246abfnp')
+rust_multi_value_field 'alt_title_246_display'
 
 # 246 hash, 2nd indicator is used for label (hash key), prefer $i if present
 to_field 'other_title_1display' do |record, accumulator|
@@ -1190,7 +1182,7 @@ to_field 'publisher_no_display', extract_marc('028a')
 # Standard no.:
 #    010 XX a
 #    030 XX a
-to_field 'lccn_display', extract_marc('010a')
+rust_multi_value_field 'lccn_display'
 to_field 'coden_display', extract_marc('030a')
 
 to_field 'standard_no_024_index', extract_marc('024a')
