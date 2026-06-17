@@ -383,11 +383,14 @@ to_field 'changed_back_to_display', extract_marc('785|08|at', trim_punctuation: 
 
 # Frequency:
 #    310 XX ab
-to_field 'frequency_display', extract_marc('310ab')
+
+# Frequency:
+#    310 XX ab
+rust_multi_value_field 'frequency_display'
 
 # Former frequency:
 #    321 XX a
-to_field 'former_frequency_display', extract_marc('321ab')
+rust_multi_value_field 'former_frequency_display'
 
 # Has supplement:
 #    770 XX at
@@ -399,7 +402,7 @@ to_field 'supplement_to_display', extract_marc('772at', trim_punctuation: true)
 
 # Linking notes:
 #    580 XX a
-to_field 'linking_notes_display', extract_marc('580a')
+rust_multi_value_field 'linking_notes_display'
 
 # Subseries of:
 #    760 XX at
@@ -491,21 +494,21 @@ to_field 'related_record_s' do |record, accumulator|
 end
 
 # Link to BIB of other edition
-to_field 'other_editions_s', extract_marc('775w')
+rust_multi_value_field 'other_editions_s'
 
 # Description for the related record
-to_field 'related_record_info_display', extract_marc('776i')
+rust_multi_value_field 'related_record_info_display'
 
 # Notes index field 5XX
 to_field 'notes_index', extract_all_marc_values(from: '500', to: '599')
 
 # Restrictions note:
 #    506 XX 3abcde
-to_field 'restrictions_note_display', extract_marc('5063abcde')
+rust_multi_value_field 'restrictions_note_display'
 
 # Biographical/Historical note:
 #    545 XX ab
-to_field 'biographical_historical_note_display', extract_marc('545ab')
+rust_multi_value_field 'biographical_historical_note_display'
 
 # Summary note:
 #    520 XX 3ab
@@ -546,37 +549,37 @@ to_field 'content_advice_display', extract_marc('520|4*|3abc')
 #    570 XX a
 rust_multi_value_field 'notes_display'
 
-to_field 'with_notes_display', extract_marc('501a')
+rust_multi_value_field 'with_notes_display'
 to_field 'bibliographic_notes_display', extract_marc('503a') # obsolete
-to_field 'dissertation_notes_display', extract_marc('502abcdgo')
-to_field 'bib_ref_notes_display', extract_marc('504ab')
+rust_multi_value_field 'dissertation_notes_display'
+rust_multi_value_field 'bib_ref_notes_display'
 to_field 'scale_notes_display', extract_marc('507ab') # added
-to_field 'credits_notes_display', extract_marc('508a')
-to_field 'type_period_notes_display', extract_marc('513ab')
-to_field 'data_quality_notes_display', extract_marc('514abcdefghijkm')
-to_field 'numbering_pec_notes_display', extract_marc('515a')
+rust_multi_value_field 'credits_notes_display'
+rust_multi_value_field 'type_period_notes_display'
+rust_multi_value_field 'data_quality_notes_display'
+rust_multi_value_field 'numbering_pec_notes_display'
 to_field 'type_comp_data_notes_display', extract_marc('516a') # added
-to_field 'date_place_event_notes_display', extract_marc('5183adop')
-to_field 'target_aud_notes_display', extract_marc('5213ab')
-to_field 'geo_cov_notes_display', extract_marc('522a')
+rust_multi_value_field 'date_place_event_notes_display'
+rust_multi_value_field 'target_aud_notes_display'
+rust_multi_value_field 'geo_cov_notes_display'
 to_field 'time_period_notes_display', extract_marc('523a') # obsolete
-to_field 'supplement_notes_display', extract_marc('525a')
+rust_multi_value_field 'supplement_notes_display'
 to_field 'study_prog_notes_display', extract_marc('526abcdixz') # added
 to_field 'censorship_notes_display', extract_marc('527a') # obsolete
-to_field 'reproduction_notes_display', extract_marc('5333abcdefmn')
-to_field 'original_version_notes_display', extract_marc('534abcefklmnpt3')
-to_field 'location_originals_notes_display', extract_marc('5353abcdg')
-to_field 'funding_info_notes_display', extract_marc('536abcdefgh')
+rust_multi_value_field 'reproduction_notes_display'
+rust_multi_value_field 'original_version_notes_display'
+rust_multi_value_field 'location_originals_notes_display'
+rust_multi_value_field 'funding_info_notes_display'
 to_field 'source_data_notes_display', extract_marc('537a') # obsolete
-to_field 'system_details_notes_display', extract_marc('5383ai')
+rust_multi_value_field 'system_details_notes_display'
 to_field 'related_copyright_notes_display', extract_marc('542|1*|:542| *|') # is this in any record?
-to_field 'location_other_arch_notes_display', extract_marc('5443abcden')
-to_field 'former_title_complex_notes_display', extract_marc('547a')
-to_field 'issuing_body_notes_display', extract_marc('550a')
-to_field 'info_document_notes_display', extract_marc('556a')
-to_field 'copy_version_notes_display', extract_marc('5623abcde')
-to_field 'case_file_notes_display', extract_marc('5653abcde')
-to_field 'methodology_notes_display', extract_marc('567a')
+rust_multi_value_field 'location_other_arch_notes_display'
+rust_multi_value_field 'former_title_complex_notes_display'
+rust_multi_value_field 'issuing_body_notes_display'
+rust_multi_value_field 'info_document_notes_display'
+rust_multi_value_field 'copy_version_notes_display'
+rust_multi_value_field 'case_file_notes_display'
+rust_multi_value_field 'methodology_notes_display'
 to_field 'editor_notes_display', extract_marc('570a') # added
 to_field 'accumulation_notes_display', extract_marc('584ab3') # added
 to_field 'awards_notes_display', extract_marc('586a3') # added
@@ -584,7 +587,7 @@ to_field 'source_desc_notes_display', extract_marc('588a') # added
 
 # Binding note:
 #    563 XX au3
-to_field 'binding_note_display', extract_marc('563au3')
+rust_multi_value_field 'binding_note_display'
 
 # Local notes:
 #    590 XX a
@@ -594,19 +597,19 @@ to_field 'local_notes_display', extract_marc('591a:592a')
 
 # Rights and reproductions note:
 #    540 XX 3abcd
-to_field 'rights_reproductions_note_display', extract_marc('5403abcd')
+rust_multi_value_field 'rights_reproductions_note_display'
 
 # Exhibitions note:
 #    585 XX 3a
-to_field 'exhibitions_note_display', extract_marc('5853a')
+rust_multi_value_field 'exhibitions_note_display'
 
 # Participant(s)/Performer(s):
 #    511 XX a
-to_field 'participant_performer_display', extract_marc('511a')
+rust_multi_value_field 'participant_performer_display'
 
 # Language(s):
 #    546 XX 3a
-to_field 'language_display', extract_marc('5463a')
+rust_multi_value_field 'language_display'
 
 # Languages for the show page
 #    008, 041$a and 041$d
@@ -629,7 +632,7 @@ end
 
 # Script:
 #    546 XX b
-to_field 'script_display', extract_marc('546b')
+rust_multi_value_field 'script_display'
 
 # The language_iana_s field is used in the record page to calculate the html lang attribute
 # Based on https://www.loc.gov/marc/bibliographic/bd008a.html section 35-37 - Language,
@@ -690,7 +693,7 @@ to_field 'source_acquisition_display', extract_marc('541|1*|abcdefhno36:541| *|a
 
 # Publications about:
 #    581 XX az36
-to_field 'publications_about_display', extract_marc('581az36')
+rust_multi_value_field 'publications_about_display'
 
 # Action note - formatted with link
 rust_multi_value_field 'action_notes_1display'
@@ -710,12 +713,12 @@ to_field 'references_url_display', extract_marc('510|3*|3abcu:510|4*|3abcu')
 
 # Cite as:
 #    524 XX 23a
-to_field 'cite_as_display', extract_marc('52423a')
+rust_multi_value_field 'cite_as_display'
 
 # Other format(s):
 #    530 XX 3abcd
 #    533 XX 3abcdefmn
-to_field 'other_format_display', extract_marc('5303abcd')
+rust_multi_value_field 'other_format_display'
 
 # Cumulative index/Finding aid:
 #    555 XX 3abcd
@@ -1076,7 +1079,7 @@ to_field 'instrumentation_facet', marc_instrumentation_humanized
 
 # Place name(s):
 #    752 XX abcd
-to_field 'place_name_display', extract_marc('752abcd')
+rust_multi_value_field 'place_name_display'
 
 # Other title(s):
 #    246 XX abfnp
@@ -1164,11 +1167,11 @@ end
 
 # ISSN:
 #    022 XX a
-to_field 'issn_display', extract_marc('022a')
+rust_multi_value_field 'issn_display'
 
 # SuDoc no.:
 #    086 XX a
-to_field 'sudoc_no_display', extract_marc('086a')
+rust_multi_value_field 'sudoc_no_display'
 
 # Tech. report no.:
 #    027 XX a
@@ -1177,15 +1180,15 @@ to_field 'tech_report_no_display', extract_marc('027a:088a')
 
 # Publisher. no.:
 #    028 XX a
-to_field 'publisher_no_display', extract_marc('028a')
+rust_multi_value_field 'publisher_no_display'
 
 # Standard no.:
 #    010 XX a
 #    030 XX a
 rust_multi_value_field 'lccn_display'
-to_field 'coden_display', extract_marc('030a')
+rust_multi_value_field 'coden_display'
 
-to_field 'standard_no_024_index', extract_marc('024a')
+rust_multi_value_field 'standard_no_024_index'
 
 to_field 'standard_no_1display' do |record, accumulator|
   standard_no = standard_no_hash(record)
@@ -1226,7 +1229,7 @@ rust_multi_value_field 'other_version_s'
 
 # Original language:
 #    880 XX abc
-to_field 'original_language_display', extract_marc('880abc')
+rust_multi_value_field 'original_language_display'
 
 to_field 'subject_era_facet', marc_era_facet
 
