@@ -1,6 +1,6 @@
-use crate::marc::string_normalize::maybe_not_empty;
+use crate::marc::{extract_values::ExtractValues, string_normalize::maybe_not_empty};
 use itertools::Itertools;
-use marctk::{Field, Subfield};
+use marctk::{Field, Record, Subfield};
 
 pub trait SubfieldIterator<'a>: Iterator<Item = &'a Subfield> {
     fn content(self) -> impl Iterator<Item = &'a str>;
@@ -141,23 +141,52 @@ pub struct IncorrectExtractSpec {}
 /// `extract_marc!("245abc", "100a");` will return a closure that you can
 /// call to extract the desired fields from a record.
 macro_rules! extract_marc {
+    ( latin $( $spec:expr),+ ) => {{
+        use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex, extract_marc_impl};
+
+        let mut specs = Vec::new();
+        $(
+            specs.push(ExtractSpec::new($spec, ScriptsToIndex::LatinOnly).unwrap());
+        )+
+        extract_marc_impl(specs)
+    }};
+    ( non_latin $( $spec:expr),+ ) => {{
+        use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex, extract_marc_impl};
+
+        let mut specs = Vec::new();
+        $(
+            specs.push(ExtractSpec::new($spec, ScriptsToIndex::NonLatinOnly).unwrap());
+        )+
+        extract_marc_impl(specs)
+    }};
     ( $( $spec:expr),+ ) => {{
-        use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex};
-        use crate::marc::extract_values::ExtractValues;
-        use marctk::Record;
+        use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex, extract_marc_impl};
 
         let mut specs = Vec::new();
         $(
             specs.push(ExtractSpec::new($spec, ScriptsToIndex::All).unwrap());
         )+
-        move |record: &Record| {
-            record
-                .extract_field_values_by(
-                    |field| specs.iter().any(|spec| spec.tag_matcher(field)),
-                    |field| specs.iter().map(|spec| spec.get_subfields(field)).flatten().next())
-                .collect::<Vec<String>>()
-        }
+        extract_marc_impl(specs)
     }};
+}
+
+pub fn extract_marc_impl<'a>(
+    specs: Vec<ExtractSpec<'_>>,
+) -> impl Fn(&'a Record) -> Vec<String> + use<'a, '_> {
+    move |record: &'a Record| {
+        record
+            .extract_field_values_by(
+                |field| specs.iter().any(|spec| spec.tag_matcher(field)),
+                |field| {
+                    specs
+                        .iter()
+                        .map(|spec| spec.get_subfields(field))
+                        .flatten()
+                        .next()
+                },
+            )
+            .collect::<Vec<String>>()
+    }
 }
 
 pub(crate) use extract_marc;
@@ -228,16 +257,35 @@ mod tests {
     }
 
     #[test]
-    fn extract_marc_macro() {
-        let record = Record::from_breaker(
-            r#"=100 \\$aDog
-=245 \\$aHello$bHi$cGoodbye"#,
-        )
-        .unwrap();
-        let extractor = extract_marc!("100a", "245abc");
+    fn extract_marc_macro_returns_latin_and_non_latin_by_default() {
+        let record = Record::from_breaker(r#"=245 00 $6880-01 $a Kirin malgo kirin : $b 2023 Yangju Sirip Hoeam Saji Pangmulgwan t'ŭkpyŏl chŏnsi = Not giraffe but qilin : 2023 Hoeamsaji Museum of Yangju City spcial exhibition.
+=880 00 $6245-01 $a 기린 말고 기린 : $b 2023 양주 시립 회암 사지 박물관 특별 전시 = Not giraffe but qilin : 2023 Hoeamsaji Museum of Yangju City spcial exhibition."#).unwrap();
         assert_eq!(
-            extractor(&record),
-            vec![String::from("Dog"), String::from("Hello Hi Goodbye")]
+            extract_marc!("245a")(&record),
+            vec![
+                String::from("Kirin malgo kirin :"),
+                String::from("기린 말고 기린 :")
+            ]
+        );
+    }
+
+    #[test]
+    fn extract_marc_macro_can_return_just_latin() {
+        let record = Record::from_breaker(r#"=245 00 $6880-01 $a Kirin malgo kirin : $b 2023 Yangju Sirip Hoeam Saji Pangmulgwan t'ŭkpyŏl chŏnsi = Not giraffe but qilin : 2023 Hoeamsaji Museum of Yangju City spcial exhibition.
+=880 00 $6245-01 $a 기린 말고 기린 : $b 2023 양주 시립 회암 사지 박물관 특별 전시 = Not giraffe but qilin : 2023 Hoeamsaji Museum of Yangju City spcial exhibition."#).unwrap();
+        assert_eq!(
+            extract_marc!(latin "245a")(&record),
+            vec![String::from("Kirin malgo kirin :")]
+        );
+    }
+
+    #[test]
+    fn extract_marc_macro_can_return_just_non_latin() {
+        let record = Record::from_breaker(r#"=245 00 $6880-01 $a Kirin malgo kirin : $b 2023 Yangju Sirip Hoeam Saji Pangmulgwan t'ŭkpyŏl chŏnsi = Not giraffe but qilin : 2023 Hoeamsaji Museum of Yangju City spcial exhibition.
+=880 00 $6245-01 $a 기린 말고 기린 : $b 2023 양주 시립 회암 사지 박물관 특별 전시 = Not giraffe but qilin : 2023 Hoeamsaji Museum of Yangju City spcial exhibition."#).unwrap();
+        assert_eq!(
+            extract_marc!(non_latin "245a")(&record),
+            vec![String::from("기린 말고 기린 :")]
         );
     }
 }
