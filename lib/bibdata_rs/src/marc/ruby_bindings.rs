@@ -514,7 +514,9 @@ fn ruby_permanent_location_code(
     field: RObject,
 ) -> Result<Option<String>, magnus::Error> {
     let field = marctk_data_field_from_ruby_marc(ruby, &field).ok_or(invalid_field_error(ruby))?;
-    Ok(holdings::holding_location::permanent_location_code(&field))
+    Ok(holdings::holding_location::alma_permanent_location_code(
+        &field,
+    ))
 }
 
 fn ruby_current_location_code(
