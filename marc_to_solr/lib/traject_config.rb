@@ -158,10 +158,7 @@ to_field 'uniform_title_s', extract_marc('130apldfhkmnorst:240apldfhkmnors', tri
   accumulator.flatten!
 end
 
-# Title:
-#    245 XX abchknps
-to_field 'title_display', extract_marc('245abcfghknps', alternate_script: false)
-
+rust_multi_value_field 'title_display'
 rust_multi_value_field 'title_a_index'
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :only, first: true)
