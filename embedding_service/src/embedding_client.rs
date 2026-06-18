@@ -11,13 +11,20 @@ impl EmbeddingClient {
     }
 
     pub fn get_embedding(&self, text: &str) -> Result<Vec<i32>, Box<dyn std::error::Error>> {
-        let mut url = Url::parse_with_params(&self.url, &[("text", text)])?;
+        let mut url = Url::parse(&self.url)?;
         url.path_segments_mut()
             .map_err(|_| "Cannot modify URL path segments")?
             .push("embedding");
-        let response = reqwest::blocking::get(url.clone())?;
+
+        let client = reqwest::blocking::Client::new();
+        let response = client
+            .post(url)
+            .json(&serde_json::json!({ "text": text }))
+            .send()?
+            .error_for_status()?;
         // let response1 = reqwest::blocking::get(url)?;
         // eprintln!("Response: {:?}", response1.text());
+
         let json: serde_json::Value = response.json()?;
         let embedding = json["embedding_binary"]
             .as_array()
@@ -60,7 +67,8 @@ mod tests {
     #[test]
     fn it_gets_an_embedding_for_text() {
         let mut server = mockito::Server::new();
-        let mock = server.mock("GET", "/embedding?text=aspen+is+the+best")
+        let mock = server.mock("POST", "/embedding")
+            .match_body(r#"{"text":"aspen is the best"}"#)
             .with_status(200)
             .with_header("content-type", "application/json")
             .with_body(r#"{"embedding_binary":[-101,124,-96,22,-18,70,-59,-16,80,-54,95,40,-6,-85,-63,-11,84,29,-22,37,-57,-46,35,-72,97,-41,122,-59,-28,-36,23,-54,8,-40,26,-111,-38,45,54,-14,-96,-35,-77,61,-49,98,122,-12,19,1,64,-104,116,106,14,75,-33,124,80,118,125,79,-83,125,-37,54,-19,-28,42,-108,122,84,-42,-32,74,2,118,102,-36,85,-99,20,0,118,-14,-17,51,103,-51,48,-102,-76,18,-30,96,51]}"#)
