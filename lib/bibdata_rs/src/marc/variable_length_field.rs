@@ -93,19 +93,16 @@ pub struct ExtractSpec<'a> {
 }
 
 impl<'a> ExtractSpec<'a> {
-    pub fn get_subfields(&'a self) -> impl Fn(&'a Field) -> Option<String> + 'a {
-        move |field: &Field| {
-            if self.tag_matcher()(field) {
-                maybe_not_empty(join_subfields_by_code(field, &self.subfields))
-            } else {
-                None
-            }
+    pub fn get_subfields(&'a self, field: &'a Field) -> Option<String> {
+        if self.tag_matcher(field) {
+            maybe_not_empty(join_subfields_by_code(field, &self.subfields))
+        } else {
+            None
         }
     }
 
-    pub fn tag_matcher(&self) -> impl Fn(&Field) -> bool + 'a {
-        let tag = self.tag;
-        move |field| latin_or_non_latin_tag_included_in(&[tag])(field)
+    pub fn tag_matcher(&self, field: &Field) -> bool {
+        latin_or_non_latin_tag_included_in(&[self.tag])(field)
     }
 }
 
@@ -146,8 +143,8 @@ macro_rules! extract_marc {
         move |record: &Record| {
             record
                 .extract_field_values_by(
-                    |field| specs.iter().any(|spec| spec.tag_matcher()(field)),
-                    |field| specs.iter().map(|spec| spec.get_subfields()(field)).flatten().next())
+                    |field| specs.iter().any(|spec| spec.tag_matcher(field)),
+                    |field| specs.iter().map(|spec| spec.get_subfields(field)).flatten().next())
                 .collect::<Vec<String>>()
         }
     }};
