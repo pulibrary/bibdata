@@ -87,9 +87,17 @@ fn combine_consecutive_whitespace(original: &str) -> String {
 }
 
 #[derive(Debug, PartialEq)]
+pub enum ScriptsToIndex {
+    All,
+    LatinOnly,
+    NonLatinOnly,
+}
+
+#[derive(Debug, PartialEq)]
 pub struct ExtractSpec<'a> {
     tag: &'a str,
     subfields: Vec<&'a str>,
+    scripts: ScriptsToIndex,
 }
 
 impl<'a> ExtractSpec<'a> {
@@ -102,43 +110,45 @@ impl<'a> ExtractSpec<'a> {
     }
 
     pub fn tag_matcher(&self, field: &Field) -> bool {
-        latin_or_non_latin_tag_included_in(&[self.tag])(field)
+        match self.scripts {
+            ScriptsToIndex::All => latin_or_non_latin_tag_included_in(&[self.tag])(field),
+            ScriptsToIndex::LatinOnly => latin_tag_included_in(&[self.tag])(field),
+            ScriptsToIndex::NonLatinOnly => non_latin_tag_included_in(&[self.tag])(field),
+        }
     }
-}
 
-#[derive(Debug, PartialEq)]
-pub struct IncorrectExtractSpec {}
-impl<'a> TryFrom<&'a str> for ExtractSpec<'a> {
-    type Error = IncorrectExtractSpec;
-
-    fn try_from(value: &'a str) -> Result<Self, Self::Error> {
-        let length = value.len();
+    pub fn new(spec: &'a str, scripts: ScriptsToIndex) -> Result<Self, IncorrectExtractSpec> {
+        let length = spec.len();
         if length < 3 {
             return Err(IncorrectExtractSpec {});
         }
         let mut subfields = Vec::new();
         for i in 3..length {
-            subfields.push(value.get(i..i + 1).unwrap());
+            subfields.push(spec.get(i..i + 1).unwrap());
         }
         Ok(ExtractSpec {
-            tag: value.get(0..3).expect("Extract spec is not 3 bytes!"),
+            tag: spec.get(0..3).expect("Extract spec is not 3 bytes!"),
             subfields,
+            scripts,
         })
     }
 }
+
+#[derive(Debug, PartialEq)]
+pub struct IncorrectExtractSpec {}
 
 /// This macro can be used similarly to the traject extract_marc macro:
 /// `extract_marc!("245abc", "100a");` will return a closure that you can
 /// call to extract the desired fields from a record.
 macro_rules! extract_marc {
     ( $( $spec:expr),+ ) => {{
-        use crate::marc::variable_length_field::ExtractSpec;
+        use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex};
         use crate::marc::extract_values::ExtractValues;
         use marctk::Record;
 
         let mut specs = Vec::new();
         $(
-            specs.push(ExtractSpec::try_from($spec).unwrap());
+            specs.push(ExtractSpec::new($spec, ScriptsToIndex::All).unwrap());
         )+
         move |record: &Record| {
             record
@@ -209,8 +219,12 @@ mod tests {
         let expected = ExtractSpec {
             tag: "245",
             subfields: vec!["a", "b", "c"],
+            scripts: ScriptsToIndex::All,
         };
-        assert_eq!(ExtractSpec::try_from("245abc"), Ok(expected))
+        assert_eq!(
+            ExtractSpec::new("245abc", ScriptsToIndex::All),
+            Ok(expected)
+        )
     }
 
     #[test]
