@@ -2,7 +2,10 @@ use std::collections::HashMap;
 
 use marctk::{Field, Record};
 
-use crate::{locations::HOLDING_LOCATIONS, marc::alma_code_start_22};
+use crate::{
+    locations::HOLDING_LOCATIONS,
+    marc::{alma_code_start_22, control_field::control_number::ControlNumber},
+};
 
 pub fn location_label(code: &str) -> Option<&str> {
     HOLDING_LOCATIONS.get(code).map(|location| location.label)
@@ -24,11 +27,10 @@ pub fn mapped_codes_location_label(code: &str) -> HashMap<&str, &str> {
 
 pub fn location_codes(record: &Record) -> Vec<String> {
     let mut codes = Vec::new();
-    for field_852_ref in record.get_fields("852") {
-        if !field_852_ref.has_subfield("b") {
+    for field_852 in record.get_fields("852") {
+        if !field_852.has_subfield("b") {
             continue;
         }
-        let field_852 = field_852_ref.clone();
 
         let holding_id = field_852
             .first_subfield("8")
@@ -49,7 +51,11 @@ pub fn location_codes(record: &Record) -> Vec<String> {
         });
 
         // Calculate permanent and current location codes
-        let perm_code = permanent_location_code(&field_852);
+        let perm_code = match ControlNumber::from(record) {
+            ControlNumber::Alma(_) => alma_permanent_location_code(&field_852),
+            ControlNumber::SCSB(_) => partner_permanent_location_code(field_852),
+            _ => None,
+        };
         let curr_code = field_876.and_then(current_location_code);
 
         let location_code = match (curr_code, perm_code) {
@@ -66,7 +72,7 @@ pub fn location_codes(record: &Record) -> Vec<String> {
     codes
 }
 
-pub fn permanent_location_code(field: &Field) -> Option<String> {
+pub fn alma_permanent_location_code(field: &Field) -> Option<String> {
     match field.first_subfield("8") {
         // These are Princeton Alma records
         Some(alma_code) if alma_code_start_22(alma_code.content().to_string()) => {
@@ -84,13 +90,17 @@ pub fn permanent_location_code(field: &Field) -> Option<String> {
                 Some(format!("{b}${c}"))
             }
         }
-        // These are SCSB Partner records (they may have $8, but we should ignore it)
-        Some(_) | None if field.first_subfield("0").is_some() => field
-            .first_subfield("b")
-            .map(|subfield| subfield.content().to_string()),
-        // These are some weird records that don't have enough data
+        // A record may have an 852 field without a subfield 8, but it is not a valid source of
+        // information for the permanent location code
         _ => None,
     }
+}
+
+pub fn partner_permanent_location_code(field: &Field) -> Option<String> {
+    field
+        .first_subfield("0")
+        .and(field.first_subfield("b"))
+        .map(|subfield| subfield.content().to_string())
 }
 
 pub fn current_location_code(field: &Field) -> Option<String> {
@@ -128,7 +138,8 @@ mod tests {
     #[test]
     fn it_does_not_include_location_codes_without_library() {
         let record = Record::from_breaker(
-            r#"=852 0\$bmarquand$cstacks$hND1053.4$i.K5 1934$822617214130006421
+            r#"=001 9926233506421
+=852 0\$bmarquand$cstacks$hND1053.4$i.K5 1934$822617214130006421
 =852 0\$cpa$hND1053.4$i.K5 1934$822617214130006421
 =852 0\$beastasian$cpl$hND1053.4$i.K5 1934$822966900120006421
 =876 \\$022966900120006421$zpl$yeastasian"#,
@@ -147,9 +158,21 @@ mod tests {
     #[test]
     fn it_gets_location_codes_from_partner_record_with_852_subfield8() {
         let record = Record::from_breaker(
-            r"=852 8\$cHD$hARG$i905$iAVE$8221940647990003941$010744464$bscsbhl",
+            r#"=001 SCSB-12345
+=852 8\$cHD$hARG$i905$iAVE$8221940647990003941$010744464$bscsbhl"#,
         )
         .unwrap();
         assert_eq!(location_codes(&record), vec!["scsbhl"]);
+    }
+
+    #[test]
+    fn it_ignores_location_codes_from_incorrect_852_for_alma() {
+        let record = Record::from_breaker(
+            r#"=001 9926233506421
+=852 00$02950$bues$t1$hNA2541$i.M37"#,
+        )
+        .unwrap();
+        eprintln!("THE CODES ARE: {:?}", location_codes(&record));
+        assert!(location_codes(&record).is_empty());
     }
 }

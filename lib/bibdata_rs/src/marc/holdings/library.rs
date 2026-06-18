@@ -23,7 +23,11 @@ mod tests {
 
     #[test]
     fn it_gets_the_locations() {
-        let record = Record::from_breaker("=852 00$bmarquand$cstacks$822614080750006421").unwrap();
+        let record = Record::from_breaker(
+            r#"=001 9926233506421
+=852 00$bmarquand$cstacks$822614080750006421"#,
+        )
+        .unwrap();
         assert_eq!(
             location_facet(&record),
             Some(vec![String::from("Marquand Library")])
