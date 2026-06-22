@@ -10,7 +10,7 @@ impl EmbeddingClient {
         EmbeddingClient { url }
     }
 
-    pub fn get_embedding(&self, text: &str) -> Result<Vec<i32>, Box<dyn std::error::Error>> {
+    pub fn get_embedding(&self, text: &str) -> Result<Vec<f32>, Box<dyn std::error::Error>> {
         let mut url = Url::parse(&self.url)?;
         url.path_segments_mut()
             .map_err(|_| "Cannot modify URL path segments")?
@@ -26,28 +26,29 @@ impl EmbeddingClient {
         // eprintln!("Response: {:?}", response1.text());
 
         let json: serde_json::Value = response.json()?;
-        let embedding = json["embedding_binary"]
+        let embedding = json["embedding"]
             .as_array()
             .ok_or_else(|| {
                 io::Error::new(
                     io::ErrorKind::InvalidData,
                     format!(
                         "Expected 'embedding' to be an array, got: {}",
-                        json["embedding_binary"]
+                        json["embedding"]
                     ),
                 )
             })?
             .iter()
             .map(|v| {
-                v.as_i64()
-                    .ok_or("Expected embedding values to be integers")
-                    .map(|i| i as i32)
+                v.as_f64()
+                    .ok_or("Expected embedding values to be floats")
+                    .map(|i| i as f32)
             })
-            .collect::<Result<Vec<i32>, _>>()?;
+            .collect::<Result<Vec<f32>, _>>()?;
+        // println!("Embedding: {:?}", embedding);
         Ok(embedding)
     }
 }
-pub fn get_embedding(text: String) -> Result<Vec<i32>, magnus::Error> {
+pub fn get_embedding(text: String) -> Result<Vec<f32>, magnus::Error> {
     let base_url = std::env::var("EMBEDDING_SERVICE_URL")
         .unwrap_or_else(|_| "http://localhost:8000".to_string());
     let client = EmbeddingClient::new(base_url);
@@ -71,7 +72,7 @@ mod tests {
             .match_body(r#"{"text":"aspen is the best"}"#)
             .with_status(200)
             .with_header("content-type", "application/json")
-            .with_body(r#"{"embedding_binary":[-101,124,-96,22,-18,70,-59,-16,80,-54,95,40,-6,-85,-63,-11,84,29,-22,37,-57,-46,35,-72,97,-41,122,-59,-28,-36,23,-54,8,-40,26,-111,-38,45,54,-14,-96,-35,-77,61,-49,98,122,-12,19,1,64,-104,116,106,14,75,-33,124,80,118,125,79,-83,125,-37,54,-19,-28,42,-108,122,84,-42,-32,74,2,118,102,-36,85,-99,20,0,118,-14,-17,51,103,-51,48,-102,-76,18,-30,96,51]}"#)
+            .with_body(r#"{"embedding":[-0.03072148561477661,0.0025953894946724176,-0.01963762193918228,-0.04897492006421089,-0.07700270414352417,-0.01809978112578392,0.09056542068719864,-0.008020268753170967,0.03081989660859108,-0.005157603416591883,-0.002370256930589676,-0.07629439979791641,-0.03276306390762329,0.03974098339676857,0.0013087878469377756,-0.023633986711502075,-0.056400369852781296,-0.11435861140489578,-0.005043743643909693,-0.04609031602740288,0.046932004392147064,-0.13379953801631927,0.04509463161230087,0.02285894565284252]}"#)
             .create();
 
         let client = EmbeddingClient::new(server.url());
@@ -79,12 +80,7 @@ mod tests {
         assert_eq!(
             embedding,
             vec![
-                -101, 124, -96, 22, -18, 70, -59, -16, 80, -54, 95, 40, -6, -85, -63, -11, 84, 29,
-                -22, 37, -57, -46, 35, -72, 97, -41, 122, -59, -28, -36, 23, -54, 8, -40, 26, -111,
-                -38, 45, 54, -14, -96, -35, -77, 61, -49, 98, 122, -12, 19, 1, 64, -104, 116, 106,
-                14, 75, -33, 124, 80, 118, 125, 79, -83, 125, -37, 54, -19, -28, 42, -108, 122, 84,
-                -42, -32, 74, 2, 118, 102, -36, 85, -99, 20, 0, 118, -14, -17, 51, 103, -51, 48,
-                -102, -76, 18, -30, 96, 51
+                -0.03072148561477661,0.0025953894946724176,-0.01963762193918228,-0.04897492006421089,-0.07700270414352417,-0.01809978112578392,0.09056542068719864,-0.008020268753170967,0.03081989660859108,-0.005157603416591883,-0.002370256930589676,-0.07629439979791641,-0.03276306390762329,0.03974098339676857,0.0013087878469377756,-0.023633986711502075,-0.056400369852781296,-0.11435861140489578,-0.005043743643909693,-0.04609031602740288,0.046932004392147064,-0.13379953801631927,0.04509463161230087,0.02285894565284252
             ]
         );
         mock.assert();
