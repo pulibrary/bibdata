@@ -9,8 +9,7 @@ impl EmbeddingClient {
     pub fn new(url: String) -> Self {
         EmbeddingClient { url }
     }
-
-    pub fn get_embedding(&self, text: &str) -> Result<Vec<f32>, Box<dyn std::error::Error>> {
+    pub fn get_embedding(&self, text: &str) -> Result<Vec<f64>, Box<dyn std::error::Error>> {
         let mut url = Url::parse(&self.url)?;
         url.path_segments_mut()
             .map_err(|_| "Cannot modify URL path segments")?
@@ -41,14 +40,13 @@ impl EmbeddingClient {
             .map(|v| {
                 v.as_f64()
                     .ok_or("Expected embedding values to be floats")
-                    .map(|i| i as f32)
+                    .map(|i| i as f64)
             })
-            .collect::<Result<Vec<f32>, _>>()?;
-        // println!("Embedding: {:?}", embedding);
+            .collect::<Result<Vec<f64>, _>>()?;
         Ok(embedding)
     }
 }
-pub fn get_embedding(text: String) -> Result<Vec<f32>, magnus::Error> {
+pub fn get_embedding(text: String) -> Result<Vec<f64>, magnus::Error> {
     let base_url = std::env::var("EMBEDDING_SERVICE_URL")
         .unwrap_or_else(|_| "http://localhost:8000".to_string());
     let client = EmbeddingClient::new(base_url);

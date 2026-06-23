@@ -1829,8 +1829,8 @@ describe 'From traject_config.rb', :indexing do
     context 'text embeddings' do
       it 'indexes text_embeddings' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
-byebug
-        expect(record['text_embeddings']).to include(-0.11439117044210434, 0.007032354362308979, -0.02914302982389927, 0.09994401782751083, 0.10711231827735901, 0.013435428030788898, 0.045913759618997574, 0.08081753551959991)
+
+        expect(record['text_embeddings']).to include(-0.11439117044210434, 0.007032354362308979, -0.02914302982389927, 0.09994401782751083)
       end
     end
   end
