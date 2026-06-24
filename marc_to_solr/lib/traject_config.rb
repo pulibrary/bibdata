@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'byebug'
+
 require 'active_support'
 require 'active_support/core_ext/object/blank'
 require 'traject/macros/marc21_semantics'
@@ -1472,10 +1472,7 @@ each_record do |_record, context|
   end
 
   concatenated_fields = %w[title_display author_display uniform_title_s content_title_index lc_subject_display siku_subject_facet local_subject_display homoit_subject_display fast_subject_display icpsr_subject_unstem_search].filter_map { |f| context.output_hash[f]&.join(',').presence }.join(' ')
+  text_embeddings = BibdataRs::Marc.get_embedding(concatenated_fields)
 
-  text_embeddings = BibdataRs::Marc.get_embedding(concatenated_fields).map {|e| e.round(6) }
-  # text_embeddings_binary = text_embeddings.map {|e| [e].pack('e') }
-  # text_embeddings_float32 = text_embeddings_binary.map {|b| b.unpack('e')}
-  
   context.output_hash['text_embeddings'] = text_embeddings
 end

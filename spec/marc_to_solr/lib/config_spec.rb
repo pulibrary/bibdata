@@ -1830,7 +1830,7 @@ describe 'From traject_config.rb', :indexing do
       it 'indexes text_embeddings' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
 
-        expect(record['text_embeddings']).to include(-0.11439117044210434, 0.007032354362308979, -0.02914302982389927, 0.09994401782751083)
+        expect(record['text_embeddings']).to include(-0.114391, 0.007032, -0.029143, 0.099944, -0.038197, -0.001564)
       end
     end
   end
