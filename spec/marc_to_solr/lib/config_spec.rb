@@ -1824,6 +1824,14 @@ describe 'From traject_config.rb', :indexing do
         expect(sample['location']).to eq(['Mendel Music Library'])
       end
     end
+
+    context 'group_field' do
+      it 'indexes group_field' do
+        record = @indexer.map_record(fixture_record('9992320213506421'))
+
+        expect(record['group_field']).to eq('Physics : a short history from quintessence to quarks / J.L. Heilbron. Heilbron, J. L. Physics—History')
+      end
+    end
   end
 
   context 'invalid utf8 record' do
