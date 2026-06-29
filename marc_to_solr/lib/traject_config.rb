@@ -1471,9 +1471,5 @@ each_record do |_record, context|
     context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
 
-  # cluster_id
-  # when reading the id from the marc_record
-  # parse the clusters_with_uuid.json file
-  # and if you find the id match save the
-  # context.output_hash['cluster_id']
+  context.output_hash['cluster_id'] = BibdataRs::Marc.cluster_id(context.output_hash['id'].first)
 end
