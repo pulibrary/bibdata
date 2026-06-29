@@ -122,6 +122,7 @@ class Traject::PulSolrJsonWriter
   def send_batch(batch)
     return if batch.empty?
     json_package = JSON.generate(batch.map { |c| c.output_hash })
+
     begin
       resp = @http_client.post @solr_update_url, json_package, "Content-type" => "application/json"
     rescue StandardError => exception

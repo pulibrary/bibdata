@@ -22,6 +22,7 @@ use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
+use embedding_service::embedding_client::get_embedding;
 use figgy_marc::only_open;
 use library_stdnums::traits::Normalize;
 use magnus::{Module, Object, RArray, RHash, RModule, function};
@@ -38,6 +39,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         "current_location_code",
         function!(ruby_current_location_code, 1),
     )?;
+    submodule_marc.define_singleton_method("get_embedding", function!(get_embedding, 1))?;
     submodule_marc.define_singleton_method(
         "indicates_indigenous_studies?",
         function!(indicates_indigenous_studies, 1),

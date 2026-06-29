@@ -49,8 +49,8 @@ namespace :server do
          end
       end
 
-      def url_for_file(file, config_path)
-        "https://raw.githubusercontent.com/pulibrary/pul_solr/main/solr_configs/#{config_path}/conf/#{file}"
+      def url_for_file(file, _config_path)
+        "https://raw.githubusercontent.com/pulibrary/pul_solr/catalog-denseVector/solr_configs/catalog-production-v3/#{file}"
       end
     end
   end

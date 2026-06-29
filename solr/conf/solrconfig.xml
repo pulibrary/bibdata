@@ -159,6 +159,7 @@
         description_t^2.2
         cjk_all^2.2
         cjk_text^2.2
+        non_latin_non_cjk_all_index^2.2
       </str>
       <str name="pf">
         title_245a_lr^35200
@@ -186,18 +187,21 @@
         description_t^22
         cjk_all^22
         cjk_text^22
+        non_latin_non_cjk_all_index^22
       </str>
       <str name="author_qf">
         author_main_unstem_search^44
         author_unstem_search^22
         author_int^22
         cjk_author^2.2
+        non_latin_non_cjk_author_index^2.2
       </str>
       <str name="author_pf">
         author_main_unstem_search^440
         author_unstem_search^220
         author_int^22
         cjk_author^22
+        non_latin_non_cjk_author_index^22
       </str>
       <str name="left_anchor_qf">
         title_245a_la^50
@@ -231,12 +235,10 @@
       <str name="notes_qf">
         notes_index^2.2
         cjk_notes^2.2
-        cjk_notes_copied^2.2
       </str>
       <str name="notes_pf">
         notes_index^2.2
         cjk_notes^2.2
-        cjk_notes_copied^2.2
       </str>
       <str name="series_title_qf">
         series_title_index^11
@@ -246,6 +248,7 @@
         linked_series_index^2.2
         original_version_series_index^2.2
         cjk_series_title^2.2
+        non_latin_non_cjk_series_title_index^2.2
       </str>
       <str name="series_title_pf">
         series_title_index^110
@@ -255,6 +258,7 @@
         linked_series_index^22
         original_version_series_index^22
         cjk_series_title^22
+        non_latin_non_cjk_series_title_index^22
       </str>
       <str name="title_qf">
         title_a_index^1100
@@ -273,6 +277,7 @@
         linked_series_index^2.2
         original_version_series_index^2.2
         cjk_title^2.2
+        non_latin_non_cjk_title_index^2.2
       </str>
       <str name="title_pf">
         title_245a_lr^12100
@@ -293,6 +298,7 @@
         linked_series_index^22
         original_version_series_index^22
         cjk_title^22
+        non_latin_non_cjk_title_index^22
       </str>
       <str name="subject_qf">
         subject_topic_unstem_search^55
@@ -302,6 +308,8 @@
         local_subject_unstem_search^2.2
         homoit_subject_unstem_search^2.2
         cjk_subject^2.2
+        non_latin_non_cjk_subject_index^2.2
+        icpsr_subject_unstem_search
       </str>
       <str name="subject_pf">
         subject_topic_unstem_search^550
@@ -311,6 +319,7 @@
         local_subject_unstem_search^22
         homoit_subject_unstem_search^22
         cjk_subject^22
+        non_latin_non_cjk_subject_index^22
       </str>
 
       <int name="ps">3</int>
@@ -328,12 +337,14 @@
         isbn_s,
         oclc_s,
         lccn_s,
+        marcxml,
         holdings_1display,
         electronic_access_1display,
         electronic_portfolio_s,
         cataloged_tdt,
         contained_in_s,
         call_number_display,
+        language_iana_s,
         thumbnail_display
       </str>
 
@@ -374,7 +385,20 @@
       <str name="defType">lucene</str>
     </lst>
   </requestHandler>
-  
+
+  <requestHandler name="/semantic" class="solr.SearchHandler" initParams="searchParams">
+    <!-- a lucene request handler for using the JSON Query DSL, for semantic search
+         Using a separate request handler as a work around to
+         https://issues.apache.org/jira/browse/SOLR-16916
+    -->
+    <!-- default values for query parameters can be specified, these
+         will be overridden by parameters in the request
+      -->
+    <lst name="defaults">
+      <str name="defType">lucene</str>
+    </lst>
+  </requestHandler>
+
   <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
   <requestHandler name="document" class="solr.SearchHandler" >
     <lst name="defaults">
