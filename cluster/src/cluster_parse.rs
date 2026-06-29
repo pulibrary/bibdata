@@ -2,7 +2,7 @@ use serde_json::Value;
 use std::env;
 use std::fs;
 
-pub fn cluster_id(id: &str) -> Option<String> {
+pub fn cluster_id(id: String) -> Option<String> {
     let file_path = env::var("CLUSTER_JSON_PATH")
         .unwrap_or_else(|_| "cluster/data/clusters_with_uuid.json".to_string());
     let json_content = fs::read_to_string(file_path).ok()?;
@@ -13,7 +13,7 @@ pub fn cluster_id(id: &str) -> Option<String> {
         for cluster in clusters {
             if let Some(cluster_object) = cluster.as_object() {
                 for (key, value) in cluster_object {
-                    if key.starts_with("id") && value.as_str() == Some(id) {
+                    if key.starts_with("id") && value.as_str() == Some(&id) {
                         return cluster_object
                             .get("uuid")
                             .and_then(|uuid| uuid.as_str().map(|s| s.to_string()));
@@ -56,6 +56,6 @@ mod tests {
             env::set_var("CLUSTER_JSON_PATH", file_path.to_str().unwrap());
         }
 
-        assert_eq!(cluster_id("123"), Some("uuid-123-456".to_string()));
+        assert_eq!(cluster_id("123".to_string()), Some("uuid-123-456".to_string()));
     }
 }

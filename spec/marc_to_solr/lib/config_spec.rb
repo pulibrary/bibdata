@@ -1825,11 +1825,11 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
-    context 'group_field' do
-      it 'indexes group_field' do
-        record = @indexer.map_record(fixture_record('9992320213506421'))
+    context 'cluster_id' do
+      it 'indexes cluster_id' do
+        record = @indexer.map_record(fixture_record('9914037553506421'))
 
-        # expect(record['group_field']).to eq('')
+        expect(record['cluster_id']).to eq('00c6edd7-de3b-4ed1-ac94-c8e5eaa90331')
       end
     end
   end
