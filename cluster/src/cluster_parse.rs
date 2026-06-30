@@ -56,6 +56,10 @@ mod tests {
             env::set_var("CLUSTER_JSON_PATH", file_path.to_str().unwrap());
         }
 
-        assert_eq!(cluster_id("123".to_string()), Some("uuid-123-456".to_string()));
+        assert_eq!(
+            cluster_id("123".to_string()),
+            Some("uuid-123-456".to_string())
+        );
+        assert_eq!(cluster_id("789".to_string()), Some("uuid-789".to_string()));
     }
 }
