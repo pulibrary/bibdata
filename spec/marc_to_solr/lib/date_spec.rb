@@ -26,4 +26,12 @@ RSpec.describe 'Date indexing' do
       expect(indexed).not_to have_key 'publication_date_citation_display'
     end
   end
+
+  describe 'cataloged_tdt' do
+    it 'can get the date from MARC 876' do
+      record = MARC::Record.new_from_hash('fields' => [{ '876' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ '0' => '22710806450006421' }, { 'd' => '2021-07-13 12:24:58' }] } }], 'leader' => '00726cas a2200229M 4500')
+      indexed = IndexerService.build.map_record(record)
+      expect(indexed['cataloged_tdt']).to eq ['2021-07-13T12:24:58Z']
+    end
+  end
 end
