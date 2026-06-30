@@ -40,6 +40,25 @@ sequenceDiagram
 
 ```
 
+Another idea: A proxy server in front of solr
+
+```mermaid
+sequenceDiagram
+    accTitle: Full Indexing using a proxy server in front of solr
+    accDescr {
+        Indexing process including clustering.
+    }
+    actor Developer
+    Bibdata->>SCSB: Requests a dump of each partner's records via the SCSB API
+    SCSB->>S3 Bucket: Creates dump files and uploads them to S3
+    Bibdata->>S3 Bucket: Downloads files from S3
+    Bibdata->>Proxy: Index the data as usual, sending the JSON we would ordinarily send to Solr to this Proxy instead
+    Proxy->>Postgres: Calculate match keys, pairwise similarities, etc.  Store them in a database
+    Bibdata->>Proxy: Commit!
+    Proxy->>Solr: Send the batch of clustered records for indexing
+
+```
+
 
 
 
