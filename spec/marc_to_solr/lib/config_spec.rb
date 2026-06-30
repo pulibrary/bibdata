@@ -11,6 +11,7 @@ describe 'From traject_config.rb', :indexing do
 
   context 'valid records' do
     before(:all) do
+      # ENV['CLUSTER_JSON_PATH'] = '../../../cluster/data/clusters_with_uuid.json'
       stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')
       @indexer = IndexerService.build
       @sample1 = @indexer.map_record(fixture_record('99276293506421'))
@@ -1824,6 +1825,13 @@ describe 'From traject_config.rb', :indexing do
         expect(sample['location']).to eq(['Mendel Music Library'])
       end
     end
+
+    # context 'cluster_id' do
+    #   it 'indexes cluster_id' do
+    #     record = @indexer.map_record(MARC::Record.new_from_hash('leader' => '9912379153506421'))
+    #     expect(record['cluster_id']).to eq('00c6edd7-de3b-4ed1-ac94-c8e5eaa90331')
+    #   end
+    # end
   end
 
   context 'invalid utf8 record' do

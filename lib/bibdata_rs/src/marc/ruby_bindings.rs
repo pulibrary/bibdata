@@ -22,6 +22,7 @@ use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
+use cluster::cluster_id;
 use figgy_marc::only_open;
 use library_stdnums::traits::Normalize;
 use magnus::{Module, Object, RArray, RHash, RModule, function};
@@ -34,6 +35,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc
         .define_singleton_method("alma_code_start_22?", function!(alma_code_start_22, 1))?;
     submodule_marc.define_singleton_method("build_call_number", function!(build_call_number, 1))?;
+    submodule_marc.define_singleton_method("cluster_id", function!(cluster_id, 1))?;
     submodule_marc.define_singleton_method(
         "current_location_code",
         function!(ruby_current_location_code, 1),
