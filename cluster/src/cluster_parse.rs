@@ -1,28 +1,32 @@
 use serde_json::Value;
 use std::env;
 use std::fs;
+use uuid::Uuid;
 
-pub fn cluster_id(id: String) -> Option<String> {
+pub fn cluster_id(id: String) -> String {
     let file_path = env::var("CLUSTER_JSON_PATH")
         .unwrap_or_else(|_| "cluster/data/clusters_with_uuid.json".to_string());
-    let json_content = fs::read_to_string(file_path).ok()?;
-    let json_data: Value = serde_json::from_str(&json_content).ok()?;
-    // Further processing of json_data to find the cluster_id
 
-    if let Some(clusters) = json_data["clusters"].as_array() {
-        for cluster in clusters {
-            if let Some(cluster_object) = cluster.as_object() {
-                for (key, value) in cluster_object {
-                    if key.starts_with("id") && value.as_str() == Some(&id) {
-                        return cluster_object
-                            .get("uuid")
-                            .and_then(|uuid| uuid.as_str().map(|s| s.to_string()));
+    if let Ok(json_content) = fs::read_to_string(file_path) {
+        if let Ok(json_data) = serde_json::from_str::<Value>(&json_content) {
+            if let Some(clusters) = json_data["clusters"].as_array() {
+                for cluster in clusters {
+                    if let Some(cluster_object) = cluster.as_object() {
+                        for (key, value) in cluster_object {
+                            if key.starts_with("id") && value.as_str() == Some(&id) {
+                                if let Some(uuid) =
+                                    cluster_object.get("uuid").and_then(|uuid| uuid.as_str())
+                                {
+                                    return uuid.to_string();
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
-    None
+    Uuid::new_v4().to_string()
 }
 
 #[cfg(test)]
@@ -56,10 +60,8 @@ mod tests {
             env::set_var("CLUSTER_JSON_PATH", file_path.to_str().unwrap());
         }
 
-        assert_eq!(
-            cluster_id("123".to_string()),
-            Some("uuid-123-456".to_string())
-        );
-        assert_eq!(cluster_id("789".to_string()), Some("uuid-789".to_string()));
+        assert_eq!(cluster_id("123".to_string()), "uuid-123-456".to_string());
+        assert_eq!(cluster_id("789".to_string()), "uuid-789".to_string());
+        assert_eq!(cluster_id("840".to_string()).len(), 36); 
     }
 }
