@@ -145,7 +145,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "case_file_notes_display",
         extract_marc!("5653abcde")(&record),
     )?;
-    hash.aset("cataloged_date_tdt", cataloged_date(&record))?;
+    hash.aset("cataloged_tdt", cataloged_date(&record))?;
     hash.aset("cite_as_display", extract_marc!("52423a")(&record))?;
     hash.aset("cjk_author", ruby.ary_from_iter(cjk::cjk_authors(&record)))?;
     hash.aset("cjk_all", ruby.ary_from_iter(cjk::cjk_all(&record)))?;
