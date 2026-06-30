@@ -6,18 +6,18 @@ updates:
     schedule:
       interval: "weekly"
     cooldown:
-      default-days: 3
+      default-days: 7
   - package-ecosystem: "cargo"
     directory: "/" # Location of package manifests
     open-pull-requests-limit: 8
     schedule:
       interval: "weekly"
     cooldown:
-      default-days: 3
+      default-days: 7
   - package-ecosystem: "rust-toolchain"
     directory: "/" # Location of package manifests
     open-pull-requests-limit: 1
     schedule:
       interval: "weekly"
     cooldown:
-      default-days: 3
+      default-days: 7
