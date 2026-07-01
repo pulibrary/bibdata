@@ -35,7 +35,7 @@ sequenceDiagram
     Bibdata->>Reservoir: Transfer and process all Alma marc file data from last full Alma dump into clusters
     Bibdata->>Reservoir: Trasnfer and process all SCSB marc file data into clusters
     Developer->>Bibdata: Runs the cluster:index:full task
-    Bibdata->>Reservoir: Harvest full data set of clustered Marc Set
+    Bibdata->>Reservoir: Harvest full data set of clustered Marc Set via OAI-PMH
     Bibdata->>Sor: Index full data set
 
 ```
