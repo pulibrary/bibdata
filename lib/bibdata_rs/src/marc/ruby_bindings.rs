@@ -23,7 +23,6 @@ use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partne
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
 use figgy_marc::only_open;
-use library_stdnums::traits::Normalize;
 use magnus::{Module, Object, RArray, RHash, RModule, function};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
@@ -58,9 +57,6 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         function!(map_024_indicators_to_labels, 1),
     )?;
     submodule_marc.define_singleton_method("mms_id", function!(mms_id, 1))?;
-    submodule_marc.define_singleton_method("normalize_isbn", function!(normalize_isbn, 1))?;
-    submodule_marc.define_singleton_method("normalize_issn", function!(normalize_issn, 1))?;
-    submodule_marc.define_singleton_method("normalize_lccn", function!(normalize_lccn, 1))?;
     submodule_marc.define_singleton_method(
         "partner_holdings_1display",
         function!(partner_holdings_1display, 1),
@@ -112,7 +108,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(113);
+    let hash = ruby.hash_new_capa(116);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -255,6 +251,18 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "info_document_notes_display",
         extract_marc!("556a")(&record),
+    )?;
+    hash.aset(
+        "isbn_s",
+        ruby.ary_from_iter(standard_number::normalized_isbns(&record)),
+    )?;
+    hash.aset(
+        "issn_s",
+        ruby.ary_from_iter(standard_number::normalized_issns(&record)),
+    )?;
+    hash.aset(
+        "lccn_s",
+        ruby.ary_from_iter(standard_number::normalized_lccns(&record)),
     )?;
     hash.aset("issn_display", extract_marc!("022a")(&record))?;
     hash.aset("issuing_body_notes_display", extract_marc!("550a")(&record))?;
@@ -536,18 +544,6 @@ fn manifest_url(
 
 fn mms_id(ruby: &Ruby, ark: magnus::RString) -> Result<Option<magnus::RString>, magnus::Error> {
     Ok(figgy::mms_id(&ark.to_string()?, None).map(|mms_id| ruby.str_new(mms_id)))
-}
-
-fn normalize_isbn(isbn: String) -> Option<String> {
-    library_stdnums::isbn::ISBN::new(isbn).normalize()
-}
-
-fn normalize_issn(issn: String) -> Option<String> {
-    library_stdnums::issn::ISSN::new(issn).normalize()
-}
-
-fn normalize_lccn(lccn: String) -> Option<String> {
-    library_stdnums::lccn::LCCN::new(lccn).normalize()
 }
 
 #[cfg(test)]

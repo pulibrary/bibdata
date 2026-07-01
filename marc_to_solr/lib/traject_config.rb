@@ -1190,25 +1190,9 @@ to_field 'standard_no_1display' do |record, accumulator|
   accumulator[0] = standard_no.to_json unless standard_no == {}
 end
 
-to_field 'lccn_s', extract_marc('010a') do |_record, accumulator|
-  accumulator.each_with_index do |value, i|
-    accumulator[i] = BibdataRs::Marc.normalize_lccn(value)
-  end
-end
-
-to_field 'issn_s', extract_marc('022a') do |_record, accumulator|
-  accumulator.each_with_index do |value, i|
-    accumulator[i] = BibdataRs::Marc.normalize_issn(value)
-  end
-end
-
-to_field 'isbn_s', extract_marc('020a') do |_record, accumulator|
-  accumulator.each_with_index do |value, i|
-    accumulator[i] = BibdataRs::Marc.normalize_isbn(value)
-  end
-  accumulator
-end
-
+rust_multi_value_field 'issn_s'
+rust_multi_value_field 'lccn_s'
+rust_multi_value_field 'isbn_s'
 rust_multi_value_field 'oclc_s'
 
 rust_multi_value_field 'standard_no_index'
