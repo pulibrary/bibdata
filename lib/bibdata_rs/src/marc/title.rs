@@ -101,6 +101,20 @@ pub fn title_no_h_index(record: &Record) -> impl Iterator<Item = String> {
         .flatten()
 }
 
+pub fn uniform_130_non_latin(record: &Record) -> impl Iterator<Item = String> {
+    record
+        .extract_field_values_by(non_latin_tag_included_in(&["130"]), |field| {
+            Some(join_subfields_by_code(
+                field,
+                &[
+                    "a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s", "t",
+                ],
+            ))
+        })
+        .into_iter()
+        .map(|s| s.to_string())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -217,5 +231,17 @@ mod tests {
         let record = Record::from_breaker(r"=245 10 $a   ").unwrap();
         let title_values: Vec<_> = title_no_h_index(&record).collect();
         assert!(title_values.is_empty());
+    }
+
+    #[test]
+    fn it_can_find_uniform_130_vern() {
+        let record = Record::from_breaker(
+            r#"=130 00$aUniform title test $d2020 $lEnglish
+=880 00$6130-01$aعنوان کتاب"#,
+        )
+        .unwrap();
+        let mut titles = uniform_130_non_latin(&record);
+        assert_eq!(titles.next(), Some(String::from("عنوان کتاب")));
+        assert_eq!(titles.next(), None);
     }
 }
