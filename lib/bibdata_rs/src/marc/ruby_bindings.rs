@@ -18,6 +18,7 @@ use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
+use crate::marc::title;
 use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::paths::APPLICATION_ROOT;
@@ -108,7 +109,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(116);
+    let hash = ruby.hash_new_capa(117);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -447,6 +448,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("title_vern_sort", title::non_latin_title_sort(&record))?;
     hash.aset("title_t", title_t)?;
     hash.aset("type_period_notes_display", extract_marc!("513ab")(&record))?;
+    hash.aset(
+        "uniform_130_vern",
+        ruby.ary_from_iter(title::uniform_130_non_latin(&record)),
+    )?;
     hash.aset("with_notes_display", extract_marc!("501a")(&record))?;
 
     Ok(hash)

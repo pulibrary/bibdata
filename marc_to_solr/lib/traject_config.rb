@@ -1307,16 +1307,7 @@ to_field 'uniform_130' do |record, accumulator|
   end
 end
 
-to_field 'uniform_130_vern' do |record, accumulator|
-  MarcExtractor.cached('130apldfhkmnorst', alternate_script: :only).collect_matching_lines(record) do |field, spec, _extractor|
-    field.subfields.each do |s_field|
-      next if !spec.subfields.nil? && !spec.subfields.include?(s_field.code)
-
-      accumulator << s_field.value
-    end
-    break
-  end
-end
+rust_multi_value_field 'uniform_130_vern'
 
 to_field 'name_title_ae_s' do |record, accumulator|
   fields = '800aqbcdfghklmnoprstx:810abcdfghklnoprstx:811abcdefgklnpqt'
