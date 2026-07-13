@@ -3676,6 +3676,26 @@
         ]
     },
     {
+        "label": "Exhibits",
+        "code": "lewis$exhibit",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/lewis$exhibit.json",
+        "library": {
+            "label": "Lewis Library",
+            "code": "lewis",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
         "label": "",
         "code": "lewis$UNASSIGNED",
         "aeon_location": false,
