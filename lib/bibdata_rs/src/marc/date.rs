@@ -49,16 +49,28 @@ pub fn cataloged_date(record: &Record) -> Option<String> {
         .chain(electronic_edit_date)
         .chain(record_edit_date)
         .filter_map(|raw_date| {
-            parse_datetime_at_date(Zoned::new(Timestamp::UNIX_EPOCH, TimeZone::UTC), raw_date)
-                .ok()
-                .map(|parsed| {
-                    parsed
-                        .timestamp()
-                        .strftime("%Y-%m-%dT%H:%M:%SZ")
-                        .to_string()
-                })
+            parse_date(raw_date).map(|parsed| {
+                parsed
+                    .timestamp()
+                    .strftime("%Y-%m-%dT%H:%M:%SZ")
+                    .to_string()
+            })
         })
         .next()
+}
+
+fn parse_date(raw: &str) -> Option<Zoned> {
+    match raw.find("US/Eastern") {
+        Some(timezone_offset) => parse_datetime_at_date(
+            Zoned::new(
+                Timestamp::UNIX_EPOCH,
+                TimeZone::get("America/New_York").unwrap(),
+            ),
+            raw.get(..timezone_offset).unwrap(),
+        ),
+        _ => parse_datetime_at_date(Zoned::new(Timestamp::UNIX_EPOCH, TimeZone::UTC), raw),
+    }
+    .ok()
 }
 
 #[cfg(test)]
@@ -121,6 +133,18 @@ mod tests {
         assert_eq!(
             cataloged_date(&record),
             Some("2021-07-13T12:24:58Z".to_owned())
+        )
+    }
+
+    #[test]
+    fn it_can_handle_a_date_containing_a_timezone() {
+        let record = Record::from_breaker(
+            "=876 \\$022620045470006421$j1$zmap$a23936494400006421$d2022-07-19 15:37:46 US/Eastern",
+        )
+        .unwrap();
+        assert_eq!(
+            cataloged_date(&record),
+            Some("2022-07-19T19:37:46Z".to_owned())
         )
     }
 }
