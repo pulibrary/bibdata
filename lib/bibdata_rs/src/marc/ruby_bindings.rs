@@ -465,7 +465,7 @@ fn indicates_indigenous_studies(terms: magnus::RArray) -> Result<bool, magnus::E
 
 fn index_test_figgy_data_into_redis() {
     let json_fixture_path = APPLICATION_ROOT.join("spec/fixtures/files/figgy/figgy_report.json");
-    let json = fs::read_to_string(&json_fixture_path).unwrap_or_else(|_| panic!("Could not find the figgy_report in the fixtures directory, please check the path ({}), which is referenced in file {}", &json_fixture_path.to_str().unwrap(), file!()));
+    let json = fs::read_to_string(&json_fixture_path).unwrap_or_else(|_| panic!("Could not find the figgy_report in the fixtures directory, please check the path ({}), which is referenced in file {}", json_fixture_path.to_str().unwrap(), file!()));
     let test_data: figgy_marc::FiggyMmsIdCache = serde_json::from_str(&json).unwrap();
     figgy_marc::redis_cache::write(&only_open(&test_data));
 }

@@ -52,7 +52,7 @@ pub fn location_codes(record: &Record) -> Vec<String> {
 
         // Calculate permanent and current location codes
         let perm_code = match ControlNumber::from(record) {
-            ControlNumber::Alma(_) => alma_permanent_location_code(&field_852),
+            ControlNumber::Alma(_) => alma_permanent_location_code(field_852),
             ControlNumber::SCSB(_) => partner_permanent_location_code(field_852),
             _ => None,
         };
