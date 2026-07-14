@@ -143,30 +143,15 @@ pub struct IncorrectExtractSpec {}
 macro_rules! extract_marc {
     ( latin $( $spec:expr),+ ) => {{
         use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex, extract_marc_impl};
-
-        let mut specs = Vec::new();
-        $(
-            specs.push(ExtractSpec::new($spec, ScriptsToIndex::LatinOnly).unwrap());
-        )+
-        extract_marc_impl(specs)
+        extract_marc_impl(vec![$(ExtractSpec::new($spec, ScriptsToIndex::LatinOnly).unwrap()),+])
     }};
     ( non_latin $( $spec:expr),+ ) => {{
         use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex, extract_marc_impl};
-
-        let mut specs = Vec::new();
-        $(
-            specs.push(ExtractSpec::new($spec, ScriptsToIndex::NonLatinOnly).unwrap());
-        )+
-        extract_marc_impl(specs)
+        extract_marc_impl(vec![$(ExtractSpec::new($spec, ScriptsToIndex::NonLatinOnly).unwrap()),+])
     }};
     ( $( $spec:expr),+ ) => {{
         use crate::marc::variable_length_field::{ExtractSpec, ScriptsToIndex, extract_marc_impl};
-
-        let mut specs = Vec::new();
-        $(
-            specs.push(ExtractSpec::new($spec, ScriptsToIndex::All).unwrap());
-        )+
-        extract_marc_impl(specs)
+        extract_marc_impl(vec![$(ExtractSpec::new($spec, ScriptsToIndex::All).unwrap()),+])
     }};
 }
 
@@ -180,8 +165,7 @@ pub fn extract_marc_impl<'a>(
                 |field| {
                     specs
                         .iter()
-                        .map(|spec| spec.get_subfields(field))
-                        .flatten()
+                        .filter_map(|spec| spec.get_subfields(field))
                         .next()
                 },
             )

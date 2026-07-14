@@ -111,7 +111,6 @@ pub fn uniform_130_non_latin(record: &Record) -> impl Iterator<Item = String> {
                 ],
             ))
         })
-        .into_iter()
         .map(|s| s.to_string())
 }
 
