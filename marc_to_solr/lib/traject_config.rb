@@ -1445,4 +1445,9 @@ each_record do |_record, context|
     logger.error "#{context.output_hash['id'].first} - Multiple titles"
     context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
+
+  concatenated_fields = %w[title_display author_display uniform_title_s content_title_index lc_subject_display siku_subject_facet local_subject_display homoit_subject_display fast_subject_display icpsr_subject_unstem_search].filter_map { |f| context.output_hash[f]&.join(',').presence }.join(' ')
+  text_embeddings = BibdataRs::Marc.get_embedding(concatenated_fields)
+
+  context.output_hash['text_embeddings'] = text_embeddings
 end

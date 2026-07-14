@@ -472,6 +472,7 @@
       users normally should not need to know about them.
      -->
     <fieldType name="point" class="solr.PointType" dimension="2" subFieldSuffix="_d"/>
+    <fieldType name="knn_vector" class="solr.DenseVectorField" vectorEncoding="FLOAT32" vectorDimension="384" similarityFunction="dot_product" hnswMaxConnections="10" hnswBeamWidth="40" />
  </types>
 
 
@@ -549,6 +550,8 @@
    
     <!-- MARCXML field - stores gzipped+base64 MARCXML as string -->
    <field name="marcxml" type="string" indexed="false" stored="true" multiValued="false"/>
+   <!-- DenseVectorField field for semantic search -->
+   <field name="text_embeddings" type="knn_vector" indexed="true" stored="true" multiValued="false"/>
 
     <!-- Dynamic field definitions.  If a field name is not found, dynamicFields
         will be used if the name matches any of the patterns.

@@ -1,0 +1,15 @@
+[package]
+name = "embedding_service"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["lib"]
+
+[dependencies]
+magnus = "0.8.2"
+reqwest = { version = "0.13.4", features = ["blocking", "json"] }
+serde_json = "1.0.149"
+
+[dev-dependencies]
+mockito = "1.7.2"

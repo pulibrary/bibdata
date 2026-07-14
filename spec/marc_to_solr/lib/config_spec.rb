@@ -11,6 +11,7 @@ describe 'From traject_config.rb', :indexing do
 
   context 'valid records' do
     before(:all) do
+      ENV['EMBEDDING_SERVICE_URL'] = 'http://localhost:8000'
       stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')
       @indexer = IndexerService.build
       @sample1 = @indexer.map_record(fixture_record('99276293506421'))
@@ -1822,6 +1823,14 @@ describe 'From traject_config.rb', :indexing do
         expect(holdings['22561746630006421']['items'].count).to eq 1
         expect(holdings['22561746630006421']['location']).to eq 'Remote Storage (ReCAP)'
         expect(sample['location']).to eq(['Mendel Music Library'])
+      end
+    end
+
+    context 'text embeddings' do
+      it 'indexes text_embeddings' do
+        record = @indexer.map_record(fixture_record('9992320213506421'))
+
+        expect(record['text_embeddings']).to include(-0.114391, 0.007032, -0.029143, 0.099944, -0.038197, -0.001564)
       end
     end
   end
