@@ -3,6 +3,11 @@ source 'https://gems.contribsys.com/' do
   gem 'sidekiq-pro'
 end
 
+gem 'actionpack'
+gem 'actionview'
+gem 'activejob'
+gem 'activerecord'
+gem 'activesupport'
 # pin the alma gem until we adress https://github.com/pulibrary/bibdata/pull/2502
 gem 'alma', '~> 0.6.2'
 gem 'aws-sdk-s3'
@@ -47,7 +52,6 @@ gem 'opentelemetry-instrumentation-all'
 gem 'opentelemetry-sdk'
 gem 'pg'
 gem 'rack'
-gem 'rails', '~> 8.1'
 gem 'responders'
 gem 'rest-client', require: false
 gem 'rsolr', '~> 2.5.0'

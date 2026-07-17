@@ -33,11 +33,6 @@ Rails.application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
-  # Tell Action Mailer not to deliver emails to the real world.
-  # The :test delivery method accumulates sent emails in the
-  # ActionMailer::Base.deliveries array.
-  config.action_mailer.delivery_method = :test
-
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
@@ -47,7 +42,6 @@ Rails.application.configure do
   # Don't use sidekiq in tests
   config.active_job.queue_adapter = :test
 
-  config.action_mailer.default_url_options = { host: 'www.example.com' }
   config.webmock_disable_opts = {
     allow_localhost: true,
     allow: 'chromedriver.storage.googleapis.com'
