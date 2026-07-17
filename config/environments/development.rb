@@ -20,9 +20,6 @@ Rails.application.configure do
   # Show full error reports and disable caching.
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -41,7 +38,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_URL', nil) || 'localhost' }
 
   # Set the log file size to:
   config.log_file_size = 100.megabytes
