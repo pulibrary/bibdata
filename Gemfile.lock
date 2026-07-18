@@ -24,7 +24,7 @@ GIT
 GEM
   remote: https://gems.contribsys.com/
   specs:
-    sidekiq-pro (8.1.4)
+    sidekiq-pro (8.1.5)
       sidekiq (>= 8.1.0, < 9)
 
 GEM
@@ -308,7 +308,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-tablesorter (1.28.0)
       railties (>= 3.2)
-    json (2.20.0)
+    json (2.21.1)
     language_server-protocol (3.17.0.6)
     lcsort (0.9.1)
     libdatadog (35.0.0.1.0)
