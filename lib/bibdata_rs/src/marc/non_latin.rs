@@ -1,6 +1,7 @@
 //! This module is responsible for fields that contain text in
 //! non-Latin and non-CJK languages
 
+use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{
     cjk::has_cjk_chars,
     extract_values::ExtractValues,
@@ -188,6 +189,11 @@ pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = 
     series_title_fields.chain(fields_with_author_and_title_info)
 }
 
+/// These are 880 fields from the record that do not have a pair with a Latin-script field
+pub fn unmatched_non_latin_strings(record: &Record) -> Vec<String> {
+    extract_marc!("880abc")(record)
+}
+
 fn maybe_has_non_cjk_text(original: String) -> Option<String> {
     if !has_cjk_chars(&original) && !original.is_empty() {
         Some(original)
@@ -223,5 +229,17 @@ mod tests {
         let mut names = non_latin_non_cjk_authors(&record);
         assert_eq!(names.next(), Some(String::from("Κινέζικα")));
         assert_eq!(names.next(), None);
+    }
+
+    #[test]
+    fn original_language_display_only_includes_unmatched_880s() {
+        let record = Record::from_breaker(r#"=110 2\$6880-01 $a Nihon Bungaku Kyōkai. $0 http://id.loc.gov/authorities/names/n84194096
+=880 2\$6110-01/{dollar}1 $a 日本文學協會.
+=880 \\$a第一版."#).unwrap();
+        let original_language_display_values = unmatched_non_latin_strings(&record);
+        assert_eq!(
+            original_language_display_values,
+            vec![String::from("第一版.")]
+        );
     }
 }
