@@ -1,13 +1,13 @@
 //! This module is responsible for fields that contain text in
 //! non-Latin and non-CJK languages
 
-use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{
     cjk::has_cjk_chars,
     extract_values::ExtractValues,
     trim_punctuation,
     variable_length_field::{
-        SubfieldIterator, join_subfields_except, non_latin_tag, non_latin_tag_included_in,
+        SubfieldIterator, join_subfields_by_code, join_subfields_except, non_latin_tag,
+        non_latin_tag_included_in,
     },
 };
 use itertools::Itertools;
@@ -190,15 +190,14 @@ pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = 
 }
 
 /// These are 880 fields from the record that do not have a pair with a Latin-script field
-pub fn unmatched_non_latin_strings(record: &Record) -> Vec<String> {
+pub fn unmatched_parallel_strings(record: &Record) -> Vec<String> {
     // extract_marc!(latin "880abc")(record)
-    record.extract_field_values_by(
-        |field| field.tag() == "880",
-        |field| {
-            let joined = join_subfields_except(field, &["6"]);
-            maybe_has_cjk_text(joined)
-        },
-    ).collect()
+    record
+        .extract_field_values_by(
+            |field| field.tag() == "880" && !field.has_subfield("6"),
+            |field| Some(join_subfields_by_code(field, &["a", "b", "c"])),
+        )
+        .collect()
 }
 
 fn maybe_has_non_cjk_text(original: String) -> Option<String> {
@@ -239,14 +238,11 @@ mod tests {
     }
 
     #[test]
-    fn original_language_display_only_includes_unmatched_880s() {
+    fn it_can_find_unmatched_parallel_strings() {
         let record = Record::from_breaker(r#"=110 2\$6880-01 $a Nihon Bungaku Kyōkai. $0 http://id.loc.gov/authorities/names/n84194096
 =880 2\$6110-01/{dollar}1 $a 日本文學協會.
 =880 \\$a第一版."#).unwrap();
-        let original_language_display_values = unmatched_non_latin_strings(&record);
-        assert_eq!(
-            original_language_display_values,
-            vec![String::from("第一版.")]
-        );
+        let unmatched = unmatched_parallel_strings(&record);
+        assert_eq!(unmatched, vec![String::from("第一版.")]);
     }
 }
