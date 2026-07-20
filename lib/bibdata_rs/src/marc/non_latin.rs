@@ -199,7 +199,7 @@ pub fn unmatched_parallel_strings(record: &Record) -> Vec<String> {
         )
         .collect()
 }
-
+ 
 fn maybe_has_non_cjk_text(original: String) -> Option<String> {
     if !has_cjk_chars(&original) && !original.is_empty() {
         Some(original)
@@ -242,6 +242,14 @@ mod tests {
         let record = Record::from_breaker(r#"=110 2\$6880-01 $a Nihon Bungaku Kyōkai. $0 http://id.loc.gov/authorities/names/n84194096
 =880 2\$6110-01/{dollar}1 $a 日本文學協會.
 =880 \\$a第一版."#).unwrap();
+        let unmatched = unmatched_parallel_strings(&record);
+        assert_eq!(unmatched, vec![String::from("第一版.")]);
+    }
+    #[test]
+    fn it_can_find_parallel_strings_with_unlinked_subfield6() {
+        let record = Record::from_breaker(r#"=110 2\$6880-01 $a Nihon Bungaku Kyōkai. $0 http://id.loc.gov/authorities/names/n84194096
+=880 2\$6110-01/{dollar}1 $a 日本文學協會.
+=880 \\$6245-01$a第一版."#).unwrap();
         let unmatched = unmatched_parallel_strings(&record);
         assert_eq!(unmatched, vec![String::from("第一版.")]);
     }
