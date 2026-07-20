@@ -191,7 +191,14 @@ pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = 
 
 /// These are 880 fields from the record that do not have a pair with a Latin-script field
 pub fn unmatched_non_latin_strings(record: &Record) -> Vec<String> {
-    extract_marc!("880abc")(record)
+    // extract_marc!(latin "880abc")(record)
+    record.extract_field_values_by(
+        |field| field.tag() == "880",
+        |field| {
+            let joined = join_subfields_except(field, &["6"]);
+            maybe_has_cjk_text(joined)
+        },
+    ).collect()
 }
 
 fn maybe_has_non_cjk_text(original: String) -> Option<String> {
