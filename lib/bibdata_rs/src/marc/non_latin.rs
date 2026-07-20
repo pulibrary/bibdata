@@ -194,18 +194,43 @@ pub fn unmatched_parallel_strings(record: &Record) -> Vec<String> {
     // extract_marc!(latin "880abc")(record)
     record
         .extract_field_values_by(
-            |field| field.tag() == "880" && !field.has_subfield("6"),
+            |field| {
+                field.tag() == "880"
+                    && !parallel_field_pairs(record).any(|pair| pair.non_latin == field)
+            },
             |field| Some(join_subfields_by_code(field, &["a", "b", "c"])),
         )
         .collect()
 }
- 
+
 fn maybe_has_non_cjk_text(original: String) -> Option<String> {
     if !has_cjk_chars(&original) && !original.is_empty() {
         Some(original)
     } else {
         None
     }
+}
+
+struct ParallelFieldPair<'a> {
+    non_latin: &'a Field,
+    #[allow(unused)]
+    latin: &'a Field,
+}
+
+fn parallel_field_pairs<'a>(record: &'a Record) -> impl Iterator<Item = ParallelFieldPair<'a>> {
+    record
+        .get_fields("880")
+        .into_iter()
+        .filter_map(|non_latin| {
+            let linkage = non_latin.first_subfield("6")?;
+            let possible_pairs = record.get_fields(linkage.content().get(0..3)?);
+            let occurrence = linkage.content().get(4..6)?;
+            let index = occurrence.parse::<usize>().ok()? - 1;
+            Some(ParallelFieldPair {
+                non_latin,
+                latin: possible_pairs.get(index)?,
+            })
+        })
 }
 
 #[cfg(test)]
