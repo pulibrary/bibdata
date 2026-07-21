@@ -191,7 +191,6 @@ pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = 
 
 /// These are 880 fields from the record that do not have a pair with a Latin-script field
 pub fn unmatched_parallel_strings(record: &Record) -> Vec<String> {
-    // extract_marc!(latin "880abc")(record)
     record
         .extract_field_values_by(
             |field| {
@@ -222,8 +221,10 @@ fn parallel_field_pairs<'a>(record: &'a Record) -> impl Iterator<Item = Parallel
         .get_fields("880")
         .into_iter()
         .filter_map(|non_latin| {
+            // The linkage will have a string like 245-01
             let linkage = non_latin.first_subfield("6")?;
-            let possible_pairs = record.get_fields(linkage.content().get(0..3)?);
+            let tag = linkage.content().get(0..3)?;
+            let possible_pairs = record.get_fields(tag);
             let occurrence = linkage.content().get(4..6)?;
             let index = occurrence.parse::<usize>().ok()? - 1;
             Some(ParallelFieldPair {
