@@ -327,7 +327,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     )?;
     hash.aset(
         "original_language_display",
-        extract_marc!("880abc")(&record),
+        non_latin::unmatched_parallel_strings(&record),
     )?;
     hash.aset(
         "original_version_notes_display",
