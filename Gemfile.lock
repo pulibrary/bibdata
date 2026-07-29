@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/marc_cleanup.git
-  revision: 8ba5affefbdf82d653dea74e17fa3890ed29674a
+  revision: c9d242d9ef08b66037b3c47a5a750f7a44fc65b5
   specs:
     marc_cleanup (1.0.1)
       marc (~> 1.0)
