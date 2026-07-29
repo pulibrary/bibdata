@@ -20,7 +20,10 @@ impl Embargo {
         match raw_embargo_date(lift_dates, terms_dates) {
             Some(date) => match parse_datetime(date) {
                 Ok(parsed) => {
-                    if parsed.timestamp() > Timestamp::now() {
+                    if parsed
+                        .as_zoned()
+                        .is_some_and(|zoned| zoned.timestamp() > Timestamp::now())
+                    {
                         Self::Current(embargo_text(lift_dates, terms_dates, doc_id))
                     } else {
                         Self::Expired
@@ -61,7 +64,9 @@ fn parsed_embargo_date(
     terms_dates: Option<&Vec<String>>,
 ) -> Option<Zoned> {
     match raw_embargo_date(lift_dates, terms_dates) {
-        Some(date) => parse_datetime(date).ok(),
+        Some(date) => parse_datetime(date)
+            .ok()
+            .and_then(|parsed| parsed.as_zoned().map(|z| z.clone())),
         None => None,
     }
 }

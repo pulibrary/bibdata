@@ -71,6 +71,7 @@ fn parse_date(raw: &str) -> Option<Zoned> {
         _ => parse_datetime_at_date(Zoned::new(Timestamp::UNIX_EPOCH, TimeZone::UTC), raw),
     }
     .ok()
+    .and_then(|parsed| parsed.as_zoned().map(|z| z.clone()))
 }
 
 #[cfg(test)]
