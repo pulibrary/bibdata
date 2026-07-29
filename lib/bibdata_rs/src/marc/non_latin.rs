@@ -6,7 +6,8 @@ use crate::marc::{
     extract_values::ExtractValues,
     trim_punctuation,
     variable_length_field::{
-        SubfieldIterator, join_subfields_except, non_latin_tag, non_latin_tag_included_in,
+        SubfieldIterator, join_subfields_by_code, join_subfields_except, non_latin_tag,
+        non_latin_tag_included_in,
     },
 };
 use itertools::Itertools;
@@ -188,12 +189,49 @@ pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = 
     series_title_fields.chain(fields_with_author_and_title_info)
 }
 
+/// These are 880 fields from the record that do not have a pair with a Latin-script field
+pub fn unmatched_parallel_strings(record: &Record) -> Vec<String> {
+    record
+        .extract_field_values_by(
+            |field| {
+                field.tag() == "880"
+                    && !parallel_field_pairs(record).any(|pair| pair.non_latin == field)
+            },
+            |field| Some(join_subfields_by_code(field, &["a", "b", "c"])),
+        )
+        .collect()
+}
+
 fn maybe_has_non_cjk_text(original: String) -> Option<String> {
     if !has_cjk_chars(&original) && !original.is_empty() {
         Some(original)
     } else {
         None
     }
+}
+
+struct ParallelFieldPair<'a> {
+    non_latin: &'a Field,
+    #[allow(unused)]
+    latin: &'a Field,
+}
+
+fn parallel_field_pairs<'a>(record: &'a Record) -> impl Iterator<Item = ParallelFieldPair<'a>> {
+    record
+        .get_fields("880")
+        .into_iter()
+        .filter_map(|non_latin| {
+            // The linkage will have a string like 245-01
+            let linkage = non_latin.first_subfield("6")?;
+            let tag = linkage.content().get(0..3)?;
+            let possible_pairs = record.get_fields(tag);
+            let occurrence = linkage.content().get(4..6)?;
+            let index = occurrence.parse::<usize>().ok()? - 1;
+            Some(ParallelFieldPair {
+                non_latin,
+                latin: possible_pairs.get(index)?,
+            })
+        })
 }
 
 #[cfg(test)]
@@ -223,5 +261,22 @@ mod tests {
         let mut names = non_latin_non_cjk_authors(&record);
         assert_eq!(names.next(), Some(String::from("Κινέζικα")));
         assert_eq!(names.next(), None);
+    }
+
+    #[test]
+    fn it_can_find_unmatched_parallel_strings() {
+        let record = Record::from_breaker(r#"=110 2\$6880-01 $a Nihon Bungaku Kyōkai. $0 http://id.loc.gov/authorities/names/n84194096
+=880 2\$6110-01/{dollar}1 $a 日本文學協會.
+=880 \\$a第一版."#).unwrap();
+        let unmatched = unmatched_parallel_strings(&record);
+        assert_eq!(unmatched, vec![String::from("第一版.")]);
+    }
+    #[test]
+    fn it_can_find_parallel_strings_with_unlinked_subfield6() {
+        let record = Record::from_breaker(r#"=110 2\$6880-01 $a Nihon Bungaku Kyōkai. $0 http://id.loc.gov/authorities/names/n84194096
+=880 2\$6110-01/{dollar}1 $a 日本文學協會.
+=880 \\$6245-01$a第一版."#).unwrap();
+        let unmatched = unmatched_parallel_strings(&record);
+        assert_eq!(unmatched, vec![String::from("第一版.")]);
     }
 }
