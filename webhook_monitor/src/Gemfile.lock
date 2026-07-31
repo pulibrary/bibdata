@@ -45,7 +45,7 @@ GEM
     libddwaf (1.14.0.0.0)
       ffi (~> 1.0)
     mini_portile2 (2.8.9)
-    msgpack (1.7.5)
+    msgpack (1.8.2)
     multi_json (1.15.0)
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
