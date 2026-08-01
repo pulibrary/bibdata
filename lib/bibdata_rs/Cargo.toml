@@ -8,7 +8,7 @@ version = "0.1.0"
 crate-type = ["lib", "cdylib"]
 
 [dependencies]
-base64 = "0.22.1"
+base64 = "0.23.0"
 figgy_marc = { path = "../../figgy_marc" }
 flate2 = "1.1.9"
 magnus = { version = "0.8.0" }
