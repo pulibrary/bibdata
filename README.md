@@ -24,10 +24,6 @@ Note: You need to have PostgreSQL installed in your machine and available in you
 lpass login emailhere
 bin/setup_keys
 ```
-1. Install bundler version in Gemfile.lock
-```
-gem install bundler -v '2.2.27'
-```
 1. Install bundle
 ```
 bundle install
