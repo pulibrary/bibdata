@@ -2,8 +2,7 @@ use std::borrow::Cow;
 
 use crate::marc::{
     extract_values::ExtractValues,
-    string_normalize::maybe_not_empty,
-    trim_punctuation,
+    string_normalize::{maybe_not_empty, remove_all_punctuation, trim_punctuation},
     variable_length_field::{
         SubfieldIterator, join_subfields_by_code, latin_or_non_latin_tag_included_in,
         latin_tag_included_in, non_latin_tag_included_in,
@@ -51,8 +50,12 @@ pub fn title_sort(record: &Record) -> Option<String> {
         let field = Field245(field);
         let joined =
             join_subfields_by_code(field.0, &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"]);
-        let trimmed =
-            without_non_filing_characters(&joined, field.non_filing_characters()).to_string();
+        let trimmed = remove_all_punctuation(&without_non_filing_characters(
+            &joined,
+            field.non_filing_characters(),
+        ))
+        .trim()
+        .to_string();
         maybe_not_empty(trimmed)
     })
 }
@@ -133,6 +136,14 @@ mod tests {
         let record = Record::from_breaker(r"=245 \4 $aThe octopus").unwrap();
         let title_sort = title_sort(&record).unwrap();
         assert_eq!(title_sort, "octopus");
+    }
+
+    #[test]
+    fn it_can_remove_punctuation_from_title_sort() {
+        let record =
+            Record::from_breaker(r"=245 \0 $a. The octopus - Αρχαία ελληνικἀ: ὀκτώπους").unwrap();
+        let title_sort = title_sort(&record).unwrap();
+        assert_eq!(title_sort, "The octopus  Αρχαία ελληνικἀ ὀκτώπους");
     }
 
     #[test]
