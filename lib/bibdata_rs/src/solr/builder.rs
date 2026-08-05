@@ -16,7 +16,7 @@ pub struct SolrDocumentBuilder {
     title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
     title_display: Option<String>,
-    title_sort: Option<String>,
+    title_sort_key: Option<String>,
     electronic_access_1display: Option<ElectronicAccess>,
     restrictions_display_text: Option<Vec<String>>,
     restrictions_note_display: Option<Vec<String>>,
@@ -135,8 +135,8 @@ impl SolrDocumentBuilder {
         self.publisher_citation_display = publisher_citation_display;
         self
     }
-    pub fn with_title_sort(&mut self, title_sort: Option<String>) -> &mut Self {
-        self.title_sort = title_sort;
+    pub fn with_title_sort_key(&mut self, title_sort_key: Option<String>) -> &mut Self {
+        self.title_sort_key = title_sort_key;
         self
     }
 
@@ -362,7 +362,7 @@ impl SolrDocumentBuilder {
             pub_date_end_sort: self.pub_date_end_sort,
             title_citation_display: self.title_citation_display.clone(),
             title_display: self.title_display.clone(),
-            title_sort: self.title_sort.clone(),
+            title_sort_key: self.title_sort_key.clone(),
             title_t: self.title_t.clone(),
             thumbnail_display: self.thumbnail_display.clone(),
             contributor_display: self.contributor_display.clone(),

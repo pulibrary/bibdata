@@ -503,9 +503,9 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
-    describe 'the title_sort field' do
+    describe 'the title_sort_key field' do
       it 'does not have initial articles' do
-        expect(@sample1['title_sort'][0].start_with?('Advanced concepts')).to be_truthy
+        expect(@sample1['title_sort_key'][0].start_with?('Advanced concepts')).to be_truthy
       end
     end
 

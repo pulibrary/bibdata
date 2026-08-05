@@ -45,7 +45,7 @@ pub fn latin_script_title(record: &Record) -> Option<String> {
     )
 }
 
-pub fn title_sort(record: &Record) -> Option<String> {
+pub fn title_sort_key(record: &Record) -> Option<String> {
     record.first_matching_field_value(latin_tag_included_in(&["245"]), |field| {
         let field = Field245(field);
         let joined =
@@ -134,7 +134,7 @@ mod tests {
     #[test]
     fn it_can_find_title_sort() {
         let record = Record::from_breaker(r"=245 \4 $aThe octopus").unwrap();
-        let title_sort = title_sort(&record).unwrap();
+        let title_sort = title_sort_key(&record).unwrap();
         assert_eq!(title_sort, "octopus");
     }
 
@@ -142,14 +142,14 @@ mod tests {
     fn it_can_remove_punctuation_from_title_sort() {
         let record =
             Record::from_breaker(r"=245 \0 $a. The octopus - Αρχαία ελληνικἀ: ὀκτώπους").unwrap();
-        let title_sort = title_sort(&record).unwrap();
+        let title_sort = title_sort_key(&record).unwrap();
         assert_eq!(title_sort, "The octopus  Αρχαία ελληνικἀ ὀκτώπους");
     }
 
     #[test]
     fn it_returns_title_sort_none_if_245_empty() {
         let record = Record::from_breaker(r"=245 \4 $a  ").unwrap();
-        let title_sort = title_sort(&record);
+        let title_sort = title_sort_key(&record);
         assert_eq!(title_sort, None);
     }
 

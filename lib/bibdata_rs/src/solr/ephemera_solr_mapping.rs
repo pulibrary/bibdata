@@ -33,7 +33,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
             .with_title_display(value.title.first().cloned())
-            .with_title_sort(value.first_sort_title())
+            .with_title_sort_key(value.first_sort_title())
             .with_title_citation_display(value.title.first().cloned())
             .with_thumbnail_display(value.thumbnail_url())
             .build()
@@ -482,7 +482,7 @@ mod tests {
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(
-            solr_document.title_sort,
+            solr_document.title_sort_key,
             Some("The book of trees".to_string())
         );
     }
@@ -495,7 +495,7 @@ mod tests {
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(
-            solr_document.title_sort,
+            solr_document.title_sort_key,
             Some("Our favorite book".to_string())
         );
     }

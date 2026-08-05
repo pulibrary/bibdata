@@ -444,7 +444,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "title_no_h_index",
         ruby.ary_from_iter(title::title_no_h_index(&record)),
     )?;
-    hash.aset("title_sort", title::title_sort(&record))?;
+    hash.aset("title_sort_key", title::title_sort_key(&record))?;
     hash.aset("title_vern_sort", title::non_latin_title_sort(&record))?;
     hash.aset("title_t", title_t)?;
     hash.aset("type_period_notes_display", extract_marc!("513ab")(&record))?;
