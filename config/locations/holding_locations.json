@@ -857,6 +857,7 @@
         "delivery_locations": [
             "QT",
             "PL",
+            "PG",
             "QA",
             "QC",
             "QP"
@@ -886,6 +887,7 @@
         },
         "delivery_locations": [
             "PF",
+            "PG",
             "QT",
             "QL",
             "QC",
