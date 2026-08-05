@@ -63,6 +63,13 @@ where
     if s.as_ref().is_empty() { None } else { Some(s) }
 }
 
+pub fn remove_all_punctuation(s: &str) -> Cow<'_, str> {
+    if s.contains(|c: char| c.is_ascii_punctuation()) {
+        Cow::Owned(s.chars().filter(|c| !c.is_ascii_punctuation()).collect())
+    } else {
+        Cow::Borrowed(s)
+    }
+}
 #[cfg(test)]
 mod tests {
     use super::*;
