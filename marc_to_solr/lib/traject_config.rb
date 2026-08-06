@@ -119,7 +119,7 @@ rust_single_value_field 'figgy_1display'
 #    111 XX abcdefgklnpq A ab
 
 rust_multi_value_field 'author_display'
-to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true)
+rust_single_value_field 'author_sort'
 to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
 
 rust_single_value_field 'author_roles_1display'
