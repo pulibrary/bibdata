@@ -523,6 +523,16 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
+    describe 'the author_sort field' do
+      it 'takes from the 100 field' do
+        expect(@sample1['author_sort'][0]).to eq 'Singh Digvijai'
+      end
+
+      it 'takes from the 110 field' do
+        expect(@sample3['author_sort'][0]).to eq 'World Data Center A for Glaciology'
+      end
+    end
+
     describe 'the author_citation_display field' do
       it 'shows only the 100 a subfield' do
         expect(@sample1['author_citation_display'][0]).to eq 'Singh, Digvijai'

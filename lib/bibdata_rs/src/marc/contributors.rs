@@ -1,6 +1,9 @@
 use marctk::{Field, Record};
 
-use crate::{marc::trim_punctuation, solr::AuthorRoles};
+use crate::{
+    marc::{trim_punctuation, variable_length_field::extract_marc},
+    solr::AuthorRoles,
+};
 
 impl From<&Record> for AuthorRoles {
     fn from(record: &Record) -> Self {
@@ -62,6 +65,17 @@ impl From<&Field> for ContributorType {
             _ => Self::Other,
         }
     }
+}
+
+pub fn author_sort(record: &Record) -> Option<String> {
+    let authors = extract_marc!("100aqbcdk", "110abcdfgkln", "111abcdfgklnpq")(record);
+    authors.first().map(|name| {
+        name.chars()
+            .filter(|c| c.is_alphabetic() || c == &' ')
+            .collect::<String>()
+            .trim()
+            .to_owned()
+    })
 }
 
 fn find_potential_relator(field: &Field, subfield: &str) -> Option<String> {
@@ -139,6 +153,15 @@ mod tests {
                 editors: vec!["Eugenides, Jeffrey".to_owned()],
                 compilers: vec!["Cole, Teju".to_owned()]
             }
+        )
+    }
+
+    #[test]
+    fn it_normalizes_authors_for_sorting() {
+        let record = Record::from_breaker(r#"=100 \\$aBhaṭanāgara, Mahendra, $d 1926-"#).unwrap();
+        assert_eq!(
+            author_sort(&record),
+            Some(String::from("Bhaṭanāgara Mahendra"))
         )
     }
 }
