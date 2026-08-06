@@ -5,7 +5,7 @@ use super::{AccessFacet, AuthorRoles, ElectronicAccess, FormatFacet, LibraryFace
 #[derive(Debug, Default)]
 pub struct SolrDocumentBuilder {
     author_s: Option<Vec<String>>,
-    author_sort: Option<String>,
+    author_sort_key: Option<String>,
     author_display: Option<Vec<String>>,
     author_roles_1display: Option<AuthorRoles>,
     author_citation_display: Option<Vec<String>>,
@@ -140,8 +140,8 @@ impl SolrDocumentBuilder {
         self
     }
 
-    pub fn with_author_sort(&mut self, author_sort: Option<String>) -> &mut Self {
-        self.author_sort = author_sort;
+    pub fn with_author_sort_key(&mut self, author_sort_key: Option<String>) -> &mut Self {
+        self.author_sort_key = author_sort_key;
         self
     }
     pub fn with_electronic_access_1display(
@@ -331,7 +331,7 @@ impl SolrDocumentBuilder {
             author_display: self.author_display.clone(),
             author_roles_1display: self.author_roles_1display.clone(),
             author_citation_display: self.author_citation_display.clone(),
-            author_sort: self.author_sort.clone(),
+            author_sort_key: self.author_sort_key.clone(),
             call_number_display: self.call_number_display.clone(),
             call_number_browse_s: self.call_number_browse_s.clone(),
             electronic_access_1display: self.electronic_access_1display.clone(),

@@ -8,7 +8,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_author_display(Some(value.all_contributors()))
             .with_author_roles_1display(value.group_contributors())
             .with_author_s(value.creator.clone().unwrap_or_default())
-            .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
+            .with_author_sort_key(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_citation_display(value.creator.clone())
             .with_description_display(Some(value.concat_page_count()))
             .with_electronic_access_1display(value.electronic_access())
@@ -177,7 +177,7 @@ mod tests {
             solr_document.author_display,
             Some(vec!["Aspen".to_owned(), "Neptune".to_owned()])
         );
-        assert_eq!(solr_document.author_sort, Some("Aspen".to_owned()));
+        assert_eq!(solr_document.author_sort_key, Some("Aspen".to_owned()));
         assert_eq!(
             solr_document.author_citation_display,
             Some(vec!["Aspen".to_owned()])

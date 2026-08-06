@@ -124,7 +124,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     )?;
     hash.aset("arrangement_display", extract_marc!("351abc")(&record))?;
     hash.aset("author_roles_1display", author_roles_1display)?;
-    hash.aset("author_sort", contributors::author_sort(&record))?;
+    hash.aset("author_sort_key", contributors::author_sort_key(&record))?;
     hash.aset("bib_ref_notes_display", extract_marc!("504ab")(&record))?;
     hash.aset("binding_note_display", extract_marc!("563au3")(&record))?;
     hash.aset(

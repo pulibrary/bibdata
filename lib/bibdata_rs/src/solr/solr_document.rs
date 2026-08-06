@@ -28,7 +28,7 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub author_s: Option<Vec<String>>,
 
-    pub author_sort: Option<String>,
+    pub author_sort_key: Option<String>,
 
     pub call_number_browse_s: String,
 

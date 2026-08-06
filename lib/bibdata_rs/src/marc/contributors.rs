@@ -67,7 +67,7 @@ impl From<&Field> for ContributorType {
     }
 }
 
-pub fn author_sort(record: &Record) -> Option<String> {
+pub fn author_sort_key(record: &Record) -> Option<String> {
     let authors = extract_marc!("100aqbcdk", "110abcdfgkln", "111abcdfgklnpq")(record);
     authors.first().map(|name| {
         name.chars()
@@ -160,7 +160,7 @@ mod tests {
     fn it_normalizes_authors_for_sorting() {
         let record = Record::from_breaker(r#"=100 \\$aBhaṭanāgara, Mahendra, $d 1926-"#).unwrap();
         assert_eq!(
-            author_sort(&record),
+            author_sort_key(&record),
             Some(String::from("Bhaṭanāgara Mahendra"))
         )
     }
