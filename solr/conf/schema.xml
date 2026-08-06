@@ -389,12 +389,10 @@
              input string is preserved as a single token
           -->
         <tokenizer name="keyword"/>
-        <!-- The LowerCase TokenFilter does what you expect, which can be
-             when you want your sorting to be case insensitive
-          -->
-        <filter name="lowercase" />
         <!-- The TrimFilter removes any leading or trailing whitespace -->
         <filter name="trim" />
+        <!-- Convert UTF-8 characters to their lowercase equivalents -->
+        <filter name="icuFolding" />
         <!-- The PatternReplaceFilter gives you the flexibility to use
              Java Regular expression to replace any sequence of characters
              matching a pattern with an arbitrary replacement string,
@@ -455,6 +453,8 @@
         <tokenizer name="pathHierarchy"/>
       </analyzer>
     </fieldType>
+
+    <fieldType name="icuSortKey" class="solr.ICUCollationField" locale="" strength="primary" />
 
     <!-- since fields of this type are by default not stored or indexed,
          any data added to them will be ignored outright.  -->
@@ -532,6 +532,7 @@
    <field name="original_language_of_translation_facet" type="string" indexed="true" stored="true" multiValued="true" />
    <field name="author_int" type="author" indexed="true" stored="false" multiValued="true"/>
    <field name="title_sort" type="alphaNumSort" indexed="true" stored="false" />
+   <field name="title_sort_key" type="icuSortKey" indexed="false" stored="false" docValues="true" />
     <!-- pub_date sort uses new trie-based int fields, which are recommended for any int and are displayable, sortable, and range-quer
    we use 'pint' for faster range-queries. -->
    <field name="pub_date_start_sort" type="pint" indexed="true" stored="true" multiValued="false"/>
@@ -546,8 +547,8 @@
    <field name="standard_no_index" type="string" indexed="true" stored="false" multiValued="true" />
    <field name="uniform_title_s" type="text" indexed="true" stored="true" multiValued="true" />
    <field name="_version_" type="plong" indexed="true" stored="true" multiValued="false"/>
-   
-    <!-- MARCXML field - stores gzipped+base64 MARCXML as string -->
+
+    <!-- MARCXML field - stores the full MARCXML record as a string -->
    <field name="marcxml" type="string" indexed="false" stored="true" multiValued="false"/>
 
     <!-- Dynamic field definitions.  If a field name is not found, dynamicFields
@@ -729,7 +730,10 @@
    <copyField source="title_la" dest="text"/>
    <copyField source="title_addl_la" dest="text"/>
 
-  <!-- copy notes_index to cjk_notes_copied -->
-   <copyField source="notes_index" dest="cjk_notes_copied"/>
-   <copyField source="notes_index" dest="cjk_text"/>
+   <copyField source="cjk_notes" dest="cjk_text"/>
+
+   <!-- temporary copy Field for backwards compatibility. Once orangelight uses title_sort_key
+    for sorting and we have done a full reindex, we can start indexing directly
+    into title_sort_key directly, and remove title_sort altogether -->
+  <copyField source="title_sort" dest="title_sort_key" />
 </schema>

@@ -131,7 +131,7 @@ pub struct SolrDocument {
 
     pub title_display: Option<String>,
 
-    pub title_sort: Option<String>,
+    pub title_sort_key: Option<String>,
 
     pub title_t: Option<Vec<String>>,
 }

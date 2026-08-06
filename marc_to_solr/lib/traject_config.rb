@@ -163,7 +163,7 @@ rust_multi_value_field 'title_a_index'
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :only, first: true)
 
-rust_single_value_field 'title_sort'
+rust_single_value_field 'title_sort_key'
 rust_single_value_field 'title_vern_sort'
 
 # roman and alt-script title with and without non-filing characters, excluding $h

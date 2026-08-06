@@ -41,7 +41,7 @@ impl From<&DataspaceDocument> for SolrDocument {
                 Some(titles) => titles.first().cloned(),
                 None => None,
             })
-            .with_title_sort(title_sort(doc.title.as_ref()))
+            .with_title_sort_key(title_sort_key(doc.title.as_ref()))
             .with_title_t(doc.title_search_versions())
             .with_language_facet(doc.languages())
             .with_language_name_display(doc.languages())
@@ -92,7 +92,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
                 Some(titles) => titles.first().cloned(),
                 None => None,
             })
-            .with_title_sort(title_sort(doc.title.as_ref()))
+            .with_title_sort_key(title_sort_key(doc.title.as_ref()))
             .with_title_t(doc.title_search_versions())
             .with_language_facet(doc.languages())
             .with_language_name_display(doc.languages())
@@ -106,7 +106,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
     }
 }
 
-fn title_sort(titles: Option<&Vec<String>>) -> Option<String> {
+fn title_sort_key(titles: Option<&Vec<String>>) -> Option<String> {
     match titles {
         Some(title_vec) => {
             let first = title_vec.first()?;
@@ -165,7 +165,7 @@ mod tests {
             solr.title_display.unwrap(),
             "Dysfunction: A Play in One Act"
         );
-        assert_eq!(solr.title_sort.unwrap(), "dysfunctionaplayinoneact");
+        assert_eq!(solr.title_sort_key.unwrap(), "dysfunctionaplayinoneact");
         assert_eq!(
             solr.author_citation_display.unwrap(),
             vec!["Clark, Hillary"]
@@ -493,28 +493,28 @@ mod tests {
         }
     }
 
-    mod title_sort {
+    mod title_sort_key {
         use super::*;
 
         #[test]
         fn it_can_create_sortable_version_of_title() {
             assert_eq!(
-                title_sort(Some(&vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
                 "somequoteblahblah",
                 "it should strip punctuation"
             );
             assert_eq!(
-                title_sort(Some(&vec!["A title : blah blah".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["A title : blah blah".to_owned()])).unwrap(),
                 "titleblahblah",
                 "it should strip articles"
             );
             assert_eq!(
-                title_sort(Some(&vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
                 "quoteblahblah",
                 "it should strip punctuation and articles"
             );
             assert_eq!(
-                title_sort(Some(&vec!["thesis".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["thesis".to_owned()])).unwrap(),
                 "thesis",
                 "it should leave words that start with articles alone"
             );
@@ -559,7 +559,7 @@ mod legacy_tests {
             solr.title_display.unwrap(),
             "Dysfunction: A Play in One Act"
         );
-        assert_eq!(solr.title_sort.unwrap(), "dysfunctionaplayinoneact");
+        assert_eq!(solr.title_sort_key.unwrap(), "dysfunctionaplayinoneact");
     }
 
     #[test]
@@ -877,28 +877,28 @@ mod legacy_tests {
         }
     }
 
-    mod title_sort {
+    mod title_sort_key {
         use super::*;
 
         #[test]
         fn it_can_create_sortable_version_of_title() {
             assert_eq!(
-                title_sort(Some(&vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
                 "somequoteblahblah",
                 "it should strip punctuation"
             );
             assert_eq!(
-                title_sort(Some(&vec!["A title : blah blah".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["A title : blah blah".to_owned()])).unwrap(),
                 "titleblahblah",
                 "it should strip articles"
             );
             assert_eq!(
-                title_sort(Some(&vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
                 "quoteblahblah",
                 "it should strip punctuation and articles"
             );
             assert_eq!(
-                title_sort(Some(&vec!["thesis".to_owned()])).unwrap(),
+                title_sort_key(Some(&vec!["thesis".to_owned()])).unwrap(),
                 "thesis",
                 "it should leave words that start with articles alone"
             );
