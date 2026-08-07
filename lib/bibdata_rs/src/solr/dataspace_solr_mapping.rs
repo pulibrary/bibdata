@@ -17,7 +17,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_advisor_display(doc.contributor_advisor.clone())
             .with_author_display(doc.contributor_author.clone())
             .with_author_s(doc.all_authors())
-            .with_author_sort(match &doc.contributor_author {
+            .with_author_sort_key(match &doc.contributor_author {
                 Some(authors) => authors.first().cloned(),
                 None => None,
             })
@@ -68,7 +68,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_author_citation_display(doc.contributor_author.clone())
             .with_author_display(doc.contributor_author.clone())
             .with_author_s(doc.all_authors())
-            .with_author_sort(match &doc.contributor_author {
+            .with_author_sort_key(match &doc.contributor_author {
                 Some(authors) => authors.first().cloned(),
                 None => None,
             })

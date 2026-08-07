@@ -523,13 +523,13 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
-    describe 'the author_sort field' do
+    describe 'the author_sort_key field' do
       it 'takes from the 100 field' do
-        expect(@sample1['author_sort'][0]).to eq 'Singh Digvijai'
+        expect(@sample1['author_sort_key'][0]).to eq 'Singh Digvijai'
       end
 
       it 'takes from the 110 field' do
-        expect(@sample3['author_sort'][0]).to eq 'World Data Center A for Glaciology'
+        expect(@sample3['author_sort_key'][0]).to eq 'World Data Center A for Glaciology'
       end
     end
 
