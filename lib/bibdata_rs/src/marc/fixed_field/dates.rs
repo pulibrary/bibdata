@@ -179,6 +179,12 @@ impl<'a> TryFrom<&'a Record> for BeginDate<'a> {
     }
 }
 
+impl<'a> From<BeginDate<'a>> for Date<'a> {
+    fn from(value: BeginDate<'a>) -> Self {
+        value.0
+    }
+}
+
 impl<'a> Display for BeginDate<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.maybe_to_string() {
@@ -186,6 +192,15 @@ impl<'a> Display for BeginDate<'a> {
             _ => Ok(()),
         }
     }
+}
+
+pub fn publication_date_citation_display(record: &Record) -> Option<&str> {
+    BeginDate::try_from(record)
+        .ok()
+        .and_then(|date| match Date::from(date) {
+            Date::KnownYear(d) => Some(d),
+            _ => None,
+        })
 }
 
 #[cfg(test)]
