@@ -225,16 +225,7 @@ to_field 'publisher_citation_display', extract_marc('260b:264|*1|b', trim_punctu
 rust_single_value_field 'pub_date_display'
 rust_single_value_field 'pub_date_start_sort'
 rust_single_value_field 'pub_date_end_sort'
-
-to_field 'publication_date_citation_display' do |record, accumulator|
-  next unless record['008']
-
-  raw = record['008'].value[7, 4]
-  next unless /^\d{4}$/.match? raw
-  next if raw == '9999'
-
-  accumulator << raw
-end
+rust_single_value_field 'publication_date_citation_display'
 
 # catalog_date https://github.com/pulibrary/marc_liberation/issues/926
 # Bibliographic Enrichment -> Create date subfield 950b
