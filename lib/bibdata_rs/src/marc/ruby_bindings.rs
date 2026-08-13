@@ -109,7 +109,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(119);
+    let hash = ruby.hash_new_capa(130);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -172,6 +172,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "data_quality_notes_display",
         extract_marc!("514abcdefghijkm")(&record),
+    )?;
+    hash.aset(
+        "data_source_display",
+        extract_marc_trim_punctuation(ruby, "786at", &record),
     )?;
     hash.aset(
         "date_place_event_notes_display",
@@ -239,6 +243,22 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("genre_facet", genre::genres(&record))?;
     hash.aset("geo_cov_notes_display", extract_marc!("522a")(&record))?;
     hash.aset(
+        "geo_related_record_display",
+        ruby.ary_from_iter(
+            extract_marc!("772at", "7733abdghikmnoprst", "777at")(&record)
+                .iter()
+                .map(|s| trim_punctuation(s)),
+        ),
+    )?;
+    hash.aset(
+        "has_subseries_display",
+        extract_marc_trim_punctuation(ruby, "762at", &record),
+    )?;
+    hash.aset(
+        "has_supplement_display",
+        extract_marc_trim_punctuation(ruby, "770at", &record),
+    )?;
+    hash.aset(
         "homoit_genre_s",
         ruby.ary_from_iter(genre::homoit_genre_s(&record)),
     )?;
@@ -251,6 +271,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
             .map(|field| field.content().to_owned()),
     )?;
     hash.aset(
+        "in_display",
+        extract_marc_trim_punctuation(ruby, "7733abdghikmnoprst", &record),
+    )?;
+    hash.aset(
         "info_document_notes_display",
         extract_marc!("556a")(&record),
     )?;
@@ -261,6 +285,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "issn_s",
         ruby.ary_from_iter(standard_number::normalized_issns(&record)),
+    )?;
+    hash.aset(
+        "issued_with_display",
+        extract_marc_trim_punctuation(ruby, "777at", &record),
     )?;
     hash.aset(
         "lccn_s",
@@ -333,6 +361,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "original_version_notes_display",
         extract_marc!("534abcefklmnpt3")(&record),
+    )?;
+    hash.aset(
+        "other_editions_display",
+        extract_marc_trim_punctuation(ruby, "775adhit", &record),
     )?;
     hash.aset("other_editions_s", extract_marc!("775w")(&record))?;
     hash.aset("other_format_display", extract_marc!("5303abcd")(&record))?;
@@ -426,8 +458,16 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "standard_no_index",
         standard_numbers_for_ruby(ruby, &record),
     )?;
+    hash.aset(
+        "subseries_of_display",
+        extract_marc_trim_punctuation(ruby, "760at", &record),
+    )?;
     hash.aset("sudoc_no_display", extract_marc!("086a")(&record))?;
     hash.aset("supplement_notes_display", extract_marc!("525a")(&record))?;
+    hash.aset(
+        "supplement_to_display",
+        extract_marc_trim_punctuation(ruby, "772at", &record),
+    )?;
     hash.aset(
         "system_details_notes_display",
         extract_marc!("5383ai")(&record),
@@ -452,6 +492,14 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("title_sort_key", title::title_sort_key(&record))?;
     hash.aset("title_vern_sort", title::non_latin_title_sort(&record))?;
     hash.aset("title_t", title_t)?;
+    hash.aset(
+        "translated_as_display",
+        extract_marc_trim_punctuation(&ruby, "767at", &record),
+    )?;
+    hash.aset(
+        "translation_of_display",
+        extract_marc_trim_punctuation(&ruby, "765at", &record),
+    )?;
     hash.aset("type_period_notes_display", extract_marc!("513ab")(&record))?;
     hash.aset(
         "uniform_130_vern",
@@ -554,6 +602,14 @@ fn manifest_url(
 
 fn mms_id(ruby: &Ruby, ark: magnus::RString) -> Result<Option<magnus::RString>, magnus::Error> {
     Ok(figgy::mms_id(&ark.to_string()?, None).map(|mms_id| ruby.str_new(mms_id)))
+}
+
+fn extract_marc_trim_punctuation(ruby: &Ruby, spec: &str, record: &Record) -> RArray {
+    ruby.ary_from_iter(
+        extract_marc!(spec)(&record)
+            .iter()
+            .map(|s| trim_punctuation(s)),
+    )
 }
 
 #[cfg(test)]

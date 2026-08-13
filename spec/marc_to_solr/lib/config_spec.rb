@@ -1834,6 +1834,10 @@ describe 'From traject_config.rb', :indexing do
         expect(sample['location']).to eq(['Mendel Music Library'])
       end
     end
+
+    it 'indexes 772 field as supplement_to_display' do
+      expect(@added_custom_951['supplement_to_display']).to eq ['Times (London, England)']
+    end
   end
 
   context 'invalid utf8 record' do

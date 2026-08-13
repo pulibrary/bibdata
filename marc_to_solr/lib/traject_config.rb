@@ -301,15 +301,15 @@ rust_multi_value_field 'arrangement_display'
 
 # Translation of:
 #    765 XX at
-to_field 'translation_of_display', extract_marc('765at', trim_punctuation: true)
+rust_multi_value_field 'translation_of_display'
 
 # Translated as:
 #    767 XX at
-to_field 'translated_as_display', extract_marc('767at', trim_punctuation: true)
+rust_multi_value_field 'translated_as_display'
 
 # Issued with:
 #    777 XX at
-to_field 'issued_with_display', extract_marc('777at', trim_punctuation: true)
+rust_multi_value_field 'issued_with_display'
 
 # Continues:
 #    780 00 at
@@ -380,11 +380,11 @@ rust_multi_value_field 'former_frequency_display'
 
 # Has supplement:
 #    770 XX at
-to_field 'has_supplement_display', extract_marc('770at', trim_punctuation: true)
+rust_multi_value_field 'has_supplement_display'
 
 # Supplement to:
 #    772 XX at
-to_field 'supplement_to_display', extract_marc('772at', trim_punctuation: true)
+rust_multi_value_field 'supplement_to_display'
 
 # Linking notes:
 #    580 XX a
@@ -392,11 +392,11 @@ rust_multi_value_field 'linking_notes_display'
 
 # Subseries of:
 #    760 XX at
-to_field 'subseries_of_display', extract_marc('760at', trim_punctuation: true)
+rust_multi_value_field 'subseries_of_display'
 
 # Has subseries:
 #    762 XX at
-to_field 'has_subseries_display', extract_marc('762at', trim_punctuation: true)
+rust_multi_value_field 'has_subseries_display'
 
 # Series:
 #    400 XX abcdefgklnpqtuvx
@@ -437,30 +437,7 @@ to_field 'more_in_this_series_t' do |record, accumulator|
   accumulator.flatten!.map! { |f| Traject::Macros::Marc21.trim_punctuation(f) }
 end
 
-# Other version(s):
-#    3500 020Z020A
-#    3500 020A020Z
-#    3500 024A022A
-#    3500 022A024A
-#    3500 BBID776W
-#    3500 BBID787W
-#    3500 776X022A
-#    3500 022A776X
-#    3500 020A776Z
-#    3500 776Z020A
-# to_field 'Other version(s)_display', extract_marc()
-# # #    3500 020Z020A
-# # #    3500 020A020Z
-# # #    3500 024A022A
-# # #    3500 022A024A
-# # #    3500 BBID776W
-# # #    3500 BBID787W
-# # #    3500 776X022A
-# # #    3500 022A776X
-# # #    3500 020A776Z
-# # #    3500 776Z020A
-
-to_field 'geo_related_record_display', extract_marc('772at:7733abdghikmnoprst:777at', trim_punctuation: true)
+rust_multi_value_field 'geo_related_record_display'
 
 # Contained in:
 #    3500 BBID773W
@@ -1115,15 +1092,9 @@ end
 
 # In:
 #    773 XX 3abdghikmnoprst
-to_field 'in_display', extract_marc('7733abdghikmnoprst', trim_punctuation: true)
-
-# Constituent part(s):
-#    774 XX abcdghikmnrstu
-to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu', trim_punctuation: true)
-
-to_field 'other_editions_display', extract_marc('775adhit', trim_punctuation: true)
-
-to_field 'data_source_display', extract_marc('786at', trim_punctuation: true)
+rust_multi_value_field 'in_display'
+rust_multi_value_field 'other_editions_display'
+rust_multi_value_field 'data_source_display'
 
 # ISBN:
 #    020 XX a
