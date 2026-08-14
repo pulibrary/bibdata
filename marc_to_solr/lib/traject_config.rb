@@ -1437,3 +1437,9 @@ each_record do |_record, context|
     context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
 end
+
+to_field 'marcxml_bi' do |_record, accumulator, context|
+  # next unless context.clipboard[:is_scsb]
+
+  accumulator << context.clipboard[:solr_fields]['marcxml_bi']
+end
