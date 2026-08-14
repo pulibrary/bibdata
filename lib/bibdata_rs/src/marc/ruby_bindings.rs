@@ -14,6 +14,7 @@ use crate::marc::fixed_field::dates::BeginDate;
 use crate::marc::holdings::partner::partner_holdings;
 use crate::marc::identifier::identifiers_of_all_versions;
 use crate::marc::identifier::map_024_indicators_to_labels;
+use crate::marc::marcxml_binary::marc21_binary_b64;
 use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
@@ -328,6 +329,13 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc!("5443abcden")(&record),
     )?;
     hash.aset("marcxml", marcxml_compressed(&record))?;
+
+    let marcxml_bi = marc21_binary_b64(&record)
+        .map_err(|e| magnus::Error::new(ruby.exception_arg_error(), e.to_string()))?;
+
+    hash.aset("marcxml_bi", marcxml_bi)?;
+
+    // hash.aset("marcxml_bi", marc21_binary_b64(&record)?)?;
     hash.aset("methodology_notes_display", extract_marc!("567a")(&record))?;
     hash.aset(
         "non_latin_non_cjk_all_index",
