@@ -156,14 +156,14 @@ GEM
       rexml
     crass (1.0.7)
     csv (3.3.5)
-    datadog (2.38.0)
+    datadog (2.40.0)
       cgi
-      datadog-ruby_core_source (~> 3.5, >= 3.5.3)
+      datadog-ruby_core_source (~> 3.5, >= 3.5.4)
       libdatadog (~> 36.0.0.1.0)
       libddwaf (~> 1.30.0.0.0)
       logger
       msgpack
-    datadog-ruby_core_source (3.5.3)
+    datadog-ruby_core_source (3.5.4)
     date (3.5.1)
     devise (5.0.4)
       bcrypt (~> 3.0)
@@ -352,7 +352,7 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     mize (0.6.1)
-    msgpack (1.8.3)
+    msgpack (1.8.4)
     multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
     multipart-post (2.4.1)
