@@ -1384,7 +1384,5 @@ each_record do |_record, context|
 end
 
 to_field 'marcxml_bi' do |_record, accumulator, context|
-  # next unless context.clipboard[:is_scsb]
-
   accumulator << context.clipboard[:solr_fields]['marcxml_bi']
 end
