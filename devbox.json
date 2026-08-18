@@ -2,16 +2,22 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.17.2/.schema/devbox.schema.json",
   "packages": [
     "git@latest",
+    "lastpass-cli",
     "ruby@3.4.4",
-    "nodejs@22",
     "bash@latest",
-    "yarn@latest"
+    "rustup@latest",
+    "openssl"
   ],
   "shell": {
     "init_hook": [
+      "cargo fetch",
       "echo 'Welcome to devbox!' > /dev/null"
     ],
     "scripts": {
+      "setup": [
+        "bin/setup_keys",
+        "bundle install"
+      ],
       "test": [
         "echo \"Error: no test specified\" && exit 1"
       ]

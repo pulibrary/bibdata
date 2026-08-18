@@ -40,6 +40,12 @@ bundle install
    - To access the sidekiq dashboard, first sign into the application, then go to http://localhost:3000/sidekiq
 1. To stop: `bundle exec rake servers:stop` or `lando stop`
 
+### Experimental devbox setup
+1. [Install devbox](https://www.jetify.com/devbox)
+1. `devbox shell`
+1. `lpass login emailhere`
+1. `devbox run setup`
+
 ## Configure Alma keys for Development
 
 1. `lpass login emailhere`
