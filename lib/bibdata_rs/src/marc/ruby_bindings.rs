@@ -502,6 +502,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     )?;
     hash.aset("type_period_notes_display", extract_marc!("513ab")(&record))?;
     hash.aset(
+        "uniform_title_s",
+        ruby.ary_from_iter(title::uniform_title(&record)),
+    )?;
+    hash.aset(
         "uniform_130_vern",
         ruby.ary_from_iter(title::uniform_130_non_latin(&record)),
     )?;

@@ -5,7 +5,7 @@ use crate::marc::{
     string_normalize::{maybe_not_empty, remove_all_punctuation, trim_punctuation},
     variable_length_field::{
         SubfieldIterator, join_subfields_by_code, latin_or_non_latin_tag_included_in,
-        latin_tag_included_in, non_latin_tag_included_in,
+        latin_tag_included_in, non_latin_tag, non_latin_tag_included_in,
     },
 };
 use itertools::Itertools;
@@ -102,6 +102,45 @@ pub fn title_no_h_index(record: &Record) -> impl Iterator<Item = String> {
             Some(vec![joined, without_nf_chars])
         })
         .flatten()
+}
+
+/// Builds the `uniform_title_s` index field.
+///
+/// Combines three sources, all trimmed of trailing punctuation:
+/// 1. Field 130 subfields a, p, l, d, f, h, k, m, n, o, r, t
+/// 2. Field 240 subfields a, p, l, d, f, h, k, m, n, o, r, s
+/// 3. Fields 100/110/111: everything from subfield $t onward (the `T` in the
+///    old Ruby comments), i.e. all subfields at or after $t.
+///
+/// Both Latin and non-Latin (880 parallel) fields are included, matching the
+/// default `alternate_script: :both` behavior of the original Ruby `extract_marc`
+/// and `everything_after_t` calls.
+pub fn uniform_title(record: &Record) -> impl Iterator<Item = String> {
+    // 130 includes subfield $t; 240 does not. For 880 parallel fields the
+    // effective tag comes from subfield $6.
+    let uniform_title_fields = record.extract_field_values_by(
+        latin_or_non_latin_tag_included_in(&["130", "240"]),
+        |field| {
+            let tag = non_latin_tag(field).unwrap_or_else(|| field.tag());
+            let subfields: &[&str] = if tag == "130" {
+                &["a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "t"]
+            } else {
+                &["a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s"]
+            };
+            let joined = join_subfields_by_code(field, subfields);
+            maybe_not_empty(trim_punctuation(&joined))
+        },
+    );
+    // 100/110/111: keep only the part at or after $t, mirroring the old
+    // `everything_after_t` Ruby helper.
+    let author_and_title_fields = record.extract_field_values_by(
+        latin_or_non_latin_tag_included_in(&["100", "110", "111"]),
+        |field| {
+            let joined = field.subfields().iter().subfields_after("t").join(" ");
+            maybe_not_empty(trim_punctuation(&joined))
+        },
+    );
+    uniform_title_fields.chain(author_and_title_fields)
 }
 
 pub fn uniform_130_non_latin(record: &Record) -> impl Iterator<Item = String> {
@@ -241,6 +280,105 @@ mod tests {
         let record = Record::from_breaker(r"=245 10 $a   ").unwrap();
         let title_values: Vec<_> = title_no_h_index(&record).collect();
         assert!(title_values.is_empty());
+    }
+
+    #[test]
+    fn it_builds_uniform_title_from_130() {
+        let record = Record::from_breaker(
+            r#"=130 00$aThe great Gatsby $pfirst edition $ldrama $twith music"#,
+        )
+        .unwrap();
+        let mut titles = uniform_title(&record);
+        assert_eq!(
+            titles.next(),
+            Some(String::from(
+                "The great Gatsby first edition drama with music"
+            ))
+        );
+        assert_eq!(titles.next(), None);
+    }
+
+    #[test]
+    fn it_builds_uniform_title_from_240() {
+        let record =
+            Record::from_breaker(r#"=240 10$aThe great play $d1890 $psome edition"#).unwrap();
+        let mut titles = uniform_title(&record);
+        assert_eq!(
+            titles.next(),
+            Some(String::from("The great play 1890 some edition"))
+        );
+        assert_eq!(titles.next(), None);
+    }
+
+    #[test]
+    fn it_includes_everything_after_t_for_100() {
+        // Before $t is ignored; from $t onward is kept, across subfields.
+        let record = Record::from_breaker(
+            r#"=100 10$aTolkien, J.R.R., $d1892-1973. $tThe Lord of the Rings$xSelections"#,
+        )
+        .unwrap();
+        let mut titles = uniform_title(&record);
+        assert_eq!(
+            titles.next(),
+            Some(String::from("The Lord of the Rings Selections"))
+        );
+        assert_eq!(titles.next(), None);
+    }
+
+    #[test]
+    fn it_ignores_110_without_t() {
+        // No $t means `subfields_after` yields nothing, so the field is dropped.
+        let record =
+            Record::from_breaker(r#"=110 20$aPrinceton University. $bRare Books Dept."#).unwrap();
+        let titles: Vec<_> = uniform_title(&record).collect();
+        assert!(titles.is_empty());
+    }
+
+    #[test]
+    fn it_includes_non_latin_880_uniform_title() {
+        let record = Record::from_breaker(
+            r#"=130 00 $aLatin uniform title
+=880 00$6130-01$aعنوان كتاب"#,
+        )
+        .unwrap();
+        let mut titles = uniform_title(&record);
+        assert_eq!(titles.next(), Some(String::from("Latin uniform title")));
+        assert_eq!(titles.next(), Some(String::from("عنوان كتاب")));
+        assert_eq!(titles.next(), None);
+    }
+
+    #[test]
+    fn it_orders_130_and_240_before_name_fields() {
+        let record = Record::from_breaker(
+            r#"=130 00$aTitle from 130
+=100 10$aAuthor, Jane $tHer title
+=240 10$aTitle from 240"#,
+        )
+        .unwrap();
+        let titles: Vec<_> = uniform_title(&record).collect();
+        assert_eq!(
+            titles,
+            vec![
+                String::from("Title from 130"),
+                String::from("Title from 240"),
+                String::from("Her title"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_trims_trailing_punctuation_from_uniform_title() {
+        let record = Record::from_breaker(r#"=130 00$aThe great Gatsby $d1925."#).unwrap();
+        let mut titles = uniform_title(&record);
+        assert_eq!(titles.next(), Some(String::from("The great Gatsby 1925")));
+        assert_eq!(titles.next(), None);
+    }
+
+    #[test]
+    fn it_treats_empty_uniform_title_fields_as_absent() {
+        let record = Record::from_breaker(r#"=130 00$a    "#).unwrap();
+        let titles: Vec<_> = uniform_title(&record).collect();
+        assert!(titles.is_empty());
     }
 
     #[test]
