@@ -109,7 +109,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(130);
+    let hash = ruby.hash_new_capa(131);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -501,6 +501,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc_trim_punctuation(&ruby, "765at", &record),
     )?;
     hash.aset("type_period_notes_display", extract_marc!("513ab")(&record))?;
+    hash.aset(
+        "uniform_title_s",
+        ruby.ary_from_iter(title::uniform_title(&record)),
+    )?;
     hash.aset(
         "uniform_130_vern",
         ruby.ary_from_iter(title::uniform_130_non_latin(&record)),

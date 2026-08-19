@@ -153,10 +153,7 @@ end
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
 #    240 XX {a[%}pldfhkmnors"]" T ap
-to_field 'uniform_title_s', extract_marc('130apldfhkmnorst:240apldfhkmnors', trim_punctuation: true) do |record, accumulator|
-  accumulator << everything_after_t(record, '100:110:111')
-  accumulator.flatten!
-end
+rust_multi_value_field 'uniform_title_s'
 
 rust_multi_value_field 'title_display'
 rust_multi_value_field 'title_a_index'
