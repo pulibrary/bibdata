@@ -75,6 +75,13 @@ pub fn format_facets(record: &Record) -> Vec<solr::FormatFacet> {
     .collect()
 }
 
+pub fn formats(record: &Record) -> Vec<String> {
+    format_facets(&record)
+        .iter()
+        .map(|facet| facet.to_string())
+        .collect()
+}
+
 fn is_book(record: &Record) -> bool {
     match TypeOfRecord::try_from(record) {
         Ok(TypeOfRecord::ManuscriptLanguageMaterial) if !is_princeton_finding_aid(record) => true,

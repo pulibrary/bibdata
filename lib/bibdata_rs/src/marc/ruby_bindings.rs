@@ -17,10 +17,12 @@ use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
+use crate::marc::record_facet_mapping::formats;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::title;
 use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
+use crate::marc::utils::display_format::display_format;
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
 use figgy_marc::only_open;
@@ -73,6 +75,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_singleton_method("strip_non_numeric", function!(strip_non_numeric, 1))?;
     submodule_marc
         .define_module_function("trim_punctuation", function!(trim_punctuation_owned, 1))?;
+    submodule_marc.define_singleton_method("display_format", function!(ruby_format, 1))?;
     Ok(())
 }
 
@@ -109,7 +112,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(130);
+    let hash = ruby.hash_new();
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -228,7 +231,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "fast_subject_display",
         ruby.ary_from_iter(subject::fast_subjects(&record)),
     )?;
-    hash.aset("figgy_1display", figgy_1display(&record))?;
+    hash.aset("figgy_1display", figgy_1display(&record, None))?;
     hash.aset("format", format)?;
     hash.aset("former_frequency_display", extract_marc!("321ab")(&record))?;
     hash.aset(
@@ -591,6 +594,11 @@ fn ruby_current_location_code(
 ) -> Result<Option<String>, magnus::Error> {
     let field_876 = marctk_data_field_from_ruby_marc(ruby, &field);
     Ok(field_876.and_then(|field| holdings::holding_location::current_location_code(&field)))
+}
+
+fn ruby_format(ruby: &Ruby, document: magnus::RObject) -> Result<String, magnus::Error> {
+    let record = marctk_from_ruby_marc_record(ruby, &document)?;
+    Ok(display_format(formats(&record)))
 }
 
 fn manifest_url(
