@@ -1,8 +1,9 @@
-use crate::marc::control_field::control_number::ControlNumber;
+use crate::marc::{control_field::control_number::ControlNumber, utils::display_format::display_format};
 use figgy_marc::{FiggyMmsIdCache, ark_eq, iiif_manifest_url};
 use marctk::Record;
 use serde_json::Value;
 use std::sync::LazyLock;
+use crate::marc::record_facet_mapping::formats;
 
 static FIGGY_MMS_REPORT_CACHE: LazyLock<FiggyMmsIdCache> =
     LazyLock::new(figgy_marc::redis_cache::read);
