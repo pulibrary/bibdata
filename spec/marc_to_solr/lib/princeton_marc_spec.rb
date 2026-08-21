@@ -81,10 +81,11 @@ describe 'From princeton_marc.rb', :indexing do
 
     let(:url) { 'https://domain.edu/test-resource' }
     # rubocop:disable RSpec/IndexedLet
+    let(:leader) { '02035cam a2200385La 4500' }
     let(:l001) { { '001' => '9947652213506421' } }
     let(:l856) { { '856' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'u' => url }] } } }
     # rubocop:enable RSpec/IndexedLet
-    let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856]) }
+    let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856], 'leader' => leader) }
     let(:logger) { instance_double(Logger, info: nil, error: nil, debug: nil, warn: nil) }
 
     it 'retrieves the URLs and the link labels' do
@@ -100,12 +101,13 @@ describe 'From princeton_marc.rb', :indexing do
     end
 
     context 'with a URL for an ARK' do
+      let(:leader) { '02035cam a2200385La 4500' }
       # rubocop:disable RSpec/IndexedLet
       let(:l856_2) { { '856' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'u' => url, 'z' => 'label' }] } } }
       let(:l856_3) { { '856' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'u' => url, '3' => 'Selected images' }] } } }
       # rubocop:enable RSpec/IndexedLet
       let(:url) { 'http://arks.princeton.edu/ark:/88435/00000140q' }
-      let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2, l856_3]) }
+      let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2, l856_3], 'leader' => leader) }
 
       it 'retrieves the URL for the current resource' do
         expect(links).to include('https://catalog.princeton.edu/catalog/9947652213506421#view' => ['Digital content'])

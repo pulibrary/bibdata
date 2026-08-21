@@ -25,7 +25,7 @@ class ProcessHoldingsHelpers
   end
 
   def display_format
-    BibdataRs::Marc::format(record)
+    BibdataRs::Marc.format(record)
   end
 
   # Select 852 fields from an Alma record
