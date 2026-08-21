@@ -24,6 +24,10 @@ class ProcessHoldingsHelpers
     record.fields('876').select { |f| f['0'] == holding_id }
   end
 
+  def display_format
+    BibdataRs::Marc.format(record)
+  end
+
   # Select 852 fields from an Alma record
   # returns an array of MARC 852 (full holdings) fields
   def fields_852_alma
@@ -101,6 +105,7 @@ class ProcessHoldingsHelpers
       holding['location_note'] = []
       holding['location_note'] << field_852['z']
     end
+    holding['display_format'] = BibdataRs::Marc.display_format(record)
     holding
   end
 

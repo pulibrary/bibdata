@@ -108,7 +108,7 @@ describe 'From traject_config.rb', :indexing do
       it 'can index electronic locations for alma' do
         record = @indexer.map_record(fixture_record('9918573506421'))
         access_links = record['electronic_access_1display']
-        expect(JSON.parse(access_links.first)).to eq('http://dx.doi.org/10.1007/BFb0088073' => ['dx.doi.org'])
+        expect(JSON.parse(access_links.first)).to eq('display_format' => 'Book', 'http://dx.doi.org/10.1007/BFb0088073' => ['dx.doi.org'])
       end
     end
 
@@ -816,7 +816,7 @@ describe 'From traject_config.rb', :indexing do
       it 'has info about the figgy resource' do
         expect(@figgy_example['figgy_1display']).to be_present
         keys = JSON.parse(@figgy_example['figgy_1display'].first).first.keys
-        expect(keys).to contain_exactly('visibility', 'portion_note', 'iiif_manifest_url')
+        expect(keys).to contain_exactly('display_format', 'visibility', 'portion_note', 'iiif_manifest_url')
       end
 
       describe 'a private figgy object' do

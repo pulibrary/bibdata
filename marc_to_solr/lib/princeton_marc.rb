@@ -178,6 +178,7 @@ def electronic_access_links(record)
 
   solr_field_values['holding_record_856s'] = holding_856s unless holding_856s == {}
   solr_field_values['iiif_manifest_paths'] = iiif_manifest_paths unless iiif_manifest_paths.empty?
+  solr_field_values['display_format'] = BibdataRs::Marc.display_format(record) unless solr_field_values == {}
   solr_field_values
 end
 
