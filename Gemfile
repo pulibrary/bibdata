@@ -54,7 +54,7 @@ gem 'pg'
 gem 'rack'
 gem 'responders'
 gem 'rest-client', require: false
-gem 'rsolr', '~> 2.5.0'
+gem 'rsolr', '~> 2.6.0'
 gem 'rubyzip'
 gem 'sass-rails'
 gem 'sidekiq', '~> 8.1.6'
