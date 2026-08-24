@@ -11,7 +11,7 @@ RSpec.describe IndexManager, :indexing, :sidekiq, type: :model do
     solr.commit
   end
 
-  # rubocop:disable Rails/NegateInclude
+  # rubocop:disable-next Rails/NegateInclude
   def run_all_callbacks
     batches_processed = []
     loop do
@@ -27,7 +27,6 @@ RSpec.describe IndexManager, :indexing, :sidekiq, type: :model do
     parent_batch = Sidekiq::BatchSet.new.to_a.find { |b| b.parent_bid.nil? }
     run_callback(parent_batch) if parent_batch
   end
-  # rubocop:enable Rails/NegateInclude
 
   describe '.rebuild_solr_url' do
     it 'appends -rebuild to the URL' do

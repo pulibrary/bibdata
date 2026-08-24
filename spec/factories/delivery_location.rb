@@ -9,9 +9,8 @@ FactoryBot.define do
     staff_only { false }
     gfa_pickup { 'PQ' }
     pickup_location { true }
-    # rubocop :disable FactoryBot/FactoryAssociationWithStrategy
+    # rubocop :disable-next FactoryBot/FactoryAssociationWithStrategy
     library { build(:library, label: 'Firestone Library') }
-    # rubocop :enable FactoryBot/FactoryAssociationWithStrategy
     digital_location { true }
   end
 end

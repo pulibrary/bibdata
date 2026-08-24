@@ -23,6 +23,7 @@ RSpec.shared_context 'scsb_partner_updates_full' do
       [/HL.*\.csv/, Rails.root.join(update_directory_path, hl_csv)]
     ]
   end
+
   before do
     # Copy the fixtures to the temporary location for the tests
     fixture_files.each do |path|

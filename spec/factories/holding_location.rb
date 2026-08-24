@@ -14,9 +14,8 @@ FactoryBot.define do
     code { 'location-code-' + Faker::Alphanumeric.alphanumeric(number: 3, min_alpha: 3) }
     remote_storage { 'recap_rmt' }
     fulfillment_unit { 'example_unit' }
-    # rubocop:disable FactoryBot/FactoryAssociationWithStrategy
+    # rubocop:disable-next FactoryBot/FactoryAssociationWithStrategy
     library { build(:library, label: 'Firestone Library') }
-    # rubocop:enable FactoryBot/FactoryAssociationWithStrategy
   end
 
   factory :holding_location_locator, class: 'HoldingLocation' do
@@ -31,9 +30,8 @@ FactoryBot.define do
     always_requestable { [true, false].sample }
     circulates { [true, false].sample }
     code { 'f' }
-    # rubocop:disable FactoryBot/FactoryAssociationWithStrategy
+    # rubocop:disable-next FactoryBot/FactoryAssociationWithStrategy
     library { build(:library, library_args) }
-    # rubocop:enable FactoryBot/FactoryAssociationWithStrategy
     remote_storage
   end
 
@@ -49,9 +47,8 @@ FactoryBot.define do
     always_requestable { false }
     circulates { true }
     code { 'sciss' }
-    # rubocop:disable FactoryBot/FactoryAssociationWithStrategy
+    # rubocop:disable-next FactoryBot/FactoryAssociationWithStrategy
     library { build(:library, library_args) }
-    # rubocop:enable FactoryBot/FactoryAssociationWithStrategy
     remote_storage
   end
 
@@ -64,9 +61,8 @@ FactoryBot.define do
     always_requestable { true }
     circulates { true }
     code { 'location-code' }
-    # rubocop:disable FactoryBot/FactoryAssociationWithStrategy
+    # rubocop:disable-next FactoryBot/FactoryAssociationWithStrategy
     library { build(:library, code: 'rare$jrare', label: 'Special Collections Aeon') }
-    # rubocop:enable FactoryBot/FactoryAssociationWithStrategy
   end
 
   factory :map_location, class: 'HoldingLocation' do
@@ -78,9 +74,8 @@ FactoryBot.define do
     always_requestable { true }
     circulates { false }
     code { 'location-code' }
-    # rubocop:disable FactoryBot/FactoryAssociationWithStrategy
+    # rubocop:disable-next FactoryBot/FactoryAssociationWithStrategy
     library { build(:library, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case') }
-    # rubocop:enable FactoryBot/FactoryAssociationWithStrategy
   end
 
   factory :special_collection_location, class: 'HoldingLocation' do
@@ -92,8 +87,7 @@ FactoryBot.define do
     always_requestable { false }
     circulates { true }
     code { 'location-code' }
-    # rubocop:disable FactoryBot/FactoryAssociationWithStrategy
+    # rubocop:disable-next FactoryBot/FactoryAssociationWithStrategy
     library { build(:library, code: 'rare$scaex', label: 'Special Collections - Rare Books Archival. Special Collections Use Only"') }
-    # rubocop:enable FactoryBot/FactoryAssociationWithStrategy
   end
 end

@@ -17,6 +17,6 @@ class HoldingLocationsController < ApplicationController
     def set_holding_location
       @holding_location_rust = BibdataRs::Location.holding_location(params[:id])
       # nosemgrep
-      @holding_location = HoldingLocation.friendly.find(params[:id])
+      @holding_location = HoldingLocation.friendly.find(params.expect(:id))
     end
 end

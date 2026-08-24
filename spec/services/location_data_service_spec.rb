@@ -14,7 +14,7 @@ RSpec.describe LocationDataService, type: :service do
   end
 
   describe '#delete_existing_and_repopulate' do
-    # rubocop:disable RSpec/MultipleExpectations
+    # rubocop:disable-next RSpec/MultipleExpectations
     it 'deletes existing data and populates library and location data from json' do
       arch_library = Library.find_by(code: 'arch')
       arch_stacks = HoldingLocation.find_by(code: 'arch$stacks')
@@ -85,7 +85,6 @@ RSpec.describe LocationDataService, type: :service do
       expect(stokes_spia.label).to eq 'Wallace Hall (SPIA)'
       expect(stokes_spr.label).to eq 'Wallace Hall (SPR)'
     end
-    # rubocop:enable RSpec/MultipleExpectations
 
     context 'Plasma Library' do
       plasma_location_codes = %w[index la li nb ps rdr ref rr serial stacks theses]
