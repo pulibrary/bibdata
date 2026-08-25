@@ -6,7 +6,10 @@
     "ruby@3.4.4",
     "bash@latest",
     "rustup@latest",
-    "openssl"
+    "openssl",
+    "path:flakes/solr#default",
+    "postgresql@latest",
+    "redis@latest"
   ],
   "shell": {
     "init_hook": [
@@ -15,11 +18,16 @@
     ],
     "scripts": {
       "setup": [
-        "bin/setup_keys",
-        "bundle install"
+        "test -f \"$PGDATA/PG_VERSION\" || initdb",
+        "if [ $(bundle config cat | grep -c 'You have not configured') -gt 0 ]; then bin/setup; fi",
+        "bundle install",
+        "bundle exec rake compile"
       ],
       "test": [
-        "echo \"Error: no test specified\" && exit 1"
+        "devbox run setup",
+        "RAILS_ENV=test bundle exec rake db:migrate",
+        "cargo test",
+        "bundle exec rspec"
       ]
     }
   }

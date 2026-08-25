@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'sidekiq/api'
 
 RSpec.describe IndexManager, :indexing, :sidekiq, type: :model do
-  let(:solr_url) { ENV.fetch('SOLR_URL', nil) || "http://#{ENV.fetch('lando_bibdata_test_solr_conn_host', nil)}:#{ENV.fetch('lando_bibdata_test_solr_conn_port', nil)}/solr/bibdata-core-test" }
+  let(:solr_url) { Rails.configuration.solr.url }
   let(:solr) { RSolr.connect(url: solr_url) }
 
   before do

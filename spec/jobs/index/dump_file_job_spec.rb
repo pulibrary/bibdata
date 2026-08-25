@@ -6,7 +6,7 @@ RSpec.describe Index::DumpFileJob do
 
   describe '#perform' do
     it 'raises an error when traject errors' do
-      expect { described_class.new.perform(dump_file_id, 'http://localhost:8983/solr/badcollection') }.to raise_error(RuntimeError)
+      expect { described_class.new.perform(dump_file_id, 'http://localhost:123456/solr/badcollection') }.to raise_error(RuntimeError)
     end
   end
 
