@@ -45,6 +45,9 @@ bundle install
 1. `devbox shell`
 1. `lpass login emailhere`
 1. `devbox run setup`
+1. `devbox services up`
+1. `solr create_core -c bibdata-core-test -d solr/conf`
+1. To run tests: `devbox run test`
 
 ## Configure Alma keys for Development
 

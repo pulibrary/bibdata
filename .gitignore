@@ -23,3 +23,5 @@ Makefile
 mkmf.log
 .vscode/*
 vendor/bundle
+solr/data
+devbox.d
