@@ -813,14 +813,6 @@ to_field 'publication_place_hierarchical_pipe_facet', extract_marc('008[15-17]')
   accumulator.replace(places.compact.flatten)
 end
 
-# TODO: Remove in favor of publication_place_hierarchical_pipe_facet once reindex complete
-to_field 'publication_place_hierarchical_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|
-  places = accumulator.compact.map do |location|
-    Traject::TranslationMap.new('marc_countries_hierarchical')[location.strip]
-  end
-  accumulator.replace(places.compact.flatten)
-end
-
 # See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
 to_field 'geographic_facet', marc_geo_facet do |_record, accumulator|
   subjects = change_the_subject.fix(subject_terms: accumulator)
