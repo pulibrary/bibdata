@@ -494,11 +494,11 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("title_t", title_t)?;
     hash.aset(
         "translated_as_display",
-        extract_marc_trim_punctuation(&ruby, "767at", &record),
+        extract_marc_trim_punctuation(ruby, "767at", &record),
     )?;
     hash.aset(
         "translation_of_display",
-        extract_marc_trim_punctuation(&ruby, "765at", &record),
+        extract_marc_trim_punctuation(ruby, "765at", &record),
     )?;
     hash.aset("type_period_notes_display", extract_marc!("513ab")(&record))?;
     hash.aset(
@@ -606,7 +606,7 @@ fn mms_id(ruby: &Ruby, ark: magnus::RString) -> Result<Option<magnus::RString>, 
 
 fn extract_marc_trim_punctuation(ruby: &Ruby, spec: &str, record: &Record) -> RArray {
     ruby.ary_from_iter(
-        extract_marc!(spec)(&record)
+        extract_marc!(spec)(record)
             .iter()
             .map(|s| trim_punctuation(s)),
     )
