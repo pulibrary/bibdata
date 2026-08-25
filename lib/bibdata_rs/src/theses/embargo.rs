@@ -66,7 +66,7 @@ fn parsed_embargo_date(
     match raw_embargo_date(lift_dates, terms_dates) {
         Some(date) => parse_datetime(date)
             .ok()
-            .and_then(|parsed| parsed.as_zoned().map(|z| z.clone())),
+            .and_then(|parsed| parsed.as_zoned().cloned()),
         None => None,
     }
 }
