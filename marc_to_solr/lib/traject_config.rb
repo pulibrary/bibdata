@@ -871,23 +871,6 @@ to_field 'subject_topic_facet' do |record, accumulator|
   accumulator.replace(subjects)
 end
 
-to_field 'lc_1letter_facet' do |record, accumulator|
-  if record['050'] && record['050']['a']
-    first_letter = record['050']['a'].lstrip.slice(0, 1)
-    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
-    if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
-      accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
-    end
-  end
-end
-
-to_field 'lc_rest_facet' do |record, accumulator|
-  if record['050'] && record['050']['a']
-    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
-    accumulator << Traject::TranslationMap.new('callnumber_map')[letters]
-  end
-end
-
 to_field 'lc_pipe_facet' do |record, accumulator|
   delimiter = '|||'
   if record['050'] && record['050']['a']
