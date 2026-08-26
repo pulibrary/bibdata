@@ -32,6 +32,10 @@ where
     }
 }
 
+pub fn latin_or_non_latin_tag(field: &Field) -> &str {
+    non_latin_tag(field).unwrap_or(field.tag())
+}
+
 pub fn latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
     |field| tags.contains(&field.tag())
 }
