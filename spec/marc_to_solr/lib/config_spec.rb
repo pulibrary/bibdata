@@ -1167,47 +1167,22 @@ describe 'From traject_config.rb', :indexing do
       let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t050], 'leader' => leader)) }
 
       it 'includes a field with data for the classification facet' do
-        lc_facet = @sample40['lc_pipe_facet']
-        expect(lc_facet).to contain_exactly('R - Medicine', 'R - Medicine|||RA - Public Aspects of Medicine')
+        lc_pipe_facet = @sample40['lc_pipe_facet']
+        expect(lc_pipe_facet).to contain_exactly('R - Medicine', 'R - Medicine|||RA - Public Aspects of Medicine')
       end
 
       it 'handles cases where the call number is a single letter' do
-        lc_facet = @sample44['lc_pipe_facet']
-        expect(lc_facet).to contain_exactly('Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources|||Z - Bibliography, Library Science, Information Resources')
+        lc_pipe_facet = @sample44['lc_pipe_facet']
+        expect(lc_pipe_facet).to contain_exactly('Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources|||Z - Bibliography, Library Science, Information Resources')
       end
 
       it 'handles cases where there is no call number' do
-        lc_facet = @record_no_call_number['lc_pipe_facet']
-        expect(lc_facet).to be_nil
+        lc_pipe_facet = @record_no_call_number['lc_pipe_facet']
+        expect(lc_pipe_facet).to be_nil
       end
 
-      it 'does not index data into the lc_facet field if the call number is invalid' do
+      it 'does not index data into the lc_pipe_facet field if the call number is invalid' do
         expect(record['lc_pipe_facet']).to be_nil
-      end
-    end
-    # TODO: Remove in favor of lc_pipe_facet once reindex complete
-
-    describe 'lc_facet' do
-      let(:t050) { { '050' => { 'ind1' => '0', 'ind2' => '0', 'subfields' => [{ 'a' => 'IN PROCESS' }] } } }
-      let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t050], 'leader' => leader)) }
-
-      it 'includes a field with data for the classification facet' do
-        lc_facet = @sample40['lc_facet']
-        expect(lc_facet).to contain_exactly('R - Medicine', 'R - Medicine:RA - Public Aspects of Medicine')
-      end
-
-      it 'handles cases where the call number is a single letter' do
-        lc_facet = @sample44['lc_facet']
-        expect(lc_facet).to contain_exactly('Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources:Z - Bibliography, Library Science, Information Resources')
-      end
-
-      it 'handles cases where there is no call number' do
-        lc_facet = @record_no_call_number['lc_facet']
-        expect(lc_facet).to be_nil
-      end
-
-      it 'does not index data into the lc_facet field if the call number is invalid' do
-        expect(record['lc_facet']).to be_nil
       end
     end
 
