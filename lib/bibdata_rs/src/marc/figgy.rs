@@ -1,14 +1,20 @@
 use crate::marc::{control_field::control_number::ControlNumber, utils::display_format::display_format};
 use figgy_marc::{FiggyMmsIdCache, ark_eq, iiif_manifest_url};
 use marctk::Record;
-use serde_json::{Value, json};
-use std::sync::LazyLock;
+use serde_json::{Value, Map};
+use std::{sync::LazyLock};
 use crate::marc::record_facet_mapping::formats;
 
 static FIGGY_MMS_REPORT_CACHE: LazyLock<FiggyMmsIdCache> =
     LazyLock::new(figgy_marc::redis_cache::read);
 
-pub fn figgy_1display(record: &Record, cache: Option<&LazyLock<FiggyMmsIdCache>>) -> Option<String> {
+pub fn figgy_1display<M>(
+    record: &Record,
+    cache: Option<&LazyLock<FiggyMmsIdCache>>,
+    modify_items: M
+) -> Option<String> 
+where M: Fn(Map<String, Value>, String) -> Map<String, Value>
+{
     let figgy_cache = cache.unwrap_or_else(|| &FIGGY_MMS_REPORT_CACHE);
     
     match ControlNumber::from(record) {
@@ -18,10 +24,9 @@ pub fn figgy_1display(record: &Record, cache: Option<&LazyLock<FiggyMmsIdCache>>
                 figgy_items
                     .iter()
                     .map(|figgy_item| {
-                        let mut item = figgy_item.as_object().unwrap().clone();
+                        let item = figgy_item.as_object().unwrap().clone();
                         let format = display_format(formats(&record));
-                        item.insert("display_format".to_owned(), json!(format));
-                        serde_json::to_value(item).unwrap()
+                        serde_json::to_value(modify_items(item, format)).unwrap()
                     })
                     .collect::<Vec<Value>>()
             })
@@ -135,7 +140,10 @@ mod tests {
         .unwrap();
 
         assert_eq!(
-            figgy_1display(&record, Some(&SMALL_CACHE)).unwrap(),
+            figgy_1display(&record, Some(&SMALL_CACHE), |mut item, format| {
+                item.insert("display_format".to_owned(), json!(format));
+                item
+            }).unwrap(),
             "[{\"ark\":\"http://arks.princeton.edu/ark:/88435/dc08613099f\",\"iiif_manifest_url\":\"https://figgy.princeton.edu/concern/scanned_resources/4abf0d8c-a64a-4422-a3f4-229fd9b3b28d/manifest\",\"label\":{\"@value\":\"Stress Analysis of Coil Support Frames for B-3 Machine.\",\"@language\":\"en\"},\"portion_note\":null,\"visibility\":{\"value\":\"open\",\"label\":\"open\",\"definition\":\"Open to the world. Anyone can view.\"},\"display_format\":\"Manuscript\"}]".to_owned()
         )
     }

@@ -122,6 +122,33 @@ impl<'de> Deserialize<'de> for FormatFacet {
     }
 }
 
+// Provides an abbreviated display format for use in displaying badges
+pub trait Abbreviation: {
+    fn abbreviation(&self) -> String;
+}
+
+impl Abbreviation for FormatFacet {
+    fn abbreviation(&self) -> String {
+        match self {
+            Self::ArchivalItem => String::from("Archival"),
+            Self::Audio => String::from("Audio"),
+            Self::Book => String::from("Book"),
+            Self::Coin => String::from("Coin"),
+            Self::DataFile => String::from("Data file"),
+            Self::Databases => String::from("Database"),
+            Self::Journal => String::from("Journal"),
+            Self::Manuscript => String::from("Manuscript"),
+            Self::Map => String::from("Map"),
+            Self::Microform => String::from("Microform"),
+            Self::MusicalScore => String::from("Music Score"),
+            Self::Report => String::from("Report"),
+            Self::SeniorThesis => String::from("Thesis"),
+            Self::VideoProjectedMedium => String::from("Video"),
+            Self::VisualMaterial => String::from("Image"),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

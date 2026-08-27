@@ -1,3 +1,4 @@
+pub mod format_facet;
 pub mod index;
 pub mod solr_document;
 
@@ -7,7 +8,6 @@ mod builder;
 mod dataspace_solr_mapping;
 mod electronic_access;
 mod ephemera_solr_mapping;
-mod format_facet;
 mod library_facet;
 
 pub use access_facet::AccessFacet;
