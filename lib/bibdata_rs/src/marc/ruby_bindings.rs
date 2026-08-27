@@ -27,6 +27,7 @@ use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
 use figgy_marc::only_open;
 use magnus::{Module, Object, RArray, RHash, RModule, function};
+use serde_json::json;
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
 // (specifically the BibdataRs::Marc Ruby module and the crate::marc Rust module)
