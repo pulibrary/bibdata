@@ -123,7 +123,7 @@ impl<'de> Deserialize<'de> for FormatFacet {
 }
 
 // Provides an abbreviated display format for use in displaying badges
-pub trait Abbreviation: {
+pub trait Abbreviation {
     fn abbreviation(&self) -> String;
 }
 

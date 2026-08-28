@@ -20,14 +20,14 @@ use crate::marc::note::action_note::action_notes;
 use crate::marc::record_facet_mapping::formats;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::title;
+use crate::marc::utils::display_format::display_format;
 use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
-use crate::marc::utils::display_format::display_format;
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
 use figgy_marc::only_open;
 use magnus::{Module, Object, RArray, RHash, RModule, function};
-use serde_json::json;
+use serde_json::{Value, json};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
 // (specifically the BibdataRs::Marc Ruby module and the crate::marc Rust module)
@@ -232,10 +232,20 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "fast_subject_display",
         ruby.ary_from_iter(subject::fast_subjects(&record)),
     )?;
-    hash.aset("figgy_1display", figgy_1display(&record, None, |mut item, _format| {
-        item.insert("display_format".to_owned(), json!(format));
-        item
-    }))?;
+    hash.aset(
+        "figgy_1display",
+        figgy_1display(&record, None, |figgy_items, record| {
+            figgy_items
+                .iter()
+                .map(|figgy_item| {
+                    let mut item = figgy_item.as_object().unwrap().clone();
+                    let format = display_format(formats(record));
+                    item.insert("display_format".to_owned(), json!(format));
+                    serde_json::to_value(item).unwrap()
+                })
+                .collect::<Vec<Value>>()
+        }),
+    )?;
     hash.aset("format", format)?;
     hash.aset("former_frequency_display", extract_marc!("321ab")(&record))?;
     hash.aset(

@@ -11,7 +11,9 @@ pub fn display_format(formats: Vec<String>) -> String {
         _ if formats.contains(&"Musical score".to_string()) => MusicalScore.abbreviation(),
         _ if formats.contains(&"Senior thesis".to_string()) => SeniorThesis.abbreviation(),
         _ if formats.contains(&"Archival item".to_string()) => ArchivalItem.abbreviation(),
-        _ if formats.contains(&"Video/Projected medium".to_string()) => VideoProjectedMedium.abbreviation(),
+        _ if formats.contains(&"Video/Projected medium".to_string()) => {
+            VideoProjectedMedium.abbreviation()
+        }
         _ if formats.contains(&"Visual material".to_string()) => VisualMaterial.abbreviation(),
         _ if formats.contains(&"Map".to_string()) => Map.abbreviation(),
         _ if formats.contains(&"Report".to_string()) => Report.abbreviation(),
@@ -20,6 +22,6 @@ pub fn display_format(formats: Vec<String>) -> String {
         _ if formats.contains(&"Audio".to_string()) => Audio.abbreviation(),
         _ if formats.contains(&"Book".to_string()) => Book.abbreviation(),
         _ if formats.contains(&"Journal".to_string()) => Journal.abbreviation(),
-        _ => "".to_string()
+        _ => "".to_string(),
     }
 }
