@@ -232,7 +232,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "fast_subject_display",
         ruby.ary_from_iter(subject::fast_subjects(&record)),
     )?;
-    hash.aset("figgy_1display", figgy_1display(&record, None, |item, _format| {
+    hash.aset("figgy_1display", figgy_1display(&record, None, |mut item, _format| {
         item.insert("display_format".to_owned(), json!(format));
         item
     }))?;
