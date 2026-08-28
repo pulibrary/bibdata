@@ -23,7 +23,6 @@ use crate::marc::title;
 use crate::marc::utils::display_format::display_format;
 use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
-use crate::marc::utils::display_format::display_format;
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
 use figgy_marc::only_open;
