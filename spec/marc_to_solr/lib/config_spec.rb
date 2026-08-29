@@ -1033,9 +1033,6 @@ describe 'From traject_config.rb', :indexing do
           record = @indexer.map_record(fixture_record('9992320213506421'))
           expect(record['location_code_s']).to eq(['lewis$stacks', 'firestone$stacks'])
         end
-        # TODO: ALMA
-        # it 'only includes the first $b within a single tag' do
-        # end
       end
 
       describe 'mixing extract_marc and everything_after_t' do
