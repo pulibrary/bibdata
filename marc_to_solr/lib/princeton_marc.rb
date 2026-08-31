@@ -179,6 +179,7 @@ def electronic_access_links(record)
   solr_field_values['holding_record_856s'] = holding_856s unless holding_856s == {}
   solr_field_values['iiif_manifest_paths'] = iiif_manifest_paths unless iiif_manifest_paths.empty?
   solr_field_values['display_format'] = BibdataRs::Marc.display_format(record) unless solr_field_values == {}
+  solr_field_values['source_id'] = record['001'].value unless solr_field_values == {}
   solr_field_values
 end
 
@@ -318,13 +319,13 @@ def process_holdings(record)
   holdings_helpers.fields_852_alma.each do |field_852|
     holding_id = holdings_helpers.holding_id(field_852)
     # Calculate the permanent holding
-    holding = holdings_helpers.build_holding(field_852, permanent: true)
+    holding = holdings_helpers.build_holding(field_852, record['001'].value, permanent: true)
     items_by_holding = holdings_helpers.items_by_852(field_852)
     group_866_867_868_fields = holdings_helpers.group_866_867_868_on_holding_perm_id(holding_id)
     # if there are items (876 fields)
     if items_by_holding.present?
       add_permanent_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings, holding)
-      add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings)
+      add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings, record['001'].value)
     else
       # if there are no items (876 fields), create the holding by using the 852 field
       unless holding_id.nil? || invalid_location?(holding['location_code'])
@@ -347,15 +348,15 @@ def add_permanent_items_to_holdings(items_by_holding, field_852, holdings_helper
   end
 end
 
-def add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings)
+def add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings, bib_id)
   locations = holdings_helpers.select_temporary_location_876(items_by_holding, field_852)
 
   locations.each do |field_876|
     if holdings_helpers.current_location_code(field_876) == 'RES_SHARE$IN_RS_REQ'
-      holding = holdings_helpers.build_holding(field_852, permanent: true)
+      holding = holdings_helpers.build_holding(field_852, bib_id, permanent: true)
       holding_key = holdings_helpers.holding_id(field_852)
     else
-      holding = holdings_helpers.build_holding(field_852, field_876, permanent: false)
+      holding = holdings_helpers.build_holding(field_852, bib_id, field_876, permanent: false)
       holding_key = holdings_helpers.current_location_code(field_876)
     end
     holding['temp_location_code'] = holdings_helpers.current_location_code(field_876)

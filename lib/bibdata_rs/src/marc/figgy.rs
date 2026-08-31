@@ -138,12 +138,14 @@ mod tests {
                 figgy_items.iter().map(|figgy_item| {
                     let mut item = figgy_item.as_object().unwrap().clone();
                     let format = display_format(formats(record));
+                    let source_id = record.get_control_fields("001").first().unwrap().content();
                     item.insert("display_format".to_owned(), json!(format));
+                    item.insert("source_id".to_owned(), json!(source_id));
                     serde_json::to_value(item).unwrap()
                 }).collect::<Vec<Value>>()
                 
             }).unwrap(),
-            "[{\"ark\":\"http://arks.princeton.edu/ark:/88435/dc08613099f\",\"iiif_manifest_url\":\"https://figgy.princeton.edu/concern/scanned_resources/4abf0d8c-a64a-4422-a3f4-229fd9b3b28d/manifest\",\"label\":{\"@value\":\"Stress Analysis of Coil Support Frames for B-3 Machine.\",\"@language\":\"en\"},\"portion_note\":null,\"visibility\":{\"value\":\"open\",\"label\":\"open\",\"definition\":\"Open to the world. Anyone can view.\"},\"display_format\":\"Manuscript\"}]".to_owned()
+            "[{\"ark\":\"http://arks.princeton.edu/ark:/88435/dc08613099f\",\"iiif_manifest_url\":\"https://figgy.princeton.edu/concern/scanned_resources/4abf0d8c-a64a-4422-a3f4-229fd9b3b28d/manifest\",\"label\":{\"@value\":\"Stress Analysis of Coil Support Frames for B-3 Machine.\",\"@language\":\"en\"},\"portion_note\":null,\"visibility\":{\"value\":\"open\",\"label\":\"open\",\"definition\":\"Open to the world. Anyone can view.\"},\"display_format\":\"Manuscript\",\"source_id\":\"9965054633506421\"}]".to_owned()
         )
     }
 }
