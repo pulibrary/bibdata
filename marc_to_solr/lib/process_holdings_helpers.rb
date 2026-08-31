@@ -73,7 +73,7 @@ class ProcessHoldingsHelpers
 
   # Builds the holding, without any item-specific information
   # @returns [Hash]
-  def build_holding(field_852, field_876 = nil, permanent:)
+  def build_holding(field_852, bib_id, field_876 = nil, permanent:)
     holding = {}
     if permanent
       holding['location_code'] = permanent_location_code(field_852)
@@ -109,6 +109,7 @@ class ProcessHoldingsHelpers
     # Once we decide, we will need to carefully coordinate an updated processing routine in orangelight
     # and changes to the format accross MARC, Ephemera, and Theses indexing
     # holding['display_format'] = BibdataRs::Marc.display_format(record)
+    # holding['source_id'] = bib_id
     holding
   end
 
