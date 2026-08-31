@@ -146,6 +146,16 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
+    describe 'marcxml_bi field' do
+      it 'includes marc21 binary as base64-encoded string' do
+        expect(@scsb_nypl['marcxml_bi']).to be_present
+        expect(@scsb_nypl['marcxml_bi']).to be_a(Array)
+        expect(@scsb_nypl['marcxml_bi'].first).not_to include('<record')
+        expect(@scsb_nypl['marcxml_bi'].first).not_to include('<?xml')
+        expect(@scsb_nypl['marcxml_bi'].first).to include('H4sIAAAAAAAA/92dbW8bufHAv8pCr+6Ao8Th8DFNDKS54v9PkeSK5K4tUPSFLO85KmzJkJSnfvpyZe36znHJYUt3WhqIYMSr3R+Xs7PDeeLTXb/a7i66z9dXm/2z2fvD4ebJYv')
+      end
+    end
+
     describe 'locations' do
       it 'indexes the location_code_s' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
