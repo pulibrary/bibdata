@@ -768,14 +768,25 @@ end
 
 rust_multi_value_field 'icpsr_subject_unstem_search'
 
-# Adds lc, siku, local, and homoit subject unstem_search fields
+# Adds lc, siku, local, and homoit subject to a consolidated unstem_search field
 # Note that lc unstem search should include both archaic and replaced terms
 each_record do |_record, context|
   context.output_hash['subject_unstem_search'] = context.output_hash['lc_subject_include_archaic_search_terms_index']
+
+  # The lines below this comment can be removed once we remove the relevant fields from the default qf and pf in the solr config
   context.output_hash['local_subject_unstem_search'] = context.output_hash['local_subject_display']
   context.output_hash['siku_subject_unstem_search'] = context.output_hash['siku_subject_display']
   context.output_hash['homoit_subject_unstem_search'] = context.output_hash['homoit_subject_display']
   context.output_hash['fast_subject_unstem_search'] = context.output_hash['fast_subject_display']
+  # The lines above this comment can be removed once we remove the relevant fields from the default qf and pf in the solr config
+
+  context.output_hash['specialized_thesaurus_subject_unstem_search'] = ['local_subject_display', 'siku_subject_display', 'homoit_subject_display', 'fast_subject_display'].reduce([]) do |accumulator, field|
+    if context.output_hash[field]
+      accumulator + context.output_hash[field]
+    else
+      accumulator
+    end
+  end
 end
 
 # used for the browse lists and hierarchical subject/genre facet

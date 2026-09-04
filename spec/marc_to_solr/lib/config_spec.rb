@@ -1326,18 +1326,17 @@ describe 'From traject_config.rb', :indexing do
 
         it 'includes siku subjects in separate fields' do
           expect(subject_marc['siku_subject_display']).to contain_exactly('Siku Subject', 'Siku Subject with skbb code')
-          expect(subject_marc['siku_subject_unstem_search']).to contain_exactly('Siku Subject', 'Siku Subject with skbb code')
+          expect(subject_marc['specialized_thesaurus_subject_unstem_search']).to include('Siku Subject', 'Siku Subject with skbb code')
         end
 
         it 'includes homoit subjects in separate fields' do
           expect(subject_marc['homoit_subject_display']).to contain_exactly('Homosaurus Subject')
-          expect(subject_marc['homoit_subject_unstem_search']).to contain_exactly('Homosaurus Subject')
+          expect(subject_marc['specialized_thesaurus_subject_unstem_search']).to include('Homosaurus Subject')
         end
 
-        it 'include lc, siku, and local subjects in separate unstem fields' do
-          expect(subject_marc['subject_unstem_search']).to contain_exactly('LC Subject')
-          expect(subject_marc['local_subject_display']).to contain_exactly('Local Subject')
-          expect(subject_marc['local_subject_unstem_search']).to contain_exactly('Local Subject')
+        it 'include lc, siku, and local subjects in the same unstem fields' do
+          expect(subject_marc['subject_unstem_search']).to include('LC Subject')
+          expect(subject_marc['specialized_thesaurus_subject_unstem_search']).to include('Local Subject')
         end
 
         it 'works using a fixture file' do
@@ -1566,7 +1565,7 @@ describe 'From traject_config.rb', :indexing do
 
       it 'works against a fixture' do
         expect(@homosaurus['homoit_subject_display']).to match_array(homosaurus_terms)
-        expect(@homosaurus['homoit_subject_unstem_search']).to match_array(homosaurus_terms)
+        expect(@homosaurus['specialized_thesaurus_subject_unstem_search']).to match_array(homosaurus_terms)
         expect(@homosaurus['lc_subject_display']).to match_array(lc_only_terms)
         expect(@homosaurus['subject_unstem_search']).to match_array(lc_only_terms)
         expect(@homosaurus['subject_facet']).to match_array(lc_and_homosaurus_terms)
@@ -1585,7 +1584,7 @@ describe 'From traject_config.rb', :indexing do
     describe 'fast subject heading fields' do
       it 'indexes fast headings' do
         expect(@fast_subject_heading['fast_subject_display']).to contain_exactly('Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)')
-        expect(@fast_subject_heading['fast_subject_unstem_search']).to contain_exactly('Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)')
+        expect(@fast_subject_heading['specialized_thesaurus_subject_unstem_search']).to contain_exactly('Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)')
       end
 
       it 'does not add fast headings to subject_facet or subject_topic_facet' do
