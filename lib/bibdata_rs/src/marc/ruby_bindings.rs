@@ -17,14 +17,17 @@ use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
+use crate::marc::record_facet_mapping::formats;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::title;
+use crate::marc::utils::display_format::display_format;
 use crate::marc::variable_length_field::extract_marc;
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
 use figgy_marc::only_open;
 use magnus::{Module, Object, RArray, RHash, RModule, function};
+use serde_json::{Value, json};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
 // (specifically the BibdataRs::Marc Ruby module and the crate::marc Rust module)
@@ -73,6 +76,7 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_singleton_method("strip_non_numeric", function!(strip_non_numeric, 1))?;
     submodule_marc
         .define_module_function("trim_punctuation", function!(trim_punctuation_owned, 1))?;
+    submodule_marc.define_singleton_method("display_format", function!(ruby_format, 1))?;
     Ok(())
 }
 
@@ -228,7 +232,20 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "fast_subject_display",
         ruby.ary_from_iter(subject::fast_subjects(&record)),
     )?;
-    hash.aset("figgy_1display", figgy_1display(&record))?;
+    hash.aset(
+        "figgy_1display",
+        figgy_1display(&record, None, |figgy_items, record| {
+            figgy_items
+                .iter()
+                .map(|figgy_item| {
+                    let mut item = figgy_item.as_object().unwrap().clone();
+                    let format = display_format(formats(record));
+                    item.insert("display_format".to_owned(), json!(format));
+                    serde_json::to_value(item).unwrap()
+                })
+                .collect::<Vec<Value>>()
+        }),
+    )?;
     hash.aset("format", format)?;
     hash.aset("former_frequency_display", extract_marc!("321ab")(&record))?;
     hash.aset(
@@ -595,6 +612,11 @@ fn ruby_current_location_code(
 ) -> Result<Option<String>, magnus::Error> {
     let field_876 = marctk_data_field_from_ruby_marc(ruby, &field);
     Ok(field_876.and_then(|field| holdings::holding_location::current_location_code(&field)))
+}
+
+fn ruby_format(ruby: &Ruby, document: magnus::RObject) -> Result<String, magnus::Error> {
+    let record = marctk_from_ruby_marc_record(ruby, &document)?;
+    Ok(display_format(formats(&record)))
 }
 
 fn manifest_url(
