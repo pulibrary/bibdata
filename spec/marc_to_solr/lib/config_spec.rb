@@ -108,7 +108,7 @@ describe 'From traject_config.rb', :indexing do
       it 'can index electronic locations for alma' do
         record = @indexer.map_record(fixture_record('9918573506421'))
         access_links = record['electronic_access_1display']
-        expect(JSON.parse(access_links.first)).to eq('display_format' => 'Book', 'http://dx.doi.org/10.1007/BFb0088073' => ['dx.doi.org'])
+        expect(JSON.parse(access_links.first)).to eq('display_format' => 'Book', 'http://dx.doi.org/10.1007/BFb0088073' => ['dx.doi.org'], 'source_id' => '9918573506421')
       end
     end
 
