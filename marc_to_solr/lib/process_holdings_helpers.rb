@@ -105,7 +105,11 @@ class ProcessHoldingsHelpers
       holding['location_note'] = []
       holding['location_note'] << field_852['z']
     end
-    holding['display_format'] = BibdataRs::Marc.display_format(record)
+    # We have not yet decided on a new format for the electronic_access_1display
+    # that incorporates a display format, see https://github.com/pulibrary/orangelight/issues/6111
+    # Once we decide, we will need to carefully coordinate an updated processing routine in orangelight
+    # and changes to the format accross MARC, Ephemera, and Theses indexing
+    # holding['display_format'] = BibdataRs::Marc.display_format(record)
     holding
   end
 
