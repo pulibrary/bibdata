@@ -575,9 +575,9 @@
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
         "open": true,
-        "requestable": false,
+        "requestable": true,
         "always_requestable": false,
-        "circulates": false,
+        "circulates": true,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/commons$stacks.json",
@@ -587,7 +587,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": ["PA", "PW", "PL", "PT", "PK", "PM"]
     },
     {
         "label": "Tech Equipment",
