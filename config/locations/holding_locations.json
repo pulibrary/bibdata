@@ -579,7 +579,7 @@
         "always_requestable": false,
         "circulates": true,
         "remote_storage": "",
-        "fulfillment_unit": "Limited",
+        "fulfillment_unit": "General",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/commons$stacks.json",
         "library": {
             "label": "Commons Library",
