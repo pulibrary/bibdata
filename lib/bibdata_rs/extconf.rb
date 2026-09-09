@@ -6,7 +6,9 @@ require 'rb_sys/mkmf'
 module BibdataRs
   module Extconf
     def self.makefile
-      create_rust_makefile 'bibdata_rs'
+      create_rust_makefile 'bibdata_rs' do |builder|
+        builder.extra_cargo_args << '--timings' if ENV['PROFILE_COMPILATION']
+      end
     end
   end
 end
