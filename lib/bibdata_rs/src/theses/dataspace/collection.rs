@@ -2,6 +2,7 @@
 // using the Dataspace JSON API
 
 use std::{
+    error::Error,
     fs::File,
     io::{BufWriter, Write},
 };
@@ -65,11 +66,11 @@ pub fn collection_url(server: &str, scope: &str, page_size: &str, page: &str) ->
     )
 }
 
-fn magnus_err_from_serde_err(ruby: &Ruby, value: &serde_json::Error) -> magnus::Error {
+fn magnus_err_from_anyhow_err(ruby: &Ruby, value: &anyhow::Error) -> magnus::Error {
     magnus::Error::new(ruby.exception_runtime_error(), value.to_string())
 }
 
-fn magnus_err_from_anyhow_err(ruby: &Ruby, value: &anyhow::Error) -> magnus::Error {
+fn magnus_err(ruby: &Ruby, value: impl Error) -> magnus::Error {
     magnus::Error::new(ruby.exception_runtime_error(), value.to_string())
 }
 
@@ -86,8 +87,7 @@ pub fn collections_as_solr(
             community::get_collection_list(server, handle, community::get_community_id)
         })
         .map_err(|e| magnus_err_from_anyhow_err(ruby, &e))?;
-    let file = File::create(temp_theses_cache_path())
-        .map_err(|value| magnus_err_from_anyhow_err(ruby, &anyhow!(value)))?;
+    let file = File::create(temp_theses_cache_path()).map_err(|value| magnus_err(ruby, value))?;
     let mut writer = BufWriter::new(file);
     serde_json::to_writer_pretty(
         &mut writer,
@@ -96,10 +96,8 @@ pub fn collections_as_solr(
             .map(SolrDocument::from)
             .collect::<Vec<SolrDocument>>(),
     )
-    .map_err(|e| magnus_err_from_serde_err(ruby, &e))?;
-    writer
-        .flush()
-        .map_err(|value| magnus_err_from_anyhow_err(ruby, &anyhow!(value)))?;
+    .map_err(|e| magnus_err(ruby, &e))?;
+    writer.flush().map_err(|value| magnus_err(ruby, value))?;
     Ok(())
 }
 

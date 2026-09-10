@@ -29,7 +29,7 @@ pub fn display_format(formats: Vec<String>) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-#[test]
+    #[test]
     fn it_prioritizes_correctly() {
         assert_eq!(
             display_format(vec!("Microform".to_string(), "Book".to_string())),
