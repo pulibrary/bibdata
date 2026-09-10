@@ -1,9 +1,11 @@
 // This module describes the dates from the 008
 
-use std::{fmt::Display, sync::LazyLock};
-
+use crate::marc::fixed_field::general_information::{
+    TYPE_OF_DATE_INDEX, char_from_008, slice_from_008,
+};
 use marctk::Record;
 use regex::Regex;
+use std::{fmt::Display, sync::LazyLock};
 
 #[derive(Debug, PartialEq)]
 pub enum DateType {
@@ -47,12 +49,7 @@ impl From<char> for DateType {
 
 impl From<&Record> for DateType {
     fn from(record: &Record) -> Self {
-        match record
-            .get_control_fields("008")
-            .into_iter()
-            .next()
-            .and_then(|field| field.content().chars().nth(6))
-        {
+        match char_from_008(record, TYPE_OF_DATE_INDEX) {
             Some(code) => DateType::from(code),
             None => DateType::None,
         }
@@ -118,14 +115,7 @@ impl<'a> TryFrom<&'a Record> for EndDate<'a> {
             DateType::DetailedDate => 7..11,
             _ => 11..15,
         };
-        let year = record
-            .get_control_fields("008")
-            .into_iter()
-            .next()
-            .ok_or(NoEndDate)?
-            .content()
-            .get(range)
-            .ok_or(NoEndDate)?;
+        let year = slice_from_008(record, range.into()).ok_or(NoEndDate)?;
 
         match Date::try_from(year) {
             Ok(date) => Ok(Self(date)),
@@ -163,14 +153,7 @@ impl<'a> TryFrom<&'a Record> for BeginDate<'a> {
     type Error = NoBeginDate;
 
     fn try_from(record: &'a Record) -> Result<Self, Self::Error> {
-        let year = record
-            .get_control_fields("008")
-            .into_iter()
-            .next()
-            .ok_or(NoBeginDate)?
-            .content()
-            .get(7..11)
-            .ok_or(NoBeginDate)?;
+        let year = slice_from_008(record, (7..11).into()).ok_or(NoBeginDate)?;
 
         match Date::try_from(year) {
             Ok(date) => Ok(Self(date)),

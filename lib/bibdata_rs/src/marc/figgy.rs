@@ -140,7 +140,7 @@ mod tests {
                     item.insert("display_format".to_owned(), json!(format));
                     serde_json::to_value(item).unwrap()
                 }).collect::<Vec<Value>>()
-                
+
             }).unwrap(),
             "[{\"ark\":\"http://arks.princeton.edu/ark:/88435/dc08613099f\",\"iiif_manifest_url\":\"https://figgy.princeton.edu/concern/scanned_resources/4abf0d8c-a64a-4422-a3f4-229fd9b3b28d/manifest\",\"label\":{\"@value\":\"Stress Analysis of Coil Support Frames for B-3 Machine.\",\"@language\":\"en\"},\"portion_note\":null,\"visibility\":{\"value\":\"open\",\"label\":\"open\",\"definition\":\"Open to the world. Anyone can view.\"},\"display_format\":\"Manuscript\"}]".to_owned()
         )
