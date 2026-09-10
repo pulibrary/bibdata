@@ -76,7 +76,7 @@ pub fn format_facets(record: &Record) -> Vec<solr::FormatFacet> {
 }
 
 pub fn formats(record: &Record) -> Vec<String> {
-    format_facets(&record)
+    format_facets(record)
         .iter()
         .map(|facet| facet.to_string())
         .collect()

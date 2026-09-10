@@ -15,12 +15,12 @@ pub fn figgy_1display<M>(
 where
     M: Fn(&Vec<Value>, &Record) -> Vec<Value>,
 {
-    let figgy_cache = cache.unwrap_or_else(|| &FIGGY_MMS_REPORT_CACHE);
+    let figgy_cache = cache.unwrap_or(&FIGGY_MMS_REPORT_CACHE);
 
     match ControlNumber::from(record) {
         ControlNumber::Alma(mms_id) => figgy_cache
             .get(mms_id)
-            .map(|figgy_items| modify_items(figgy_items, &record))
+            .map(|figgy_items| modify_items(figgy_items, record))
             .and_then(|figgy_items| serde_json::to_string(&figgy_items).ok()),
         _ => None,
     }
