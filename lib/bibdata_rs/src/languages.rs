@@ -47,13 +47,18 @@ pub fn language_name_owned(code: String) -> Option<String> {
     language_name(&code).ok().map(|name| name.to_owned())
 }
 
-pub fn is_valid_language_code(code: String) -> bool {
+pub fn is_valid_language_code(code: &str) -> bool {
     if code.is_empty() {
         return false;
     }
-    iso_639_2b::from_iso_639b_code(&code).is_some()
-        || iso_639_5::from_iso_639_5_code(&code).is_some()
-        || iso_639_3::from_iso_639_3_code(&code).is_some()
+    iso_639_2b::from_iso_639b_code(code).is_some()
+        || iso_639_5::from_iso_639_5_code(code).is_some()
+        || iso_639_3::from_iso_639_3_code(code).is_some()
+}
+
+// A wrapper for use in Ruby that uses owned strings
+pub fn is_valid_language_code_owned(code: String) -> bool {
+    is_valid_language_code(&code)
 }
 
 pub fn two_letter_code(code: &str) -> Option<&'static str> {
@@ -134,18 +139,18 @@ mod tests {
     #[test]
     fn it_can_validate_language_codes() {
         assert!(
-            is_valid_language_code("per".to_owned()),
+            is_valid_language_code("per"),
             "ISO 639-2b code is considered to be valid"
         );
         assert!(
-            is_valid_language_code("grc".to_owned()),
+            is_valid_language_code("grc"),
             "ISO 639-3 code is considered to be valid"
         );
         assert!(
-            is_valid_language_code("nah".to_owned()),
+            is_valid_language_code("nah"),
             "ISO 639-5 collective code is considered to be valid"
         );
-        assert!(!is_valid_language_code("123".to_owned()), "Invalid code");
+        assert!(!is_valid_language_code("123"), "Invalid code");
     }
 
     #[test]
@@ -177,8 +182,8 @@ mod tests {
 
     #[test]
     fn it_can_tell_if_a_language_code_is_valid() {
-        assert!(is_valid_language_code(String::from("ben")));
-        assert!(!is_valid_language_code(String::from("WRONG WRONG WRONG!")));
+        assert!(is_valid_language_code("ben"));
+        assert!(!is_valid_language_code("WRONG WRONG WRONG!"));
     }
 
     #[test]

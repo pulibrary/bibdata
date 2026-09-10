@@ -6,12 +6,6 @@ require_relative 'indigenous_languages'
 class LanguageService
   include IndigenousLanguages
 
-  def loc_to_mult_iana(loc)
-    return nil unless valid_language_code?(loc)
-
-    BibdataRs::Languages.two_letter_code(loc.to_s) || loc
-  end
-
   def valid_language_code?(code)
     return false if code.blank?
 
