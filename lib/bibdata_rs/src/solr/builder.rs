@@ -3,25 +3,25 @@
 use super::{AccessFacet, AuthorRoles, ElectronicAccess, FormatFacet, LibraryFacet, SolrDocument};
 
 #[derive(Debug, Default)]
-pub struct SolrDocumentBuilder {
-    author_s: Option<Vec<String>>,
-    author_sort_key: Option<String>,
+pub struct SolrDocumentBuilder<'a> {
+    author_s: Option<&'a [&'a str]>,
+    author_sort_key: Option<&'a str>,
     author_display: Option<Vec<String>>,
     author_roles_1display: Option<AuthorRoles>,
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<Vec<String>>,
     format: Option<Vec<FormatFacet>>,
     geographic_facet: Option<Vec<String>>,
-    id: String,
+    id: &'a str,
     title_t: Option<Vec<String>>,
-    title_citation_display: Option<String>,
-    title_display: Option<String>,
-    title_sort_key: Option<String>,
+    title_citation_display: Option<&'a str>,
+    title_display: Option<&'a str>,
+    title_sort_key: Option<&'a str>,
     electronic_access_1display: Option<ElectronicAccess>,
     restrictions_display_text: Option<Vec<String>>,
     restrictions_note_display: Option<Vec<String>>,
-    call_number_display: String,
-    call_number_browse_s: String,
+    call_number_display: &'a str,
+    call_number_browse_s: &'a str,
     homoit_subject_display: Option<Vec<String>>,
     homoit_subject_facet: Option<Vec<String>>,
     language_facet: Vec<String>,
@@ -29,11 +29,11 @@ pub struct SolrDocumentBuilder {
     lc_subject_display: Option<Vec<String>>,
     lc_subject_facet: Option<Vec<String>>,
     location: Option<LibraryFacet>,
-    location_display: Option<String>,
-    location_code_s: Option<String>,
+    location_display: Option<&'a str>,
+    location_code_s: Option<&'a str>,
     notes: Option<Vec<String>>,
     notes_display: Option<Vec<String>>,
-    advanced_location_s: Option<Vec<String>>,
+    advanced_location_s: Option<&'a [&'a str]>,
     access_facet: Option<AccessFacet>,
     holdings_1display: Option<String>,
     electronic_portfolio_s: Option<String>,
@@ -48,16 +48,16 @@ pub struct SolrDocumentBuilder {
     publisher_citation_display: Option<Vec<String>>,
     pub_date_start_sort: Option<i16>,
     pub_date_end_sort: Option<i16>,
-    thumbnail_display: Option<String>,
+    thumbnail_display: Option<&'a str>,
     contributor_display: Option<Vec<String>>,
     department_display: Option<Vec<String>>,
-    certificate_display: Option<Vec<String>>,
+    certificate_display: Option<&'a [&'a str]>,
     description_display: Option<Vec<String>>,
     summary_note_display: Option<Vec<String>>,
 }
-impl SolrDocumentBuilder {
-    pub fn with_id(&mut self, id: impl Into<String>) -> &mut Self {
-        self.id = id.into();
+impl<'a> SolrDocumentBuilder<'a> {
+    pub fn with_id(&mut self, id: &'a str) -> &mut Self {
+        self.id = id;
         self
     }
     pub fn with_author_roles_1display(&mut self, author_roles_1display: AuthorRoles) -> &mut Self {
@@ -83,12 +83,12 @@ impl SolrDocumentBuilder {
     }
     pub fn with_title_citation_display(
         &mut self,
-        title_citation_display: Option<String>,
+        title_citation_display: Option<&'a str>,
     ) -> &mut Self {
         self.title_citation_display = title_citation_display;
         self
     }
-    pub fn with_title_display(&mut self, title_display: Option<String>) -> &mut Self {
+    pub fn with_title_display(&mut self, title_display: Option<&'a str>) -> &mut Self {
         self.title_display = title_display;
         self
     }
@@ -135,12 +135,12 @@ impl SolrDocumentBuilder {
         self.publisher_citation_display = publisher_citation_display;
         self
     }
-    pub fn with_title_sort_key(&mut self, title_sort_key: Option<String>) -> &mut Self {
+    pub fn with_title_sort_key(&mut self, title_sort_key: Option<&'a str>) -> &mut Self {
         self.title_sort_key = title_sort_key;
         self
     }
 
-    pub fn with_author_sort_key(&mut self, author_sort_key: Option<String>) -> &mut Self {
+    pub fn with_author_sort_key(&mut self, author_sort_key: Option<&'a str>) -> &mut Self {
         self.author_sort_key = author_sort_key;
         self
     }
@@ -152,19 +152,13 @@ impl SolrDocumentBuilder {
         self
     }
 
-    pub fn with_call_number_display(
-        &mut self,
-        call_number_display: impl Into<String>,
-    ) -> &mut Self {
-        self.call_number_display = call_number_display.into();
+    pub fn with_call_number_display(&mut self, call_number_display: &'a str) -> &mut Self {
+        self.call_number_display = call_number_display;
         self
     }
 
-    pub fn with_call_number_browse_s(
-        &mut self,
-        call_number_browse_s: impl Into<String>,
-    ) -> &mut Self {
-        self.call_number_browse_s = call_number_browse_s.into();
+    pub fn with_call_number_browse_s(&mut self, call_number_browse_s: &'a str) -> &mut Self {
+        self.call_number_browse_s = call_number_browse_s;
         self
     }
 
@@ -210,11 +204,11 @@ impl SolrDocumentBuilder {
         self.location = location;
         self
     }
-    pub fn with_location_display(&mut self, location_display: Option<String>) -> &mut Self {
+    pub fn with_location_display(&mut self, location_display: Option<&'a str>) -> &mut Self {
         self.location_display = location_display;
         self
     }
-    pub fn with_location_code_s(&mut self, location_code_s: Option<String>) -> &mut Self {
+    pub fn with_location_code_s(&mut self, location_code_s: Option<&'a str>) -> &mut Self {
         self.location_code_s = location_code_s;
         self
     }
@@ -228,7 +222,7 @@ impl SolrDocumentBuilder {
     }
     pub fn with_advanced_location_s(
         &mut self,
-        advanced_location_s: Option<Vec<String>>,
+        advanced_location_s: Option<&'a [&'a str]>,
     ) -> &mut Self {
         self.advanced_location_s = advanced_location_s;
         self
@@ -268,7 +262,7 @@ impl SolrDocumentBuilder {
         self.author_display = author_display;
         self
     }
-    pub fn with_author_s(&mut self, author_s: Vec<String>) -> &mut Self {
+    pub fn with_author_s(&mut self, author_s: &'a [&'a str]) -> &mut Self {
         self.author_s = Some(author_s);
         self
     }
@@ -292,7 +286,7 @@ impl SolrDocumentBuilder {
     }
     pub fn with_certificate_display(
         &mut self,
-        certificate_display: Option<Vec<String>>,
+        certificate_display: Option<&'a [&'a str]>,
     ) -> &mut Self {
         self.certificate_display = certificate_display;
         self
@@ -318,25 +312,32 @@ impl SolrDocumentBuilder {
         self.summary_note_display = summary_note_display;
         self
     }
-    pub fn with_thumbnail_display(&mut self, thumbnail_display: Option<String>) -> &mut Self {
+    pub fn with_thumbnail_display(&mut self, thumbnail_display: Option<&'a str>) -> &mut Self {
         self.thumbnail_display = thumbnail_display;
         self
     }
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
             access_facet: self.access_facet,
-            advanced_location_s: self.advanced_location_s.clone(),
+            advanced_location_s: self.advanced_location_s.map(|locations| {
+                locations
+                    .iter()
+                    .map(|location| location.to_string())
+                    .collect()
+            }),
             advisor_display: self.advisor_display.clone(),
-            author_s: self.author_s.clone(),
+            author_s: self
+                .author_s
+                .map(|v| v.iter().map(|s| s.to_string()).collect()),
             author_display: self.author_display.clone(),
             author_roles_1display: self.author_roles_1display.clone(),
             author_citation_display: self.author_citation_display.clone(),
-            author_sort_key: self.author_sort_key.clone(),
-            call_number_display: self.call_number_display.clone(),
-            call_number_browse_s: self.call_number_browse_s.clone(),
+            author_sort_key: self.author_sort_key.map(|s| s.into()),
+            call_number_display: self.call_number_display.into(),
+            call_number_browse_s: self.call_number_browse_s.into(),
             electronic_access_1display: self.electronic_access_1display.clone(),
             geographic_facet: self.geographic_facet.clone(),
-            id: self.id.clone(),
+            id: self.id.to_string(),
             restrictions_display_text: self.restrictions_display_text.clone(),
             language_facet: self.language_facet.clone(),
             language_name_display: self.language_name_display.clone(),
@@ -346,8 +347,8 @@ impl SolrDocumentBuilder {
             lc_subject_display: self.lc_subject_display.clone(),
             lc_subject_facet: self.lc_subject_facet.clone(),
             location: self.location,
-            location_display: self.location_display.clone(),
-            location_code_s: self.location_code_s.clone(),
+            location_display: self.location_display.map(|s| s.into()),
+            location_code_s: self.location_code_s.map(|s| s.into()),
             notes_display: self.notes_display.clone(),
             holdings_1display: self.holdings_1display.clone(),
             electronic_portfolio_s: self.electronic_portfolio_s.clone(),
@@ -360,14 +361,16 @@ impl SolrDocumentBuilder {
             pub_citation_display: self.pub_citation_display.clone(),
             pub_date_start_sort: self.pub_date_start_sort,
             pub_date_end_sort: self.pub_date_end_sort,
-            title_citation_display: self.title_citation_display.clone(),
-            title_display: self.title_display.clone(),
-            title_sort_key: self.title_sort_key.clone(),
+            title_citation_display: self.title_citation_display.map(|s| s.into()),
+            title_display: self.title_display.map(|s| s.into()),
+            title_sort_key: self.title_sort_key.map(|s| s.into()),
             title_t: self.title_t.clone(),
-            thumbnail_display: self.thumbnail_display.clone(),
+            thumbnail_display: self.thumbnail_display.map(|s| s.into()),
             contributor_display: self.contributor_display.clone(),
             department_display: self.department_display.clone(),
-            certificate_display: self.certificate_display.clone(),
+            certificate_display: self
+                .certificate_display
+                .map(|v| v.iter().map(|s| s.to_string()).collect()),
             description_display: self.description_display.clone(),
             restrictions_note_display: self.restrictions_note_display.clone(),
             other_title_display: self.other_title_display.clone(),
@@ -394,7 +397,7 @@ mod tests {
     #[test]
     fn it_can_build_document_with_thumbnail_display() {
         let document = SolrDocumentBuilder::default()
-            .with_thumbnail_display(Some("http://example.com/thumbnail.jpg".to_string()))
+            .with_thumbnail_display(Some("http://example.com/thumbnail.jpg"))
             .build();
         assert_eq!(
             document.thumbnail_display,

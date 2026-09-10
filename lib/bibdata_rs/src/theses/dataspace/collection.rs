@@ -112,14 +112,7 @@ pub fn get_document_list(
     let documents = collection_ids
         .par_iter()
         .try_fold(Vec::new, |mut accumulator, collection_id| {
-            get_documents_in_collection(
-                &mut accumulator,
-                server,
-                collection_id.clone(),
-                rest_limit,
-                0,
-                0,
-            )?;
+            get_documents_in_collection(&mut accumulator, server, collection_id, rest_limit, 0, 0)?;
             Ok::<Vec<DataspaceDocument>, anyhow::Error>(accumulator)
         })
         .try_reduce(Vec::new, |mut a, b| {
@@ -134,12 +127,12 @@ pub fn get_document_list(
 fn get_documents_in_collection(
     documents: &mut Vec<DataspaceDocument>,
     server: &str,
-    scope: String,
+    scope: &str,
     page_size: u32,
     page: u32,
     attempt: u8,
 ) -> Result<Vec<DataspaceDocument>> {
-    let url = collection_url(server, &scope, &page_size.to_string(), &page.to_string());
+    let url = collection_url(server, scope, &page_size.to_string(), &page.to_string());
     if attempt == 0 {
         debug!("Querying for the DSpace Collection at {}", url)
     } else {
@@ -165,14 +158,7 @@ fn get_documents_in_collection(
                 total_pages: 0,
             };
             if attempt < config::THESES_RETRY_ATTEMPTS {
-                get_documents_in_collection(
-                    documents,
-                    server,
-                    scope.clone(),
-                    page_size,
-                    page,
-                    attempt + 1,
-                )
+                get_documents_in_collection(documents, server, scope, page_size, page, attempt + 1)
             } else {
                 Err(e)
             }
@@ -274,7 +260,7 @@ mod tests {
         let _ = get_documents_in_collection(
             &mut docs,
             &server.url(),
-            "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa".to_string(),
+            "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa",
             20,
             1,
             0,

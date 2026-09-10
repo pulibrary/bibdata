@@ -356,6 +356,16 @@ impl EphemeraFolder {
             .trim()
             .to_string()
     }
+
+    pub fn first_creator(&self) -> Option<&str> {
+        self.creator
+            .as_ref()
+            .and_then(|creators| creators.first().map(|c| c.as_str()))
+    }
+
+    pub fn creators_borrowed(&self) -> Vec<&str> {
+        self.creator.iter().flatten().map(|c| c.as_str()).collect()
+    }
 }
 
 #[allow(dead_code)]
