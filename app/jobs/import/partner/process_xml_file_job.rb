@@ -12,9 +12,8 @@ module Import
         reader.map { |record| writer.write(Scsb::PartnerUpdates::Full.process_record(record)) }
         writer.close
         Dump.attach_dump_file(dump_id, file_path, :recap_records_full)
-        # rubocop:disable Lint/NonAtomicFileOperation
+        # rubocop:disable-next Lint/NonAtomicFileOperation
         File.unlink(file) if File.exist?(file)
-        # rubocop:enable Lint/NonAtomicFileOperation
       end
     end
   end

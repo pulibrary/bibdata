@@ -1,7 +1,7 @@
 require 'spec_helper'
 require_relative '../../lib/bibdata_rs/'
 
-# rubocop:disable Layout/TrailingWhitespace -- the CSVs contain trailing whitespace
+# rubocop:disable-next Layout/TrailingWhitespace -- the CSVs contain trailing whitespace
 RSpec.describe BibdataRs::UpdateIso6393LanguageData do
   it 'generates a rust function based on data from SIL' do
     code_set_table = <<~END_CODE_SET_TABLE.chomp
@@ -92,4 +92,3 @@ RSpec.describe BibdataRs::UpdateIso6393LanguageData do
     expect(file.read).to eq expected_rust_code
   end
 end
-# rubocop:enable Layout/TrailingWhitespace

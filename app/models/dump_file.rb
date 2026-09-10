@@ -34,11 +34,10 @@ class DumpFile < ActiveRecord::Base
       end
     end
   end
-  # rubocop :disable Lint/NonAtomicFileOperation
+  # rubocop :disable-next Lint/NonAtomicFileOperation
   before_destroy do
     File.delete(path) if File.exist?(path)
   end
-  # rubocop :enable Lint/NonAtomicFileOperation
 
   def recap_record_type?
     self.recap_records? || self.recap_records_full?
