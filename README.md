@@ -84,6 +84,14 @@ Given the above challenges, one approach to profiling is:
 4. Samply will open up the Firefox profiler with the results.  Note that samply also profiles the rust compiler, so if your results are filled with `rustc`, you can remove those tracks (or simply re-run the previous `samply` command) to remove those distractions.
 5. The Flame Graph and Stack Chart tabs within the Firefox profiler are the most useful.
 
+#### Profiling compilation
+
+Compiling might be slow, and you wish to speed it up!  To get a sense for where the bottlenecks are:
+
+1. `cargo clean`
+1. `PROFILE_COMPILATION=yes bundle exec rake compile`
+1. In the output, it will mention 2 HTML files that contain timing information.  Open the first in your browser.
+
 ## Compiling
 
 Some business logic is written in Rust.  This code is compiled when you
