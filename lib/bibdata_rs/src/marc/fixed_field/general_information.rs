@@ -14,11 +14,11 @@ pub fn char_from_008(record: &Record, index: usize) -> Option<char> {
 }
 
 /// Get the desired slice from the MARC 008 field
-pub fn slice_from_008(record: &Record, range: Range<usize>) -> Option<&str> {
+pub fn slice_from_008(record: &Record, range: impl Into<Range<usize>>) -> Option<&str> {
     record
         .get_control_fields("008")
         .first()
-        .and_then(|field| field.content().get(range))
+        .and_then(|field| field.content().get(range.into()))
 }
 
 #[cfg(test)]
@@ -46,6 +46,6 @@ mod tests {
     #[test]
     fn it_can_get_a_slice_from_008() {
         let record = Record::from_breaker("=008 940720d19761979it mr         0   a0ita d").unwrap();
-        assert_eq!(slice_from_008(&record, (0..6).into()), Some("940720"));
+        assert_eq!(slice_from_008(&record, 0..6), Some("940720"));
     }
 }

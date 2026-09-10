@@ -115,7 +115,7 @@ impl<'a> TryFrom<&'a Record> for EndDate<'a> {
             DateType::DetailedDate => 7..11,
             _ => 11..15,
         };
-        let year = slice_from_008(record, range.into()).ok_or(NoEndDate)?;
+        let year = slice_from_008(record, range).ok_or(NoEndDate)?;
 
         match Date::try_from(year) {
             Ok(date) => Ok(Self(date)),
@@ -153,7 +153,7 @@ impl<'a> TryFrom<&'a Record> for BeginDate<'a> {
     type Error = NoBeginDate;
 
     fn try_from(record: &'a Record) -> Result<Self, Self::Error> {
-        let year = slice_from_008(record, (7..11).into()).ok_or(NoBeginDate)?;
+        let year = slice_from_008(record, 7..11).ok_or(NoBeginDate)?;
 
         match Date::try_from(year) {
             Ok(date) => Ok(Self(date)),

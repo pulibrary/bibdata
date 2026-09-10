@@ -43,7 +43,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     submodule_languages.define_singleton_method(
         "valid_language_code?",
-        function!(languages::is_valid_language_code, 1),
+        function!(languages::is_valid_language_code_owned, 1),
     )?;
     submodule_languages.define_singleton_method(
         "two_letter_code",
