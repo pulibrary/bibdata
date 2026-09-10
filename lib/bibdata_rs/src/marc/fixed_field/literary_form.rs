@@ -1,3 +1,4 @@
+use crate::marc::fixed_field::general_information::char_from_008;
 use marctk::Record;
 
 /// The Literary Form is taken from 008/33 in the MARC record
@@ -62,14 +63,12 @@ impl TryFrom<char> for LiteraryForm {
     }
 }
 pub fn literary_forms(record: &Record) -> Vec<LiteraryForm> {
-    record
-        .get_control_fields("008")
-        .iter()
-        .filter_map(|field| match field.content().chars().nth(33) {
-            Some(c) => c.try_into().ok(),
-            None => None,
-        })
-        .collect()
+    match char_from_008(record, 33) {
+        Some(c) => c.try_into().ok(),
+        None => None,
+    }
+    .into_iter()
+    .collect()
 }
 
 #[cfg(test)]

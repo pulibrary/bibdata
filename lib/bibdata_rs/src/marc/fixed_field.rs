@@ -1,4 +1,5 @@
 pub mod dates;
+pub mod general_information;
 mod leader;
 mod literary_form;
 pub mod physical_description;
