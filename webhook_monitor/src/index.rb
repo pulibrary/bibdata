@@ -27,11 +27,10 @@ def signature(event)
   hmac.chomp
 end
 
-# rubocop:disable Naming/PredicateMethod
+# rubocop:disable-next Naming/PredicateMethod
 def validate_signature(event)
   signature(event) == event['signature']
 end
-# rubocop:enable Naming/PredicateMethod
 
 def handler(event:, context:)
   Datadog::Lambda.wrap(event, context) do

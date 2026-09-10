@@ -57,7 +57,7 @@ RSpec.describe NumismaticsIndexer do
       end
     end
 
-    # rubocop:disable Style/GuardClause
+    # rubocop:disable-next Style/GuardClause
     context "when there's an error posting a batch to solr" do
       it 'retries each individually' do
         solr_connection.delete_by_query('*:*')
@@ -84,7 +84,6 @@ RSpec.describe NumismaticsIndexer do
         expect(response['response']['numFound']).to eq 5
       end
     end
-    # rubocop:enable Style/GuardClause
 
     def stub_figgy_record(id:)
       url = "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"

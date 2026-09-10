@@ -1,5 +1,5 @@
 class AlmaAdapter
-  # rubocop:disable Metrics/ClassLength
+  # rubocop:disable-next Metrics/ClassLength
   class AlmaItem < SimpleDelegator
     attr_reader :item
 
@@ -381,5 +381,4 @@ class AlmaAdapter
         ['AcqWorkOrder', 'Firestone']
       end
   end
-  # rubocop:enable Metrics/ClassLength
 end

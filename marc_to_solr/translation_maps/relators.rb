@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/CollectionLiteralLength
+# rubocop:disable-next Metrics/CollectionLiteralLength
 {
   'abr' => 'Abridger',
   'act' => 'Actor',
@@ -271,4 +271,3 @@
   'win' => 'Writer of introduction',
   'wpr' => 'Writer of preface'
 }
-# rubocop:enable Metrics/CollectionLiteralLength

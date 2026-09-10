@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rake'
 
-# rubocop:disable RSpec/DescribeClass
+# rubocop:disable-next RSpec/DescribeClass
 describe 'Rake tasks' do
   before do
     Rake.application.rake_require('tasks/ephemera')
@@ -42,4 +42,3 @@ describe 'Rake tasks' do
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass
