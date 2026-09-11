@@ -1,19 +1,14 @@
 // This module is responsible for describing the holdings of a thesis
 
 use crate::{solr::ElectronicAccess, theses::embargo};
-use serde::{Serialize, ser::SerializeStruct};
-
 use ThesisAvailability::*;
+use serde::{Serialize, ser::SerializeStruct};
+use std::borrow::Cow;
 
-pub fn call_number(non_ark_ids: Option<&Vec<String>>) -> String {
-    let ids = match non_ark_ids {
-        Some(value) => value,
-        None => &Vec::default(),
-    };
-    match ids.first() {
-        Some(id) => format!("AC102 {}", id),
-        None => "AC102".to_string(),
-    }
+pub fn call_number<'a>(non_ark_ids: Option<&Vec<String>>) -> Cow<'a, str> {
+    non_ark_ids
+        .and_then(|ids| ids.first().map(|id| Cow::Owned(format!("AC102 {id}"))))
+        .unwrap_or(Cow::Borrowed("AC102"))
 }
 
 pub fn online_holding_string(non_ark_ids: Option<&Vec<String>>) -> Option<String> {
@@ -106,11 +101,11 @@ where
 }
 
 #[derive(Debug)]
-pub struct OnlineHolding {
-    call_number: String,
+pub struct OnlineHolding<'a> {
+    call_number: Cow<'a, str>,
 }
 
-impl Serialize for OnlineHolding {
+impl<'a> Serialize for OnlineHolding<'a> {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,
@@ -124,11 +119,11 @@ impl Serialize for OnlineHolding {
 }
 
 #[derive(Debug)]
-pub struct PhysicalHolding {
-    call_number: String,
+pub struct PhysicalHolding<'a> {
+    call_number: Cow<'a, str>,
 }
 
-impl Serialize for PhysicalHolding {
+impl<'a> Serialize for PhysicalHolding<'a> {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,
@@ -169,7 +164,7 @@ mod tests {
     fn it_can_serialize_online_holding() {
         let hash = ThesisHoldingHash {
             thesis: OnlineHolding {
-                call_number: "AC102".to_owned(),
+                call_number: "AC102".into(),
             },
         };
         assert_eq!(
@@ -182,7 +177,7 @@ mod tests {
     fn it_can_serialize_physical_holding() {
         let hash = ThesisHoldingHash {
             thesis: PhysicalHolding {
-                call_number: "AC102".to_owned(),
+                call_number: "AC102".into(),
             },
         };
         assert_eq!(
