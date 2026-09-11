@@ -85,7 +85,7 @@ impl<'a> DataspaceDocument {
     }
 
     pub fn call_number(&self) -> String {
-        holdings::call_number(self.identifier_other.clone().as_ref())
+        holdings::call_number(self.identifier_other.clone().as_ref()).to_string()
     }
 
     pub fn class_year(&self) -> Option<i16> {
