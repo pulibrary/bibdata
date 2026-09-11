@@ -9,7 +9,7 @@ pub struct SolrDocumentBuilder<'a> {
     author_display: Option<Vec<String>>,
     author_roles_1display: Option<AuthorRoles>,
     author_citation_display: Option<Vec<String>>,
-    advisor_display: Option<Vec<String>>,
+    advisor_display: Option<&'a [&'a str]>,
     format: Option<Vec<FormatFacet>>,
     geographic_facet: Option<Vec<String>>,
     id: &'a str,
@@ -40,7 +40,7 @@ pub struct SolrDocumentBuilder<'a> {
     class_year_s: Option<Vec<i16>>,
     other_title_display: Option<Vec<String>>,
     provenance_display: Option<String>,
-    pub_citation_display: Option<Vec<String>>,
+    pub_citation_display: Option<&'a [&'a str]>,
     pub_date_display: Option<Vec<String>>,
     publication_location_citation_display: Option<Vec<String>>,
     publisher_no_display: Option<Vec<String>>,
@@ -50,7 +50,7 @@ pub struct SolrDocumentBuilder<'a> {
     pub_date_end_sort: Option<i16>,
     thumbnail_display: Option<&'a str>,
     contributor_display: Option<Vec<String>>,
-    department_display: Option<Vec<String>>,
+    department_display: Option<&'a [&'a str]>,
     certificate_display: Option<&'a [&'a str]>,
     description_display: Option<Vec<String>>,
     summary_note_display: Option<Vec<String>>,
@@ -110,7 +110,7 @@ impl<'a> SolrDocumentBuilder<'a> {
         self.publication_location_citation_display = Some(publication_location_citation_display);
         self
     }
-    pub fn with_pub_citation_display(&mut self, pub_citation_display: Vec<String>) -> &mut Self {
+    pub fn with_pub_citation_display(&mut self, pub_citation_display: &'a [&'a str]) -> &mut Self {
         self.pub_citation_display = Some(pub_citation_display);
         self
     }
@@ -266,7 +266,7 @@ impl<'a> SolrDocumentBuilder<'a> {
         self.author_s = Some(author_s);
         self
     }
-    pub fn with_advisor_display(&mut self, advisor_display: Option<Vec<String>>) -> &mut Self {
+    pub fn with_advisor_display(&mut self, advisor_display: Option<&'a [&'a str]>) -> &mut Self {
         self.advisor_display = advisor_display;
         self
     }
@@ -279,7 +279,7 @@ impl<'a> SolrDocumentBuilder<'a> {
     }
     pub fn with_department_display(
         &mut self,
-        department_display: Option<Vec<String>>,
+        department_display: Option<&'a [&'a str]>,
     ) -> &mut Self {
         self.department_display = department_display;
         self
@@ -319,16 +319,9 @@ impl<'a> SolrDocumentBuilder<'a> {
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
             access_facet: self.access_facet,
-            advanced_location_s: self.advanced_location_s.map(|locations| {
-                locations
-                    .iter()
-                    .map(|location| location.to_string())
-                    .collect()
-            }),
-            advisor_display: self.advisor_display.clone(),
-            author_s: self
-                .author_s
-                .map(|v| v.iter().map(|s| s.to_string()).collect()),
+            advanced_location_s: allocate_option_vec(self.advanced_location_s),
+            advisor_display: allocate_option_vec(self.advisor_display),
+            author_s: allocate_option_vec(self.author_s),
             author_display: self.author_display.clone(),
             author_roles_1display: self.author_roles_1display.clone(),
             author_citation_display: self.author_citation_display.clone(),
@@ -362,7 +355,7 @@ impl<'a> SolrDocumentBuilder<'a> {
             publisher_no_display: self.publisher_no_display.clone(),
             pub_created_display: self.pub_created_display.clone(),
             publisher_citation_display: self.publisher_citation_display.clone(),
-            pub_citation_display: self.pub_citation_display.clone(),
+            pub_citation_display: allocate_option_vec(self.pub_citation_display),
             pub_date_start_sort: self.pub_date_start_sort,
             pub_date_end_sort: self.pub_date_end_sort,
             title_citation_display: self.title_citation_display.map(|s| s.into()),
@@ -371,16 +364,18 @@ impl<'a> SolrDocumentBuilder<'a> {
             title_t: self.title_t.clone(),
             thumbnail_display: self.thumbnail_display.map(|s| s.into()),
             contributor_display: self.contributor_display.clone(),
-            department_display: self.department_display.clone(),
-            certificate_display: self
-                .certificate_display
-                .map(|v| v.iter().map(|s| s.to_string()).collect()),
+            department_display: allocate_option_vec(self.department_display),
+            certificate_display: allocate_option_vec(self.certificate_display),
             description_display: self.description_display.clone(),
             restrictions_note_display: self.restrictions_note_display.clone(),
             other_title_display: self.other_title_display.clone(),
             summary_note_display: self.summary_note_display.clone(),
         }
     }
+}
+
+fn allocate_option_vec(original: Option<&[impl ToString]>) -> Option<Vec<String>> {
+    original.map(|values| values.iter().map(|value| value.to_string()).collect())
 }
 
 #[cfg(test)]

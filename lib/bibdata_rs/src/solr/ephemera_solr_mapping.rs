@@ -25,7 +25,13 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_notes_display(value.description.clone())
             .with_other_title_display(Some(value.other_title_display_combined()))
             .with_provenance_display(value.provenance.clone())
-            .with_pub_citation_display(value.origin_place_publisher_date_created_combined())
+            .with_pub_citation_display(
+                &value
+                    .origin_place_publisher_date_created_combined()
+                    .iter()
+                    .map(|s| s.as_str())
+                    .collect::<Vec<_>>(),
+            )
             .with_pub_date_display(value.date_created_publisher_combined())
             .with_publication_location_citation_display(value.origin_place_labels())
             .with_pub_date_start_sort(value.date_created_year())
