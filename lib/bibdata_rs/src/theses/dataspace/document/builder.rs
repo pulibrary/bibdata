@@ -33,16 +33,12 @@ impl DataspaceDocumentBuilder {
 
     pub fn with_certificate(mut self, certificate: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.certificate {
-            vec.extend(
-                certificate
-                    .iter()
-                    .map(|cert| cert.value.clone().unwrap_or_default()),
-            )
+            vec.extend(certificate.iter().filter_map(|cert| cert.try_into().ok()))
         } else {
             self.certificate = Some(
                 certificate
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -54,13 +50,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 contributors
                     .iter()
-                    .map(|contributor| contributor.value.clone().unwrap_or_default()),
+                    .filter_map(|contributor| contributor.try_into().ok()),
             )
         } else {
             self.contributor = Some(
                 contributors
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -72,13 +68,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 contributor_advisors
                     .iter()
-                    .map(|ca| ca.value.clone().unwrap_or_default()),
+                    .filter_map(|ca| ca.try_into().ok()),
             )
         } else {
             self.contributor_advisor = Some(
                 contributor_advisors
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -90,13 +86,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 contributor_author
                     .iter()
-                    .map(|ca| ca.value.clone().unwrap_or_default()),
+                    .filter_map(|ca| ca.try_into().ok()),
             )
         } else {
             self.contributor_author = Some(
                 contributor_author
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -108,13 +104,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 date_classyear
                     .iter()
-                    .map(|date| date.value.clone().unwrap_or_default()),
+                    .filter_map(|date| date.try_into().ok()),
             )
         } else {
             self.date_classyear = Some(
                 date_classyear
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -126,13 +122,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 description_abstract
                     .iter()
-                    .map(|abs| abs.value.clone().unwrap_or_default()),
+                    .filter_map(|abs| abs.try_into().ok()),
             )
         } else {
             self.description_abstract = Some(
                 description_abstract
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -144,13 +140,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 &mut department
                     .iter()
-                    .map(|department| department.value.clone().unwrap_or_default()),
+                    .filter_map(|department| department.try_into().ok()),
             )
         } else {
             self.department = Some(
                 department
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -159,16 +155,12 @@ impl DataspaceDocumentBuilder {
 
     pub fn with_embargo_lift(mut self, embargo_lift: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.embargo_lift {
-            vec.extend(
-                embargo_lift
-                    .iter()
-                    .map(|el| el.value.clone().unwrap_or_default()),
-            )
+            vec.extend(embargo_lift.iter().filter_map(|el| el.try_into().ok()))
         } else {
             self.embargo_lift = Some(
                 embargo_lift
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -180,13 +172,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 embargo_terms
                     .iter()
-                    .map(|terms| terms.value.clone().unwrap_or_default()),
+                    .filter_map(|terms| terms.try_into().ok()),
             )
         } else {
             self.embargo_terms = Some(
                 embargo_terms
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -198,13 +190,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 format_extent
                     .iter()
-                    .map(|format| format.value.clone().unwrap_or_default()),
+                    .filter_map(|format| format.try_into().ok()),
             )
         } else {
             self.format_extent = Some(
                 format_extent
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -216,13 +208,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 identifier_other
                     .iter()
-                    .map(|identifier| identifier.value.clone().unwrap_or_default()),
+                    .filter_map(|identifier| identifier.try_into().ok()),
             )
         } else {
             self.identifier_other = Some(
                 identifier_other
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -231,16 +223,12 @@ impl DataspaceDocumentBuilder {
 
     pub fn with_identifier_uri(mut self, identifier_uri: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.identifier_uri {
-            vec.extend(
-                identifier_uri
-                    .iter()
-                    .map(|uri| uri.value.clone().unwrap_or_default()),
-            )
+            vec.extend(identifier_uri.iter().filter_map(|uri| uri.try_into().ok()))
         } else {
             self.identifier_uri = Some(
                 identifier_uri
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -249,16 +237,12 @@ impl DataspaceDocumentBuilder {
 
     pub fn with_language_iso(mut self, language_iso: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.language_iso {
-            vec.extend(
-                language_iso
-                    .iter()
-                    .map(|lang| lang.value.clone().unwrap_or_default()),
-            )
+            vec.extend(language_iso.iter().filter_map(|lang| lang.try_into().ok()))
         } else {
             self.language_iso = Some(
                 language_iso
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -270,13 +254,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 location
                     .iter()
-                    .map(|location| location.value.clone().unwrap_or_default()),
+                    .filter_map(|location| location.try_into().ok()),
             )
         } else {
             self.location = Some(
                 location
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -285,16 +269,12 @@ impl DataspaceDocumentBuilder {
 
     pub fn with_mudd_walkin(mut self, mudd_walkin: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.mudd_walkin {
-            vec.extend(
-                mudd_walkin
-                    .iter()
-                    .map(|mw| mw.value.clone().unwrap_or_default()),
-            );
+            vec.extend(mudd_walkin.iter().filter_map(|mw| mw.try_into().ok()));
         } else {
             self.mudd_walkin = Some(
                 mudd_walkin
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -306,13 +286,13 @@ impl DataspaceDocumentBuilder {
             vec.extend(
                 rights_access_rights
                     .iter()
-                    .map(|rights| rights.value.clone().unwrap_or_default()),
+                    .filter_map(|rights| rights.try_into().ok()),
             )
         } else {
             self.rights_access_rights = Some(
                 rights_access_rights
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }
@@ -321,16 +301,12 @@ impl DataspaceDocumentBuilder {
 
     pub fn with_title(mut self, title: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.title {
-            vec.extend(
-                title
-                    .iter()
-                    .map(|title| title.value.clone().unwrap_or_default()),
-            )
+            vec.extend(title.iter().filter_map(|title| title.try_into().ok()))
         } else {
             self.title = Some(
                 title
                     .iter()
-                    .map(|md| md.value.clone().unwrap_or_default())
+                    .filter_map(|md| md.try_into().ok())
                     .collect::<Vec<String>>(),
             )
         }

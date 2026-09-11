@@ -1,5 +1,6 @@
 // This module is responsible for representing Dataspace Document's metadata
 
+use std::borrow::Cow;
 use std::collections::HashMap;
 
 use serde::de::Deserializer;
@@ -32,15 +33,30 @@ pub struct DataspaceDocument {
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
-pub struct Metadatum {
-    pub value: Option<String>,
+pub struct Metadatum<'a> {
+    #[serde(borrow)]
+    pub value: Option<Cow<'a, str>>,
 }
 
-impl From<&str> for Metadatum {
+impl<'a> From<&str> for Metadatum<'a> {
     fn from(str: &str) -> Self {
         Metadatum {
-            value: Some(str.to_string()),
+            value: Some(Cow::Owned(str.to_string())),
         }
+    }
+}
+
+pub struct EmptyMetadata {}
+
+impl<'a> TryFrom<&Metadatum<'a>> for String {
+    type Error = EmptyMetadata;
+
+    fn try_from(value: &Metadatum<'a>) -> Result<Self, Self::Error> {
+        value
+            .value
+            .as_ref()
+            .map(|s| s.to_string())
+            .ok_or(Self::Error {})
     }
 }
 
@@ -52,9 +68,10 @@ impl<'de> Deserialize<'de> for DataspaceDocument {
         D: Deserializer<'de>,
     {
         #[derive(Deserialize)]
-        struct RawDocument {
+        struct RawDocument<'a> {
             handle: String,
-            metadata: HashMap<String, Vec<Metadatum>>,
+            #[serde(borrow)]
+            metadata: HashMap<String, Vec<Metadatum<'a>>>,
         }
 
         let raw = RawDocument::deserialize(deserializer)?;
@@ -108,9 +125,9 @@ mod tests {
 
     use super::*;
 
-    fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
+    fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum<'_>> {
         vec![Metadatum {
-            value: Some(value.to_string()),
+            value: Some(value.into()),
         }]
     }
 
@@ -186,6 +203,6 @@ mod tests {
         let json = r#"[{"handle":"88435/dsp01b2773v788","metadata":{"dc.contributor":[{ "value":null }]}}]"#;
         let documents: Vec<DataspaceDocument> = serde_json::from_str(json).unwrap();
         assert_eq!(documents.len(), 1);
-        assert_eq!(documents[0].contributor, Some(vec!("".to_string())));
+        assert_eq!(documents[0].contributor, Some(vec![]));
     }
 }
