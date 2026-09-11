@@ -14,7 +14,7 @@ use itertools::Itertools;
 use regex::{Captures, Regex};
 use std::sync::LazyLock;
 
-impl DataspaceDocument {
+impl<'a> DataspaceDocument {
     pub fn access_facet(&self) -> Option<AccessFacet> {
         match (self.embargo(), self.on_site_only()) {
             (embargo::Embargo::Current(_), _) => None,
@@ -23,38 +23,33 @@ impl DataspaceDocument {
         }
     }
 
-    pub fn advanced_location(&self) -> Option<Vec<String>> {
+    pub fn advanced_location(&self) -> Option<Vec<&str>> {
         match self.on_site_only() {
-            ThesisAvailability::OnSiteOnly => Some(vec![
-                "mudd$stacks".to_owned(),
-                "Mudd Manuscript Library".to_owned(),
-            ]),
+            ThesisAvailability::OnSiteOnly => Some(vec!["mudd$stacks", "Mudd Manuscript Library"]),
             _ => None,
         }
     }
 
-    pub fn all_authors(&self) -> Vec<String> {
-        let mut authors = match &self.contributor_author {
-            Some(authors) => authors.clone(),
-            None => Vec::new(),
-        };
-        authors.extend(self.contributor_advisor.clone().unwrap_or_default());
-        authors.extend(self.contributor.clone().unwrap_or_default());
-        authors.extend(
-            self.department
-                .clone()
-                .unwrap_or_default()
-                .iter()
-                .filter_map(|dept| department::map_department(dept)),
-        );
-        authors.extend(
-            self.certificate
-                .clone()
-                .unwrap_or_default()
-                .iter()
-                .filter_map(|program| program::map_program(program)),
-        );
-        authors
+    pub fn all_authors(&'a self) -> Vec<&'a str> {
+        self.contributor_author
+            .iter()
+            .flatten()
+            .chain(self.contributor_advisor.iter().flatten())
+            .chain(self.contributor.iter().flatten())
+            .map(|s| s.as_str())
+            .chain(
+                self.department
+                    .iter()
+                    .flatten()
+                    .filter_map(|d| department::map_department(d)),
+            )
+            .chain(
+                self.certificate
+                    .iter()
+                    .flatten()
+                    .filter_map(|c| program::map_program(c)),
+            )
+            .collect()
     }
 
     pub fn ark_hash(&self) -> Option<ElectronicAccess> {
@@ -71,7 +66,7 @@ impl DataspaceDocument {
         )
     }
 
-    pub fn authorized_ceritificates(&self) -> Option<Vec<String>> {
+    pub fn authorized_certificates(&self) -> Option<Vec<&str>> {
         self.certificate.as_ref().map(|certificates| {
             certificates
                 .iter()
@@ -84,7 +79,7 @@ impl DataspaceDocument {
         self.department.as_ref().map(|departments| {
             departments
                 .iter()
-                .filter_map(|department| department::map_department(department))
+                .filter_map(|department| department::map_department(department).map(String::from))
                 .collect()
         })
     }
@@ -110,16 +105,16 @@ impl DataspaceDocument {
         }
     }
 
-    pub fn location_display(&self) -> Option<String> {
+    pub fn location_display(&self) -> Option<&str> {
         match self.on_site_only() {
-            ThesisAvailability::OnSiteOnly => Some("Mudd Manuscript Library".to_owned()),
+            ThesisAvailability::OnSiteOnly => Some("Mudd Manuscript Library"),
             _ => None,
         }
     }
 
-    pub fn location_code(&self) -> Option<String> {
+    pub fn location_code(&self) -> Option<&str> {
         match self.on_site_only() {
-            ThesisAvailability::OnSiteOnly => Some("mudd$stacks".to_owned()),
+            ThesisAvailability::OnSiteOnly => Some("mudd$stacks"),
             _ => None,
         }
     }

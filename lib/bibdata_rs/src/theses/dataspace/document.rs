@@ -88,9 +88,15 @@ impl<'de> Deserialize<'de> for DataspaceDocument {
     }
 }
 
-impl DataspaceDocument {
+impl<'a> DataspaceDocument {
     pub fn builder() -> builder::DataspaceDocumentBuilder {
         Default::default()
+    }
+
+    pub fn first_title(&'a self) -> Option<&'a str> {
+        self.title
+            .as_ref()
+            .and_then(|titles| titles.first().map(|t| t.as_str()))
     }
 }
 

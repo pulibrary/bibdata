@@ -136,8 +136,8 @@ pub struct SolrDocument {
     pub title_t: Option<Vec<String>>,
 }
 
-impl SolrDocument {
-    pub fn builder() -> SolrDocumentBuilder {
+impl<'a> SolrDocument {
+    pub fn builder() -> SolrDocumentBuilder<'a> {
         Default::default()
     }
 }
