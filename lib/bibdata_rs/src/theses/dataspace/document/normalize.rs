@@ -218,9 +218,9 @@ mod tests {
     use super::*;
     use crate::theses::dataspace::document::Metadatum;
 
-    fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
+    fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum<'_>> {
         vec![Metadatum {
-            value: Some(value.to_string()),
+            value: Some(value.into()),
         }]
     }
 
