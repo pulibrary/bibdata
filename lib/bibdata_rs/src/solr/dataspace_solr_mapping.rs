@@ -14,7 +14,12 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_access_facet(doc.access_facet())
             .with_advanced_location_s(doc.advanced_location().as_deref())
             .with_author_citation_display(doc.contributor_author.clone())
-            .with_advisor_display(doc.contributor_advisor.clone())
+            .with_advisor_display(
+                doc.contributor_advisor
+                    .as_ref()
+                    .map(|v| v.iter().map(|s| s.as_str()).collect::<Vec<_>>())
+                    .as_deref(),
+            )
             .with_author_display(doc.contributor_author.clone())
             .with_author_s(&doc.all_authors())
             .with_author_sort_key(match &doc.contributor_author {
@@ -25,7 +30,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_call_number_display(&doc.call_number())
             .with_certificate_display(doc.authorized_certificates().as_deref())
             .with_contributor_display(doc.contributor.clone())
-            .with_department_display(doc.authorized_departments())
+            .with_department_display(doc.authorized_departments().as_deref())
             .with_format(vec![super::FormatFacet::SeniorThesis])
             .with_holdings_1display(doc.physical_holding_string())
             .with_location(doc.location())
@@ -35,7 +40,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_restrictions_note_display(doc.restrictions_note_display())
             .with_title_citation_display(doc.first_title())
             .with_title_display(match &doc.title {
-                Some(titles) => titles.first().map(|s| s.as_str()),
+                Some(titles) => titles.first().map(|s| s.as_ref()),
                 None => None,
             })
             .with_title_sort_key(title_sort_key(doc.title.as_ref()).as_deref())
@@ -43,7 +48,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_language_facet(&doc.languages())
             .with_language_name_display(&doc.languages())
             .with_class_year_s(doc.class_year().map(|year| vec![year]))
-            .with_pub_citation_display(doc.authorized_departments().unwrap_or_default())
+            .with_pub_citation_display(&doc.authorized_departments().unwrap_or_default())
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())
@@ -61,7 +66,12 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             })
             .with_access_facet(doc.access_facet())
             .with_advanced_location_s(doc.advanced_location().as_deref())
-            .with_advisor_display(doc.contributor_advisor.clone())
+            .with_advisor_display(
+                doc.contributor_advisor
+                    .as_ref()
+                    .map(|v| v.iter().map(|s| s.as_ref()).collect::<Vec<_>>())
+                    .as_deref(),
+            )
             .with_author_citation_display(doc.contributor_author.clone())
             .with_author_display(doc.contributor_author.clone())
             .with_author_s(&doc.all_authors())
@@ -73,7 +83,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_call_number_display(&doc.call_number())
             .with_certificate_display(doc.authorized_ceritificates().as_deref())
             .with_contributor_display(doc.contributor.clone())
-            .with_department_display(doc.authorized_departments())
+            .with_department_display(doc.authorized_departments().as_deref())
             .with_format(vec![super::FormatFacet::SeniorThesis])
             .with_holdings_1display(doc.physical_holding_string())
             .with_location(doc.location())
@@ -91,7 +101,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_language_facet(&doc.languages())
             .with_language_name_display(&doc.languages())
             .with_class_year_s(doc.class_year().map(|year| vec![year]))
-            .with_pub_citation_display(doc.authorized_departments().unwrap_or_default())
+            .with_pub_citation_display(&doc.authorized_departments().unwrap_or_default())
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())

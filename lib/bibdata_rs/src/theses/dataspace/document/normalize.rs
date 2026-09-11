@@ -75,11 +75,11 @@ impl<'a> DataspaceDocument {
         })
     }
 
-    pub fn authorized_departments(&self) -> Option<Vec<String>> {
+    pub fn authorized_departments(&self) -> Option<Vec<&str>> {
         self.department.as_ref().map(|departments| {
             departments
                 .iter()
-                .filter_map(|department| department::map_department(department).map(String::from))
+                .filter_map(|department| department::map_department(department))
                 .collect()
         })
     }
