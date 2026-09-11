@@ -5,15 +5,15 @@ require 'rails_helper'
 RSpec.describe 'pages/index', type: :view do
   it 'renders the header' do
     render
-    expect(rendered).to match(%r{<h1>PUL Bibliographic Data Web Service</h1>})
+    expect(rendered).to include('<h1>PUL Bibliographic Data Web Service</h1>')
   end
 
   it 'includes a section on the indexing process' do
     render
-    expect(rendered).to match(%r{<h2>Indexing Process</h2>})
-    expect(rendered).to match(%r{<th>Last dump indexed</th>})
-    expect(rendered).to match(%r{<th>Timestamp</th>})
-    expect(rendered).to match(%r{<th>In progress</th>})
+    expect(rendered).to include('<h2>Indexing Process</h2>')
+    expect(rendered).to include('<th>Last dump indexed</th>')
+    expect(rendered).to include('<th>Timestamp</th>')
+    expect(rendered).to include('<th>In progress</th>')
   end
 
   context 'with index managers' do
