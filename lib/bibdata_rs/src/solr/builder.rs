@@ -24,8 +24,8 @@ pub struct SolrDocumentBuilder<'a> {
     call_number_browse_s: &'a str,
     homoit_subject_display: Option<Vec<String>>,
     homoit_subject_facet: Option<Vec<String>>,
-    language_facet: Vec<String>,
-    language_name_display: Vec<String>,
+    language_facet: &'a [&'a str],
+    language_name_display: &'a [&'a str],
     lc_subject_display: Option<Vec<String>>,
     lc_subject_facet: Option<Vec<String>>,
     location: Option<LibraryFacet>,
@@ -167,16 +167,16 @@ impl<'a> SolrDocumentBuilder<'a> {
         self
     }
 
-    pub fn with_language_facet(&mut self, language_facet: impl Into<Vec<String>>) -> &mut Self {
-        self.language_facet = language_facet.into();
+    pub fn with_language_facet(&mut self, language_facet: &'a [&'a str]) -> &mut Self {
+        self.language_facet = language_facet;
         self
     }
 
     pub fn with_language_name_display(
         &mut self,
-        language_name_display: impl Into<Vec<String>>,
+        language_name_display: &'a [&'a str],
     ) -> &mut Self {
-        self.language_name_display = language_name_display.into();
+        self.language_name_display = language_name_display;
         self
     }
     pub fn with_homoit_subject_display(
@@ -339,8 +339,12 @@ impl<'a> SolrDocumentBuilder<'a> {
             geographic_facet: self.geographic_facet.clone(),
             id: self.id.to_string(),
             restrictions_display_text: self.restrictions_display_text.clone(),
-            language_facet: self.language_facet.clone(),
-            language_name_display: self.language_name_display.clone(),
+            language_facet: self.language_facet.iter().map(|s| s.to_string()).collect(),
+            language_name_display: self
+                .language_name_display
+                .iter()
+                .map(|s| s.to_string())
+                .collect(),
             format: self.format.clone(),
             homoit_subject_display: self.homoit_subject_display.clone(),
             homoit_subject_facet: self.homoit_subject_facet.clone(),
