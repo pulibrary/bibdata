@@ -217,9 +217,9 @@ impl EphemeraFolder {
         })
     }
 
-    pub fn language_labels(&self) -> Vec<String> {
+    pub fn language_labels(&self) -> Vec<&str> {
         match &self.language {
-            Some(languages) => languages.iter().map(|l| l.label.clone()).collect(),
+            Some(languages) => languages.iter().map(|l| l.label.as_str()).collect(),
             None => vec![],
         }
     }

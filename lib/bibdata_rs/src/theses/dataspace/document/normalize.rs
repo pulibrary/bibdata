@@ -94,8 +94,8 @@ impl<'a> DataspaceDocument {
         year.parse::<i16>().ok()
     }
 
-    pub fn languages(&self) -> Vec<String> {
-        language::codes_to_english_names(self.language_iso.clone())
+    pub fn languages(&self) -> Vec<&str> {
+        language::codes_to_english_names(&self.language_iso)
     }
 
     pub fn location(&self) -> Option<LibraryFacet> {
