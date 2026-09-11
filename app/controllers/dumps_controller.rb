@@ -15,7 +15,7 @@ class DumpsController < ApplicationController
 
     def set_dump
       # nosemgrep
-      @dump = Dump.find(params[:id])
+      @dump = Dump.find(params.expect(:id))
     end
 
     def dump_params

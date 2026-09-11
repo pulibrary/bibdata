@@ -23,6 +23,6 @@ class DeliveryLocationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_delivery_location
       # nosemgrep
-      @delivery_location = DeliveryLocation.find(params[:id])
+      @delivery_location = DeliveryLocation.find(params.expect(:id))
     end
 end
