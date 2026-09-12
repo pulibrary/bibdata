@@ -749,7 +749,7 @@ GEM
       logger (>= 1.7.0)
       rack (>= 3.2.0)
       redis-client (>= 0.29.0)
-    simplecov (1.0.1)
+    simplecov (1.2.0)
     slop (4.10.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
