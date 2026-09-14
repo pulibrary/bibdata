@@ -495,6 +495,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc!("5383ai")(&record),
     )?;
     hash.aset("target_aud_notes_display", extract_marc!("5213ab")(&record))?;
+    hash.aset("title_245_la", title::non_latin_title_sort(&record))?;
     hash.aset(
         "title_a_index",
         ruby.ary_from_iter(
@@ -512,7 +513,6 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         ruby.ary_from_iter(title::title_no_h_index(&record)),
     )?;
     hash.aset("title_sort_key", title::title_sort_key(&record))?;
-    hash.aset("title_vern_sort", title::non_latin_title_sort(&record))?;
     hash.aset("title_t", title_t)?;
     hash.aset(
         "translated_as_display",
