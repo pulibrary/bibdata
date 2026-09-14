@@ -337,7 +337,7 @@ impl EphemeraFolder {
     pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
         Some(solr::ElectronicAccess {
             url: format!(
-                "https://catalog-staging.princeton.edu/catalog/{}#view",
+                "https://catalog.princeton.edu/catalog/{}#view",
                 self.normalized_id()
             ),
             link_text: "Digital content".to_owned(),

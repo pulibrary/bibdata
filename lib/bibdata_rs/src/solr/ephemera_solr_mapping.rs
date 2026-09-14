@@ -134,7 +134,7 @@ mod tests {
             solr_document.electronic_access_1display,
             Some(
                 ElectronicAccess {
-                    url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string().to_string(),
+                    url: "https://catalog.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string().to_string(),
                     link_text: "Digital content".to_string(),
                     link_description: None,
                     iiif_manifest_paths: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string())
@@ -525,7 +525,7 @@ mod tests {
         assert_eq!(
             solr_document.electronic_access_1display,
             Some(solr::ElectronicAccess {
-                url: "https://catalog-staging.princeton.edu/catalog/abc123#view".to_string(),
+                url: "https://catalog.princeton.edu/catalog/abc123#view".to_string(),
                 link_text: "Digital content".to_owned(),
                 link_description: None,
                 iiif_manifest_paths: Some(
