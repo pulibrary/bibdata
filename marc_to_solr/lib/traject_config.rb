@@ -609,20 +609,7 @@ to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, ac
 end
 
 rust_multi_value_field 'mult_languages_iana_s'
-
-# Contents:
-#    505 0X agrt
-#    505 8X agrt
-to_field 'contents_display', extract_marc('505agrt') do |_record, accumulator|
-  if accumulator.present?
-    contents = []
-    accumulator.map do |contents_list|
-      contents << contents_list.split(' -- ')
-    end
-    contents.flatten!
-  end
-  accumulator.replace(contents) if contents
-end
+rust_multi_value_field 'contents_display'
 
 to_field 'embargo_date_display' do |record, accumulator|
   accumulator.replace(EmbargoDateExtractor.new(record)

@@ -5,6 +5,7 @@ use marctk::Record;
 pub mod alma;
 pub mod call_number;
 pub mod cjk;
+pub mod contents;
 pub mod contributors;
 pub mod control_field;
 pub mod date;
