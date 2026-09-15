@@ -233,11 +233,13 @@ impl EphemeraFolder {
         }
     }
 
-    pub fn all_contributors(&self) -> Vec<String> {
-        let mut all_contributors = Vec::default();
-        all_contributors.extend(self.creator.clone().unwrap_or_default());
-        all_contributors.extend(self.contributor.clone().unwrap_or_default());
-        all_contributors
+    pub fn all_contributors(&self) -> Vec<&str> {
+        self.creator
+            .iter()
+            .chain(self.contributor.iter())
+            .flatten()
+            .map(AsRef::as_ref)
+            .collect()
     }
 
     pub fn date_created_year(&self) -> Option<i16> {

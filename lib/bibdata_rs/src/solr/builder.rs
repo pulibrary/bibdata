@@ -6,7 +6,7 @@ use super::{AccessFacet, AuthorRoles, ElectronicAccess, FormatFacet, LibraryFace
 pub struct SolrDocumentBuilder<'a> {
     author_s: Option<&'a [&'a str]>,
     author_sort_key: Option<&'a str>,
-    author_display: Option<Vec<String>>,
+    author_display: Option<&'a [&'a str]>,
     author_roles_1display: Option<AuthorRoles>,
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<&'a [&'a str]>,
@@ -258,7 +258,7 @@ impl<'a> SolrDocumentBuilder<'a> {
         self.pub_date_end_sort = pub_date_end_sort;
         self
     }
-    pub fn with_author_display(&mut self, author_display: Option<Vec<String>>) -> &mut Self {
+    pub fn with_author_display(&mut self, author_display: Option<&'a [&'a str]>) -> &mut Self {
         self.author_display = author_display;
         self
     }
@@ -322,7 +322,7 @@ impl<'a> SolrDocumentBuilder<'a> {
             advanced_location_s: allocate_option_vec(self.advanced_location_s),
             advisor_display: allocate_option_vec(self.advisor_display),
             author_s: allocate_option_vec(self.author_s),
-            author_display: self.author_display.clone(),
+            author_display: allocate_option_vec(self.author_display),
             author_roles_1display: self.author_roles_1display.clone(),
             author_citation_display: self.author_citation_display.clone(),
             author_sort_key: self.author_sort_key.map(|s| s.into()),
