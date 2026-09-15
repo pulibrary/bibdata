@@ -5,7 +5,7 @@ impl From<&EphemeraFolder> for SolrDocument {
     fn from(value: &EphemeraFolder) -> Self {
         SolrDocument::builder()
             .with_access_facet(value.access_facet())
-            .with_author_display(Some(value.all_contributors()))
+            .with_author_display(Some(&value.all_contributors()))
             .with_author_roles_1display(value.group_contributors())
             .with_author_s(&value.creators_borrowed())
             .with_author_sort_key(value.first_creator())
