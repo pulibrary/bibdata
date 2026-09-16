@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'cbor'
 require 'yell'
 
 require 'traject/util'
@@ -121,9 +122,9 @@ class Traject::PulSolrJsonWriter
   # @param [Array<Traject::Indexer::Context>] an array of contexts
   def send_batch(batch)
     return if batch.empty?
-    json_package = JSON.generate(batch.map { |c| c.output_hash })
+    json_package = batch.map { |c| c.output_hash }.to_cbor
     begin
-      resp = @http_client.post @solr_update_url, json_package, "Content-type" => "application/json"
+      resp = @http_client.post @solr_update_url, json_package, "Content-type" => "application/cbor"
     rescue StandardError => exception
     end
 
@@ -153,7 +154,7 @@ class Traject::PulSolrJsonWriter
   def send_single(c)
     json_package = JSON.generate([c.output_hash])
     begin
-      resp = @http_client.post @solr_update_url, json_package, "Content-type" => "application/json"
+      resp = @http_client.post @solr_update_url, json_package, "Content-type" => "application/cbor"
       # Catch Timeouts and network errors as skipped records, but otherwise
       # allow unexpected errors to propagate up.
     rescue HTTPClient::TimeoutError, SocketError, Errno::ECONNREFUSED => exception
@@ -275,7 +276,7 @@ class Traject::PulSolrJsonWriter
     end
 
     # First, try the /update/json handler
-    candidate = [url.chomp('/'), 'update', 'json'].join('/')
+    candidate = [url.chomp('/'), 'update', 'cbor'].join('/')
     resp      = @http_client.get(candidate)
     if resp.status == 404
       candidate = [url.chomp('/'), 'update'].join('/')
