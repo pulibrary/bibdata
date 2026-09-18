@@ -20,7 +20,7 @@ impl From<&DataspaceDocument> for SolrDocument {
                     .map(|v| v.iter().map(|s| s.as_str()).collect::<Vec<_>>())
                     .as_deref(),
             )
-            .with_author_display(doc.contributor_author.clone())
+            .with_author_display(doc.author().as_deref())
             .with_author_s(&doc.all_authors())
             .with_author_sort_key(match &doc.contributor_author {
                 Some(authors) => authors.first().map(|s| s.as_str()),
@@ -73,7 +73,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
                     .as_deref(),
             )
             .with_author_citation_display(doc.contributor_author.clone())
-            .with_author_display(doc.contributor_author.clone())
+            .with_author_display(doc.author().as_deref())
             .with_author_s(&doc.all_authors())
             .with_author_sort_key(match &doc.contributor_author {
                 Some(authors) => authors.first().map(|s| s.as_str()),

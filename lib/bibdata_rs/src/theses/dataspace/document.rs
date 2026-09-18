@@ -32,6 +32,14 @@ pub struct DataspaceDocument {
     rights_access_rights: Option<Vec<String>>,
 }
 
+impl DataspaceDocument {
+    pub fn author(&self) -> Option<Vec<&str>> {
+        self.contributor_author
+            .as_ref()
+            .map(|authors| authors.iter().map(AsRef::as_ref).collect())
+    }
+}
+
 #[derive(Clone, Debug, Default, Deserialize)]
 pub struct Metadatum<'a> {
     #[serde(borrow)]

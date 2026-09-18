@@ -29,6 +29,14 @@ pub struct DataspaceDocument {
     rights_access_rights: Option<Vec<String>>,
 }
 
+impl DataspaceDocument {
+    pub fn author(&self) -> Option<Vec<&str>> {
+        self.contributor_author
+            .as_ref()
+            .map(|authors| authors.iter().map(AsRef::as_ref).collect())
+    }
+}
+
 // The lifetime specifier is needed due to how serde deserializes,
 // see https://serde.rs/lifetimes.html#understanding-deserializer-lifetimes
 impl<'de> Deserialize<'de> for DataspaceDocument {
