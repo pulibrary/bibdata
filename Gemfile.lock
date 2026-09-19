@@ -815,7 +815,7 @@ GEM
     unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
-    vernier (1.10.1)
+    vernier (1.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webmock (3.26.4)
