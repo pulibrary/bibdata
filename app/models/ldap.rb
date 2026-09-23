@@ -29,7 +29,12 @@ class Ldap
       end
 
       def default_connection
-        @default_connection ||= Net::LDAP.new host: 'ldap.princeton.edu', base: 'o=Princeton University,c=US', port: 636,
+        @default_connection ||= Net::LDAP.new host: 'pu.win.princeton.edu',
+                                              # This is the username/pass of the service account we use to connect to LDAP,
+                                              # *not* the username of the user that we are looking up
+                                              auth: { method: :simple, username: ENV.fetch('LDAP_USERNAME', nil), password: ENV.fetch('LDAP_PASSWORD', nil) },
+                                              base: 'DC=pu,DC=win,DC=princeton,DC=edu',
+                                              port: 636,
                                               encryption: {
                                                 method: :simple_tls,
                                                 tls_options: OpenSSL::SSL::SSLContext::DEFAULT_PARAMS
