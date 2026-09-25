@@ -346,6 +346,9 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc!("5443abcden")(&record),
     )?;
     hash.aset("marcxml", marcxml_compressed(&record))?;
+    
+    hash.aset("marcxml_bi", marcxml_compressed(&record))?;
+
     hash.aset("methodology_notes_display", extract_marc!("567a")(&record))?;
     hash.aset(
         "mult_languages_iana_s",
