@@ -32,7 +32,7 @@ RSpec.describe Import::Partner::DownloadFullFileJob do
       testing_batch.jobs do
         described_class.perform_async(dump.id, 'NYPL', 'scsbfull_nypl_')
       end
-    end.not_to raise_error(Zip::DestinationFileExistsError)
+    end.not_to raise_error
     expect(first_entry).to have_received(:extract)
     expect(second_entry).to have_received(:extract)
   end
@@ -48,7 +48,7 @@ RSpec.describe Import::Partner::DownloadFullFileJob do
         testing_batch.jobs do
           described_class.perform_async(dump.id, 'NYPL', 'scsbfull_nypl_')
         end
-      end.not_to raise_error(Zip::DestinationFileExistsError)
+      end.not_to raise_error(Zip::DestinationExistsError)
       expect(first_entry).to have_received(:extract)
       expect(second_entry).to have_received(:extract)
     end

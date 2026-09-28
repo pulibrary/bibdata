@@ -30,13 +30,13 @@ module Import
         file_increment = 1
         Zip::File.open(file) do |zip_file|
           zip_file.each do |entry|
-            target = "#{update_directory}/#{file_prefix}#{filename}_#{file_increment}.xml"
-            xml_files << target
-            entry.extract(target)
+            target = "#{file_prefix}#{filename}_#{file_increment}.xml"
+            xml_files << "#{update_directory}/#{target}"
+            entry.extract(target, destination_directory: update_directory)
             file_increment += 1
           # If the file already exists, we probably partially ran this job previously, and it's not a problem.
           # Should just move to the next entry.
-          rescue Zip::DestinationFileExistsError => e
+          rescue Zip::DestinationExistsError => e
             Rails.logger.info(e.message)
           end
         end
