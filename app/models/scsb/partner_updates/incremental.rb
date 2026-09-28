@@ -27,9 +27,9 @@ module Scsb
           file_increment = 1
           Zip::File.open(file) do |zip_file|
             zip_file.each do |entry|
-              target = "#{@update_directory}/scsbdelete#{filename}_#{file_increment}.json"
-              json_files << target
-              entry.extract(target)
+              target = "scsbdelete#{filename}_#{file_increment}.json"
+              json_files << "#{@update_directory}/#{target}"
+              entry.extract(target, destination_directory: @update_directory)
               file_increment += 1
             end
           end
