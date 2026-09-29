@@ -7042,8 +7042,13 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "QX"
+         "delivery_locations": [
+            "QX",
+            "PW",
+            "PL",
+            "PT",
+            "PK",
+            "PM"
         ]
     },
     {
