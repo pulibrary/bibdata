@@ -41,14 +41,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "macrolanguage_codes",
         function!(languages::macrolanguage_codes_owned, 1),
     )?;
-    submodule_languages.define_singleton_method(
-        "valid_language_code?",
-        function!(languages::is_valid_language_code_owned, 1),
-    )?;
-    submodule_languages.define_singleton_method(
-        "two_letter_code",
-        function!(languages::two_letter_code_owned, 1),
-    )?;
     marc::register_ruby_methods(&module)?;
     locations::register_ruby_methods(ruby, &module)?;
     Ok(())
