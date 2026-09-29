@@ -1035,34 +1035,7 @@ rust_multi_value_field 'in_display'
 rust_multi_value_field 'other_editions_display'
 rust_multi_value_field 'data_source_display'
 
-# ISBN:
-#    020 XX a
-# Dont index if subfield $a is not present
-to_field 'isbn_display' do |record, accumulator|
-  MarcExtractor.cached('020aq').collect_matching_lines(record) do |field, _spec, _extractor|
-    a_array = []
-    q_array = []
-    next if field['a'].blank?
-
-    field.subfields.each do |m|
-      if m.code == 'a'
-        a_array << m.value
-      elsif m.code == 'q'
-        q_array << m.value
-      end
-    end
-    a_string = a_array.compact.join if a_array
-    q_string = q_array.compact.join("\s:\s") if q_array
-    accumulator << if a_string && q_string && !q_string.empty?
-                     a_string + ' ' + '(' + q_string + ')'
-                   else
-                     a_string
-                   end
-  end
-end
-
-# ISSN:
-#    022 XX a
+rust_multi_value_field 'isbn_display'
 rust_multi_value_field 'issn_display'
 
 # SuDoc no.:

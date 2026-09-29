@@ -8,6 +8,7 @@ mod isbn;
 mod issn;
 pub mod oclc;
 
+pub use isbn::isbn_display;
 pub use oclc::{is_oclc_number, normalized_oclc_numbers, oclc_numbers_numeric};
 
 // Get identifier numbers for all known versions of this title from the record.
