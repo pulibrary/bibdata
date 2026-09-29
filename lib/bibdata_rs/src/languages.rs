@@ -56,11 +56,6 @@ pub fn is_valid_language_code(code: &str) -> bool {
         || iso_639_3::from_iso_639_3_code(code).is_some()
 }
 
-// A wrapper for use in Ruby that uses owned strings
-pub fn is_valid_language_code_owned(code: String) -> bool {
-    is_valid_language_code(&code)
-}
-
 pub fn two_letter_code(code: &str) -> Option<&'static str> {
     iso_639_2b::from_iso_639b_code(code)
         .and_then(|language| language.two_letter_code)
@@ -68,11 +63,6 @@ pub fn two_letter_code(code: &str) -> Option<&'static str> {
             iso_639_3::from_iso_639_3_code(code)
                 .and_then(|language| language.language.two_letter_code)
         })
-}
-
-// A wrapper for use in Ruby that uses owned strings
-pub fn two_letter_code_owned(code: String) -> Option<String> {
-    two_letter_code(&code).map(|two_letter_code| two_letter_code.to_owned())
 }
 
 // A wrapper for use in Ruby that uses owned strings
