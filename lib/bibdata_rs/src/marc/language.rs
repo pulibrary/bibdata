@@ -15,6 +15,20 @@ pub fn original_languages_of_translation(record: &Record) -> Vec<Language> {
         .collect()
 }
 
+const LANGUAGES_THAT_CANNOT_BE_ANNOUNCED: [&str; 5] = ["zxx", "mul", "sgn", "und", "|||"];
+
+/// Our best guess of the language that an assistive technology should use when announcing
+/// or otherwise interacting with this title.  We use it to construct the HTML lang attribute,
+/// e.g. `<html lang="ja">` if the title is in Japanese
+/// See also: IANA Language Subtag Registry
+pub fn record_language_for_assistive_tech(record: &Record) -> &str {
+    language_codes(record)
+        .filter(|code| !LANGUAGES_THAT_CANNOT_BE_ANNOUNCED.contains(code))
+        .filter_map(|original_code| two_letter_code(original_code))
+        .next()
+        .unwrap_or("en")
+}
+
 /// If a language code in the record has a 2-letter equivalent, use it.  Otherwise use the 3-letter version.
 pub fn simplified_language_codes(record: &Record) -> impl Iterator<Item = &str> {
     language_codes(record).filter_map(|original_code| {
@@ -127,5 +141,26 @@ mod tests {
         assert_eq!(codes.next(), Some("en"));
         assert_eq!(codes.next(), Some("nez"));
         assert_eq!(codes.next(), None);
+    }
+
+    #[test]
+    fn it_can_find_the_record_language_for_assistive_tech() {
+        let expected = [
+            (r"=041 1\ $atel", "te"),
+            (r"=041 1\ $dtel", "te"),
+            (r"=008 060302s1994    io a   j      000 1 tel|d", "te"),
+            (r"=041 1\ $atel$aurd", "te"),
+            (r"=041 1\ $aurd$atel", "ur"),
+            (r"=041 1\ $deng", "en"),
+            (r"=041 1\ $htel", "en"),
+            (r"=245 00 $aNo language specified", "en"),
+            (r"=041 1\ $dmul", "en"),
+        ];
+        for (breaker, language_code) in expected {
+            assert_eq!(
+                record_language_for_assistive_tech(&Record::from_breaker(breaker).unwrap()),
+                language_code
+            );
+        }
     }
 }

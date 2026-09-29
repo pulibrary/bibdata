@@ -114,7 +114,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(135);
+    let hash = ruby.hash_new_capa(136);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -321,6 +321,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("issn_display", extract_marc!("022a")(&record))?;
     hash.aset("issuing_body_notes_display", extract_marc!("550a")(&record))?;
     hash.aset("language_display", extract_marc!("5463a")(&record))?;
+    hash.aset(
+        "language_iana_s",
+        language::record_language_for_assistive_tech(&record),
+    )?;
     hash.aset(
         "linked_series_index",
         extract_marc!("760acgst", "762acgst")(&record),
