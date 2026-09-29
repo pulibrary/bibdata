@@ -1,3 +1,5 @@
+use std::ops::Deref;
+
 use crate::marc::{extract_values::ExtractValues, string_normalize::maybe_not_empty};
 use itertools::Itertools;
 use marctk::{Field, Record, Subfield};
@@ -29,6 +31,18 @@ where
 
     fn subfields_after(self, start_at: &'a str) -> impl Iterator<Item = &'a Subfield> {
         self.skip_while(move |subfield| subfield.code() != start_at)
+    }
+}
+
+pub trait VariableLengthField<'a>: Deref<Target = Field> {
+    fn get(&'a self, code: &str) -> Option<&'a str>;
+}
+
+impl<'a, T: Deref<Target = Field>> VariableLengthField<'a> for T {
+    fn get(&'a self, code: &str) -> Option<&'a str> {
+        self.deref()
+            .first_subfield(code)
+            .map(|subfield| subfield.content())
     }
 }
 
