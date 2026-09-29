@@ -1,8 +1,10 @@
 //! This module is responsible for extracting cartographic data from a MARC record
 
+use crate::marc::variable_length_field::VariableLengthField;
 use marctk::{Field, Record};
 use regex::Regex;
 use std::fmt::{self, Display};
+use std::ops::Deref;
 use std::str::FromStr;
 use std::sync::LazyLock;
 
@@ -14,26 +16,28 @@ pub fn coverage_display(record: &Record) -> Option<String> {
 
 struct Field034<'a>(&'a Field);
 impl<'a> Field034<'a> {
-    pub fn westernmost_longitude(&self) -> Option<&'a str> {
+    pub fn westernmost_longitude(&'a self) -> Option<&'a str> {
         self.get("d")
     }
 
-    pub fn easternmost_longitude(&self) -> Option<&'a str> {
+    pub fn easternmost_longitude(&'a self) -> Option<&'a str> {
         self.get("e")
     }
 
-    pub fn northernmost_latitude(&self) -> Option<&'a str> {
+    pub fn northernmost_latitude(&'a self) -> Option<&'a str> {
         self.get("f")
     }
 
-    pub fn southernmost_latitude(&self) -> Option<&'a str> {
+    pub fn southernmost_latitude(&'a self) -> Option<&'a str> {
         self.get("g")
     }
+}
 
-    fn get(&self, subfield_code: &str) -> Option<&'a str> {
+impl Deref for Field034<'_> {
+    type Target = Field;
+
+    fn deref(&self) -> &Self::Target {
         self.0
-            .first_subfield(subfield_code)
-            .map(|subfield| subfield.content())
     }
 }
 

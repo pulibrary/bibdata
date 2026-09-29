@@ -1,26 +1,26 @@
 // This module is responsible for processing Action notes
 // See https://www.loc.gov/marc/bibliographic/bd583.html
 
-use std::iter;
-
+use crate::marc::{
+    control_field::system_control_number::is_princeton_finding_aid,
+    extract_values::ExtractValues,
+    scsb::is_scsb,
+    string_normalize::upcase_first,
+    variable_length_field::{VariableLengthField, latin_or_non_latin_tag_included_in},
+};
 use itertools::Itertools;
 use marctk::{Field, Record};
 use serde::Serialize;
-
-use crate::marc::{
-    control_field::system_control_number::is_princeton_finding_aid, extract_values::ExtractValues,
-    scsb::is_scsb, string_normalize::upcase_first,
-    variable_length_field::latin_or_non_latin_tag_included_in,
-};
+use std::{iter, ops::Deref};
 
 struct Field583<'a>(&'a Field);
 
 impl<'a> Field583<'a> {
-    pub fn action(&self) -> Option<&'a str> {
+    pub fn action(&'a self) -> Option<&'a str> {
         self.get("a")
     }
 
-    pub fn action_interval(&self) -> Option<&'a str> {
+    pub fn action_interval(&'a self) -> Option<&'a str> {
         self.get("d")
     }
 
@@ -40,40 +40,42 @@ impl<'a> Field583<'a> {
             .any(|subfield| subfield.code() == "8")
     }
 
-    pub fn institution(&self) -> Option<&'a str> {
+    pub fn institution(&'a self) -> Option<&'a str> {
         self.get("5")
     }
 
-    pub fn is_public(&self) -> bool {
+    pub fn is_public(&'a self) -> bool {
         self.0.ind1() == "1"
     }
 
-    pub fn materials_specified(&self) -> Option<&'a str> {
+    pub fn materials_specified(&'a self) -> Option<&'a str> {
         self.get("3")
     }
 
-    pub fn uri(&self) -> Option<&'a str> {
+    pub fn uri(&'a self) -> Option<&'a str> {
         self.get("u")
     }
+}
 
-    fn get(&self, code: &str) -> Option<&'a str> {
+impl<'a> Deref for Field583<'a> {
+    type Target = Field;
+
+    fn deref(&self) -> &Self::Target {
         self.0
-            .first_subfield(code)
-            .map(|subfield| subfield.content())
     }
 }
 
 #[derive(Debug, PartialEq, Serialize)]
-pub struct ActionNote<'a> {
+pub struct ActionNote {
     description: Option<String>,
-    uri: Option<&'a str>,
+    uri: Option<String>,
 }
 
 enum ActionNoteError {
     NoteIsPrivate,
 }
 
-impl<'a> TryFrom<Field583<'a>> for ActionNote<'a> {
+impl<'a> TryFrom<Field583<'a>> for ActionNote {
     type Error = ActionNoteError;
 
     fn try_from(field: Field583<'a>) -> Result<Self, Self::Error> {
@@ -103,12 +105,12 @@ impl<'a> TryFrom<Field583<'a>> for ActionNote<'a> {
         };
         Ok(ActionNote {
             description,
-            uri: field.uri().map(|uri| uri.trim()),
+            uri: field.uri().map(|uri| uri.trim().to_string()),
         })
     }
 }
 
-pub fn action_notes<'a>(record: &'a Record) -> impl Iterator<Item = ActionNote<'a>> {
+pub fn action_notes<'a>(record: &'a Record) -> impl Iterator<Item = ActionNote> {
     record.extract_field_values_by(latin_or_non_latin_tag_included_in(&["583"]), |field| {
         let field = Field583(field);
         if field.has_field_link() || is_scsb(record) || is_princeton_finding_aid(record) {
