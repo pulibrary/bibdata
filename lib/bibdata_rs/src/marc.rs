@@ -4,6 +4,7 @@ use marctk::Record;
 
 pub mod alma;
 pub mod call_number;
+pub mod cartography;
 pub mod cjk;
 pub mod contents;
 pub mod contributors;

@@ -5,6 +5,7 @@ pub mod marc_gem;
 
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
+use crate::marc::cartography::coverage_display;
 use crate::marc::control_field::control_number::ControlNumber;
 use crate::marc::control_field::partner_id::other_id;
 use crate::marc::control_field::system_control_number::standard_numbers;
@@ -113,7 +114,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(133);
+    let hash = ruby.hash_new_capa(134);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -169,6 +170,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     )?;
     hash.aset("content_title_index", extract_marc!("505t")(&record))?;
     hash.aset("contents_display", contents::table_of_contents(&record))?;
+    hash.aset("coverage_display", coverage_display(&record))?;
     hash.aset(
         "copy_version_notes_display",
         extract_marc!("5623abcde")(&record),

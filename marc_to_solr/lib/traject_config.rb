@@ -273,10 +273,7 @@ rust_multi_value_field 'description_t'
 
 to_field 'number_of_pages_citation_display', extract_marc('300a', trim_punctuation: true)
 
-to_field 'coverage_display' do |record, accumulator|
-  coverage = decimal_coordinate(record)
-  accumulator[0] = coverage unless coverage.nil?
-end
+rust_single_value_field 'coverage_display'
 
 to_field 'geocode_display' do |record, acc|
   marc_geo_map = Traject::TranslationMap.new('marc_geographic')
