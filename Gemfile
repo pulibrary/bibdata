@@ -67,10 +67,6 @@ gem 'vernier'
 gem 'whenever'
 gem 'yard'
 
-group :production do
-  gem 'datadog'
-end
-
 group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
