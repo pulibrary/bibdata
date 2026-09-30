@@ -1057,7 +1057,9 @@ rust_multi_value_field 'publisher_no_display'
 rust_multi_value_field 'lccn_display'
 rust_multi_value_field 'coden_display'
 
-rust_multi_value_field 'standard_no_024_index'
+# This field has a lot of data added to it via copyField, but we also
+# add some data to it directly (data that don't need their own fields)
+rust_multi_value_field 'text'
 
 to_field 'standard_no_1display' do |record, accumulator|
   standard_no = standard_no_hash(record)
