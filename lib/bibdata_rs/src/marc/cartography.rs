@@ -41,6 +41,8 @@ impl Deref for Field034<'_> {
     }
 }
 
+impl VariableLengthField<'_> for Field034<'_> {}
+
 #[derive(Debug, PartialEq)]
 pub enum CartographicParsingError {
     NoData,
