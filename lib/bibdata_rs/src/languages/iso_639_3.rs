@@ -9375,7 +9375,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "boe",
         Iso639_3Language {
             language: Language {
-                english_name: "Mundabli",
+                english_name: "Mundabli-Mufu",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -13390,7 +13390,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "cey",
         Iso639_3Language {
             language: Language {
-                english_name: "Ekai Chin",
+                english_name: "Laoktu Chin",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -16877,7 +16877,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "den",
         Iso639_3Language {
             language: Language {
-                english_name: "Slave (Athapascan)",
+                english_name: "Slavey",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -19276,6 +19276,17 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         Iso639_3Language {
             language: Language {
                 english_name: "Djimini Senoufo",
+                two_letter_code: None,
+            },
+            macrolanguage_code: None,
+            iso_639_2b_code: None,
+        },
+    );
+    language_hash.insert(
+        "dyl",
+        Iso639_3Language {
+            language: Language {
+                english_name: "Bhutanese Sign Language",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -28801,7 +28812,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "ina",
         Iso639_3Language {
             language: Language {
-                english_name: "Interlingua (International Auxiliary Language Association)",
+                english_name: "Interlingua (IALA)",
                 two_letter_code: Some("ia"),
             },
             macrolanguage_code: None,
@@ -29296,7 +29307,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "isu",
         Iso639_3Language {
             language: Language {
-                english_name: "Isu (Menchum Division)",
+                english_name: "Isu",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -33784,7 +33795,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "kjo",
         Iso639_3Language {
             language: Language {
-                english_name: "Harijan Kinnauri",
+                english_name: "Kinnauri Pahari",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -36853,7 +36864,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "kut",
         Iso639_3Language {
             language: Language {
-                english_name: "Kutenai",
+                english_name: "Ktunaxa",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -39325,6 +39336,17 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         },
     );
     language_hash.insert(
+        "lfb",
+        Iso639_3Language {
+            language: Language {
+                english_name: "Buu (Cameroon)",
+                two_letter_code: None,
+            },
+            macrolanguage_code: None,
+            iso_639_2b_code: None,
+        },
+    );
+    language_hash.insert(
         "lfn",
         Iso639_3Language {
             language: Language {
@@ -41649,7 +41671,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "lui",
         Iso639_3Language {
             language: Language {
-                english_name: "Luiseno",
+                english_name: "Luiseño",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -42936,7 +42958,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "mdc",
         Iso639_3Language {
             language: Language {
-                english_name: "Male (Papua New Guinea)",
+                english_name: "Soq",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -43167,7 +43189,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "mdy",
         Iso639_3Language {
             language: Language {
-                english_name: "Male (Ethiopia)",
+                english_name: "Male",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -43904,7 +43926,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "mgp",
         Iso639_3Language {
             language: Language {
-                english_name: "Eastern Magar",
+                english_name: "Magar",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -46728,17 +46750,6 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         },
     );
     language_hash.insert(
-        "mrd",
-        Iso639_3Language {
-            language: Language {
-                english_name: "Western Magar",
-                two_letter_code: None,
-            },
-            macrolanguage_code: None,
-            iso_639_2b_code: None,
-        },
-    );
-    language_hash.insert(
         "mre",
         Iso639_3Language {
             language: Language {
@@ -46775,7 +46786,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "mrh",
         Iso639_3Language {
             language: Language {
-                english_name: "Mara Chin",
+                english_name: "Mara",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -64273,17 +64284,6 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         },
     );
     language_hash.insert(
-        "shl",
-        Iso639_3Language {
-            language: Language {
-                english_name: "Shendu",
-                two_letter_code: None,
-            },
-            macrolanguage_code: None,
-            iso_639_2b_code: None,
-        },
-    );
-    language_hash.insert(
         "shm",
         Iso639_3Language {
             language: Language {
@@ -66729,7 +66729,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "srs",
         Iso639_3Language {
             language: Language {
-                english_name: "Sarsi",
+                english_name: "Tsuut'ina",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -68302,7 +68302,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "szv",
         Iso639_3Language {
             language: Language {
-                english_name: "Isu (Fako Division)",
+                english_name: "Isubu",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -73238,6 +73238,17 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         },
     );
     language_hash.insert(
+        "tvg",
+        Iso639_3Language {
+            language: Language {
+                english_name: "Tugunese",
+                two_letter_code: None,
+            },
+            macrolanguage_code: None,
+            iso_639_2b_code: None,
+        },
+    );
+    language_hash.insert(
         "tvi",
         Iso639_3Language {
             language: Language {
@@ -76596,7 +76607,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "wab",
         Iso639_3Language {
             language: Language {
-                english_name: "Wab",
+                english_name: "Yote",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -83669,7 +83680,7 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         "yko",
         Iso639_3Language {
             language: Language {
-                english_name: "Yasa",
+                english_name: "Iyasa",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
@@ -85716,6 +85727,17 @@ static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
         Iso639_3Language {
             language: Language {
                 english_name: "Zhire",
+                two_letter_code: None,
+            },
+            macrolanguage_code: None,
+            iso_639_2b_code: None,
+        },
+    );
+    language_hash.insert(
+        "zhk",
+        Iso639_3Language {
+            language: Language {
+                english_name: "Kurdish Sign Language",
                 two_letter_code: None,
             },
             macrolanguage_code: None,
