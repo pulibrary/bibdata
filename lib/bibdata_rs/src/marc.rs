@@ -22,6 +22,7 @@ pub mod note;
 pub mod publication;
 pub mod record_facet_mapping;
 pub mod scsb;
+pub mod searching;
 pub mod standard_number;
 pub mod subject;
 pub mod variable_length_field;
