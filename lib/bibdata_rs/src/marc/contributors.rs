@@ -67,6 +67,13 @@ impl From<&Field> for ContributorType {
     }
 }
 
+pub fn author_citation_display(record: &Record) -> Vec<String> {
+    extract_marc!(latin "100a", "110a", "111a", "700a", "710a", "711a")(record)
+        .iter()
+        .map(|author| trim_punctuation(author))
+        .collect()
+}
+
 pub fn author_sort_key(record: &Record) -> Option<String> {
     let authors = extract_marc!("100aqbcdk", "110abcdfgkln", "111abcdfgklnpq")(record);
     authors.first().map(|name| {
@@ -163,5 +170,48 @@ mod tests {
             author_sort_key(&record),
             Some(String::from("Bhaṭanāgara Mahendra"))
         )
+    }
+
+    #[test]
+    fn it_extracts_author_citation_from_all_roles_in_order() {
+        let record = Record::from_breaker(
+            r#"=100 \\$aSingh, Digvijai,
+=110 \\$aKant, Immanuel
+=111 \\$aWorld Conference on Women, 1st:
+=700 \\$aIshizuka, Harumichi
+=710 \\$aNational Aeronautics and Space Administration
+=711 \\$aSymposium on Quantum Computing, 3rd"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_citation_display(&record),
+            vec![
+                "Singh, Digvijai".to_owned(),
+                "Kant, Immanuel".to_owned(),
+                "World Conference on Women, 1st".to_owned(),
+                "Ishizuka, Harumichi".to_owned(),
+                "National Aeronautics and Space Administration".to_owned(),
+                "Symposium on Quantum Computing, 3rd".to_owned(),
+            ]
+        )
+    }
+
+    #[test]
+    fn it_excludes_alternate_script_for_author_citation() {
+        let record = Record::from_breaker(
+            r#"=100 \\$aSingh, Digvijai
+=880 \\$aসিংহ, দিবজাই"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_citation_display(&record),
+            vec!["Singh, Digvijai".to_owned()]
+        );
+    }
+
+    #[test]
+    fn it_returns_empty_when_no_author_fields_present() {
+        let record = Record::from_breaker(r#"=245 10 \\$aA title"#).unwrap();
+        assert_eq!(author_citation_display(&record), Vec::<String>::new());
     }
 }

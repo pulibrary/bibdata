@@ -112,7 +112,7 @@ impl<'a> TryFrom<Field583<'a>> for ActionNote {
     }
 }
 
-pub fn action_notes<'a>(record: &'a Record) -> impl Iterator<Item = ActionNote> {
+pub fn action_notes(record: &Record) -> impl Iterator<Item = ActionNote> {
     record.extract_field_values_by(latin_or_non_latin_tag_included_in(&["583"]), |field| {
         let field = Field583(field);
         if field.has_field_link() || is_scsb(record) || is_princeton_finding_aid(record) {
