@@ -590,21 +590,7 @@ end
 # Script:
 #    546 XX b
 rust_multi_value_field 'script_display'
-
-# The language_iana_s field is used in the record page to calculate the html lang attribute
-# Based on https://www.loc.gov/marc/bibliographic/bd008a.html section 35-37 - Language,
-# we additionally exclude:  ### - No information provided, zxx - No linguistic content,
-# mul - Multiple languages, sgn - Sign languages, und - Undetermined, ||| - No attempt to code
-to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
-  codes = accumulator.compact.map { |m| m.length == 3 ? m : m.scan(/.{1,3}/) }.flatten.uniq
-  codes_iso_639 = codes.select { |code| language_service.valid_language_code?(code) }
-                       .reject { |code| ['zxx', 'mul', 'sgn', 'und', '|||'].include?(code) }
-                       .map { |code| BibdataRs::Languages.two_letter_code(code) }
-                       .compact
-  single_iana_code = codes_iso_639.first || 'en'
-  accumulator.replace([single_iana_code])
-end
-
+rust_single_value_field 'language_iana_s'
 rust_multi_value_field 'mult_languages_iana_s'
 rust_multi_value_field 'contents_display'
 

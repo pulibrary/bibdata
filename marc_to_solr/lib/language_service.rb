@@ -6,17 +6,6 @@ require_relative 'indigenous_languages'
 class LanguageService
   include IndigenousLanguages
 
-  def valid_language_code?(code)
-    return false if code.blank?
-
-    # Rust strings need to be UTF-8 encoded, so let's confirm
-    # that the encoding is valid before sending it to Rust
-    code_as_string = code.to_s
-    return false unless code_as_string.valid_encoding?
-
-    BibdataRs::Languages.valid_language_code?(code_as_string)
-  end
-
   def code_to_name(code)
     BibdataRs::Languages.code_to_name(code) || iso_639_5_name(code)
   end
