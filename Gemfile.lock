@@ -143,7 +143,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    cgi (0.5.2)
     chronic (0.10.2)
     concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
@@ -157,14 +156,6 @@ GEM
       rexml
     crass (1.0.7)
     csv (3.3.6)
-    datadog (2.42.0)
-      cgi
-      datadog-ruby_core_source (~> 3.5, >= 3.5.5)
-      libdatadog (~> 40.0.0.2.0)
-      libddwaf (~> 1.30.0.0.0)
-      logger
-      msgpack
-    datadog-ruby_core_source (3.5.5)
     date (3.5.1)
     devise (5.0.4)
       bcrypt (~> 3.0)
@@ -308,18 +299,6 @@ GEM
     json (2.21.2)
     language_server-protocol (3.17.0.6)
     lcsort (0.9.1)
-    libdatadog (40.0.0.2.0)
-    libdatadog (40.0.0.2.0-aarch64-linux)
-    libdatadog (40.0.0.2.0-arm64-darwin)
-    libdatadog (40.0.0.2.0-x86_64-linux)
-    libddwaf (1.30.0.0.2)
-      ffi (~> 1.0)
-    libddwaf (1.30.0.0.2-aarch64-linux)
-      ffi (~> 1.0)
-    libddwaf (1.30.0.0.2-arm64-darwin)
-      ffi (~> 1.0)
-    libddwaf (1.30.0.0.2-x86_64-linux)
-      ffi (~> 1.0)
     lint_roller (1.1.0)
     llhttp (0.6.2)
     logger (1.7.0)
@@ -348,7 +327,6 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     mize (0.6.1)
-    msgpack (1.8.5)
     multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
     multipart-post (2.4.1)
@@ -869,7 +847,6 @@ DEPENDENCIES
   change_the_subject!
   connection_pool
   coveralls_reborn
-  datadog
   devise
   dotenv-rails
   ed25519

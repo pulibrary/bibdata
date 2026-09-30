@@ -6,8 +6,6 @@ require 'securerandom'
 require 'aws-sdk-lambda'
 require 'aws-sdk-sqs'
 require 'aws-sdk-secretsmanager'
-require 'ddtrace'
-require 'datadog/lambda'
 
 def retrieve_secret
   client = Aws::SecretsManager::Client.new
@@ -32,19 +30,11 @@ def validate_signature(event)
   signature(event) == event['signature']
 end
 
+# rubocop:disable-next Lint/UnusedMethodArgument
 def handler(event:, context:)
-  Datadog::Lambda.wrap(event, context) do
-    raise 'Signature Invalid' unless validate_signature(event)
+  raise 'Signature Invalid' unless validate_signature(event)
 
-    MessageHandler.new(event).run
-    Datadog::Lambda.metric(
-      'alma.webhook.action',
-      1,
-      environment: 'production',
-      action: event['body']['action'],
-      body: event['body'].to_json
-    )
-  end
+  MessageHandler.new(event).run
 end
 
 class MessageHandler
