@@ -65,6 +65,8 @@ impl<'a> Deref for Field583<'a> {
     }
 }
 
+impl VariableLengthField<'_> for Field583<'_> {}
+
 #[derive(Debug, PartialEq, Serialize)]
 pub struct ActionNote {
     description: Option<String>,

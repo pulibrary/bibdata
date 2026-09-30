@@ -35,10 +35,6 @@ where
 }
 
 pub trait VariableLengthField<'a>: Deref<Target = Field> {
-    fn get(&'a self, code: &str) -> Option<&'a str>;
-}
-
-impl<'a, T: Deref<Target = Field>> VariableLengthField<'a> for T {
     fn get(&'a self, code: &str) -> Option<&'a str> {
         self.deref()
             .first_subfield(code)

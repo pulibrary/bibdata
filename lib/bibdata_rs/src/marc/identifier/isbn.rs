@@ -27,6 +27,8 @@ impl Deref for Field020<'_> {
     }
 }
 
+impl VariableLengthField<'_> for Field020<'_> {}
+
 pub fn normalized_isbns_for_all_versions(record: &Record) -> impl Iterator<Item = String> {
     record
         .extract_values("020az:776z")
