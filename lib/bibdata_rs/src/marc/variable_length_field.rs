@@ -67,10 +67,6 @@ pub fn non_latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
     move |field| non_latin_tag(field).is_some_and(|field_tag| tags.contains(&field_tag))
 }
 
-/// Does `field` carry any of `tags` under the requested `scripts`?
-///
-/// `LatinOnly` matches the field's own tag; `NonLatinOnly` matches the tag
-/// recorded in a linked 880 field; `All` matches either.
 pub fn field_tag_matches(field: &Field, scripts: ScriptsToIndex, tags: &[&str]) -> bool {
     match scripts {
         ScriptsToIndex::LatinOnly => latin_tag_included_in(tags)(field),
