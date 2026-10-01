@@ -1101,6 +1101,13 @@ describe 'From traject_config.rb', :indexing do
         it 'name title browse field includes both scripts, includes 245 when no uniform title present' do
           expect(no_uniform_title['name_title_browse_s']).to contain_exactly('Name. Title 245a', 'AltName. VernTitle 245a')
         end
+
+        it 'deletes the intermediate author/title fields used to build other fields' do
+          %w[name_title_100 name_title_100_vern name_title_245a name_title_245a_vern
+             name_title_ae_s uniform_240 uniform_240_vern].each do |field|
+            expect(uniform_title.key?(field)).to be false
+          end
+        end
       end
 
       describe 'uniform_title_1display field' do

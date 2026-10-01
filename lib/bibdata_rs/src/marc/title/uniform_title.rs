@@ -13,6 +13,10 @@ use crate::marc::{
     },
 };
 
+/// Subfields that make up a 240 uniform title.
+pub const UNIFORM_TITLE_240_SUBLFIELDS: &[&str] =
+    &["a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s"];
+
 /// The uniform title, including information about a translation, but without any information about the author
 pub fn uniform_title(record: &Record) -> impl Iterator<Item = String> {
     let uniform_title_fields = record.extract_field_values_by(
@@ -21,7 +25,7 @@ pub fn uniform_title(record: &Record) -> impl Iterator<Item = String> {
             let subfields: &[&str] = if latin_or_non_latin_tag(field) == "130" {
                 &["a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "t"]
             } else {
-                &["a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s"]
+                UNIFORM_TITLE_240_SUBLFIELDS
             };
             let joined = join_subfields_by_code(field, subfields);
             maybe_not_empty(trim_punctuation(&joined))

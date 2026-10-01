@@ -1149,8 +1149,6 @@ rust_multi_value_field 'location'
 # For name-title browse - fields get deleted at end
 to_field 'name_title_100', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: false, first: true, trim_punctuation: true)
 to_field 'name_title_100_vern', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: :only, first: true, trim_punctuation: true)
-to_field 'name_title_245a', extract_marc('245a', alternate_script: false, first: true, trim_punctuation: true)
-to_field 'name_title_245a_vern', extract_marc('245a', alternate_script: :only, first: true, trim_punctuation: true)
 to_field 'uniform_240' do |record, accumulator|
   MarcExtractor.cached('240apldfhkmnors', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
@@ -1185,12 +1183,6 @@ end
 
 rust_multi_value_field 'uniform_130_vern'
 
-to_field 'name_title_ae_s' do |record, accumulator|
-  fields = '800aqbcdfghklmnoprstx:810abcdfghklnoprstx:811abcdefgklnpqt'
-  ae = prep_name_title(record, fields)
-  accumulator.replace(join_hierarchy(ae, include_first_element: true))
-end
-
 to_field 'linked_title_s' do |record, accumulator|
   MarcExtractor.cached(%w(760at:762at:765at:767at:770at:772at:773at:774at:
                           775at:776at:777at:780at:785at:786at:787at)).collect_matching_lines(record) do |field, spec, extractor|
@@ -1206,51 +1198,29 @@ to_field 'linked_title_s' do |record, accumulator|
   end
 end
 
-########################################################
-# Author-Title Browse field includes                   #
-# combo 100+240/245a, 700/10/11, 76/77/78x, 800/10/11  #
-########################################################
+rust_multi_value_field 'name_title_browse_s'
 
-# Creates both name_title_browse_s for browse list and name_uniform_title_1display for Uniform title display
-# This only creates these fields for works that have an author
+# Creates name_uniform_title_1display for Uniform title display for works that have an author
 each_record do |_record, context|
   doc = context.output_hash
-  related_works = join_hierarchy(JSON.parse(doc['related_works_1display'][0])) if doc['related_works_1display']
-  contains = join_hierarchy(JSON.parse(doc['contains_1display'][0])) if doc['contains_1display']
-  browse_field = [doc['name_title_ae_s'], doc['linked_title_s'], related_works, contains]
   name_uniform_t = []
   if doc['name_title_100']
     author = doc['name_title_100'][0] + '.'
     if doc['uniform_240']
-      name_title_100_240 = doc['uniform_240'].unshift(author)
-      name_uniform_t << name_title_100_240
-      browse_field << join_hierarchy([name_title_100_240])
-    elsif doc['name_title_245a']
-      browse_field << %(#{author} #{doc['name_title_245a'][0]})
+      name_uniform_t << doc['uniform_240'].unshift(author)
     end
   end
   if doc['name_title_100_vern']
     author = doc['name_title_100_vern'][0] + '.'
     if doc['uniform_240_vern']
-      name_title_100_240 = doc['uniform_240_vern'].unshift(author)
-      name_uniform_t << name_title_100_240
-      browse_field << join_hierarchy([name_title_100_240])
-    elsif doc['name_title_245a_vern']
-      browse_field << %(#{author} #{doc['name_title_245a_vern'][0]})
+      name_uniform_t << doc['uniform_240_vern'].unshift(author)
     end
   end
   context.output_hash['name_uniform_title_1display'] = [name_uniform_t.to_json] unless name_uniform_t.empty?
 
-  # combine name-title browse values into a single array
-  browse_field = browse_field.compact.flatten.uniq
-  context.output_hash['name_title_browse_s'] = browse_field unless browse_field.empty?
-
   # these fields are no longer necessary
   context.output_hash.delete('name_title_100')
   context.output_hash.delete('name_title_100_vern')
-  context.output_hash.delete('name_title_245a')
-  context.output_hash.delete('name_title_245a_vern')
-  context.output_hash.delete('name_title_ae_s')
   context.output_hash.delete('uniform_240')
   context.output_hash.delete('uniform_240_vern')
 end

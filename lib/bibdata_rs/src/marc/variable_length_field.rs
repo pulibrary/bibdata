@@ -1,8 +1,7 @@
-use std::ops::Deref;
-
 use crate::marc::{extract_values::ExtractValues, string_normalize::maybe_not_empty};
 use itertools::Itertools;
 use marctk::{Field, Record, Subfield};
+use std::ops::Deref;
 
 pub trait SubfieldIterator<'a>: Iterator<Item = &'a Subfield> {
     fn content(self) -> impl Iterator<Item = &'a str>;
@@ -68,6 +67,18 @@ pub fn non_latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {
     move |field| non_latin_tag(field).is_some_and(|field_tag| tags.contains(&field_tag))
 }
 
+/// Does `field` carry any of `tags` under the requested `scripts`?
+///
+/// `LatinOnly` matches the field's own tag; `NonLatinOnly` matches the tag
+/// recorded in a linked 880 field; `All` matches either.
+pub fn field_tag_matches(field: &Field, scripts: ScriptsToIndex, tags: &[&str]) -> bool {
+    match scripts {
+        ScriptsToIndex::LatinOnly => latin_tag_included_in(tags)(field),
+        ScriptsToIndex::NonLatinOnly => non_latin_tag_included_in(tags)(field),
+        ScriptsToIndex::All => latin_or_non_latin_tag_included_in(tags)(field),
+    }
+}
+
 pub fn join_all_subfields(field: &Field) -> String {
     join_subfields(field.subfields().iter())
 }
@@ -96,11 +107,11 @@ pub fn join_subfields<'a>(subfields: impl Iterator<Item = &'a Subfield>) -> Stri
     combine_consecutive_whitespace(&raw)
 }
 
-fn combine_consecutive_whitespace(original: &str) -> String {
+pub fn combine_consecutive_whitespace(original: &str) -> String {
     original.split_whitespace().join(" ")
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ScriptsToIndex {
     All,
     LatinOnly,
