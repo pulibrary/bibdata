@@ -126,10 +126,7 @@ rust_single_value_field 'author_roles_1display'
 rust_multi_value_field 'cjk_author'
 rust_multi_value_field 'non_latin_non_cjk_author_index'
 
-to_field 'author_s' do |record, accumulator|
-  names = process_names(record)
-  accumulator.replace(names)
-end
+rust_multi_value_field 'author_s'
 
 # for now not separate
 # to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)

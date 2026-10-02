@@ -1,9 +1,12 @@
-use marctk::{Field, Record};
-
-use crate::{
-    marc::{trim_punctuation, variable_length_field::extract_marc},
-    solr::AuthorRoles,
+use crate::marc::{
+    extract_values::ExtractValues,
+    string_normalize::maybe_not_empty,
+    trim_punctuation,
+    variable_length_field::{SubfieldIterator, extract_marc, latin_tag_included_in},
 };
+use crate::solr::AuthorRoles;
+use itertools::Itertools;
+use marctk::{Field, Record};
 
 impl From<&Record> for AuthorRoles {
     fn from(record: &Record) -> Self {
@@ -83,6 +86,31 @@ pub fn author_sort_key(record: &Record) -> Option<String> {
             .trim()
             .to_owned()
     })
+}
+
+pub fn author_s(record: &Record) -> impl Iterator<Item = String> {
+    record
+        .extract_field_values_by(
+            latin_tag_included_in(&["100", "110", "111", "700", "710", "711"]),
+            author_info_from_field,
+        )
+        .unique()
+}
+
+fn author_info_from_field(field: &Field) -> Option<String> {
+    let desired_subfields = match field.tag() {
+        "100" | "700" => vec!["a", "q", "b", "c", "d", "k"],
+        "110" | "710" => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n"],
+        "111" | "711" => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n", "p", "q"],
+        _ => return None,
+    };
+    let joined = field
+        .subfields()
+        .iter()
+        .subfields_before("t")
+        .filter_by_code(&desired_subfields)
+        .join(" ");
+    maybe_not_empty(trim_punctuation(&joined))
 }
 
 fn find_potential_relator(field: &Field, subfield: &str) -> Option<String> {
@@ -213,5 +241,83 @@ mod tests {
     fn it_returns_empty_when_no_author_fields_present() {
         let record = Record::from_breaker(r#"=245 10 \\$aA title"#).unwrap();
         assert_eq!(author_citation_display(&record), Vec::<String>::new());
+    }
+
+    #[test]
+    fn it_joins_pre_t_subfields_and_stops_at_t() {
+        let record = Record::from_breaker(
+            r#"=100 \\$aJohn$d1492$tTitle$kignored
+=700 \\$aJohn$d1492$kdont ignore$tTitle"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_s(&record).collect::<Vec<_>>(),
+            vec!["John 1492".to_owned(), "John 1492 dont ignore".to_owned()]
+        );
+    }
+
+    #[test]
+    fn it_deduplicates_names_from_multiple_fields() {
+        let record = Record::from_breaker(
+            r#"=100 \\$aDoe, John
+=700 \\$aDoe, John"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_s(&record).collect::<Vec<_>>(),
+            vec!["Doe, John".to_owned()]
+        );
+    }
+
+    #[test]
+    fn it_ignores_880_parallel_names() {
+        let record = Record::from_breaker(
+            r#"=100 \\$aZhang, Liwei
+=880 \\$6100-01$a張，立偉"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_s(&record).collect::<Vec<_>>(),
+            vec!["Zhang, Liwei".to_owned()]
+        );
+    }
+
+    #[test]
+    fn it_handles_corporate_and_meeting_names() {
+        let record = Record::from_breaker(
+            r#"=110 \\$aWorld Data Center A for Glaciology
+=111 \\$aWorld Conference on Women, 1st
+=710 \\$aNational Aeronautics and Space Administration
+=711 \\$aSymposium on Quantum Computing, 3rd"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_s(&record).collect::<Vec<_>>(),
+            vec![
+                "World Data Center A for Glaciology".to_owned(),
+                "World Conference on Women, 1st".to_owned(),
+                "National Aeronautics and Space Administration".to_owned(),
+                "Symposium on Quantum Computing, 3rd".to_owned(),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_skips_a_name_field_with_no_subfields_before_t() {
+        let record = Record::from_breaker(r#"=700 \\$tShould not include$aWhen no name"#).unwrap();
+        assert_eq!(author_s(&record).collect::<Vec<_>>(), Vec::<String>::new());
+    }
+
+    #[test]
+    fn it_dedupes_names() {
+        let record = Record::from_breaker(
+            r#"=100 \\$aSánchez Alegría, María José,$d1965-
+=700 \\$aSánchez Alegría, María José,$d1965-"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_s(&record).collect::<Vec<_>>(),
+            vec!["Sánchez Alegría, María José, 1965-".to_owned()]
+        );
     }
 }
