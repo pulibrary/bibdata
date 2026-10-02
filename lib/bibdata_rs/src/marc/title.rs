@@ -87,6 +87,15 @@ pub fn non_latin_title_sort(record: &Record) -> Option<String> {
     })
 }
 
+pub fn title_vern_display(record: &Record) -> Option<String> {
+    record.first_matching_field_value(non_latin_tag_included_in(&["245"]), |field| {
+        maybe_not_empty(join_subfields_by_code(
+            field,
+            &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"],
+        ))
+    })
+}
+
 /// Returns titles from field 245 (both Latin and non-Latin scripts),
 /// excluding subfield $h, with two versions per field:
 /// one including non-filing characters and one without.
@@ -230,5 +239,46 @@ mod tests {
         let record = Record::from_breaker(r"=245 10 $a   ").unwrap();
         let title_values: Vec<_> = title_no_h_index(&record).collect();
         assert!(title_values.is_empty());
+    }
+
+    #[test]
+    fn it_returns_non_latin_title_vern_display() {
+        let record = Record::from_breaker(
+            r#"=245 10 $aThe great novel : $b a subtitle / $c by the author.
+=880 10$6245-01/ $aالعنوان العظيم : $b العنوان الفرعي / $c بقلم الكاتب."#,
+        )
+        .unwrap();
+        assert_eq!(
+            title_vern_display(&record),
+            Some(String::from(
+                "العنوان العظيم : العنوان الفرعي / بقلم الكاتب."
+            ))
+        );
+    }
+
+    #[test]
+    fn it_returns_none_for_title_vern_display_without_880() {
+        let record = Record::from_breaker(r"=245 10 $aPlain latin title").unwrap();
+        assert_eq!(title_vern_display(&record), None);
+    }
+
+    #[test]
+    fn it_ignores_blank_non_latin_title_vern_display() {
+        let record = Record::from_breaker(r"=880 10$6245-01/ $a    ").unwrap();
+        assert_eq!(title_vern_display(&record), None);
+    }
+
+    #[test]
+    fn it_uses_only_the_first_non_latin_title_vern_display() {
+        let record = Record::from_breaker(
+            r#"=245 10 $aLatin title.
+=880 10$6245-01/ $aNon-Latin title one.
+=880 10$6245-01/ $aNon-Latin title two."#,
+        )
+        .unwrap();
+        assert_eq!(
+            title_vern_display(&record),
+            Some(String::from("Non-Latin title one."))
+        );
     }
 }
