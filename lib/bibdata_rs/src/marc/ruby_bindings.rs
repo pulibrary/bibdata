@@ -16,6 +16,7 @@ use crate::marc::holdings::partner::partner_holdings;
 use crate::marc::identifier::identifiers_of_all_versions;
 use crate::marc::identifier::map_024_indicators_to_labels;
 use crate::marc::marcxml_compressor::marcxml_compressed;
+use crate::marc::name_title_browse::name_title_browse_s;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
 use crate::marc::record_facet_mapping::formats;
@@ -114,7 +115,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(136);
+    let hash = ruby.hash_new_capa(137);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -536,6 +537,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "uniform_title_s",
         ruby.ary_from_iter(title::uniform_title(&record)),
+    )?;
+    hash.aset(
+        "name_title_browse_s",
+        ruby.ary_from_iter(name_title_browse_s(&record)),
     )?;
     hash.aset(
         "uniform_130_vern",
