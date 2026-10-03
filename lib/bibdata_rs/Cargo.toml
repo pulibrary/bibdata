@@ -11,7 +11,7 @@ crate-type = ["lib", "cdylib"]
 base64 = "0.23.0"
 figgy_marc = { path = "../../figgy_marc" }
 flate2 = "1.1.9"
-magnus = { version = "0.8.0" }
+magnus = { version = "0.9.0" }
 regex = "1.11.1"
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = { version = "1.0.150", features = ["preserve_order"] }
