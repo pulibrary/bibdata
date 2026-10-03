@@ -498,6 +498,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "subseries_of_display",
         extract_marc_trim_punctuation(ruby, "760at", &record),
     )?;
+    hash.aset("subject_era_facet", subject::subject_era_facet(&record))?;
     hash.aset("sudoc_no_display", extract_marc!("086a")(&record))?;
     hash.aset("supplement_notes_display", extract_marc!("525a")(&record))?;
     hash.aset(

@@ -1414,6 +1414,19 @@ describe 'From traject_config.rb', :indexing do
         end
       end
 
+      describe 'subject_era_facet' do
+        it 'prefixes the $a for a chronology/name subdivision in a 651 field' do
+          record = @indexer.map_record(fixture_record('99116547863506421'))
+          expect(record['subject_era_facet']).to include('Japan: Kamakura period, 1185-1333')
+          expect(record['subject_era_facet']).to include('Japan: Period of northern and southern courts, 1336-1392')
+        end
+
+        it 'does not prefix the $a for a plain year-range subdivision' do
+          expect(@diary['subject_era_facet']).to include('1861-1912')
+          expect(@diary['subject_era_facet']).not_to include('China: 1861-1912')
+        end
+      end
+
       describe 'aat_genre_facet' do
         it 'includes all aat genres in aat_genre_facet' do
           expect(@record_99129068748706421['aat_genre_facet']).to include('Cadastral maps')

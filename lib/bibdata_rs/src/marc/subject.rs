@@ -1,14 +1,34 @@
-use std::iter;
-
-use marctk::{Field, Record, Subfield};
-
 use crate::marc::{
     extract_values::ExtractValues,
     trim_punctuation,
     variable_length_field::{join_subfields, latin_or_non_latin_tag_included_in},
 };
+use itertools::Itertools;
+use marctk::{Field, Record, Subfield};
+use regex::Regex;
+use std::iter;
+use std::sync::LazyLock;
 
 pub const SEPARATOR: char = '—';
+
+// Subject fields whose `$y` subdivision is emitted directly as an era facet value.
+const ORDINARY_ERA_TAGS: &[&str] = &["600", "610", "611", "630", "650", "654", "656", "690"];
+
+// Subject fields whose `$y` subdivision gets its `$a` prefixed when it looks like
+// a chronology/name pair (e.g. "Civil War, 1861-1865").
+const GEOGRAPHIC_SUBJECT_TAGS: &[&str] = &["651", "691"];
+
+static CHRON_SUBDIVISION_REGEX: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"\A\s*.+,\s+(ca\.\s+)?\d\d\d\d?(-\d\d\d\d?)?( B\.C\.)?[.,; ]*\z")
+        .expect("Could not compile chron subdivision regex")
+});
+
+static TRAILING_PERIOD_REGEX: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"\. *\z").expect("Could not compile trailing period regex"));
+
+fn strip_trailing_period(value: &str) -> String {
+    TRAILING_PERIOD_REGEX.replace(value, "").to_string()
+}
 
 #[derive(PartialEq)]
 enum SubjectVocabulary {
@@ -125,6 +145,59 @@ pub fn hierarchical_heading(
         })
 }
 
+/// Reimplementation of traject's `marc_era_facet` macro
+pub fn subject_era_facet(record: &Record) -> Vec<String> {
+    let mut accumulator: Vec<String> = Vec::new();
+
+    for field in record.fields().iter() {
+        match field.tag() {
+            "648" => {
+                let joined = field
+                    .subfields()
+                    .iter()
+                    .filter(|subfield| subfield.code() == "a" || subfield.code() == "y")
+                    .map(|subfield| subfield.content())
+                    .collect::<Vec<_>>()
+                    .join(" ");
+                if !joined.is_empty() {
+                    accumulator.push(strip_trailing_period(&joined));
+                }
+            }
+            _ if ORDINARY_ERA_TAGS.contains(&field.tag()) => {
+                for subfield in field.subfields().iter() {
+                    if subfield.code() == "y" {
+                        accumulator.push(strip_trailing_period(subfield.content()));
+                    }
+                }
+            }
+            _ => {}
+        }
+    }
+
+    for field in record.fields().iter() {
+        if !GEOGRAPHIC_SUBJECT_TAGS.contains(&field.tag()) {
+            continue;
+        }
+        let a = field
+            .first_subfield("a")
+            .map(|subfield| subfield.content())
+            .unwrap_or("");
+        for subfield in field.subfields().iter() {
+            if subfield.code() != "y" {
+                continue;
+            }
+            let value = subfield.content();
+            if CHRON_SUBDIVISION_REGEX.is_match(value) {
+                accumulator.push(format!("{a}: {}", strip_trailing_period(value)));
+            } else {
+                accumulator.push(strip_trailing_period(value));
+            }
+        }
+    }
+
+    accumulator.into_iter().unique().collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -177,5 +250,103 @@ mod tests {
         .unwrap();
         let mut fast_headings = fast_subjects(&record);
         assert!(fast_headings.next().is_none())
+    }
+
+    // Mirrors traject's `multi_era.marc` example.
+    #[test]
+    fn it_maps_a_complicated_record_like_traject() {
+        let record = Record::from_breaker(
+            r#"=600 \0$aEnglish literature$yEarly modern, 1500-1700$xHistory and criticism.
+=600 \0$aPolitics and literature$zGreat Britain$xHistory$y17th century.
+=600 \0$aPolitical poetry, English$xHistory and criticism.
+=651 \0$aGreat Britain$xHistory$yPuritan Revolution, 1642-1660$xLiterature and the Revolution.
+=651 \0$aGreat Britain$xHistory$yCivil War, 1642-1649$xLiterature and the war.
+=651 \0$aGreat Britain$xPolitics and government$y1642-1660."#,
+        )
+        .unwrap();
+
+        assert_eq!(
+            subject_era_facet(&record),
+            vec![
+                "Early modern, 1500-1700",
+                "17th century",
+                "Great Britain: Puritan Revolution, 1642-1660",
+                "Great Britain: Civil War, 1642-1649",
+                "1642-1660",
+            ]
+        );
+    }
+
+    #[test]
+    fn it_returns_an_empty_array_for_a_record_without_era_fields() {
+        let record = Record::from_breaker(r"=245 10 $a A title.").unwrap();
+        assert!(subject_era_facet(&record).is_empty());
+    }
+
+    #[test]
+    fn it_uses_the_y_subdivision_of_ordinary_subject_fields() {
+        let record = Record::from_breaker(
+            r#"=610 \0$aSome society$y18th century.
+=650 \0$aHistory$y17th century."#,
+        )
+        .unwrap();
+        assert_eq!(
+            subject_era_facet(&record),
+            vec!["18th century", "17th century"]
+        );
+    }
+
+    #[test]
+    fn it_joins_a_and_y_subfields_of_a_648_field() {
+        let record = Record::from_breaker(r#"=648 \0$aSome place$y18th century."#).unwrap();
+        assert_eq!(subject_era_facet(&record), vec!["Some place 18th century"]);
+    }
+
+    #[test]
+    fn it_prefixes_a_651_a_for_a_chronology_subdivision() {
+        let record =
+            Record::from_breaker(r#"=651 \0$aUnited States$xHistory$yCivil War, 1861-1865."#)
+                .unwrap();
+        assert_eq!(
+            subject_era_facet(&record),
+            vec!["United States: Civil War, 1861-1865"]
+        );
+    }
+
+    #[test]
+    fn it_does_not_prefix_a_plain_year_range_subdivision() {
+        let record = Record::from_breaker(r#"=651 \0$aGreat Britain$y1861-1865."#).unwrap();
+        assert_eq!(subject_era_facet(&record), vec!["1861-1865"]);
+    }
+
+    #[test]
+    fn it_prefixes_a_chronology_with_a_ca_estimate() {
+        let record = Record::from_breaker(r#"=651 \0$aFrance$yRevolution, ca. 1789."#).unwrap();
+        assert_eq!(
+            subject_era_facet(&record),
+            vec!["France: Revolution, ca. 1789"]
+        );
+    }
+
+    #[test]
+    fn it_deduplicates_preserving_first_occurrence_order() {
+        let record = Record::from_breaker(
+            r#"=650 \0$aHistory$y19th century.
+=650 \0$aPolitics$y19th century.
+=651 \0$aNation$yWar, 1900-1910.
+=651 \0$aNation$yWar, 1900-1910."#,
+        )
+        .unwrap();
+        assert_eq!(
+            subject_era_facet(&record),
+            vec!["19th century", "Nation: War, 1900-1910"]
+        );
+    }
+
+    #[test]
+    fn it_strips_a_trailing_period_but_keeps_trailing_spaces_without_one() {
+        assert_eq!(strip_trailing_period("17th century."), "17th century");
+        assert_eq!(strip_trailing_period("17th century"), "17th century");
+        assert_eq!(strip_trailing_period("17th century "), "17th century ");
     }
 }

@@ -1083,7 +1083,7 @@ rust_multi_value_field 'other_version_s'
 #    880 XX abc
 rust_multi_value_field 'original_language_display'
 
-to_field 'subject_era_facet', marc_era_facet
+rust_multi_value_field 'subject_era_facet'
 
 # # From displayh.cfg
 
