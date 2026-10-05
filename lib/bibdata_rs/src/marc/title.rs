@@ -2,7 +2,7 @@ use crate::marc::{
     extract_values::ExtractValues,
     string_normalize::{maybe_not_empty, remove_all_punctuation, trim_punctuation},
     variable_length_field::{
-        SubfieldIterator, join_subfields_by_code, latin_or_non_latin_tag_included_in,
+        SubfieldIterator, extract_marc, join_subfields_by_code, latin_or_non_latin_tag_included_in,
         latin_tag_included_in, non_latin_tag_included_in,
     },
 };
@@ -29,6 +29,20 @@ pub fn contains_titles_index(record: &Record) -> impl Iterator<Item = String> {
             ))
         },
     )
+}
+
+pub fn series_title_index(record: &Record) -> impl Iterator<Item = String> {
+    // The 440 field is deprecated but still very commonly found in actual data
+    let from_deprecated_field = extract_marc!("440anpvx")(record);
+    let from_newer_fields = record.extract_field_values_by(
+        latin_or_non_latin_tag_included_in(&["400", "410", "411"]),
+        |field| {
+            maybe_not_empty(trim_punctuation(
+                &field.subfields().iter().subfields_after("t").join(" "),
+            ))
+        },
+    );
+    from_deprecated_field.into_iter().chain(from_newer_fields)
 }
 
 pub fn latin_script_title(record: &Record) -> Option<String> {
@@ -118,6 +132,65 @@ pub fn title_no_h_index(record: &Record) -> impl Iterator<Item = String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn it_includes_400_for_series_title_index_without_440() {
+        let record = Record::from_breaker("=400 00 $tTITLE").unwrap();
+        let values: Vec<_> = series_title_index(&record).collect();
+        assert_eq!(values, vec![String::from("TITLE")]);
+    }
+
+    #[test]
+    fn it_includes_440_and_400_for_series_title_index() {
+        let record =
+            Record::from_breaker("=400 00 $tTITLE\n=440 00 $tAWESOME $aJohn $n1492 $k ignore")
+                .unwrap();
+        let values: Vec<_> = series_title_index(&record).collect();
+        // 440 is emitted first, and its $t/$k subfields are not indexed
+        assert_eq!(
+            values,
+            vec![String::from("John 1492"), String::from("TITLE")]
+        );
+    }
+
+    #[test]
+    fn it_only_extracts_440_series_subfields() {
+        let record =
+            Record::from_breaker("=440 00 $aMain entry $k form $t not indexed $b other $n7")
+                .unwrap();
+        let values: Vec<_> = series_title_index(&record).collect();
+        assert_eq!(values, vec![String::from("Main entry 7")]);
+    }
+
+    #[test]
+    fn it_excludes_series_title_index_without_matching_fields() {
+        let record = Record::from_breaker("=245 00 $aThe octopus").unwrap();
+        assert!(series_title_index(&record).collect::<Vec<_>>().is_empty());
+    }
+
+    #[test]
+    fn it_includes_everything_after_t_in_400_410_411() {
+        let record = Record::from_breaker(
+               "=400 00 $aPersonal $tThe real title\n=410 00 $aCorporate\n=411 00 $aMeeting $tBy committee",
+                       )
+                       .unwrap();
+        let values: Vec<_> = series_title_index(&record).collect();
+        // Subfields before $t (the $a entry) are excluded, and a 410 with no $t is skipped.
+        assert_eq!(
+            values,
+            vec![String::from("The real title"), String::from("By committee")]
+        );
+    }
+
+    #[test]
+    fn it_includes_non_latin_series_title_from_880() {
+        let record = Record::from_breaker(
+            "=400 00 $aA personal name $tLatin title\n=880 00$6400-01$aX $tزوراء",
+        )
+        .unwrap();
+        let values: Vec<_> = series_title_index(&record).collect();
+        assert!(values.contains(&"زوراء".to_string()));
+    }
 
     #[test]
     fn it_can_find_contains_titles_index() {

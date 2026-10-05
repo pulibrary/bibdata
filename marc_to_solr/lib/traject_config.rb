@@ -167,13 +167,7 @@ rust_multi_value_field 'title_no_h_index'
 rust_single_value_field 'title_t'
 to_field 'title_citation_display', extract_marc('245ab', trim_punctuation: true)
 
-## Series, Title, and Title starts with index-only fields ##
-#################################################
-to_field 'series_title_index', extract_marc('440anpvx') do |record, accumulator|
-  accumulator << everything_after_t(record, '400:410:411')
-  accumulator.flatten!
-end
-
+rust_multi_value_field 'series_title_index'
 rust_multi_value_field 'series_statement_index'
 rust_multi_value_field 'content_title_index'
 rust_multi_value_field 'contains_title_index'
