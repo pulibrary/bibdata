@@ -155,7 +155,7 @@ rust_multi_value_field 'uniform_title_s'
 rust_multi_value_field 'title_display'
 rust_multi_value_field 'title_a_index'
 
-to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :only, first: true)
+rust_single_value_field 'title_vern_display'
 
 rust_single_value_field 'title_sort_key'
 rust_single_value_field 'title_245_la'
