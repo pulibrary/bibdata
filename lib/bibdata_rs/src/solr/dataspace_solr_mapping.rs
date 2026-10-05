@@ -292,8 +292,8 @@ mod tests {
     #[test]
     fn it_has_no_electronic_portfolio_s_if_location_specified_and_older_thesis() {
         let document = DataspaceDocument::builder()
-            .with_date_classyear(vec!("1955".into()))
-            .with_location(vec!(r#"This thesis can be viewed in person at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.  \nTo order a copy complete the <a href=\"http://rbsc.princeton.edu/senior-thesis-order-form\" target=\"_blank\">Senior Thesis Request Form</a>.  \nFor more information contact <a href=mailto:mudd@princeton.edu>mudd@princeton.edu</a>."#.into()))
+            .with_date_classyear(vec!["1955".into()])
+            .with_location(vec![r#"This thesis can be viewed in person at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.  \nTo order a copy complete the <a href=\"http://rbsc.princeton.edu/senior-thesis-order-form\" target=\"_blank\">Senior Thesis Request Form</a>.  \nFor more information contact <a href=mailto:mudd@princeton.edu>mudd@princeton.edu</a>."#.into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert!(solr.electronic_portfolio_s.is_none());
@@ -485,7 +485,7 @@ mod tests {
         fn when_there_are_access_rights() {
             let document = DataspaceDocument::builder()
                 .with_id("test-id")
-                .with_rights_access_rights(vec!("Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.".into()))
+                .with_rights_access_rights(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.".into()])
                 .build();
             let solr = SolrDocument::from(&document);
             assert_eq!(
