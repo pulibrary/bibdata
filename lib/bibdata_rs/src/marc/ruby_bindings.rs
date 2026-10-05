@@ -115,7 +115,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(140);
+    let hash = ruby.hash_new_capa(141);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -510,6 +510,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc!("5383ai")(&record),
     )?;
     hash.aset("target_aud_notes_display", extract_marc!("5213ab")(&record))?;
+    hash.aset(
+        "tech_report_no_display",
+        extract_marc!("027a", "088a")(&record),
+    )?;
     hash.aset("text", searching::general_search_terms(&record))?;
     hash.aset("title_245_la", title::non_latin_title_sort(&record))?;
     hash.aset(
@@ -741,6 +745,27 @@ mod tests {
             vec![String::from(
                 r#"Scale [1:6,336,000]. 1" = 100 miles. Vertical scale [1:192,000]. 1/16" = approx. 1000'."#
             )]
+        );
+    }
+
+    #[ruby_test]
+    fn it_includes_tech_report_no_display_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby
+         .eval(r#"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new('027', '', '', ['a', 'FOA--89-40265/C--SE']));record.append(MARC::DataField.new('027', '', '', ['a', 'METPRO/CB/TR--74/216+PR.ENVR.WI']));record.append(MARC::DataField.new('088', '', '', ['a', 'NASA-RP-1124-REV-3']));record"#)
+        .unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+
+        let tech_report_no_value = hash
+            .aref::<&str, Vec<String>>("tech_report_no_display")
+            .unwrap();
+        assert_eq!(
+            tech_report_no_value,
+            vec![
+                String::from("FOA--89-40265/C--SE"),
+                String::from("METPRO/CB/TR--74/216+PR.ENVR.WI"),
+                String::from("NASA-RP-1124-REV-3"),
+            ]
         );
     }
 }

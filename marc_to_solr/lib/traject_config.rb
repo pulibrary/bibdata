@@ -1042,7 +1042,7 @@ rust_multi_value_field 'sudoc_no_display'
 # Tech. report no.:
 #    027 XX a
 #    088 XX a
-to_field 'tech_report_no_display', extract_marc('027a:088a')
+rust_multi_value_field 'tech_report_no_display'
 
 # Publisher. no.:
 #    028 XX a
