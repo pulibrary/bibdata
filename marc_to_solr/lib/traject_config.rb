@@ -1004,21 +1004,8 @@ end
 
 rust_multi_value_field 'alt_title_246_display'
 
-# 246 hash, 2nd indicator is used for label (hash key), prefer $i if present
-to_field 'other_title_1display' do |record, accumulator|
-  other_title_hash = {}
-  MarcExtractor.cached('246abfnp').collect_matching_lines(record) do |field, spec, extractor|
-    label = field.subfields.find { |s_field| s_field.code == 'i' }
-    unless label.nil?
-      label = label.value
-      label = Traject::Macros::Marc21.trim_punctuation(label)
-      title = extractor.collect_subfields(field, spec).first
-      other_title_hash[label] ? other_title_hash[label] << title : other_title_hash[label] = [title] unless title.nil?
-    end
-  end
-  accumulator[0] = other_title_hash.to_json unless other_title_hash == {}
-  accumulator
-end
+# 246 hash, keyed by the $i label; built in Rust (crate::marc::title::other_title_1display).
+rust_single_value_field 'other_title_1display'
 
 # In:
 #    773 XX 3abdghikmnoprst

@@ -374,7 +374,7 @@
     },
     "redis@latest": {
       "last_modified": "2026-08-12T11:28:58Z",
-      "plugin_version": "0.0.2",
+      "plugin_version": "0.0.3",
       "resolved": "github:NixOS/nixpkgs/044bfe75bfe4c7bbe043dc17b5e42ea823b84a09#redis",
       "source": "devbox-search",
       "version": "8.8.1",
