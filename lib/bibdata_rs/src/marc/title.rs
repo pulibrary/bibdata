@@ -11,7 +11,9 @@ use marctk::{Field, Record};
 use std::borrow::Cow;
 
 mod uniform_title;
+mod varying_form_of_title;
 pub use uniform_title::{UNIFORM_TITLE_240_SUBLFIELDS, uniform_130_non_latin, uniform_title};
+pub use varying_form_of_title::other_title_1display;
 
 struct Field245<'a>(&'a Field);
 impl<'a> Field245<'a> {
