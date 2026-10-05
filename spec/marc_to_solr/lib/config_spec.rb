@@ -189,6 +189,12 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
+    describe 'tech_report_no_display' do
+      it 'leaves the field empty when neither 027 nor 088 is present' do
+        expect(@sample1['tech_report_no_display']).to be_nil
+      end
+    end
+
     describe 'summary_note_display' do
       it 'returns the summary_note_display field' do
         record = fixture_record('9948545023506421')
