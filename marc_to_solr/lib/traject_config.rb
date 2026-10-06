@@ -869,57 +869,6 @@ to_field 'sudoc_facet' do |record, accumulator|
   end
 end
 
-to_field 'call_number_scheme_facet' do |record, accumulator|
-  if record['050'] && record['050']['a']
-    first_letter = record['050']['a'].lstrip.slice(0, 1)
-    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
-    accumulator << 'Library of Congress' if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
-  end
-  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
-    end
-    accumulator << 'Superintendent of Documents' if !Traject::TranslationMap.new('sudocs')[letters].nil?
-  end
-end
-
-to_field 'call_number_group_facet' do |record, accumulator|
-  MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
-    if record['050'] && record['050']['a'] && /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
-      first_letter = record['050']['a'].lstrip.slice(0, 1)
-      if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
-        accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
-      end
-    end
-  end
-  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
-    end
-    if !Traject::TranslationMap.new('sudocs_split')[letters].nil?
-      accumulator << Traject::TranslationMap.new('sudocs_split')[letters]
-    end
-  end
-end
-
-to_field 'call_number_full_facet' do |record, accumulator|
-  MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
-    if record['050'] && record['050']['a'] && /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
-      accumulator << Traject::TranslationMap.new('callnumber_map')[letters]
-    end
-  end
-  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
-    end
-    if !Traject::TranslationMap.new('sudocs')[letters].nil?
-      accumulator << Traject::TranslationMap.new('sudocs')[letters]
-    end
-  end
-end
-
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
 rust_multi_value_field 'genre_facet'
