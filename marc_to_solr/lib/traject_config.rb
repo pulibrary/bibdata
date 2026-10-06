@@ -920,34 +920,8 @@ to_field 'instrumentation_facet', marc_instrumentation_humanized
 #    752 XX abcd
 rust_multi_value_field 'place_name_display'
 
-# Other title(s):
-#    246 XX abfnp
-#    210 XX ab
-#    211 XX a
-#    212 XX a
-#    214 XX a
-#    222 XX ab
-#    242 XX abchnp
-#    243 XX adfklmnoprs
-#    247 XX abfhnp
-#    730 XX aplskfmnor
-#    740 XX ahnp
 rust_multi_value_field 'other_title_index'
-
-# only include 246 as 'other title' when 2nd indicator missing or 3 and missing $i
-to_field 'other_title_display' do |record, accumulator|
-  MarcExtractor.cached(%w(246abfnp:210ab:211a:212a:214a:222ab:
-                          242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp)).collect_matching_lines(record) do |field, spec, extractor|
-    if field.tag == '246'
-      label = field.subfields.find { |s_field| s_field.code == 'i' }
-      accumulator << extractor.collect_subfields(field, spec).first if label.nil?
-    else
-      accumulator << extractor.collect_subfields(field, spec).first
-    end
-  end
-  accumulator
-end
-
+rust_multi_value_field 'other_title_display'
 rust_multi_value_field 'alt_title_246_display'
 
 # 246 hash, keyed by the $i label; built in Rust (crate::marc::title::other_title_1display).

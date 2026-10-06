@@ -2,9 +2,10 @@
 
 use crate::marc::{
     extract_values::ExtractValues,
-    string_normalize::trim_punctuation,
+    string_normalize::{maybe_not_empty, trim_punctuation},
     variable_length_field::{
-        VariableLengthField, join_subfields_by_code, latin_or_non_latin_tag_included_in,
+        ExtractSpec, ScriptsToIndex, VariableLengthField, join_subfields_by_code,
+        latin_or_non_latin_tag, latin_or_non_latin_tag_included_in,
     },
 };
 use marctk::{Field, Record};
@@ -27,6 +28,43 @@ impl Deref for Field246<'_> {
 }
 
 impl VariableLengthField<'_> for Field246<'_> {}
+
+pub fn other_titles_display(record: &Record) -> impl Iterator<Item = String> {
+    let specs = [
+        "210ab",
+        "211a",
+        "212a",
+        "214a",
+        "222ab",
+        "242abchnp",
+        "243adfklmnoprs",
+        "247abfhnp",
+        "730aplskfmnor",
+        "740ahnp",
+    ]
+    .iter()
+    .map(|spec| ExtractSpec::new(spec, ScriptsToIndex::All).unwrap())
+    .collect::<Vec<_>>();
+    record
+        .fields()
+        .iter()
+        .filter_map(move |field| match latin_or_non_latin_tag(field) {
+            "246" => {
+                let field = Field246(field);
+                if field.display_text().is_none() {
+                    maybe_not_empty(join_subfields_by_code(&field, OTHER_TITLE_SUBFIELDS))
+                } else {
+                    // 246 Fields with a display text (subfield $i) are already included in the other_title_1display,
+                    // no need to include them here as well
+                    None
+                }
+            }
+            _ => specs
+                .iter()
+                .filter_map(|spec| spec.get_subfields(field))
+                .next(),
+        })
+}
 
 /// Subfields of 246 that make up the displayed title (the $i label is excluded,
 /// so it can never leak into the title itself).
@@ -155,6 +193,95 @@ mod tests {
                 String::from("Latin title"),
                 String::from("日本語タイトル"),
             ])
+        );
+    }
+
+    #[test]
+    fn it_includes_unlabeled_246_in_other_titles_display() {
+        let record = Record::from_breaker(
+            r#"=246 13$aCalifornia State Assembly file analysis
+=246 30$aZeitschrift für analytische Chemie"#,
+        )
+        .unwrap();
+        assert_eq!(
+            other_titles_display(&record).collect::<Vec<_>>(),
+            vec![
+                String::from("California State Assembly file analysis"),
+                String::from("Zeitschrift für analytische Chemie"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_excludes_labeled_246_from_other_titles_display() {
+        let record = Record::from_breaker(r#"=246 1 $iAlso known as : $aAnother name"#).unwrap();
+        assert!(other_titles_display(&record).collect::<Vec<_>>().is_empty());
+    }
+
+    #[test]
+    fn it_does_not_leak_the_i_label_into_other_titles_display() {
+        let record = Record::from_breaker(r#"=246 1 $iAlso known as : $aAnother name"#).unwrap();
+        let mut values = other_titles_display(&record);
+        assert!(!values.any(|value| value.contains("Also known as")));
+    }
+
+    #[test]
+    fn it_collects_the_other_non_246_other_title_fields() {
+        let record = Record::from_breaker(
+            r#"=210 10$aShort $b title
+=211 10$aFormer journal
+=212 22$aFormer name of journal
+=214 81$aFormer title of journal
+=222 80$aKey title
+=242 102$aParallel title
+=243 21$aGeneric title
+=247 10$aFormer title
+=730 00$aUniform title $n1
+=740 00$aUncontrolled title"#,
+        )
+        .unwrap();
+        let values = other_titles_display(&record).collect::<Vec<_>>();
+        assert_eq!(
+            values,
+            vec![
+                String::from("Short title"),
+                String::from("Former journal"),
+                String::from("Former name of journal"),
+                String::from("Former title of journal"),
+                String::from("Key title"),
+                String::from("Parallel title"),
+                String::from("Generic title"),
+                String::from("Former title"),
+                String::from("Uniform title 1"),
+                String::from("Uncontrolled title"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_excludes_empty_other_title_fields() {
+        let record = Record::from_breaker(
+            r#"=210 10$a     
+=211 00$aReal title"#,
+        )
+        .unwrap();
+        assert_eq!(
+            other_titles_display(&record).collect::<Vec<_>>(),
+            vec![String::from("Real title")]
+        );
+    }
+
+    #[test]
+    fn it_includes_non_latin_unlabeled_246_from_880() {
+        let record = Record::from_breaker(
+            r#"=246 10$aLatin title
+=880 10$6246-01 $a日本語タイトル"#,
+        )
+        .unwrap();
+        let values = other_titles_display(&record);
+        assert_eq!(
+            values.collect::<Vec<_>>(),
+            vec![String::from("Latin title"), String::from("日本語タイトル")]
         );
     }
 }
