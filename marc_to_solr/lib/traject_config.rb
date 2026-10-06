@@ -128,9 +128,6 @@ rust_multi_value_field 'non_latin_non_cjk_author_index'
 
 rust_multi_value_field 'author_s'
 
-# for now not separate
-# to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
-
 to_field 'marc_relator_display' do |record, accumulator|
   MarcExtractor.cached('100:110:111').collect_matching_lines(record) do |field, _spec, _extractor|
     relator = 'Author'
