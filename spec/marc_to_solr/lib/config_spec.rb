@@ -1824,6 +1824,104 @@ describe 'From traject_config.rb', :indexing do
     it 'indexes 772 field as supplement_to_display' do
       expect(@added_custom_951['supplement_to_display']).to eq ['Times (London, England)']
     end
+
+    describe 'citation display fields' do
+      it 'indexes title_citation_display from 245ab' do
+        expect(@sample1['title_citation_display'].first).to start_with('Advanced concepts of the stability of two-wheeled vehicles')
+      end
+
+      it 'indexes number_of_pages_citation_display from 300a' do
+        expect(@sample1['number_of_pages_citation_display'].first).to start_with('x, 203 p.')
+      end
+
+      it 'indexes publication_location_citation_display from 260a' do
+        expect(@sample1['publication_location_citation_display']).to eq ['Madison']
+      end
+
+      it 'indexes publisher_citation_display from 260b' do
+        expect(@sample1['publisher_citation_display'].first).to start_with('University of Wisconsin')
+      end
+    end
+
+    describe 'note display fields' do
+      it 'indexes source_desc_notes_display from 588a' do
+        notes = @format_journal['source_desc_notes_display']
+        expect(notes).to include('Description based on: Vol. 2, no. 1 (spring 1979); title from cover.')
+        expect(notes.length).to eq 2
+      end
+
+      it 'indexes type_comp_data_notes_display from 516a' do
+        expect(@electronic_portfolio_with_notes['type_comp_data_notes_display']).to include('Text files in PDF format and also in .HQX format which requires Stuffit decoder/expander software (included on CD-ROM for MAC users)')
+      end
+
+      it 'indexes provenance_display from 561' do
+        record = @indexer.map_record(fixture_record('9913811723506421'))
+        expect(record['provenance_display']).to include('WHS shelf-list has no date of acquisition or name of vendor.')
+      end
+
+      it 'indexes medium_support_display from 340' do
+        record = @label_i_246['medium_support_display']
+        expect(record).to be_a(Array)
+        expect(record.first).to include('in.')
+      end
+
+      it 'indexes jsonld_genre_display from 655' do
+        expect(@electronic_portfolio_with_notes['jsonld_genre_display']).to include('CD-ROMs')
+      end
+    end
+
+    describe 'facet fields' do
+      it 'indexes sudoc_facet by mapping 086 alpha prefix' do
+        expect(@electronic_portfolio_with_notes['sudoc_facet']).to eq(['NAS - National Aeronautics and Space Administration'])
+      end
+
+      it 'indexes series_ae_index from 830' do
+        record = @electronic_portfolio_active_no_collection_name
+        expect(record['series_ae_index']).to include('Safari Books Online (Series)', 'Addison-Wesley professional computing series')
+      end
+    end
+
+    describe 'series and continuation display fields' do
+      it 'indexes continues_display from 780/0/0 (or 780/0/2)' do
+        expect(@added_custom_951['continues_display']).to include('Times literary supplement')
+      end
+
+      it 'indexes absorbed_display from 780/0/5' do
+        record = @indexer.map_record(fixture_record('99122306151806421'))
+        expect(record['absorbed_display']).to include('Nature Physical Science')
+      end
+
+      it 'indexes absorbed_in_part_display from 780/0/6' do
+        record = @indexer.map_record(fixture_record('99122306151806421'))
+        expect(record['absorbed_in_part_display']).to include('Nature New Biology')
+      end
+
+      it 'indexes continued_by_display from 785/0/0 (or 785/0/2)' do
+        record = @indexer.map_record(fixture_record('991583506421'))
+        expect(record['continued_by_display']).to include('APHA newsletter')
+      end
+
+      it 'indexes indexes_display from 555 with blank first indicator' do
+        expect(@format_journal['indexes_display']).to eq(['Vols. 1 (1978)-17 (1995/96). 1 v.'])
+      end
+    end
+
+    describe 'electronic_access_index' do
+      it 'indexes the 856 field' do
+        expect(online['electronic_access_index']).to include('http://doi.org/10.3886/ICPSR35465')
+      end
+    end
+
+    describe 'standard_no_1display' do
+      it 'maps 024 indicator 1 to Universal Product Code' do
+        standard_no = JSON.parse(@record_call_number2['standard_no_1display'].first)
+        expect(standard_no['Universal Product Code']).to eq(['764593029724'])
+      end
+
+      it 'is not indexed when there is no 024 field' do
+        expect(@sample1['standard_no_1display']).to be_nil
+      end
+    end
   end
 
   context 'invalid utf8 record' do
