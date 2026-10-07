@@ -202,13 +202,24 @@
     "user_block": [],
     "user_note": [],
     "user_statistic": [
-        {
-            "statistic_category": {
-                "value": "EM",
-                "desc": "EM"
-            },
-            "segment_type": "External"
-        }
-    ],
+    {
+      "statistic_category": {
+        "value": "EM",
+        "desc": "EM"
+      },
+      "segment_type": "External"
+    },
+    {
+      "statistic_category": {
+        "value": "PPPL",
+        "desc": "PPPL"
+      },
+      "category_type": {
+        "value": "academic",
+        "desc": "Academic Department"
+      },
+      "segment_type": "Internal"
+    }
+  ],
     "proxy_for_user": []
 }

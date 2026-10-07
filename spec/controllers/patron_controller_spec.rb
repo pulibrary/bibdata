@@ -67,7 +67,8 @@ RSpec.describe PatronController, type: :controller do
           'patron_id' => '100000000',
           'patron_group' => 'UGRD',
           'patron_group_desc' => 'UGRD Undergraduate',
-          'active_email' => 'cmonster@SCRUBBED_Princeton.EDU'
+          'active_email' => 'cmonster@SCRUBBED_Princeton.EDU',
+          'user_statistic' => ['23']
         )
       end
     end
@@ -86,7 +87,8 @@ RSpec.describe PatronController, type: :controller do
         'patron_group' => 'P',
         'patron_group_desc' => 'P Faculty & Professional',
         'ldap' => { 'ldap_data' => 'is here' },
-        'active_email' => 'bbird@SCRUBBED_princeton.edu'
+        'active_email' => 'bbird@SCRUBBED_princeton.edu',
+        'user_statistic' => ['EM', 'PPPL']
       )
     end
 
@@ -103,7 +105,8 @@ RSpec.describe PatronController, type: :controller do
         'patron_id' => '100000000',
         'patron_group' => 'P',
         'patron_group_desc' => 'P Faculty & Professional',
-        'active_email' => 'bbird@SCRUBBED_princeton.edu'
+        'active_email' => 'bbird@SCRUBBED_princeton.edu',
+        'user_statistic' => ['EM', 'PPPL']
       )
     end
 
@@ -119,7 +122,8 @@ RSpec.describe PatronController, type: :controller do
         'patron_id' => '100000000',
         'patron_group' => 'P',
         'patron_group_desc' => 'P Faculty & Professional',
-        'active_email' => 'bbird@SCRUBBED_princeton.edu'
+        'active_email' => 'bbird@SCRUBBED_princeton.edu',
+        'user_statistic' => ['EM', 'PPPL']
       )
     end
 
@@ -156,7 +160,7 @@ RSpec.describe PatronController, type: :controller do
         expect(response.parsed_body).to eq({ 'netid' => nil, 'first_name' => 'Amir', 'last_name' => 'Abadi',
                                              'barcode' => '77777777', 'university_id' => 'BC123456789', 'patron_id' => 'BC123456789',
                                              'patron_group' => 'GST', 'patron_group_desc' => 'GST Guest Patron',
-                                             'active_email' => 'Abadi@other_school.edu' })
+                                             'active_email' => 'Abadi@other_school.edu', 'user_statistic' => ['ALM', 'G6'] })
       end
     end
   end
