@@ -32,7 +32,8 @@ class PatronController < ApplicationController
         patron_id: data['primary_id'],
         patron_group:,
         patron_group_desc: data['user_group']['desc'],
-        active_email: primary_email
+        active_email: primary_email,
+        user_statistic: user_statistic_category
       }
     end
 
@@ -44,6 +45,10 @@ class PatronController < ApplicationController
 
     def data
       @data ||= AlmaAdapter.new.find_user(patron_id)
+    end
+
+    def user_statistic_category
+      data['user_statistic'].filter_map { |item| item.dig('statistic_category', 'value') }
     end
 
     def identifiers
