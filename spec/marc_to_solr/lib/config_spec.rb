@@ -260,10 +260,12 @@ describe 'From traject_config.rb', :indexing do
         # Date range with explicit start and no end date
         expect(nature['start']).to eq '1869'
         expect(nature['end']).to eq 'latest'
+        expect(nature['source_id']).to eq '99122306151806421'
 
         # Date range with explicit start and end
         expect(ebsco['start']).to eq '1997'
         expect(ebsco['end']).to eq '2015'
+        expect(ebsco['source_id']).to eq '99122306151806421'
 
         # electronic_portfolio_s should not include non alma 951(s).
         expect(resource1).to be_nil
