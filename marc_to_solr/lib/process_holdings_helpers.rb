@@ -73,7 +73,9 @@ class ProcessHoldingsHelpers
 
   # Builds the holding, without any item-specific information
   # @returns [Hash]
-  def build_holding(field_852, bib_id, field_876 = nil, permanent:)
+  # when the commented out lines for display format and source id are added back
+  # _bib_id should be changed to bib_id
+  def build_holding(field_852, _bib_id, field_876 = nil, permanent:)
     holding = {}
     if permanent
       holding['location_code'] = permanent_location_code(field_852)
