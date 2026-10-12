@@ -133,17 +133,4 @@ RSpec.describe Dump, type: :model do
       ENV['TIMESTAMP'] = nil
     end
   end
-
-  describe '##dump_recap_records' do
-    it 'dumps the records' do
-      pending 'Replace with Alma'
-      # setting created at date to not have nano seconds so that the comapre later will always work correctly
-      last_dump = described_class.create(dump_type: princeton_recap_dump_type, event: Event.create(success: true), created_at: Time.zone.now.change(nsec: 0))
-      created_at = last_dump.created_at
-      expect(created_at).to eq(described_class.last.created_at) # make sure the database time and our stubbed time match otherwise strange errors occur
-      # allow(VoyagerHelpers::SyncFu).to receive(:recap_barcodes_since).with(created_at).and_return(["barcode1", "barcode2"])
-      expect { described_class.dump_recap_records }.to change { described_class.count }.by(1).and change { DumpFile.count }.by(1)
-      expect(described_class.last.update_ids).to contain_exactly('barcode1', 'barcode2')
-    end
-  end
 end
