@@ -3936,9 +3936,7 @@
             "code": "marquand",
             "order": 0
         },
-        "delivery_locations": [
-            "PJ"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Reference: Marquand Use Only",
