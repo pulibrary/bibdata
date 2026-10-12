@@ -4947,9 +4947,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PL"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Cotsen Children's Library",
@@ -4969,9 +4967,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Cotsen Children's Library Reference Collection",
@@ -5031,9 +5027,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Dulles Reference Collection",
@@ -5413,9 +5407,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Graphic Arts Reference Collection",
@@ -5475,9 +5467,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PL"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Cotsen Children's Library",
@@ -5637,24 +5627,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PJ",
-            "PK",
-            "PH",
-            "PM",
-            "PG",
-            "PA",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB",
-            "QX"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Laurence Hutton Collection",
@@ -5754,9 +5727,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PL"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "East Asian Library Rare Books",
@@ -5776,9 +5747,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PL"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Rare Books Historic Map Collection",
@@ -5922,9 +5891,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Robert Patterson Collection",
@@ -6340,24 +6307,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PJ",
-            "PK",
-            "PH",
-            "PM",
-            "PG",
-            "PA",
-            "IL",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "William H. Scheide Library",
@@ -6421,9 +6371,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP): Graphic Arts. Special Collections Use Only",
@@ -6447,9 +6395,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP): Manuscripts. Special Collections Use Only",
@@ -6473,9 +6419,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PH"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP): Manuscripts. Special Collections Use Only",
@@ -6523,9 +6467,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP): Historic Maps. Special Collections Use Only",
@@ -6549,9 +6491,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP): Rare Books. Special Collections Use Only",
@@ -6575,9 +6515,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP): Western Americana. Special Collections Use Only",
@@ -6601,27 +6539,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "QT",
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PJ",
-            "PK",
-            "PH",
-            "PM",
-            "QA",
-            "PG",
-            "PA",
-            "QC",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB",
-            "QX"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP):  Special Collections Use Only",
@@ -6645,9 +6563,7 @@
             "code": "rare",
             "order": 0
         },
-        "delivery_locations": [
-            "PG"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "William H. Scheide Library Archival. Special Collections Use Only",
