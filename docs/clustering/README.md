@@ -81,3 +81,68 @@ sequenceDiagram
 ```
 
 
+
+Yet another idea: all data processing in the same system
+
+For full dump, bibdata would still be responsible for making sure that Alma records are downloaded to the shared mounted disk.  Then...
+
+```mermaid
+sequenceDiagram
+    actor Developer
+    participant CatalogProcess
+    participant Postgres
+
+    Developer->>CatalogProcess: Request a full reindex
+    CatalogProcess->>Shared Disk: Get alma and SCSB full dumps (MARCXML) from mount
+    CatalogProcess->>Postgres: Store MARC in marc_document table
+    Postgres->>Postgres: Add a "block" field that is indexed
+    loop Within each block
+      CatalogProcess->>CatalogProcess: pairwise similarities to determine clusters
+    end
+    loop For each cluster
+      CatalogProcess->>Postgres: Check if any of the records in the cluster already have a UUID
+      alt there is not a uuid yet
+        CatalogProcess->>CatalogProcess: Create a new UUID
+        CatalogProcess->>Postgres: Record the UUID and the records in it
+      else there is a uuid already
+        CatalogProcess->>Postgres: Update the UUID + record list
+      end
+      CatalogProcess->>CatalogProcess: Determine primary cluster record
+      CatalogProcess->>CatalogProcess: Convert to JSON
+      CatalogProcess->>CatalogProcess: Enhance JSON with data from other cluster members
+    end
+    CatalogProcess->>Solr: Index clustered records
+    CatalogProcess->>Solr: Index Theses, Ephemera, Coins
+```
+
+For incremental:
+
+```mermaid
+sequenceDiagram
+    actor Developer
+    participant CatalogProcess
+    participant Postgres
+
+    CatalogProcess->>Shared Disk: Get incremental file
+    CatalogProcess->>Postgres: Store MARC in marc_document table
+    loop For each record
+        Postgres->>Postgres: Determine the "block" for the record
+        CatalogProcess->>CatalogProcess: pairwise similarities with other members of the block to determine its cluster
+    end
+    loop For each affected cluster
+      CatalogProcess->>CatalogProcess: Create a changeset to Create, Update, or Delete a cluster
+      alt Create or Update changeset
+        CatalogProcess->>Postgres: Check if any of the records in the cluster already have a UUID
+        alt there is not a uuid yet
+            CatalogProcess->>CatalogProcess: Create a new UUID
+            CatalogProcess->>Postgres: Record the UUID and the records in it
+        else there is a uuid already
+            CatalogProcess->>Postgres: Update the UUID + record list
+        end
+        CatalogProcess->>CatalogProcess: Determine primary cluster record
+        CatalogProcess->>CatalogProcess: Convert to JSON
+        CatalogProcess->>CatalogProcess: Enhance JSON with data from other cluster members
+      end
+    end
+    CatalogProcess->>Solr: Apply changeset
+```
