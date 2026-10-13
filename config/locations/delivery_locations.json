@@ -381,7 +381,7 @@
         "contact_email": "fstcirc@princton.edu",
         "gfa_pickup": "QX",
         "staff_only": false,
-        "pickup_location": false,
+        "pickup_location": true,
         "digital_location": false,
         "url": "https://bibdata.princeton.edu/locations/delivery_locations/30.json",
         "library": {
