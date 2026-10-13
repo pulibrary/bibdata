@@ -60,5 +60,24 @@ sequenceDiagram
 ```
 
 
+Indexing Pipeline
+
+```mermaid
+sequenceDiagram
+    accTitle: Indexing Pipeline
+    accDescr {
+        Proxy server workflow - Indexing Pipeline
+    }
+    actor Developer
+    Bibdata->>Proxy: Incoming Solr formatted Json
+    Proxy->>Postgres: Store Solr Json
+    Proxy->>Proxy: Calculate match keys 
+    Proxy->>Proxy: pairwise similarities 
+    Proxy->>Proxy: pick primary cluster record
+    Proxy->>Postgres: store primary cluster record
+    Bibdata->>Proxy: Commit!
+    Proxy->>Solr: Send the batch of clustered records for indexing
+
+```
 
 
