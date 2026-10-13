@@ -6,7 +6,8 @@ use crate::{
             Field852, Field876, Item,
             holding_location::{library_label, location_label},
             textual_holdings,
-        },
+        }, utils::display_format::display_format as display_format_parse,
+        record_facet_mapping::formats,
     },
 };
 use marctk::{Field, Record};
@@ -48,6 +49,7 @@ pub fn partner_holdings(record: &Record) -> impl Iterator<Item = PartnerHolding<
         |field| {
             let field = Field852(field);
             let holding_id = field.get("0")?;
+            let display_format = display_format_parse(formats(record));
             let source_id = record.get_control_fields("001").first().unwrap().content();
 
             let items: Vec<PartnerItem<'_>> = record
@@ -102,6 +104,7 @@ pub fn partner_holdings(record: &Record) -> impl Iterator<Item = PartnerHolding<
 
             Some(PartnerHolding {
                 holding_id,
+                display_format,
                 source_id,
                 location_code,
                 location,
@@ -130,6 +133,7 @@ fn field_has_scsb_holding_id(field: &Field, holding_id: &str) -> bool {
 #[derive(Debug, Default, PartialEq, Serialize)]
 pub struct PartnerHolding<'a> {
     pub holding_id: &'a str,
+    display_format: String,
     source_id: &'a str,
     location_code: Option<&'a str>,
     location: Option<&'a str>,
