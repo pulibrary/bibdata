@@ -70,12 +70,12 @@ sequenceDiagram
     }
     actor Developer
     Bibdata->>Proxy: Incoming Solr formatted Json
-    Proxy->>Postgres: Store Solr Json
+    Proxy->>Postgres: Store Solr Json in solr_document table
+    Bibdata->>Proxy: Commit!
     Proxy->>Proxy: Calculate match keys 
     Proxy->>Proxy: pairwise similarities 
-    Proxy->>Proxy: pick primary cluster record
-    Proxy->>Postgres: store primary cluster record
-    Bibdata->>Proxy: Commit!
+    Proxy->>Proxy: create primary cluster record
+    Proxy->>Proxy: enhance primary cluster record with data from other cluster members
     Proxy->>Solr: Send the batch of clustered records for indexing
 
 ```
