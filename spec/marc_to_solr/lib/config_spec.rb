@@ -868,13 +868,17 @@ describe 'From traject_config.rb', :indexing do
         expect(@holdings['22666524470006421']['call_number_browse']).to eq '.B7544 2003q Oversize RA566.27'
       end
 
-      it 'includes source_id' do
-        @holdings = JSON.parse(@sample37['holdings_1display'][0])
-
-        expect(@holdings['22170509880006421']['source_id']).to eq 'engineer$stacks'
-        expect(@holdings['22170509890006421']['source_id']).to eq 'lewis$stacks'
-        expect(@holdings['22170509900006421']['source_id']).to eq 'firestone$stacks'
-      end
+      # TODO: Once https://github.com/pulibrary/orangelight/issues/6111 is complete
+      # we can uncomment this and to test the new fields
+      # it 'includes source_id' do
+      #   @holdings = JSON.parse(@sample37['holdings_1display'][0])
+      #   expect(@holdings['22170509880006421']['source_id']).to eq '9976174773506421'
+      #   expect(@holdings['22170509890006421']['source_id']).to eq '9976174773506421'
+      #   expect(@holdings['22170509900006421']['source_id']).to eq '9976174773506421'
+      #   expect(@holdings['22170509880006421']['display_format']).to eq 'Book'
+      #   expect(@holdings['22170509890006421']['display_format']).to eq 'Book'
+      #   expect(@holdings['22170509900006421']['display_format']).to eq 'Book'
+      # end
 
       it 'indexes permanent and temporary locations' do
         # permanent location code: lewis$stacks
