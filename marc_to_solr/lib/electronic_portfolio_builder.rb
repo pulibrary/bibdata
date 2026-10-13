@@ -7,20 +7,21 @@ class ElectronicPortfolioBuilder
   # @param date [MARC::DataField] date range data from 953 field
   # @param embargo [MARC::DataField] embargo data from 954 field
   # @return [String] JSON string
-  def self.build(field:, date:, embargo:, source_id:)
-    new(field:, date:, embargo:, source_id:).build
+  def self.build(field:, date:, embargo:, display_format:, source_id:)
+    new(field:, date:, embargo:, display_format:, source_id:).build
   end
 
-  attr_reader :embargo, :field, :date, :source_id
+  attr_reader :embargo, :field, :date, :display_format, :source_id
 
   # Constructor
   # @param field [MARC::DataField] data from 951 field
   # @param date [MARC::DataField] date range data from 953 field
   # @param embargo [MARC::DataField] embargo data from 954 field
-  def initialize(field:, date:, embargo:, source_id:)
+  def initialize(field:, date:, embargo:, display_format:, source_id:)
     @field = field
     @date = date
     @embargo = embargo
+    @display_format = display_format
     @source_id = source_id
   end
 
@@ -28,6 +29,7 @@ class ElectronicPortfolioBuilder
     {
       desc: field['k'],
       title: portfolio_title,
+      display_format: display_format,
       source_id: source_id,
       url: field['x'],
       start: start_date,
