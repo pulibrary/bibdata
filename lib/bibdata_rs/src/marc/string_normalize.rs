@@ -1,5 +1,6 @@
 use std::{borrow::Cow, sync::LazyLock};
 
+use itertools::Itertools;
 use regex::Regex;
 
 /// A re-implementation of traject's trim_punctuation macro.
@@ -47,13 +48,44 @@ pub fn strip_non_numeric(string: &str) -> String {
         .collect()
 }
 
-pub fn upcase_first(string: &str) -> Cow<'_, str> {
-    let mut chars = string.chars();
+pub fn upcase_first(original: &str) -> Cow<'_, str> {
+    conditionally_modify_first_char(
+        |char| !char.is_uppercase(),
+        |char| char.to_uppercase().to_string(),
+        original,
+    )
+}
+
+pub fn conditionally_modify_first_char(
+    condition: impl Fn(char) -> bool,
+    change: impl Fn(char) -> String,
+    original: &str,
+) -> Cow<'_, str> {
+    let mut chars = original.chars();
     match chars.next() {
-        Some(first) if first.is_uppercase() => Cow::Borrowed(string),
-        Some(first) => Cow::Owned(first.to_uppercase().collect::<String>() + chars.as_str()),
+        Some(first) if condition(first) => Cow::Owned(change(first) + chars.as_str()),
+        Some(_) => Cow::Borrowed(original),
         None => Cow::Borrowed(Default::default()),
     }
+}
+
+pub fn sentence_case(original: &str) -> String {
+    original
+        .split(" ")
+        .enumerate()
+        .map(|(index, word)| {
+            if index == 0 {
+                upcase_first(word).to_string()
+            } else {
+                conditionally_modify_first_char(
+                    |char| !char.is_lowercase(),
+                    |char| char.to_lowercase().to_string(),
+                    word,
+                )
+                .to_string()
+            }
+        })
+        .join(" ")
 }
 
 pub fn maybe_not_empty<S>(s: S) -> Option<S>
