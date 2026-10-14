@@ -1,10 +1,13 @@
-use crate::marc::{
-    extract_values::ExtractValues,
-    string_normalize::maybe_not_empty,
-    trim_punctuation,
-    variable_length_field::{SubfieldIterator, extract_marc, latin_tag_included_in},
-};
 use crate::solr::AuthorRoles;
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        extract_values::ExtractValues,
+        string_normalize::maybe_not_empty,
+        trim_punctuation,
+        variable_length_field::{SubfieldIterator, extract_marc, latin_tag_included_in},
+    },
+};
 use itertools::Itertools;
 use marctk::{Field, Record};
 
@@ -110,7 +113,7 @@ fn author_info_from_field(field: &Field) -> Option<String> {
         .subfields_before("t")
         .filter_by_code(&desired_subfields)
         .join(" ");
-    maybe_not_empty(trim_punctuation(&joined))
+    pipe!(trim_punctuation, maybe_not_empty)(&joined)
 }
 
 fn find_potential_relator(field: &Field, subfield: &str) -> Option<String> {

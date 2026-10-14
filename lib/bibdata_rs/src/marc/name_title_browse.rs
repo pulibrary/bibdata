@@ -1,15 +1,18 @@
-use crate::marc::{
-    extract_values::ExtractValues,
-    string_normalize::maybe_not_empty,
-    title::UNIFORM_TITLE_240_SUBLFIELDS,
-    trim_punctuation,
-    variable_length_field::{
-        ScriptsToIndex, SubfieldIterator, combine_consecutive_whitespace, field_tag_matches,
-        join_subfields_by_code, latin_or_non_latin_tag, latin_or_non_latin_tag_included_in,
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        extract_values::ExtractValues,
+        string_normalize::maybe_not_empty,
+        title::UNIFORM_TITLE_240_SUBLFIELDS,
+        trim_punctuation,
+        variable_length_field::{
+            ScriptsToIndex, SubfieldIterator, combine_consecutive_whitespace, field_tag_matches,
+            join_subfields_by_code, latin_or_non_latin_tag, latin_or_non_latin_tag_included_in,
+        },
     },
 };
 use itertools::Itertools;
-use marctk::{Field, Record};
+use marctk::{Field, Record, Subfield};
 
 pub fn name_title_browse_s(record: &Record) -> impl Iterator<Item = String> {
     let entries = [
@@ -239,7 +242,7 @@ fn main_title(record: &Record, scripts: ScriptsToIndex) -> Option<String> {
         .iter()
         .find(|field| field_tag_matches(field, scripts, &["245"]))
         .and_then(|field| field.first_subfield("a"))
-        .and_then(|subfield| maybe_not_empty(trim_punctuation(subfield.content())))
+        .and_then(pipe!(Subfield::content, trim_punctuation, maybe_not_empty))
 }
 
 #[cfg(test)]

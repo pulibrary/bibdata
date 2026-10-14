@@ -1,9 +1,12 @@
-use crate::marc::{
-    extract_values::ExtractValues,
-    holdings::{
-        Field852, Field876, Item,
-        holding_location::{library_label, location_label},
-        textual_holdings,
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        extract_values::ExtractValues,
+        holdings::{
+            Field852, Field876, Item,
+            holding_location::{library_label, location_label},
+            textual_holdings,
+        },
     },
 };
 use marctk::{Field, Record};
@@ -49,14 +52,15 @@ pub fn partner_holdings(record: &Record) -> impl Iterator<Item = PartnerHolding<
             let items: Vec<PartnerItem<'_>> = record
                 .extract_field_values_by(
                     |field| field.tag() == "876" && field_has_scsb_holding_id(field, holding_id),
-                    |field| {
-                        let item = PartnerItem::from(Field876(field));
-                        if item.cgd == Some(CollectionGroup::Private) {
+                    pipe!(
+                        Field876,
+                        PartnerItem::from,
+                        |item| if item.cgd == Some(CollectionGroup::Private) {
                             None
                         } else {
                             Some(item)
                         }
-                    },
+                    ),
                 )
                 .collect();
             if items.is_empty() {
