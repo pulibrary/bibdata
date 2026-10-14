@@ -1,13 +1,16 @@
 //! This module is responsible for fields that contain text in
 //! non-Latin and non-CJK languages
 
-use crate::marc::{
-    cjk::has_cjk_chars,
-    extract_values::ExtractValues,
-    trim_punctuation,
-    variable_length_field::{
-        SubfieldIterator, join_subfields_by_code, join_subfields_except, non_latin_tag,
-        non_latin_tag_included_in,
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        cjk::has_cjk_chars,
+        extract_values::ExtractValues,
+        trim_punctuation,
+        variable_length_field::{
+            SubfieldIterator, join_subfields_by_code, join_subfields_except, non_latin_tag,
+            non_latin_tag_included_in,
+        },
     },
 };
 use itertools::Itertools;
@@ -16,10 +19,10 @@ use marctk::{Field, Record};
 pub fn non_latin_non_cjk_all(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| field.tag() == "880",
-        |field| {
-            let joined = join_subfields_except(field, &["6"]);
-            maybe_has_non_cjk_text(joined)
-        },
+        pipe!(
+            |field| join_subfields_except(field, &["6"]),
+            maybe_has_non_cjk_text
+        ),
     )
 }
 
@@ -36,16 +39,14 @@ pub fn non_latin_non_cjk_authors(record: &Record) -> impl Iterator<Item = String
                 Some("711") => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n", "p", "q"],
                 _ => Default::default(),
             };
-            let joined = trim_punctuation(
-                &field
-                    .subfields()
-                    .iter()
-                    .subfields_before("t")
-                    .filter_by_code(&desired_subfields)
-                    .content()
-                    .join(" "),
-            );
-            maybe_has_non_cjk_text(joined)
+            let joined = &field
+                .subfields()
+                .iter()
+                .subfields_before("t")
+                .filter_by_code(&desired_subfields)
+                .content()
+                .join(" ");
+            pipe!(trim_punctuation, maybe_has_non_cjk_text)(joined)
         },
     )
 }
@@ -100,30 +101,26 @@ pub fn non_latin_non_cjk_titles(record: &Record) -> impl Iterator<Item = String>
     let title_fields =
         record.extract_field_values_by(non_latin_tag_included_in(&NON_LATIN_TITLE_TAGS), |field| {
             let desired_subfields = non_latin_title_subfields(field);
-            let joined = trim_punctuation(
-                &field
-                    .subfields()
-                    .iter()
-                    .filter_by_code(&desired_subfields)
-                    .content()
-                    .join(" "),
-            );
-            maybe_has_non_cjk_text(joined)
+            let joined = &field
+                .subfields()
+                .iter()
+                .filter_by_code(&desired_subfields)
+                .content()
+                .join(" ");
+            pipe!(trim_punctuation, maybe_has_non_cjk_text)(joined)
         });
     let fields_with_author_and_title_info = record.extract_field_values_by(
         non_latin_tag_included_in(&[
             "100", "110", "111", "400", "410", "411", "700", "710", "711", "800", "810", "811",
         ]),
         |field| {
-            let joined = trim_punctuation(
-                &field
-                    .subfields()
-                    .iter()
-                    .subfields_after("t")
-                    .content()
-                    .join(" "),
-            );
-            maybe_has_non_cjk_text(joined)
+            let joined = &field
+                .subfields()
+                .iter()
+                .subfields_after("t")
+                .content()
+                .join(" ");
+            pipe!(trim_punctuation, maybe_has_non_cjk_text)(joined)
         },
     );
     title_fields.chain(fields_with_author_and_title_info)
@@ -161,29 +158,25 @@ pub fn non_latin_non_cjk_series_titles(record: &Record) -> impl Iterator<Item = 
         non_latin_tag_included_in(&NON_LATIN_SERIES_TITLE_TAGS),
         |field| {
             let desired_subfields = non_latin_series_title_subfields(field);
-            let joined = trim_punctuation(
-                &field
-                    .subfields()
-                    .iter()
-                    .filter_by_code(&desired_subfields)
-                    .content()
-                    .join(" "),
-            );
-            maybe_has_non_cjk_text(joined)
+            let joined = &field
+                .subfields()
+                .iter()
+                .filter_by_code(&desired_subfields)
+                .content()
+                .join(" ");
+            pipe!(trim_punctuation, maybe_has_non_cjk_text)(joined)
         },
     );
     let fields_with_author_and_title_info = record.extract_field_values_by(
         non_latin_tag_included_in(&["400", "410", "411", "800", "810", "811"]),
         |field| {
-            let joined = trim_punctuation(
-                &field
-                    .subfields()
-                    .iter()
-                    .subfields_after("t")
-                    .content()
-                    .join(" "),
-            );
-            maybe_has_non_cjk_text(joined)
+            let joined = &field
+                .subfields()
+                .iter()
+                .subfields_after("t")
+                .content()
+                .join(" ");
+            pipe!(trim_punctuation, maybe_has_non_cjk_text)(joined)
         },
     );
     series_title_fields.chain(fields_with_author_and_title_info)

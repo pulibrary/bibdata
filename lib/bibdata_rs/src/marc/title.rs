@@ -1,9 +1,12 @@
-use crate::marc::{
-    extract_values::ExtractValues,
-    string_normalize::{maybe_not_empty, remove_all_punctuation, trim_punctuation},
-    variable_length_field::{
-        SubfieldIterator, extract_marc, join_subfields_by_code, latin_or_non_latin_tag_included_in,
-        latin_tag_included_in, non_latin_tag_included_in,
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        extract_values::ExtractValues,
+        string_normalize::{maybe_not_empty, remove_all_punctuation, trim_punctuation},
+        variable_length_field::{
+            SubfieldIterator, extract_marc, join_subfields_by_code,
+            latin_or_non_latin_tag_included_in, latin_tag_included_in, non_latin_tag_included_in,
+        },
     },
 };
 use itertools::Itertools;
@@ -26,9 +29,8 @@ pub fn contains_titles_index(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         latin_or_non_latin_tag_included_in(&["700", "710", "711"]),
         |field| {
-            maybe_not_empty(trim_punctuation(
-                &field.subfields().iter().subfields_after("t").join(" "),
-            ))
+            let joined = field.subfields().iter().subfields_after("t").join(" ");
+            pipe!(trim_punctuation, maybe_not_empty)(&joined)
         },
     )
 }
@@ -39,9 +41,8 @@ pub fn series_title_index(record: &Record) -> impl Iterator<Item = String> {
     let from_newer_fields = record.extract_field_values_by(
         latin_or_non_latin_tag_included_in(&["400", "410", "411"]),
         |field| {
-            maybe_not_empty(trim_punctuation(
-                &field.subfields().iter().subfields_after("t").join(" "),
-            ))
+            let joined = field.subfields().iter().subfields_after("t").join(" ");
+            pipe!(trim_punctuation, maybe_not_empty)(&joined)
         },
     );
     from_deprecated_field.into_iter().chain(from_newer_fields)
@@ -68,13 +69,10 @@ pub fn title_sort_key(record: &Record) -> Option<String> {
         let field = Field245(field);
         let joined =
             join_subfields_by_code(field.0, &["a", "b", "c", "f", "g", "h", "k", "n", "p", "s"]);
-        let trimmed = remove_all_punctuation(&without_non_filing_characters(
-            &joined,
-            field.non_filing_characters(),
-        ))
-        .trim()
-        .to_string();
-        maybe_not_empty(trimmed)
+        let without_non_filing =
+            without_non_filing_characters(&joined, field.non_filing_characters());
+        let trimmed = remove_all_punctuation(&without_non_filing);
+        pipe!(str::trim, str::to_string, maybe_not_empty)(&trimmed)
     })
 }
 

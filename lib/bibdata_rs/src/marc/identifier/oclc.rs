@@ -1,6 +1,9 @@
-use crate::marc::{
-    control_field::system_control_number::{SystemControlNumber, system_control_numbers},
-    string_normalize::strip_non_numeric,
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        control_field::system_control_number::{SystemControlNumber, system_control_numbers},
+        string_normalize::strip_non_numeric,
+    },
 };
 use marctk::Record;
 use regex::Regex;
@@ -25,12 +28,11 @@ pub fn oclc_numbers_numeric(record: &Record) -> impl Iterator<Item = String> {
 }
 
 pub fn normalize_oclc_number(original: &str) -> String {
-    let cleaned = strip_non_numeric(original);
-    match cleaned.len() {
+    pipe!(strip_non_numeric, |cleaned| match cleaned.len() {
         1..=8 => format!("ocm{:0>8}", cleaned),
         9 => format!("ocn{cleaned}"),
         _ => format!("on{cleaned}"),
-    }
+    })(original)
 }
 
 pub fn is_oclc_number(possible_number: &str) -> bool {

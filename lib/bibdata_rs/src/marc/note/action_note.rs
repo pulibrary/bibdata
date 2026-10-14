@@ -1,12 +1,15 @@
 // This module is responsible for processing Action notes
 // See https://www.loc.gov/marc/bibliographic/bd583.html
 
-use crate::marc::{
-    control_field::system_control_number::is_princeton_finding_aid,
-    extract_values::ExtractValues,
-    scsb::is_scsb,
-    string_normalize::upcase_first,
-    variable_length_field::{VariableLengthField, latin_or_non_latin_tag_included_in},
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        control_field::system_control_number::is_princeton_finding_aid,
+        extract_values::ExtractValues,
+        scsb::is_scsb,
+        string_normalize::upcase_first,
+        variable_length_field::{VariableLengthField, latin_or_non_latin_tag_included_in},
+    },
 };
 use itertools::Itertools;
 use marctk::{Field, Record};
@@ -88,9 +91,7 @@ impl<'a> TryFrom<Field583<'a>> for ActionNote {
             field
                 .materials_specified()
                 .map(|materials| format!("{materials}:")),
-            field
-                .action()
-                .map(|action| upcase_first(action).to_string()),
+            field.action().map(pipe!(upcase_first, |s| s.to_string())),
             field.action_interval().map(ToString::to_string),
             authorizations_as_phrase(&field.authorizations()),
             field

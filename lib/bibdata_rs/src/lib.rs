@@ -4,6 +4,7 @@ use solr::index;
 use theses::dataspace::collection;
 use theses::legacy_dataspace::collection as legacy_collection;
 
+mod data_pipeline;
 mod ephemera;
 pub mod languages;
 pub mod locations;

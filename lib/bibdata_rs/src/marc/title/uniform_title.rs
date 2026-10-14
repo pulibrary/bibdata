@@ -3,13 +3,16 @@
 
 use marctk::Record;
 
-use crate::marc::{
-    extract_values::ExtractValues,
-    string_normalize::maybe_not_empty,
-    trim_punctuation,
-    variable_length_field::{
-        SubfieldIterator, join_subfields_by_code, latin_or_non_latin_tag,
-        latin_or_non_latin_tag_included_in, non_latin_tag_included_in,
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        extract_values::ExtractValues,
+        string_normalize::maybe_not_empty,
+        trim_punctuation,
+        variable_length_field::{
+            SubfieldIterator, join_subfields_by_code, latin_or_non_latin_tag,
+            latin_or_non_latin_tag_included_in, non_latin_tag_included_in,
+        },
     },
 };
 
@@ -28,7 +31,7 @@ pub fn uniform_title(record: &Record) -> impl Iterator<Item = String> {
                 UNIFORM_TITLE_240_SUBLFIELDS
             };
             let joined = join_subfields_by_code(field, subfields);
-            maybe_not_empty(trim_punctuation(&joined))
+            pipe!(trim_punctuation, maybe_not_empty)(&joined)
         },
     );
 
@@ -36,7 +39,7 @@ pub fn uniform_title(record: &Record) -> impl Iterator<Item = String> {
         latin_or_non_latin_tag_included_in(&["100", "110", "111"]),
         |field| {
             let joined = field.subfields().iter().subfields_after("t").join(" ");
-            maybe_not_empty(trim_punctuation(&joined))
+            pipe!(trim_punctuation, maybe_not_empty)(&joined)
         },
     );
     uniform_title_fields.chain(author_and_title_fields)

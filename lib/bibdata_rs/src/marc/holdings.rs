@@ -1,7 +1,7 @@
 pub mod holding_location;
 pub mod library;
 pub mod partner;
-
+use crate::marc::string_normalize::maybe_not_empty;
 use itertools::Itertools;
 use marctk::Field;
 
@@ -22,11 +22,7 @@ impl<'a> Field852<'a> {
             .map(|subfield| subfield.content().to_string())
             .filter(|s| !s.is_empty())
             .join(" ");
-        if call_number.is_empty() {
-            None
-        } else {
-            Some(call_number)
-        }
+        maybe_not_empty(call_number)
     }
 }
 
@@ -49,10 +45,5 @@ fn textual_holdings(field: &Field) -> Option<String> {
         .into_iter()
         .map(|sf| sf.content())
         .chain(field.first_subfield("z").into_iter().map(|sf| sf.content()));
-    let joined = text.join(" ");
-    if joined.is_empty() {
-        None
-    } else {
-        Some(joined)
-    }
+    maybe_not_empty(text.join(" "))
 }
