@@ -28,7 +28,7 @@ every 1.day, at: '4:00am', roles: [:cron_production] do
   rake 'ephemera:full_reindex', output: '/tmp/ephemera_full_reindex.log'
 end
 
-job_type :cargo, 'cd :path && cargo run --release --bin :task >> :output'
+job_type :cargo, 'cd :path && cargo run --release --bin :task :output'
 
 job_type :liberate_latest_production,
          'cd :path && :environment_variable=:environment SET_URL=:set_url :bundle_command rake :task --silent :output'
