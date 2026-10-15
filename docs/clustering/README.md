@@ -142,6 +142,8 @@ sequenceDiagram
         CatalogProcess->>CatalogProcess: Determine primary cluster record
         CatalogProcess->>CatalogProcess: Convert to JSON
         CatalogProcess->>CatalogProcess: Enhance JSON with data from other cluster members
+      else Delete changeset
+        CatalogProcess->>CatalogProcess: Create the changeset to delete the cluster
       end
     end
     CatalogProcess->>Solr: Apply changeset
