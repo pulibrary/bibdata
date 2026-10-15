@@ -1,4 +1,20 @@
 {
+  "996698013506421": [
+        {
+            "ark": "http://arks.princeton.edu/ark:/88435/dccc08hw533",
+            "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/19af29d4-d8bc-445c-aded-44954b575fe6/manifest",
+            "label": {
+                "@value": "Books from the library of Sheilah Graham, Los Angeles, California, including books presented to her by F. Scott Fitzgerald and books annotated by him [microform].",
+                "@language": "en"
+            },
+            "portion_note": null,
+            "visibility": {
+                "value": "open",
+                "label": "open",
+                "definition": "Open to the world. Anyone can view."
+            }
+        }
+  ],
   "9947652213506421": [
     {
       "visibility": {

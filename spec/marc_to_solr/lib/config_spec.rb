@@ -808,6 +808,13 @@ describe 'From traject_config.rb', :indexing do
     end
 
     describe 'figgy_1display' do
+      it 'has the field present' do
+        @figgy_example_996698013506421 = @indexer.map_record(fixture_record('996698013506421'))
+        expect(@figgy_example_996698013506421['id']).to be_present
+
+        expect(@figgy_example_996698013506421['figgy_1display']).to be_present
+      end
+
       it 'has info about the figgy resource' do
         expect(@figgy_example['figgy_1display']).to be_present
         keys = JSON.parse(@figgy_example['figgy_1display'].first).first.keys
