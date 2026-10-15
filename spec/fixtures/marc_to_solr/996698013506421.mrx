@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+    <record>
+        <leader>02632cam a2200469 a 4500</leader>
+        <controlfield tag="005">20260828120241.0</controlfield>
+        <controlfield tag="007">hd#afa014baca</controlfield>
+        <controlfield tag="008">910910s1961 nju a 000 0 eng d</controlfield>
+        <controlfield tag="001">996698013506421</controlfield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)25348342</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)ocm25348342 </subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(NjP)669801-princetondb</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="z">(NjP)Voyager669801</subfield>
+        </datafield>
+        <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">PUL</subfield>
+            <subfield code="b">eng</subfield>
+            <subfield code="c">PUL</subfield>
+            <subfield code="d">OCL</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">OCLCG</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">OCLCF</subfield>
+            <subfield code="d">OCLCO</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">OCLCA</subfield>
+            <subfield code="d">OCLCO</subfield>
+            <subfield code="d">OCLCL</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">PUL</subfield>
+        </datafield>
+        <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">X24699109</subfield>
+        </datafield>
+        <datafield tag="245" ind1="0" ind2="0">
+            <subfield code="a">Books from the library of Sheilah Graham, Los Angeles, California,
+                including books presented to her by F. Scott Fitzgerald and books annotated by him.</subfield>
+        </datafield>
+        <datafield tag="246" ind1="1" ind2="3">
+            <subfield code="a">College of One collection</subfield>
+        </datafield>
+        <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="a">Princeton, N.J. :</subfield>
+            <subfield code="b">Princeton University Library,</subfield>
+            <subfield code="c">1961.</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">2 microfilm reels ;</subfield>
+            <subfield code="c">35 mm</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="a">text</subfield>
+            <subfield code="b">txt</subfield>
+            <subfield code="2">rdacontent</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="a">microform</subfield>
+            <subfield code="b">h</subfield>
+            <subfield code="2">rdamedia</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="a">microfilm reel</subfield>
+            <subfield code="b">hd</subfield>
+            <subfield code="2">rdacarrier</subfield>
+        </datafield>
+        <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Title from cover letter, Princeton University Library, May 9, 1961.</subfield>
+        </datafield>
+        <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">"The books ... are represented on this microfilm by their title pages
+                and by such pages in each volume as are annotated or otherwise marked"--Cover
+                letter.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="a">Fitzgerald, F. Scott</subfield>
+            <subfield code="q">(Francis Scott),</subfield>
+            <subfield code="d">1896-1940</subfield>
+            <subfield code="v">Manuscripts</subfield>
+            <subfield code="v">Facsimiles.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="a">Fitzgerald, F. Scott</subfield>
+            <subfield code="q">(Francis Scott),</subfield>
+            <subfield code="d">1896-1940</subfield>
+            <subfield code="x">Books and reading</subfield>
+            <subfield code="v">Facsimiles.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="a">Graham, Sheilah</subfield>
+            <subfield code="x">Books and reading</subfield>
+            <subfield code="v">Facsimiles.</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Best books</subfield>
+            <subfield code="v">Facsimiles.</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Marginalia</subfield>
+            <subfield code="v">Facsimiles.</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="6">
+            <subfield code="a">Notes marginales</subfield>
+            <subfield code="v">Fac-similés.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="7">
+            <subfield code="a">Fitzgerald, F. Scott</subfield>
+            <subfield code="q">(Francis Scott),</subfield>
+            <subfield code="d">1896-1940</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst00030203</subfield>
+            <subfield code="1">https://id.oclc.org/worldcat/entity/E39PBJkxJTHKwPQVt9YxcTXWXd</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="7">
+            <subfield code="a">Marginalia.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01009154</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Facsimiles.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01411642</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Manuscripts.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01424060</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Facsimiles.</subfield>
+            <subfield code="2">lcgft</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Annotations.</subfield>
+            <subfield code="2">rbmscv</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Fitzgerald, F. Scott</subfield>
+            <subfield code="q">(Francis Scott),</subfield>
+            <subfield code="d">1896-1940,</subfield>
+            <subfield code="e">former owner,</subfield>
+            <subfield code="e">annotator.</subfield>
+            <subfield code="1">https://id.oclc.org/worldcat/entity/E39PBJkxJTHKwPQVt9YxcTXWXd</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Graham, Sheilah,</subfield>
+            <subfield code="e">former owner.</subfield>
+            <subfield code="1">https://id.oclc.org/worldcat/entity/E39PBJxhjVXYVPDqRBKJBxQH4q</subfield>
+        </datafield>
+        <datafield tag="758" ind1=" " ind2=" ">
+            <subfield code="i">has work:</subfield>
+            <subfield code="a">Books from the library of Sheilah Graham, Los Angeles, California,
+                including books presented to her by F. Scott Fitzgerald and books annotated by him
+                (Text)</subfield>
+            <subfield code="1">https://id.oclc.org/worldcat/entity/E39PCGgqcv93fBKMmCGChKJDpX</subfield>
+            <subfield code="4">https://id.oclc.org/worldcat/ontology/hasWork</subfield>
+        </datafield>
+        <datafield tag="911" ind1=" " ind2=" ">
+            <subfield code="a">19921028</subfield>
+        </datafield>
+        <datafield tag="912" ind1=" " ind2=" ">
+            <subfield code="a">19910913000000.0</subfield>
+        </datafield>
+        <datafield tag="998" ind1=" " ind2=" ">
+            <subfield code="a">09/13/91</subfield>
+            <subfield code="s">9114</subfield>
+            <subfield code="n">NjP</subfield>
+            <subfield code="w">NJPG91B45598</subfield>
+            <subfield code="d">09/10/91</subfield>
+            <subfield code="c">DRT</subfield>
+            <subfield code="b">DRT</subfield>
+            <subfield code="i">910913</subfield>
+            <subfield code="l">NJPG</subfield>
+        </datafield>
+        <datafield tag="950" ind1=" " ind2=" ">
+            <subfield code="c">2026-09-29 11:44:25 US/Eastern</subfield>
+            <subfield code="b">2021-07-12 19:11:01 US/Eastern</subfield>
+            <subfield code="a">false</subfield>
+        </datafield>
+        <datafield tag="852" ind1="8" ind2="0">
+            <subfield code="b">firestone</subfield>
+            <subfield code="c">pf</subfield>
+            <subfield code="h">MICROFILM 07287</subfield>
+            <subfield code="8">22597323970006421</subfield>
+        </datafield>
+        <datafield tag="866" ind1=" " ind2="0">
+            <subfield code="a">reel 1-2</subfield>
+            <subfield code="8">22597323970006421</subfield>
+        </datafield>
+        <datafield tag="952" ind1=" " ind2=" ">
+            <subfield code="a">2021-07-12 23:11:01</subfield>
+            <subfield code="8">22597323970006421</subfield>
+            <subfield code="b">Firestone Library</subfield>
+            <subfield code="c">rcppf: Firestone Remote Storage (ReCAP)</subfield>
+            <subfield code="e">false</subfield>
+        </datafield>
+        <datafield tag="876" ind1=" " ind2=" ">
+            <subfield code="0">22597323970006421</subfield>
+            <subfield code="j">1</subfield>
+            <subfield code="z">pf</subfield>
+            <subfield code="p">32101053103840</subfield>
+            <subfield code="t">1</subfield>
+            <subfield code="a">23597323950006421</subfield>
+            <subfield code="3">reel 2</subfield>
+            <subfield code="d">2007-11-07 19:00:00 US/Eastern</subfield>
+            <subfield code="q">2007-11-08 05:59:00 US/Eastern</subfield>
+            <subfield code="y">firestone</subfield>
+        </datafield>
+        <datafield tag="876" ind1=" " ind2=" ">
+            <subfield code="0">22597323970006421</subfield>
+            <subfield code="j">1</subfield>
+            <subfield code="z">pf</subfield>
+            <subfield code="p">32101053103832</subfield>
+            <subfield code="t">1</subfield>
+            <subfield code="a">23597323960006421</subfield>
+            <subfield code="3">reel 1</subfield>
+            <subfield code="d">2007-11-07 19:00:00 US/Eastern</subfield>
+            <subfield code="q">2007-11-08 05:59:00 US/Eastern</subfield>
+            <subfield code="y">firestone</subfield>
+        </datafield>
+    </record>
+</collection>
