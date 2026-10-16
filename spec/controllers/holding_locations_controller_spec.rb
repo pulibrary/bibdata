@@ -18,7 +18,10 @@ describe HoldingLocationsController, type: :controller do
 
     it 'holding_locations is active in navbar' do
       get :index
-      expect(response.body.include?('<li class="active"><a href="/locations/holding_locations')).to be true
+      nav_link = response.parsed_body
+                         .at_css('li.nav-item.active a[href^="/locations/holding_locations"]')
+
+      expect(nav_link).not_to be_nil
     end
   end
 
