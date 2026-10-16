@@ -137,7 +137,7 @@ mod tests {
                 figgy_items.iter().map(|figgy_item| {
                     let mut item = figgy_item.as_object().unwrap().clone();
                     let format = display_format(formats(record));
-                    let source_id = record.get_control_fields("001").first().unwrap().content();
+                    let source_id = mms_id(item.get("ark").unwrap_or_default().as_str().unwrap_or_default(), Some(&SMALL_CACHE));
                     item.insert("display_format".to_owned(), json!(format));
                     item.insert("source_id".to_owned(), json!(source_id));
                     serde_json::to_value(item).unwrap()
