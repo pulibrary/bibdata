@@ -38,7 +38,7 @@
         <% end %>
         <% if user_signed_in? %>
           <td class="nowrap">
-            <%= link_to 'Delete', event, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure? This will Delete all associated files!' } %>
+            <%= button_to 'Delete', event, fmethod: :delete, class: "btn btn-danger", onclick: 'return confirm(Are you sure? This will Delete all associated files!)' %>
           </td>
         <% end %>
       </tr>

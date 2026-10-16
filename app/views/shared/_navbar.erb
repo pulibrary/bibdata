@@ -18,11 +18,11 @@
         </li>
         <% if current_user %>
         <li>
-          <%= link_to 'Logout', main_app.destroy_user_session_path, :method => :delete, class: 'nav-link' %>
+          <%= button_to 'Logout', main_app.destroy_user_session_path, :method => :delete, class: 'nav-link' %>
         </li>
         <% else %>
         <li>
-          <%= link_to 'Login', main_app.user_cas_omniauth_authorize_path, method: :post, class: 'nav-link' %>
+          <%= button_to 'Login', main_app.user_cas_omniauth_authorize_path, method: :post, class: 'nav-link' %>
         </li>
         <% end %>
       </ul>
