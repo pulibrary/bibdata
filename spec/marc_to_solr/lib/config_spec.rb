@@ -822,7 +822,7 @@ describe 'From traject_config.rb', :indexing do
       it 'has info about the figgy resource' do
         expect(@figgy_example['figgy_1display']).to be_present
         keys = JSON.parse(@figgy_example['figgy_1display'].first).first.keys
-        expect(keys).to contain_exactly('visibility', 'portion_note', 'iiif_manifest_url', 'display_format')
+        expect(keys).to contain_exactly('visibility', 'portion_note', 'iiif_manifest_url', 'display_format', 'source_id')
       end
 
       describe 'a private figgy object' do
