@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'pages/index', type: :view do
+RSpec.describe 'home/index', type: :view do
   it 'renders the header' do
     render
     expect(rendered).to include('<h1>PUL Bibliographic Data Web Service</h1>')

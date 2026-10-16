@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
       <ul class="nav navbar-nav">
-        <li class="<%= 'active' if params[:controller] == 'high_voltage/pages' %>"><%= link_to 'Home', main_app.root_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'home' %>"><%= link_to 'Home', main_app.root_path %></li>
         <li class="<%= 'active' if params[:controller] == 'events' %>"><%= link_to 'Events', main_app.events_path %></li>
         <li class="<%= 'active' if params[:controller] == 'delivery_locations' %>"><%= link_to 'Delivery Locations', main_app.delivery_locations_path %></li>
         <li class="<%= 'active' if params[:controller] == 'holding_locations' %>"><%= link_to 'Holding Locations', main_app.holding_locations_path %></li>

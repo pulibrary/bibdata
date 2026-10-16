@@ -257,7 +257,6 @@ GEM
       logger
     health-monitor-rails (12.9.0)
       railties (>= 6.1)
-    high_voltage (5.0.0)
     honeybadger (6.9.2)
       logger
       ostruct
@@ -858,7 +857,6 @@ DEPENDENCIES
   flipflop
   friendly_id
   health-monitor-rails (= 12.9.0)
-  high_voltage (~> 5.0)
   honeybadger
   human_languages (~> 1.0)
   jbuilder

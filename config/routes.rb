@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :events, only: %i[show index destroy]
   resources :dumps, only: [:show]
 
+  root to: 'home#index'
   scope :locations do
     resources :holding_locations
     resources :libraries
