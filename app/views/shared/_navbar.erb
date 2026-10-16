@@ -1,18 +1,28 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-      <ul class="nav navbar-nav">
-        <li class="<%= 'active' if params[:controller] == 'home' %>"><%= link_to 'Home', main_app.root_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'events' %>"><%= link_to 'Events', main_app.events_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'delivery_locations' %>"><%= link_to 'Delivery Locations', main_app.delivery_locations_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'holding_locations' %>"><%= link_to 'Holding Locations', main_app.holding_locations_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'libraries' %>"><%= link_to 'Libraries', main_app.libraries_path %></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item <%= 'active' if params[:controller] == 'home/pages' %>">
+        <%= link_to 'Home', main_app.root_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item <%= 'active' if params[:controller] == 'events' %>">
+            <%= link_to 'Events', main_app.events_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item <%= 'active' if params[:controller] == 'delivery_locations' %>">
+            <%= link_to 'Delivery Locations', main_app.delivery_locations_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item <%= 'active' if params[:controller] == 'holding_locations' %>">
+        <%= link_to 'Holding Locations', main_app.holding_locations_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item <%= 'active' if params[:controller] == 'libraries' %>">
+            <%= link_to 'Libraries', main_app.libraries_path, class: 'nav-link' %>
+        </li>
         <% if current_user %>
         <li>
-          <%= link_to 'Logout', main_app.destroy_user_session_path, :method => :delete %>
+          <%= link_to 'Logout', main_app.destroy_user_session_path, :method => :delete, class: 'nav-link' %>
         </li>
         <% else %>
         <li>
-          <%= link_to 'Login', main_app.user_cas_omniauth_authorize_path, method: :post %>
+          <%= link_to 'Login', main_app.user_cas_omniauth_authorize_path, method: :post, class: 'nav-link' %>
         </li>
         <% end %>
       </ul>

@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
 //= require rails-ujs
 //= require jquery-tablesorter
 //= require jquery-tablesorter/widgets/widget-editable
