@@ -6,7 +6,8 @@ use crate::{
             Field852, Field876, Item,
             holding_location::{library_label, location_label},
             textual_holdings,
-        },
+        }, utils::display_format::display_format as display_format_parse,
+        record_facet_mapping::formats,
     },
 };
 use marctk::{Field, Record};
@@ -48,6 +49,8 @@ pub fn partner_holdings(record: &Record) -> impl Iterator<Item = PartnerHolding<
         |field| {
             let field = Field852(field);
             let holding_id = field.get("0")?;
+            let display_format = display_format_parse(formats(record));
+            let source_id = record.get_control_fields("001").first().unwrap().content();
 
             let items: Vec<PartnerItem<'_>> = record
                 .extract_field_values_by(
@@ -101,6 +104,8 @@ pub fn partner_holdings(record: &Record) -> impl Iterator<Item = PartnerHolding<
 
             Some(PartnerHolding {
                 holding_id,
+                display_format,
+                source_id,
                 location_code,
                 location,
                 library,
@@ -128,6 +133,8 @@ fn field_has_scsb_holding_id(field: &Field, holding_id: &str) -> bool {
 #[derive(Debug, Default, PartialEq, Serialize)]
 pub struct PartnerHolding<'a> {
     pub holding_id: &'a str,
+    display_format: String,
+    source_id: &'a str,
     location_code: Option<&'a str>,
     location: Option<&'a str>,
     library: Option<&'a str>,
@@ -192,7 +199,9 @@ mod tests {
     #[test]
     fn it_creates_a_simple_partner_holding() {
         let record = Record::from_breaker(
-            r#"=852 8\ $hReCAP .b173860199$06769856$bscsbnypl
+            r#"=LDR 02190cdm a2200385 i 4500
+=001 9926233506421
+=852 8\ $hReCAP .b173860199$06769856$bscsbnypl
 =876 \\ $06769856$a10924375$jAvailable$p33333081091841$t1$xShared$zNH$lRECAP"#,
         )
         .unwrap();
@@ -201,6 +210,8 @@ mod tests {
             holdings,
             vec![PartnerHolding {
                 holding_id: "6769856",
+                display_format: "Manuscript".to_string(),
+                source_id: "9926233506421",
                 location_code: Some("scsbnypl"),
                 location: Some("Remote Storage"),
                 library: Some("ReCAP"),
@@ -225,7 +236,9 @@ mod tests {
     #[test]
     fn it_can_find_indexes() {
         let record = Record::from_breaker(
-            r#"=852 8\ $06769856
+            r#"=LDR 02190cdm a2200385 i 4500
+=001 9926233506421
+=852 8\ $06769856
 =868 \\ $06769856$a1937-1942, 1946-1968, plus 1969/1978 cumulative vol.
 =876 \\ $06769856$xShared"#,
         )
@@ -235,6 +248,8 @@ mod tests {
             holdings,
             vec![PartnerHolding {
                 holding_id: "6769856",
+                display_format: "Manuscript".to_string(),
+                source_id: "9926233506421",
                 items: vec![PartnerItem {
                     holding_id: Some("6769856"),
                     cgd: Some(CollectionGroup::Shared),
