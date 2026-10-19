@@ -247,15 +247,14 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "figgy_1display",
         figgy_1display(&record, None, |figgy_items, record| {
-            figgy_items
-                .iter()
-                .map(|figgy_item| {
+            figgy_items.iter().map(|figgy_item| {
                     let mut item = figgy_item.as_object().unwrap().clone();
                     let format = display_format(formats(record));
+                    let source_id = record.get_control_fields("001").first().unwrap().content();
                     item.insert("display_format".to_owned(), json!(format));
+                    item.insert("source_id".to_owned(), json!(source_id));
                     serde_json::to_value(item).unwrap()
-                })
-                .collect::<Vec<Value>>()
+                }).collect::<Vec<Value>>()
         }),
     )?;
     hash.aset("format", format)?;

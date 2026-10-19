@@ -260,10 +260,14 @@ describe 'From traject_config.rb', :indexing do
         # Date range with explicit start and no end date
         expect(nature['start']).to eq '1869'
         expect(nature['end']).to eq 'latest'
+        expect(nature['display_format']).to eq 'Journal'
+        expect(nature['source_id']).to eq '99122306151806421'
 
         # Date range with explicit start and end
         expect(ebsco['start']).to eq '1997'
         expect(ebsco['end']).to eq '2015'
+        expect(ebsco['display_format']).to eq 'Journal'
+        expect(ebsco['source_id']).to eq '99122306151806421'
 
         # electronic_portfolio_s should not include non alma 951(s).
         expect(resource1).to be_nil
@@ -818,7 +822,7 @@ describe 'From traject_config.rb', :indexing do
       it 'has info about the figgy resource' do
         expect(@figgy_example['figgy_1display']).to be_present
         keys = JSON.parse(@figgy_example['figgy_1display'].first).first.keys
-        expect(keys).to contain_exactly('visibility', 'portion_note', 'iiif_manifest_url', 'display_format')
+        expect(keys).to contain_exactly('visibility', 'portion_note', 'iiif_manifest_url', 'display_format', 'source_id')
       end
 
       describe 'a private figgy object' do
@@ -863,6 +867,18 @@ describe 'From traject_config.rb', :indexing do
         expect(@holdings['22666524470006421']['call_number']).to eq '.B7544 2003q Oversize RA566.27'
         expect(@holdings['22666524470006421']['call_number_browse']).to eq '.B7544 2003q Oversize RA566.27'
       end
+
+      # TODO: Once https://github.com/pulibrary/orangelight/issues/6111 is complete
+      # we can uncomment this and to test the new fields
+      # it 'includes source_id' do
+      #   @holdings = JSON.parse(@sample37['holdings_1display'][0])
+      #   expect(@holdings['22170509880006421']['source_id']).to eq '9976174773506421'
+      #   expect(@holdings['22170509890006421']['source_id']).to eq '9976174773506421'
+      #   expect(@holdings['22170509900006421']['source_id']).to eq '9976174773506421'
+      #   expect(@holdings['22170509880006421']['display_format']).to eq 'Book'
+      #   expect(@holdings['22170509890006421']['display_format']).to eq 'Book'
+      #   expect(@holdings['22170509900006421']['display_format']).to eq 'Book'
+      # end
 
       it 'indexes permanent and temporary locations' do
         # permanent location code: lewis$stacks

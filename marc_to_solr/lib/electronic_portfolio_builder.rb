@@ -6,27 +6,35 @@ class ElectronicPortfolioBuilder
   # @param field [MARC::DataField] data from 951 field
   # @param date [MARC::DataField] date range data from 953 field
   # @param embargo [MARC::DataField] embargo data from 954 field
+  # @param display_format [String] calculated display format from record
+  # @param source_id [String] mms_id from the record
   # @return [String] JSON string
-  def self.build(field:, date:, embargo:)
-    new(field:, date:, embargo:).build
+  def self.build(field:, date:, embargo:, display_format:, source_id:)
+    new(field:, date:, embargo:, display_format:, source_id:).build
   end
 
-  attr_reader :embargo, :field, :date
+  attr_reader :embargo, :field, :date, :display_format, :source_id
 
   # Constructor
   # @param field [MARC::DataField] data from 951 field
   # @param date [MARC::DataField] date range data from 953 field
   # @param embargo [MARC::DataField] embargo data from 954 field
-  def initialize(field:, date:, embargo:)
+  # @param display_format [String] calculated display format from record
+  # @param source_id [String] mms_id from the record
+  def initialize(field:, date:, embargo:, display_format:, source_id:)
     @field = field
     @date = date
     @embargo = embargo
+    @display_format = display_format
+    @source_id = source_id
   end
 
   def build
     {
       desc: field['k'],
       title: portfolio_title,
+      display_format: display_format,
+      source_id: source_id,
       url: field['x'],
       start: start_date,
       end: end_date,
