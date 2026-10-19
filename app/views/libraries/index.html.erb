@@ -1,6 +1,6 @@
 <h1>Libraries</h1>
 
-<table class="locations-table">
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Order</th>
@@ -11,7 +11,7 @@
 
   <tbody>
     <% @libraries.each do |library| %>
-      <tr id="<%= library.id %>">
+      <tr class="table-striped" id="<%= library.id %>">
         <td><%= library.order %></td>
         <td><%= link_to library.label, library %></td>
         <td><%= library.code %></td>

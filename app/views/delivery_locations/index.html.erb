@@ -1,6 +1,6 @@
 <h1>Delivery Locations</h1>
 
-<table class="locations-table">
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Label</th>
@@ -17,7 +17,7 @@
 
   <tbody>
     <% @delivery_locations.each do |delivery_location| %>
-      <tr>
+      <tr class="table-striped">
         <td><%= link_to delivery_location.label, delivery_location %></td>
         <td><%= link_to delivery_location.library.code, delivery_location.library %></td>
         <td><%= delivery_location.address %></td>

@@ -1,6 +1,6 @@
 <h1>Holding Locations</h1>
 
-<table class="locations-table">
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Code</th>
@@ -20,7 +20,7 @@
 
   <tbody>
     <% @holding_locations.each do |holding_location| %>
-      <tr>
+      <tr class="table-striped">
         <td><%= link_to holding_location.code, holding_location %></td>
         <td><%= holding_location.label %></td>
         <td><%= link_to holding_location.library.code, holding_location.library %></td>
