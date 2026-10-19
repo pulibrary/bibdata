@@ -2,7 +2,7 @@
 
 <h1>Events</h1>
 
-<table class="table table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Event ID</th>
@@ -22,7 +22,7 @@
 
   <tbody>
     <% @events.each do |event| %>
-      <tr class="table-striped<%= event.success ? '' : ' warning'%>">
+      <tr class="<%= event.success ? '' : ' warning'%>">
         <td><%=event.id%></td>
         <td class="nowrap"><%= event.start&.localtime&.to_fs(:db_twelve_hour) %></td>
         <td class="nowrap "><%= event.finish&.localtime&.to_fs(:db_twelve_hour) if event.finish %></td>
