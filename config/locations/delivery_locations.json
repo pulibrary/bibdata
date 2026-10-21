@@ -378,7 +378,7 @@
         "label": "Firestone Circulation Desk",
         "address": "One Washington Rd. Princeton, NJ 08544",
         "phone_number": "609 258-2345",
-        "contact_email": "fstcirc@princton.edu",
+        "contact_email": "fstcirc@princeton.edu",
         "gfa_pickup": "QX",
         "staff_only": false,
         "pickup_location": true,
