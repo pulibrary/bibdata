@@ -6955,7 +6955,11 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "QX"
+            "PT",
+            "PL",
+            "PW",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -6977,7 +6981,11 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "QX"
+            "PT",
+            "PL",
+            "PW",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -6999,7 +7007,11 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "QX"
+            "PT",
+            "PL",
+            "PW",
+            "PK",
+            "PM"
         ]
     },
     {
