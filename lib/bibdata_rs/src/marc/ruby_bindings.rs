@@ -247,14 +247,17 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "figgy_1display",
         figgy_1display(&record, None, |figgy_items, record| {
-            figgy_items.iter().map(|figgy_item| {
+            figgy_items
+                .iter()
+                .map(|figgy_item| {
                     let mut item = figgy_item.as_object().unwrap().clone();
                     let format = display_format(formats(record));
                     let source_id = record.get_control_fields("001").first().unwrap().content();
                     item.insert("display_format".to_owned(), json!(format));
                     item.insert("source_id".to_owned(), json!(source_id));
                     serde_json::to_value(item).unwrap()
-                }).collect::<Vec<Value>>()
+                })
+                .collect::<Vec<Value>>()
         }),
     )?;
     hash.aset("format", format)?;
@@ -532,10 +535,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
                 .map(|author| trim_punctuation(author)),
         ),
     )?;
-    hash.aset(
-        "title_display",
-        extract_marc!(latin "245abcfghknps")(&record),
-    )?;
+    let latin_titles = extract_marc!(latin "245abcfghknps")(&record);
+    if let Some(title_display) = latin_titles.first() {
+        hash.aset("title_display", title_display.clone())?;
+    }
     hash.aset(
         "title_no_h_index",
         ruby.ary_from_iter(title::title_no_h_index(&record)),
@@ -774,6 +777,21 @@ mod tests {
                 String::from("METPRO/CB/TR--74/216+PR.ENVR.WI"),
                 String::from("NASA-RP-1124-REV-3"),
             ]
+        );
+    }
+
+    #[ruby_test]
+    fn it_includes_only_the_first_title_in_title_display() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let record_with_duplicate_fields: magnus::RObject = ruby.eval(r#"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new('245', '', '', ['a', 'First title']));record.append(MARC::DataField.new('245', '', '', ['a', 'Second title']));record"#).unwrap();
+        let record_with_duplicate_fields_hash =
+            solr_fields(&ruby, record_with_duplicate_fields).unwrap();
+
+        assert_eq!(
+            record_with_duplicate_fields_hash
+                .aref::<&str, String>("title_display")
+                .unwrap(),
+            "First title"
         );
     }
 }
