@@ -149,7 +149,7 @@ end
 #    240 XX {a[%}pldfhkmnors"]" T ap
 rust_multi_value_field 'uniform_title_s'
 
-rust_multi_value_field 'title_display'
+rust_single_value_field 'title_display'
 rust_multi_value_field 'title_a_index'
 
 rust_single_value_field 'title_vern_display'
@@ -1186,9 +1186,5 @@ each_record do |_record, context|
       context.output_hash['holdings_1display'][0] = holdings_hash.to_json
       context.output_hash['electronic_access_1display'][0] = bib_856s.to_json
     end
-  end
-  if context.output_hash['title_display'] && (context.output_hash['title_display'].length > 1)
-    logger.error "#{context.output_hash['id'].first} - Multiple titles"
-    context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
 end
