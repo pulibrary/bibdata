@@ -9,7 +9,9 @@
     "openssl",
     "path:flakes/solr#default",
     "postgresql@latest",
-    "redis@latest"
+    "redis@latest",
+    "libxml2@latest",
+    "libxslt@latest"
   ],
   "shell": {
     "init_hook": [
