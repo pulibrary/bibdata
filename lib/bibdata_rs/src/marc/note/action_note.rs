@@ -125,11 +125,7 @@ pub fn action_notes(record: &Record) -> impl Iterator<Item = ActionNote> {
 }
 
 fn authorizations_as_phrase(authorizations: &Vec<&str>) -> Option<String> {
-    if authorizations.is_empty() {
-        None
-    } else {
-        Some(iter::once(&"—").chain(authorizations).join(" "))
-    }
+    (!authorizations.is_empty()).then_some(iter::once(&"—").chain(authorizations).join(" "))
 }
 
 #[cfg(test)]

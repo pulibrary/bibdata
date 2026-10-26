@@ -178,11 +178,7 @@ pub fn has_cjk_chars(value: &str) -> bool {
 }
 
 fn maybe_has_cjk_text(original: String) -> Option<String> {
-    if has_cjk_chars(&original) {
-        Some(original)
-    } else {
-        None
-    }
+    has_cjk_chars(&original).then_some(original)
 }
 
 #[cfg(test)]
