@@ -32,76 +32,33 @@ pub fn genres(record: &Record) -> Vec<String> {
         .collect()
 }
 
-pub fn aat_s(record: &Record) -> impl Iterator<Item = String> {
+/// Get the genre terms from the record that use the specified vocabulary
+fn genre_values(record: &Record, vocab: GenreVocabulary) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
-        |field| {
+        move |field| {
             latin_or_non_latin_tag_included_in(&["655"])(field)
-                && matches!(
-                    GenreVocabulary::from(field),
-                    GenreVocabulary::ArtArchitectureThesaurus
-                )
+                && GenreVocabulary::from(field) == vocab
         },
-        |field| {
-            Some(hierarchical_heading(
-                field,
-                &["a", "v", "x", "y", "z"],
-                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
-            ))
-        },
+        |field| Some(rare_books_genre_heading(field)),
     )
+}
+
+pub fn aat_s(record: &Record) -> impl Iterator<Item = String> {
+    genre_values(record, GenreVocabulary::ArtArchitectureThesaurus)
 }
 
 pub fn homoit_genre_s(record: &Record) -> impl Iterator<Item = String> {
-    record.extract_field_values_by(
-        |field| {
-            latin_or_non_latin_tag_included_in(&["655"])(field)
-                && matches!(GenreVocabulary::from(field), GenreVocabulary::Homosaurus)
-        },
-        |field| {
-            Some(hierarchical_heading(
-                field,
-                &["a", "v", "x", "y", "z"],
-                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
-            ))
-        },
-    )
+    genre_values(record, GenreVocabulary::Homosaurus)
 }
 
 pub fn lcgft_s(record: &Record) -> impl Iterator<Item = String> {
-    record.extract_field_values_by(
-        |field| {
-            latin_or_non_latin_tag_included_in(&["655"])(field)
-                && matches!(
-                    GenreVocabulary::from(field),
-                    GenreVocabulary::LCGenreFormTerms
-                )
-        },
-        |field| {
-            Some(hierarchical_heading(
-                field,
-                &["a", "v", "x", "y", "z"],
-                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
-            ))
-        },
-    )
+    genre_values(record, GenreVocabulary::LCGenreFormTerms)
 }
 
 pub fn rbgenr_s(record: &Record) -> impl Iterator<Item = String> {
-    record.extract_field_values_by(
-        |field| {
-            latin_or_non_latin_tag_included_in(&["655"])(field)
-                && matches!(
-                    GenreVocabulary::from(field),
-                    GenreVocabulary::RareBooksManuscriptsGenreVocabularies
-                )
-        },
-        |field| {
-            Some(hierarchical_heading(
-                field,
-                &["a", "v", "x", "y", "z"],
-                |subfield| ["v", "x", "y", "z"].contains(&subfield.code()),
-            ))
-        },
+    genre_values(
+        record,
+        GenreVocabulary::RareBooksManuscriptsGenreVocabularies,
     )
 }
 
@@ -130,6 +87,7 @@ const RARE_BOOKS_MANUSCRIPTS_GENRE_VOCABS: [&str; 8] = [
     "rbbin", "rbgenr", "rbmscv", "rbpap", "rbpri", "rbprov", "rbpub", "rbtyp",
 ];
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum GenreVocabulary {
     ArtArchitectureThesaurus,
     Homosaurus,
