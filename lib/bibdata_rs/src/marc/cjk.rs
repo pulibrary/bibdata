@@ -24,10 +24,10 @@ use crate::{
 pub fn cjk_all(record: &Record) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
         |field| field.tag() == "880",
-        |field| {
-            let joined = join_subfields_except(field, &["6"]);
-            maybe_has_cjk_text(joined)
-        },
+        pipe!(
+            |field| join_subfields_except(field, &["6"]),
+            maybe_has_cjk_text
+        ),
     )
 }
 
@@ -60,16 +60,14 @@ pub fn cjk_titles(record: &Record) -> impl Iterator<Item = String> {
     let title_fields =
         record.extract_field_values_by(non_latin_tag_included_in(&NON_LATIN_TITLE_TAGS), |field| {
             let desired_subfields = non_latin_title_subfields(field);
-            let joined = trim_punctuation(
-                &field
-                    .subfields()
-                    .iter()
-                    .subfields_before("t")
-                    .filter_by_code(&desired_subfields)
-                    .content()
-                    .join(" "),
-            );
-            maybe_has_cjk_text(joined)
+            let joined = &field
+                .subfields()
+                .iter()
+                .subfields_before("t")
+                .filter_by_code(&desired_subfields)
+                .content()
+                .join(" ");
+            pipe!(trim_punctuation, maybe_has_cjk_text)(joined)
         });
     let fields_with_author_and_title_info = record.extract_field_values_by(
         non_latin_tag_included_in(&[
