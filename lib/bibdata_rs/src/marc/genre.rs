@@ -1,8 +1,11 @@
-use crate::marc::{
-    extract_values::ExtractValues,
-    subject::hierarchical_heading,
-    utils::slice::contains_subslice,
-    variable_length_field::{SubfieldIterator, latin_or_non_latin_tag_included_in},
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        extract_values::ExtractValues,
+        subject::{accumulate_hierarchical_heading, hierarchical_heading},
+        utils::slice::contains_subslice,
+        variable_length_field::{SubfieldIterator, latin_or_non_latin_tag_included_in},
+    },
 };
 
 use super::{
@@ -100,6 +103,27 @@ pub fn rbgenr_s(record: &Record) -> impl Iterator<Item = String> {
             ))
         },
     )
+}
+
+pub fn rbgenr_genre_facet(record: &Record) -> impl Iterator<Item = String> {
+    record
+        .extract_field_values_by(
+            |field| {
+                latin_or_non_latin_tag_included_in(&["655"])(field)
+                    && matches!(
+                        GenreVocabulary::from(field),
+                        GenreVocabulary::RareBooksManuscriptsGenreVocabularies
+                    )
+            },
+            pipe!(rare_books_genre_heading, accumulate_hierarchical_heading),
+        )
+        .flatten()
+}
+
+fn rare_books_genre_heading(field: &Field) -> String {
+    hierarchical_heading(field, &["a", "v", "x", "y", "z"], |subfield| {
+        ["v", "x", "y", "z"].contains(&subfield.code())
+    })
 }
 
 const RARE_BOOKS_MANUSCRIPTS_GENRE_VOCABS: [&str; 8] = [
@@ -515,6 +539,7 @@ fn is_literary_book(record: &Record) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::marc::subject::SEPARATOR;
 
     #[test]
     fn it_identies_nonfiction_title_as_non_literary() {
@@ -601,5 +626,84 @@ mod tests {
         assert!(does_lcsh_genre_term_indicate_primary_source(
             "Correspondence"
         ));
+    }
+
+    #[test]
+    fn it_creates_rbgenr_genre_facet_from_rbgenr_terms() {
+        let record = Record::from_breaker(
+            r"=655 \7$aAcademic addresses $z Maine $z Waterville $y 1824. $2 rbgenr",
+        )
+        .unwrap();
+        assert_eq!(
+            rbgenr_genre_facet(&record).collect::<Vec<_>>(),
+            vec![
+                "Academic addresses".to_string(),
+                format!("Academic addresses{SEPARATOR}Maine"),
+                format!("Academic addresses{SEPARATOR}Maine{SEPARATOR}Waterville"),
+                format!("Academic addresses{SEPARATOR}Maine{SEPARATOR}Waterville{SEPARATOR}1824"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_builds_rare_books_genre_facet_with_all_subdivision_levels() {
+        let record = Record::from_breaker(
+            r#"=655 \7 $a Dust jackets (Bindings) $y 2013. $2 rbbin
+=655 \7 $a Dust jackets (Binding) $y 2013. $2 rbbin"#,
+        )
+        .unwrap();
+        assert_eq!(
+            rbgenr_genre_facet(&record).collect::<Vec<_>>(),
+            vec![
+                "Dust jackets (Bindings)".to_string(),
+                format!("Dust jackets (Bindings){SEPARATOR}2013"),
+                "Dust jackets (Binding)".to_string(),
+                format!("Dust jackets (Binding){SEPARATOR}2013"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_excludes_non_rare_books_vocabs_from_genre_facet() {
+        let record = Record::from_breaker(
+            r#"=655 \7 $a Picture books. $2 lcgft
+=655 \7 $a Stories without words. $2 aat
+=655 \7 $a Histoires sans paroles. $2 rvmgf
+=655 \7 $a Rare books genre $x Subdivision $2 rbgenr"#,
+        )
+        .unwrap();
+        assert_eq!(
+            rbgenr_genre_facet(&record).collect::<Vec<_>>(),
+            vec![
+                "Rare books genre".to_string(),
+                format!("Rare books genre{SEPARATOR}Subdivision"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_skips_rare_books_genre_headings_without_subdivisions() {
+        let record = Record::from_breaker(
+            r#"=655 \7 $2 rbbin
+=655 \7 $a Real heading $2 rbgenr"#,
+        )
+        .unwrap();
+        assert_eq!(
+            rbgenr_genre_facet(&record).collect::<Vec<_>>(),
+            vec!["Real heading".to_string()]
+        );
+    }
+
+    #[test]
+    fn it_includes_non_latin_rare_books_genre_facet() {
+        let record = Record::from_breaker(
+            r#"=655 \7 $6880-01 $a Latin heading $2 rbgenr
+=880 \7 $6655-01 $a 中文标题 $2 rbgenr"#,
+        )
+        .unwrap();
+        assert_eq!(
+            rbgenr_genre_facet(&record).collect::<Vec<_>>(),
+            vec!["Latin heading".to_string(), "中文标题".to_string()]
+        );
     }
 }
