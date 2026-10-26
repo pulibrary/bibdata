@@ -2,12 +2,12 @@ version: 2.1
 orbs:
   coveralls: coveralls/coveralls@2.2.5
   node: circleci/node@5.0.3
-  ruby: circleci/ruby@2.6.0
+  ruby: circleci/ruby@4.0.0
   rust: circleci/rust@2.0.0
 jobs:
   lint:
     docker:
-      - image: cimg/ruby:3.4.4
+      - image: cimg/ruby:4.0
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -22,7 +22,7 @@ jobs:
 
   test:
     docker:
-      - image: cimg/ruby:3.4.4-browsers
+      - image: cimg/ruby:4.0.9-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -92,7 +92,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:3.3.6-browsers
+      - image: cimg/ruby:4.0.9-browsers
     steps:
       - checkout
       - run: gem install bundler -v '~> 2.0'
@@ -109,7 +109,7 @@ jobs:
 
   rust_test:
     docker:
-      - image: ruby:3.4
+      - image: ruby:4.0
     steps:
       - checkout
       - run: apt-get -y update
@@ -137,7 +137,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/ruby:3.4
+      - image: cimg/ruby:4.0
     steps:
       - run:
           name: Deploy to Staging
