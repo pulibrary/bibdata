@@ -145,6 +145,24 @@ pub fn hierarchical_heading(
         })
 }
 
+/// Splits a hierarchical heading on `SEPARATOR` and returns the heading
+/// together with every intermediate prefix, e.g. `a—b—c` yields `a`, `a—b`,
+/// and `a—b—c`.  Returns `None` when there are no prefixes to emit.
+pub fn accumulate_hierarchical_heading(heading: String) -> Option<Vec<String>> {
+    let prefixes: Vec<String> = heading
+        .split(SEPARATOR)
+        .scan(String::new(), |running, subdivision| {
+            if !running.is_empty() {
+                running.push(SEPARATOR);
+            }
+            running.push_str(subdivision);
+            Some(running.clone())
+        })
+        .filter(|prefix| !prefix.is_empty())
+        .collect();
+    (!prefixes.is_empty()).then_some(prefixes)
+}
+
 /// Reimplementation of traject's `marc_era_facet` macro
 pub fn subject_era_facet(record: &Record) -> Vec<String> {
     let mut accumulator: Vec<String> = Vec::new();
@@ -230,6 +248,20 @@ mod tests {
             hierarchical_heading(field, &["a", "x"], |subfield| subfield.code() == "x"),
             "German language—Grammar, Historical"
         );
+    }
+
+    #[test]
+    fn it_can_accumulate_a_hierarchical_heading() {
+        let heading = format!("a{SEPARATOR}b{SEPARATOR}c");
+        assert_eq!(
+            accumulate_hierarchical_heading(heading),
+            Some(vec![
+                "a".to_string(),
+                format!("a{SEPARATOR}b"),
+                format!("a{SEPARATOR}b{SEPARATOR}c"),
+            ])
+        );
+        assert_eq!(accumulate_hierarchical_heading(String::new()), None);
     }
 
     #[test]

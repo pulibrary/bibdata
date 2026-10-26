@@ -115,7 +115,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(145);
+    let hash = ruby.hash_new_capa(146);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -476,6 +476,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset("pub_date_display", pub_date_start_sort.clone())?;
     hash.aset("pub_date_start_sort", pub_date_start_sort)?;
     hash.aset("pub_date_end_sort", pub_date_end_sort)?;
+    hash.aset(
+        "rbgenr_genre_facet",
+        ruby.ary_from_iter(genre::rbgenr_genre_facet(&record)),
+    )?;
     hash.aset("rbgenr_s", ruby.ary_from_iter(genre::rbgenr_s(&record)))?;
     hash.aset("recap_notes_display", recap_partner_notes(&record))?;
     hash.aset(
@@ -710,6 +714,24 @@ mod tests {
         assert_eq!(
             rbgenr_s_value,
             vec![String::from("Dictionaries—French—18th century")]
+        );
+    }
+
+    #[ruby_test]
+    fn it_includes_rbgenr_genre_facet_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby.eval(r"require 'marc';record = MARC::Record.new;record.append(MARC::DataField.new( '655', '', '7', ['a', 'Dust jackets (Bindings)'], ['y', '2013.'], ['2', 'rbgenr']));record").unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+
+        let facet_value = hash
+            .aref::<&str, Vec<String>>("rbgenr_genre_facet")
+            .unwrap();
+        assert_eq!(
+            facet_value,
+            vec![
+                String::from("Dust jackets (Bindings)"),
+                String::from("Dust jackets (Bindings)—2013"),
+            ]
         );
     }
 

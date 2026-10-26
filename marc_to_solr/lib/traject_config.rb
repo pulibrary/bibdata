@@ -807,10 +807,7 @@ rust_multi_value_field 'rbgenr_s'
 # used for the Browse lists and hierarchical subject facet
 # used in the record page -> Details section to search for Rare Books genre headings and their subdivisions using
 # the facet[rbgenr_genre_facet] field
-to_field 'rbgenr_genre_facet' do |record, accumulator|
-  genres = accumulate_hierarchy_per_field(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp] }
-  accumulator.replace(genres)
-end
+rust_multi_value_field 'rbgenr_genre_facet'
 
 # used for the JSONLD output. Uses all the 655 fields to get all genre data
 to_field 'jsonld_genre_display', extract_marc('655|*7|avxyz')
