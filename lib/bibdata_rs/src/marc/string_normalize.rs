@@ -60,7 +60,7 @@ pub fn maybe_not_empty<S>(s: S) -> Option<S>
 where
     S: AsRef<str>,
 {
-    if s.as_ref().is_empty() { None } else { Some(s) }
+    (!s.as_ref().is_empty()).then_some(s)
 }
 
 pub fn remove_all_punctuation(s: &str) -> Cow<'_, str> {
