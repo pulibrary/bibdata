@@ -11,8 +11,8 @@ set :rails_env, 'production'
 server 'bibdata-prod1.princeton.edu', user: 'deploy', roles: %i[web app db]
 server 'bibdata-prod2.princeton.edu', user: 'deploy', roles: %i[web app]
 # Worker 1 gets the poller daemon installed via Princeton Ansible
-server 'bibdata-worker-prod1.princeton.edu', user: 'deploy', roles: %i[worker cron cron_production poller]
-server 'bibdata-worker-prod2.princeton.edu', user: 'deploy', roles: [:worker]
+# server 'bibdata-worker-prod1.princeton.edu', user: 'deploy', roles: %i[worker cron cron_production poller]
+# server 'bibdata-worker-prod2.princeton.edu', user: 'deploy', roles: [:worker]
 
 # Extended Server Syntax
 # ======================
