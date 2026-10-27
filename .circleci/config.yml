@@ -99,7 +99,9 @@ jobs:
       - run:
           name: Install dependencies
           working_directory: ~/bibdata/webhook_monitor/src/
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+          command: |
+            bundle config set --local path 'vendor/bundle'
+            bundle install --jobs 4 --retry 3
       - run:
           name: Rspec
           working_directory: ~/bibdata/webhook_monitor/src/
