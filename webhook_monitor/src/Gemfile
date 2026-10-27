@@ -10,9 +10,10 @@ group :development do
   gem 'aws-sdk-lambda'
   gem 'aws-sdk-sqs'
   gem 'nokogiri'
-  gem 'base64'
 end
 
 group :test do
+  gem 'base64'
+  gem 'logger'
   gem 'rspec'
 end
