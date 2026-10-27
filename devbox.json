@@ -3,7 +3,6 @@
   "packages": [
     "git@latest",
     "lastpass-cli",
-    "ruby@3.4.4",
     "bash@latest",
     "rustup@latest",
     "openssl",
@@ -11,7 +10,8 @@
     "postgresql@latest",
     "redis@latest",
     "libxml2@latest",
-    "libxslt@latest"
+    "libxslt@latest",
+    "ruby@4.0.9"
   ],
   "shell": {
     "init_hook": [
