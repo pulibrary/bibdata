@@ -17,36 +17,13 @@ GEM
     aws-sdk-sqs (1.90.0)
       aws-sdk-core (~> 3, >= 3.210.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-xray (1.4.0)
-      aws-sdk-core (~> 3)
-      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.11.0)
       aws-eventstream (~> 1, >= 1.0.2)
-    aws-xray-sdk (0.11.5)
-      aws-sdk-xray (~> 1.4.0)
-      multi_json (~> 1)
-    datadog-ci (0.8.3)
-      msgpack
-    datadog-lambda (2.22.0)
-      aws-xray-sdk (~> 0.11.3)
-      dogstatsd-ruby (~> 5.0)
-    ddtrace (1.23.3)
-      datadog-ci (~> 0.8.1)
-      debase-ruby_core_source (= 3.3.1)
-      libdatadog (~> 7.0.0.1.0)
-      libddwaf (~> 1.14.0.0.0)
-      msgpack
-    debase-ruby_core_source (3.3.1)
+    base64 (0.3.0)
     diff-lcs (1.5.1)
-    dogstatsd-ruby (5.6.4)
-    ffi (1.17.1)
     jmespath (1.6.2)
-    libdatadog (7.0.0.1.0)
-    libddwaf (1.14.0.0.0)
-      ffi (~> 1.0)
+    logger (1.7.0)
     mini_portile2 (2.8.9)
-    msgpack (1.8.2)
-    multi_json (1.15.0)
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -72,8 +49,8 @@ DEPENDENCIES
   aws-sdk-lambda
   aws-sdk-secretsmanager
   aws-sdk-sqs
-  datadog-lambda
-  ddtrace
+  base64
+  logger
   nokogiri
   rspec
 
