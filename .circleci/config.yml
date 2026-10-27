@@ -28,7 +28,7 @@ jobs:
           PGHOST: localhost
           PGUSER: bibdata
           SOLR_URL: http://solr:SolrRocks@localhost:8984/solr/bibdata-core-test
-      - image: postgres:13.6-alpine
+      - image: cimg/postgres:15.8
         environment:
           POSTGRES_USER: bibdata
           POSTGRES_DB: bibdata_test
@@ -44,7 +44,7 @@ jobs:
           install-yarn: true
           node-version: '22.14.0'
       - run: sudo apt-get -y update
-      - run: sudo apt-get install -y postgresql-client || true
+      - run: sudo apt-get install -y libclang-dev postgresql-client || true
       - run: bundle config set --local without production
       - ruby/install-deps
 

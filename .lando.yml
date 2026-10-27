@@ -20,7 +20,7 @@ services:
     config:
       dir: "solr/conf"
   bibdata_database:
-    type: postgres:13
+    type: postgres:15
     portforward: true
   bibdata_redis:
     type: redis:7
