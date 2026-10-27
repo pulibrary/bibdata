@@ -6,6 +6,7 @@ orbs:
   rust: circleci/rust@2.0.0
 jobs:
   lint:
+    resource_class: large
     docker:
       - image: cimg/ruby:4.0
         environment:
@@ -21,6 +22,7 @@ jobs:
           command: bundle exec rubocop
 
   test:
+    resource_class: large
     docker:
       - image: cimg/ruby:4.0.9-browsers
         environment:
@@ -108,6 +110,7 @@ jobs:
           command: bundle exec rspec spec
 
   rust_test:
+    resource_class: large
     docker:
       - image: ruby:4.0
     steps:
@@ -125,7 +128,6 @@ jobs:
       - coveralls/upload:
           coverage_file: lcov.info
           coverage_format: lcov
-
   semgrep:
     docker:
         - image: returntocorp/semgrep
