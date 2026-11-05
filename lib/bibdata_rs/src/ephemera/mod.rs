@@ -2,6 +2,7 @@ use anyhow::anyhow;
 use born_digital_collection::FoldersResponse;
 use ephemera_folder::EphemeraFolder;
 use log::debug;
+use reqwest::ClientBuilder;
 
 pub mod born_digital_collection;
 pub mod ephemera_folder;
@@ -38,11 +39,80 @@ impl CatalogClient {
     pub async fn get_item_data(&self, id: &str) -> anyhow::Result<EphemeraFolder> {
         let url = format!("{}/catalog/{}.jsonld", self.url, id);
         debug!("Fetching JSON-LD of a single folder at {}", url);
-        let response = reqwest::get(&url).await?;
+        let response = self
+            .figgy_http_client()
+            .get(&url)
+            .send()
+            .await
+            .expect("Could not send request to Figgy");
         let status = response.status();
         let data: EphemeraFolder = response.json().await.map_err(|err| {
             anyhow!("Could not parse ephemera folder JSON at {url}: {err:?}, status_code: {status}")
         })?;
         Ok(data)
+    }
+
+    fn recursive() -> BoxFuture<'static, ()> {
+        async move {
+            recursive().await;
+            recursive().await;
+        }
+        .boxed()
+    }
+
+    async fn request_with_retries(
+        &self,
+        url: &str,
+        number_of_retries: usize,
+    ) -> Result<reqwest::Response, anyhow::Error> {
+        if number_of_retries > 0 {
+            let response = self
+                .figgy_http_client()
+                .get(url)
+                .send()
+                .await
+                .expect("Could not send request to Figgy");
+            let status = response.status();
+            if status == 200 {
+                return Ok(response);
+            } else {
+                return self.request_with_retries(url, number_of_retries - 1).await;
+            }
+        } else {
+            Err(anyhow!(
+                "Retried this figgy request several times, giving up"
+            ))
+        }
+    }
+
+    fn figgy_http_client(&self) -> reqwest::Client {
+        reqwest::Client::new()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn it_retries_getting_the_item_data_if_it_gets_a_406() {
+        let mut server = mockito::Server::new_async().await;
+
+        let failing_request = server
+            .mock("GET", "/catalog/123.jsonld")
+            .with_status(406)
+            .create_async()
+            .await;
+        let successful_request = server
+            .mock("GET", "/catalog/123.jsonld")
+            .with_status(200)
+            .with_body("{}")
+            .create_async()
+            .await;
+
+        let _ = CatalogClient::new(server.url()).get_item_data("123").await;
+
+        failing_request.assert_async().await;
+        successful_request.assert_async().await;
     }
 }
