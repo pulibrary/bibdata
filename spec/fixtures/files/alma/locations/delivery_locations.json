@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "label": "Plasma Physics Library",
+        "label": "Princeton Plasma Physics Laboratory",
         "address": "Forrestal Campus Princeton, NJ 08544",
         "phone_number": "609-243-3565",
         "contact_email": "lewislib@princeton.edu",
@@ -347,7 +347,7 @@
         "contact_email": "microfms@princeton.edu",
         "gfa_pickup": "PB",
         "staff_only": false,
-        "pickup_location": false,
+        "pickup_location": true,
         "digital_location": false,
         "url": "https://bibdata.princeton.edu/locations/delivery_locations/28.json",
         "library": {
@@ -381,7 +381,7 @@
         "contact_email": "fstcirc@princeton.edu",
         "gfa_pickup": "QX",
         "staff_only": false,
-        "pickup_location": false,
+        "pickup_location": true,
         "digital_location": false,
         "url": "https://bibdata.princeton.edu/locations/delivery_locations/30.json",
         "library": {
@@ -390,9 +390,9 @@
             "order": 0
         }
     },
-        {
+    {
         "id": 31,
-        "label": "Plasma Physics Library",
+        "label": "Princeton Plasma Physics Laboratory",
         "address": "Forrestal Campus Princeton, NJ 08544",
         "phone_number": "609-243-3565",
         "contact_email": "lewislib@princeton.edu",
