@@ -2,7 +2,6 @@ use anyhow::anyhow;
 use born_digital_collection::FoldersResponse;
 use ephemera_folder::EphemeraFolder;
 use log::debug;
-use reqwest::ClientBuilder;
 
 pub mod born_digital_collection;
 pub mod ephemera_folder;
@@ -39,12 +38,7 @@ impl CatalogClient {
     pub async fn get_item_data(&self, id: &str) -> anyhow::Result<EphemeraFolder> {
         let url = format!("{}/catalog/{}.jsonld", self.url, id);
         debug!("Fetching JSON-LD of a single folder at {}", url);
-        let response = self
-            .figgy_http_client()
-            .get(&url)
-            .send()
-            .await
-            .expect("Could not send request to Figgy");
+        let response = self.request_with_retries(&url, 3).await?;
         let status = response.status();
         let data: EphemeraFolder = response.json().await.map_err(|err| {
             anyhow!("Could not parse ephemera folder JSON at {url}: {err:?}, status_code: {status}")
@@ -52,20 +46,12 @@ impl CatalogClient {
         Ok(data)
     }
 
-    fn recursive() -> BoxFuture<'static, ()> {
-        async move {
-            recursive().await;
-            recursive().await;
-        }
-        .boxed()
-    }
-
     async fn request_with_retries(
         &self,
         url: &str,
-        number_of_retries: usize,
+        mut number_of_retries: usize,
     ) -> Result<reqwest::Response, anyhow::Error> {
-        if number_of_retries > 0 {
+        while number_of_retries > 0 {
             let response = self
                 .figgy_http_client()
                 .get(url)
@@ -76,13 +62,12 @@ impl CatalogClient {
             if status == 200 {
                 return Ok(response);
             } else {
-                return self.request_with_retries(url, number_of_retries - 1).await;
+                number_of_retries -= 1;
             }
-        } else {
-            Err(anyhow!(
-                "Retried this figgy request several times, giving up"
-            ))
         }
+        Err(anyhow!(
+            "Retried this figgy request several times, giving up"
+        ))
     }
 
     fn figgy_http_client(&self) -> reqwest::Client {
