@@ -39,10 +39,10 @@ impl CatalogClient {
         let url = format!("{}/catalog/{}.jsonld", self.url, id);
         debug!("Fetching JSON-LD of a single folder at {}", url);
         let response = reqwest::get(&url).await?;
-        let data: EphemeraFolder = response
-            .json()
-            .await
-            .map_err(|err| anyhow!("Could not parse ephemera folder JSON at {url}: {err:?}"))?;
+        let status = response.status();
+        let data: EphemeraFolder = response.json().await.map_err(|err| {
+            anyhow!("Could not parse ephemera folder JSON at {url}: {err:?}, status_code: {status}")
+        })?;
         Ok(data)
     }
 }
