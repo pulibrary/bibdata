@@ -4,6 +4,7 @@ orbs:
   node: circleci/node@5.0.3
   ruby: circleci/ruby@4.0.0
   rust: circleci/rust@2.0.0
+  browser-tools: circleci/browser-tools@2.4.2
 jobs:
   lint:
     resource_class: large
@@ -41,6 +42,7 @@ jobs:
 
     steps:
       - checkout
+      - browser-tools/install_browser_tools
       - rust/install
       - node/install:
           install-yarn: true
