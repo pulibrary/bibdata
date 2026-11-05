@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "label": "Plasma Physics Library",
+        "label": "Princeton Plasma Physics Laboratory",
         "address": "Forrestal Campus Princeton, NJ 08544",
         "phone_number": "609-243-3565",
         "contact_email": "lewislib@princeton.edu",
@@ -392,7 +392,7 @@
     },
     {
         "id": 31,
-        "label": "Plasma Physics Library",
+        "label": "Princeton Plasma Physics Laboratory",
         "address": "Forrestal Campus Princeton, NJ 08544",
         "phone_number": "609-243-3565",
         "contact_email": "lewislib@princeton.edu",
