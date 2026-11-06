@@ -1,10 +1,10 @@
 GIT
-  remote: https://github.com/pulibrary/change_the_subject.git
-  revision: eaa3c01f338f2a469f318bac7af462de7f41cd72
+  remote: https://github.com/pulibrary/change_the_subject_rs.git
+  revision: 319f1ff39d2db816d608c23860193ca66cb81d3a
   branch: main
   specs:
-    change_the_subject (1.0.0)
-      yaml
+    change_the_subject_rs (0.1.0)
+      rb_sys (~> 0.9.130)
 
 GIT
   remote: https://github.com/pulibrary/marc_cleanup.git
@@ -798,7 +798,6 @@ GEM
       rexml
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yaml (0.4.0)
     yard (0.9.45)
     yell (2.2.2)
     zeitwerk (2.8.3)
@@ -835,7 +834,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rails-console
   capybara
-  change_the_subject!
+  change_the_subject_rs!
   connection_pool
   coveralls_reborn
   devise

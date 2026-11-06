@@ -5,7 +5,7 @@ require 'active_support/core_ext/object/blank'
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
-require 'change_the_subject'
+require 'change_the_subject_rs'
 require_relative '../lib'
 require 'stringex'
 require 'time'
@@ -54,7 +54,6 @@ end
 $LOAD_PATH.unshift(File.expand_path('..', __dir__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 language_service = LanguageService.new
-change_the_subject = ChangeTheSubject.new
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
@@ -657,7 +656,7 @@ to_field 'lc_subject_display' do |record, accumulator|
   if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
     subjects += ['Indigenous Studies']
   end
-  subjects = change_the_subject.fix(subject_terms: subjects)
+  subjects = ChangeTheSubjectRS.fix(subject_terms: subjects)
   local_subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| local_heading? field }
   accumulator.replace(subjects | local_subjects)
 end
@@ -668,7 +667,7 @@ to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator
   if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
     subjects += ['Indigenous Studies']
   end
-  new_subjects = change_the_subject.fix(subject_terms: subjects)
+  new_subjects = ChangeTheSubjectRS.fix(subject_terms: subjects)
   combined_subjects = Array(subjects).concat(Array(new_subjects))&.uniq
   accumulator.replace(combined_subjects)
 end
@@ -740,7 +739,7 @@ to_field 'subject_facet' do |record, accumulator|
   if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
     subjects += ['Indigenous Studies']
   end
-  subjects = change_the_subject.fix(subject_terms: subjects)
+  subjects = ChangeTheSubjectRS.fix(subject_terms: subjects)
   additional_subject_thesauri = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit]) }
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft aat rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp homoit] }
   accumulator.replace([subjects, additional_subject_thesauri, genres].flatten)
@@ -754,7 +753,7 @@ to_field 'lc_subject_facet' do |record, accumulator|
   if BibdataRs::Marc.indicates_indigenous_studies?(lc_subjects)
     lc_subjects += ['Indigenous Studies']
   end
-  lc_subjects = change_the_subject.fix(subject_terms: lc_subjects)
+  lc_subjects = ChangeTheSubjectRS.fix(subject_terms: lc_subjects)
 
   accumulator.replace(lc_subjects)
 end
@@ -768,7 +767,7 @@ end
 
 # See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
 to_field 'geographic_facet', marc_geo_facet do |_record, accumulator|
-  subjects = change_the_subject.fix(subject_terms: accumulator)
+  subjects = ChangeTheSubjectRS.fix(subject_terms: accumulator)
   accumulator.replace(subjects)
 end
 
@@ -820,7 +819,7 @@ to_field 'subject_topic_facet' do |record, accumulator|
   if BibdataRs::Marc.indicates_indigenous_studies?(subjects)
     subjects += ['Indigenous Studies']
   end
-  subjects = change_the_subject.fix(subject_terms: subjects)
+  subjects = ChangeTheSubjectRS.fix(subject_terms: subjects)
   accumulator.replace(subjects)
 end
 

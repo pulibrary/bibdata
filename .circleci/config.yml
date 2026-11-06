@@ -7,16 +7,14 @@ orbs:
   browser-tools: circleci/browser-tools@2.4.2
 jobs:
   lint:
-    resource_class: large
     docker:
-      - image: cimg/ruby:4.0
+      - image: ruby:4.0
         environment:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: bibdata
 
     steps:
       - checkout
+      - rust/install
       - ruby/install-deps
       - run:
           name: Lint with Rubocop

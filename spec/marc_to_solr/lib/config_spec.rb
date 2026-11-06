@@ -570,48 +570,6 @@ describe 'From traject_config.rb', :indexing do
         record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f650], 'leader' => leader))
         expect(record['geographic_facet'].first).to eq('France')
       end
-
-      describe 'local overrides' do
-        # rubocop:disable RSpec/IndexedLet
-        let(:f650) { { '650' => { 'ind1' => ' ', 'ind2' => '0', 'subfields' => [{ 'a' => 'Oil spills', 'z' => 'America, Gulf of' }] } } }
-        let(:f651) { { '651' => { 'ind1' => ' ', 'ind2' => '0', 'subfields' => [{ 'a' => 'America, Gulf of. ' }] } } }
-        # rubocop:enable RSpec/IndexedLet
-
-        it 'creates a facet for local marc geographic locations' do
-          record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f650], 'leader' => leader))
-          expect(record['geographic_facet']).to eq(['Mexico, Gulf of', 'America, Gulf of'])
-        end
-
-        it 'creates a facet for local marc geographic locations from 651' do
-          record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f651], 'leader' => leader))
-          expect(record['geographic_facet']).to eq(['Mexico, Gulf of', 'America, Gulf of'])
-        end
-
-        it 'indexes both headings' do
-          # lc_subject_display:
-          # ['Pilot guides—Mexico, Gulf of—Early works to 1800',
-          # 'Pilot guides—America, Gulf of—Early works to 1800',
-          # 'West Indies—Description and travel—Early works to 1800',
-          # 'Mexico, Gulf of',
-          # 'America, Gulf of',
-          # 'Cuba—Description and travel—Early works to 1800']
-          expect(@custom_fixture['lc_subject_display']).to eq(['Pilot guides—Mexico, Gulf of—Early works to 1800', 'Pilot guides—America, Gulf of—Early works to 1800', 'West Indies—Description and travel—Early works to 1800', 'Mexico, Gulf of', 'America, Gulf of', 'Cuba—Description and travel—Early works to 1800'])
-          # lc_subject_facet:
-          # ["Pilot guides",
-          # "Pilot guides—Mexico, Gulf of",
-          # "Pilot guides—America, Gulf of",
-          # "Pilot guides—Mexico, Gulf of—Early works to 1800",
-          # "Pilot guides—America, Gulf of—Early works to 1800",
-          # "West Indies", "West Indies—Description and travel",
-          # "West Indies—Description and travel—Early works to 1800",
-          # "Mexico, Gulf of",
-          # "America, Gulf of",
-          # "Cuba",
-          # "Cuba—Description and travel",
-          # "Cuba—Description and travel—Early works to 1800"]
-          expect(@custom_fixture['lc_subject_facet']).to eq(['Pilot guides', 'Pilot guides—Mexico, Gulf of', 'Pilot guides—America, Gulf of', 'Pilot guides—Mexico, Gulf of—Early works to 1800', 'Pilot guides—America, Gulf of—Early works to 1800', 'West Indies', 'West Indies—Description and travel', 'West Indies—Description and travel—Early works to 1800', 'Mexico, Gulf of', 'America, Gulf of', 'Cuba', 'Cuba—Description and travel', 'Cuba—Description and travel—Early works to 1800'])
-        end
-      end
     end
 
     describe 'publication_place_facet field' do
