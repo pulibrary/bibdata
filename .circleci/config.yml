@@ -11,6 +11,8 @@ jobs:
       - image: ruby:4.0
         environment:
           RAILS_ENV: test
+    environment:
+      BUNDLE_JOBS: '3'
 
     steps:
       - checkout
