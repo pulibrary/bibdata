@@ -194,7 +194,7 @@ rust_multi_value_field 'edition_display'
 
 # for browse lists Published/Created
 #    880
-to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', alternate_script: :only)
+rust_multi_value_field 'pub_created_vern_display'
 
 # Published/Created:
 #    260 XX abcefg
