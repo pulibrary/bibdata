@@ -674,40 +674,22 @@ end
 
 rust_multi_value_field 'siku_subject_display'
 
-# used for the Browse lists and hierarchical subject facet
-# used in the record page -> Details section to search for Siku subject headings and their subdivisions using
-# the facet[siku_subject_facet] field
-to_field 'siku_subject_facet' do |record, accumulator|
-  subjects = accumulate_hierarchy_per_field(record, '650|*7|abcvxyz') { |field| siku_heading? field }
-  accumulator.replace(subjects)
-end
+# Used for the Browse lists and hierarchical subject facet that searches for
+# Siku subject headings and their subdivisions on the record page.
+rust_multi_value_field 'siku_subject_facet'
 
-to_field 'local_subject_display' do |record, accumulator|
-  subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| local_heading? field }
-  accumulator.replace(subjects)
-end
+rust_multi_value_field 'local_subject_display'
 
-# used for the Browse lists and hierarchical subject facet
-# used in the record page -> Details section to search for Local subject headings and their subdivisions using
-# the facet[local_subject_facet] field
-to_field 'local_subject_facet' do |record, accumulator|
-  subjects = accumulate_hierarchy_per_field(record, '650|*7|abcvxyz') { |field| local_heading? field }
-  accumulator.replace(subjects)
-end
+# Used for the Browse lists and hierarchical subject facet that searches for
+# Local subject headings and their subdivisions on the record page.
+rust_multi_value_field 'local_subject_facet'
 
-# used for the Browse lists and hierarchical subject facet
-# used in the record page -> Details section to search for homoit subject headings and their subdivisions using
-# the facet[homoit_subject_facet] field
-to_field 'homoit_subject_facet' do |record, accumulator|
-  subjects = accumulate_hierarchy_per_field(record, '650|*7|avxyz') { |field| any_thesaurus_match?(field, %w[homoit]) }
-  accumulator.replace(subjects)
-end
+# Used for the Browse lists and hierarchical subject facet that searches for
+# Homosaurus subject headings and their subdivisions on the record page.
+rust_multi_value_field 'homoit_subject_facet'
 
 # Homosaurus controlled vocabulary https://homosaurus.org/
-to_field 'homoit_subject_display' do |record, accumulator|
-  subjects = process_hierarchy(record, '650|*7|avxyz') { |field| any_thesaurus_match?(field, %w[homoit]) }
-  accumulator.replace(subjects)
-end
+rust_multi_value_field 'homoit_subject_display'
 
 to_field 'fast_subject_facet' do |_record, accumulator, context|
   # fast_subject_facet and fast_subject_display have the same implementation
