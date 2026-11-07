@@ -33,8 +33,10 @@ fn strip_trailing_period(value: &str) -> String {
 #[derive(PartialEq)]
 enum SubjectVocabulary {
     Fast,
+    Homosaurus,
     Icpsr,
     LibraryOfCongress,
+    Local,
     Siku,
     UnknownVocabulary,
     VocabularyNotSpecified,
@@ -47,6 +49,17 @@ impl From<&Field> for SubjectVocabulary {
             Self::LibraryOfCongress
         } else if field.ind2() == "7" {
             match field.first_subfield("2") {
+                // A local heading is a `local` vocabulary that is also tagged
+                // with a Princeton `5` subfield.
+                Some(subfield)
+                    if subfield.content().trim() == "local"
+                        && field
+                            .get_subfields("5")
+                            .iter()
+                            .any(|subfield| subfield.content() == "NjP") =>
+                {
+                    Self::Local
+                }
                 Some(subfield) => Self::from(subfield.content()),
                 _ => Self::VocabularyNotSpecified,
             }
@@ -61,8 +74,8 @@ impl From<&str> for SubjectVocabulary {
         match value.trim() {
             "fast" => Self::Fast,
             "icpsr" => Self::Icpsr,
-            "sk" => Self::Siku,
-            "skbb" => Self::Siku,
+            "sk" | "skbb" => Self::Siku,
+            "homoit" => Self::Homosaurus,
             _ => Self::UnknownVocabulary,
         }
     }
@@ -109,19 +122,85 @@ pub fn icpsr_subjects(record: &Record) -> Vec<String> {
         .collect()
 }
 
-pub fn siku_subjects_display(record: &Record) -> impl Iterator<Item = String> {
+const DETAILED_SUBJECT_SUBFIELDS: &[&str] = &["a", "b", "c", "v", "x", "y", "z"];
+const BASIC_SUBJECT_SUBFIELDS: &[&str] = &["a", "v", "x", "y", "z"];
+
+/// A 650 "Subject Added Entry--Topical Term" field.  Its subject vocabulary
+/// (thesaurus) is given by the second indicator, or by subfield `2` when the
+/// indicator is `7`; see https://www.loc.gov/marc/bibliographic/bd650.html.
+struct Field650<'a>(&'a Field);
+
+impl<'a> Field650<'a> {
+    fn vocabulary(&self) -> SubjectVocabulary {
+        SubjectVocabulary::from(self.0)
+    }
+
+    fn heading(&self, subfields: &[&'static str]) -> String {
+        hierarchical_heading(self.0, subfields, subject_separator_before)
+    }
+}
+
+/// Place `SEPARATOR` before these subdivisions when building a 650 heading.
+fn subject_separator_before(subfield: &Subfield) -> bool {
+    ["t", "v", "x", "y", "z"].contains(&subfield.code())
+}
+
+/// The concatenated headings of 650 subjects from a specialized thesaurus.
+fn specialized_subjects(
+    record: &Record,
+    vocab: SubjectVocabulary,
+    subfields: &[&'static str],
+) -> impl Iterator<Item = String> {
     record.extract_field_values_by(
-        |field| {
-            latin_or_non_latin_tag_included_in(&["650"])(field)
-                && matches!(SubjectVocabulary::from(field), SubjectVocabulary::Siku)
+        move |field| latin_or_non_latin_tag_included_in(&["650"])(field),
+        move |field| {
+            let field = Field650(field);
+            (field.vocabulary() == vocab).then(|| field.heading(subfields))
         },
-        |field| {
-            Some(hierarchical_heading(
-                field,
-                &["a", "b", "c", "v", "x", "y", "z"],
-                |subfield| ["t", "v", "x", "y", "z"].contains(&subfield.code()),
-            ))
-        },
+    )
+}
+
+/// The browse/facet prefixes of 650 subjects from a specialized thesaurus,
+/// e.g. `a`, `a—b`, `a—b—c`.
+fn specialized_subject_facet(
+    record: &Record,
+    vocab: SubjectVocabulary,
+    subfields: &[&'static str],
+) -> impl Iterator<Item = String> {
+    specialized_subjects(record, vocab, subfields)
+        .flat_map(accumulate_hierarchical_heading)
+        .flatten()
+}
+
+pub fn siku_subjects_display(record: &Record) -> impl Iterator<Item = String> {
+    specialized_subjects(record, SubjectVocabulary::Siku, DETAILED_SUBJECT_SUBFIELDS)
+}
+
+pub fn local_subjects_display(record: &Record) -> impl Iterator<Item = String> {
+    specialized_subjects(record, SubjectVocabulary::Local, DETAILED_SUBJECT_SUBFIELDS)
+}
+
+pub fn homoit_subjects_display(record: &Record) -> impl Iterator<Item = String> {
+    specialized_subjects(
+        record,
+        SubjectVocabulary::Homosaurus,
+        BASIC_SUBJECT_SUBFIELDS,
+    )
+}
+
+pub fn siku_subject_facet(record: &Record) -> impl Iterator<Item = String> {
+    specialized_subject_facet(record, SubjectVocabulary::Siku, DETAILED_SUBJECT_SUBFIELDS)
+}
+
+pub fn local_subject_facet(record: &Record) -> impl Iterator<Item = String> {
+    specialized_subject_facet(record, SubjectVocabulary::Local, DETAILED_SUBJECT_SUBFIELDS)
+}
+
+pub fn homoit_subject_facet(record: &Record) -> impl Iterator<Item = String> {
+    specialized_subject_facet(
+        record,
+        SubjectVocabulary::Homosaurus,
+        BASIC_SUBJECT_SUBFIELDS,
     )
 }
 
@@ -262,6 +341,71 @@ mod tests {
             ])
         );
         assert_eq!(accumulate_hierarchical_heading(String::new()), None);
+    }
+
+    #[test]
+    fn it_requires_an_njp_5_subfield_for_local_subjects() {
+        let record = Record::from_breaker(
+            r#"=650 \7 $a Undocumented immigrants $z Europe. $2 local $5NjP
+=650 \7 $a Not local $2 local"#,
+        )
+        .unwrap();
+        assert_eq!(
+            local_subjects_display(&record).collect::<Vec<_>>(),
+            vec!["Undocumented immigrants—Europe".to_string()]
+        );
+        assert_eq!(
+            local_subject_facet(&record).collect::<Vec<_>>(),
+            vec![
+                "Undocumented immigrants".to_string(),
+                "Undocumented immigrants—Europe".to_string(),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_finds_homoit_subjects_from_display_and_facet() {
+        let record = Record::from_breaker(
+            r#"=650 \7 $a Gay scientists $2 homoit
+=650 \7 $a Siku only $2 sk"#,
+        )
+        .unwrap();
+        assert_eq!(
+            homoit_subjects_display(&record).collect::<Vec<_>>(),
+            vec!["Gay scientists".to_string()]
+        );
+        assert_eq!(
+            homoit_subject_facet(&record).collect::<Vec<_>>(),
+            vec!["Gay scientists".to_string()]
+        );
+    }
+
+    #[test]
+    fn it_includes_non_latin_subject_headings() {
+        let record = Record::from_breaker(
+            r#"=650 \7 $6880-01 $a Chippu $x Chʻongjimnyu $x Hanʼgugin chʻansul. $2 sk
+=880 \7 $6650-01 $a 集部 $x 總集類 $x 韓國人　撰述. $2 sk"#,
+        )
+        .unwrap();
+        assert_eq!(
+            siku_subjects_display(&record).collect::<Vec<_>>(),
+            vec![
+                "Chippu—Chʻongjimnyu—Hanʼgugin chʻansul".to_string(),
+                "集部—總集類—韓國人　撰述.".to_string()
+            ]
+        );
+    }
+
+    #[test]
+    fn it_ignores_headings_without_a_recognized_vocabulary() {
+        let record = Record::from_breaker(
+            r#"=650 \0 $a Plain LC heading
+=650 \7 $a Unknown thesaurus $2 mystery"#,
+        )
+        .unwrap();
+        assert_eq!(siku_subjects_display(&record).count(), 0);
+        assert_eq!(local_subjects_display(&record).count(), 0);
+        assert_eq!(homoit_subjects_display(&record).count(), 0);
     }
 
     #[test]
