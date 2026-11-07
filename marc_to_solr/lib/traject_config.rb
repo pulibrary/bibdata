@@ -564,7 +564,7 @@ end
 to_field 'language_facet', marc_languages
 to_field 'language_facet' do |record, accumulator|
   accumulator.concat(language_service.iso639_language_names(record))
-  accumulator.append('Indigenous Languages (Western Hemisphere)') if language_service.in_an_indigenous_language?(record)
+  accumulator.append('Indigenous Languages (Western Hemisphere)') if BibdataRs::Marc.in_an_indigenous_language?(record)
 end
 
 rust_multi_value_field 'original_language_of_translation_facet'
