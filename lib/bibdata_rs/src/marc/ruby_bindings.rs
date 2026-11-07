@@ -115,7 +115,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(146);
+    let hash = ruby.hash_new_capa(152);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -464,6 +464,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         ruby.ary_from_iter(publication::pub_created_display(&record)),
     )?;
     hash.aset(
+        "pub_created_vern_display",
+        extract_marc!(non_latin "260abcefg", "264abcefg3")(&record),
+    )?;
+    hash.aset(
         "publication_date_citation_display",
         fixed_field::dates::publication_date_citation_display(&record),
     )?;
@@ -508,6 +512,26 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "siku_subject_display",
         ruby.ary_from_iter(subject::siku_subjects_display(&record)),
+    )?;
+    hash.aset(
+        "siku_subject_facet",
+        ruby.ary_from_iter(subject::siku_subject_facet(&record)),
+    )?;
+    hash.aset(
+        "local_subject_display",
+        ruby.ary_from_iter(subject::local_subjects_display(&record)),
+    )?;
+    hash.aset(
+        "local_subject_facet",
+        ruby.ary_from_iter(subject::local_subject_facet(&record)),
+    )?;
+    hash.aset(
+        "homoit_subject_display",
+        ruby.ary_from_iter(subject::homoit_subjects_display(&record)),
+    )?;
+    hash.aset(
+        "homoit_subject_facet",
+        ruby.ary_from_iter(subject::homoit_subject_facet(&record)),
     )?;
     hash.aset(
         "standard_no_index",
@@ -731,6 +755,46 @@ mod tests {
             vec![
                 String::from("Dust jackets (Bindings)"),
                 String::from("Dust jackets (Bindings)—2013"),
+            ]
+        );
+    }
+
+    #[ruby_test]
+    fn it_includes_subject_facets_and_displays_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby.eval(
+            r#"require 'marc'
+record = MARC::Record.new
+record.append(MARC::DataField.new('650', ' ', '7', ['a', 'Chippu'], ['x', 'Chʻongjimnyu'], ['x', 'Hanʼgugin chʻansul.'], ['2', 'sk']))
+record.append(MARC::DataField.new('650', ' ', '7', ['a', 'Undocumented immigrants'], ['z', 'Europe.'], ['2', 'local'], ['5', 'NjP']))
+record.append(MARC::DataField.new('650', ' ', '7', ['a', 'Gay scientists'], ['2', 'homoit']))
+record"#,
+        ).unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("local_subject_display")
+                .unwrap(),
+            vec![String::from("Undocumented immigrants—Europe")]
+        );
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("local_subject_facet")
+                .unwrap(),
+            vec![
+                String::from("Undocumented immigrants"),
+                String::from("Undocumented immigrants—Europe"),
+            ]
+        );
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("homoit_subject_display")
+                .unwrap(),
+            vec![String::from("Gay scientists")]
+        );
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("homoit_subject_facet")
+                .unwrap(),
+            vec![
+                String::from("Gay scientists"),
             ]
         );
     }
