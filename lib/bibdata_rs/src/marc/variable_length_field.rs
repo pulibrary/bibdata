@@ -57,13 +57,10 @@ pub fn latin_or_non_latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> b
 }
 
 pub fn non_latin_tag(field: &Field) -> Option<&str> {
-    if field.tag() != "880" {
-        return None;
-    };
-    field
-        .first_subfield("6")
-        .map(|subfield| subfield.content().trim())
-        .and_then(|raw| raw.get(0..3))
+    match field.tag() {
+        "880" => field.first_subfield("6")?.content().trim().get(0..3),
+        _ => None,
+    }
 }
 
 pub fn non_latin_tag_included_in(tags: &[&str]) -> impl Fn(&Field) -> bool {

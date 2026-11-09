@@ -43,19 +43,19 @@ impl<'a> TryFrom<&'a Field> for AlmaElectronicPortfolio {
     type Error = InvalidPortfolioData;
 
     fn try_from(field: &'a Field) -> Result<Self, Self::Error> {
-        if field.tag() != "951" {
-            return Err(InvalidPortfolioData);
-        };
-        field
-            .first_subfield("8")
-            .and_then(|id_subfield| {
-                let id = id_subfield.content();
-                if Self::is_valid_portfolio_id(id) {
-                    field.first_subfield("a").map(Self::from)
-                } else {
-                    None
-                }
-            })
-            .ok_or(InvalidPortfolioData)
+        match field.tag() {
+            "951" => field
+                .first_subfield("8")
+                .and_then(|id_subfield| {
+                    let id = id_subfield.content();
+                    if Self::is_valid_portfolio_id(id) {
+                        field.first_subfield("a").map(Self::from)
+                    } else {
+                        None
+                    }
+                })
+                .ok_or(InvalidPortfolioData),
+            _ => Err(InvalidPortfolioData),
+        }
     }
 }
