@@ -10,6 +10,7 @@ use crate::marc::control_field::control_number::ControlNumber;
 use crate::marc::control_field::partner_id::other_id;
 use crate::marc::control_field::system_control_number::standard_numbers;
 use crate::marc::date::cataloged_date;
+use crate::marc::electronic_portfolio::electronic_portfolio_s;
 use crate::marc::figgy::figgy_1display;
 use crate::marc::fixed_field::dates::BeginDate;
 use crate::marc::holdings::partner::partner_holdings;

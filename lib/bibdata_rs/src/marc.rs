@@ -10,6 +10,7 @@ pub mod contents;
 pub mod contributors;
 pub mod control_field;
 pub mod date;
+pub mod electronic_portfolio;
 pub mod extract_values;
 pub mod fixed_field;
 pub mod genre;
