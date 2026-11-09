@@ -1,4 +1,7 @@
-use crate::marc::{extract_values::ExtractValues, string_normalize::maybe_not_empty};
+use crate::{
+    data_pipeline::pipe,
+    marc::{extract_values::ExtractValues, string_normalize::maybe_not_empty},
+};
 use itertools::Itertools;
 use marctk::{Field, Record, Subfield};
 use std::ops::Deref;
@@ -194,6 +197,18 @@ pub fn extract_marc_impl<'a>(
     }
 }
 
+/// Join all subfields of `tag` (and any 880 parallel fields, excluding their $6
+/// linkage subfield)
+pub fn all_subfields_of(tag: &str, record: &Record) -> impl Iterator<Item = String> {
+    record.extract_field_values_by(
+        |field| field_tag_matches(field, ScriptsToIndex::All, &[tag]),
+        pipe!(
+            |field| join_subfields_except(field, &["6"]),
+            maybe_not_empty
+        ),
+    )
+}
+
 pub(crate) use extract_marc;
 
 #[cfg(test)]
@@ -246,6 +261,33 @@ mod tests {
             .content()
             .collect();
         assert_eq!(after_t, "squidorca");
+    }
+
+    #[test]
+    fn all_subfields_of_joins_all_subfields() {
+        let record = Record::from_breaker("=340 \\ $a in. $b videorecording $c 3 in.").unwrap();
+        assert_eq!(
+            all_subfields_of("340", &record).collect::<Vec<_>>(),
+            vec!["in. videorecording 3 in.".to_owned()]
+        );
+    }
+
+    #[test]
+    fn all_subfields_of_excludes_link_subfield_from_parallel_880() {
+        let record = Record::from_breaker("=880 \\ $6 340-01 $a 卷. $b 影像").unwrap();
+        assert_eq!(
+            all_subfields_of("340", &record).collect::<Vec<_>>(),
+            vec!["卷. 影像".to_owned()]
+        );
+    }
+
+    #[test]
+    fn all_subfields_of_returns_empty_for_unmatched_tag() {
+        let record = Record::from_breaker("=856 \\ $6 some-link").unwrap();
+        assert_eq!(
+            all_subfields_of("340", &record).collect::<Vec<_>>(),
+            Vec::<String>::new()
+        );
     }
 
     #[test]

@@ -1,8 +1,12 @@
 // This module handles publication-related MARC fields like 260 and 264
 
-use crate::marc::{
-    extract_values::ExtractValues, trim_punctuation,
-    variable_length_field::latin_or_non_latin_tag_included_in,
+use crate::{
+    data_pipeline::pipe,
+    marc::{
+        extract_values::ExtractValues,
+        trim_punctuation,
+        variable_length_field::{latin_or_non_latin_tag, latin_or_non_latin_tag_included_in},
+    },
 };
 
 use super::{
@@ -10,7 +14,7 @@ use super::{
     variable_length_field::{join_all_subfields, join_subfields},
 };
 use itertools::Itertools;
-use marctk::Record;
+use marctk::{Field, Record, Subfield};
 
 pub fn pub_created_display(record: &Record) -> impl Iterator<Item = String> {
     statements_from_260(record)
@@ -39,6 +43,32 @@ pub fn pub_citation_display(record: &Record) -> impl Iterator<Item = String> {
             },
         )
         .unique()
+}
+
+pub fn publication_location_citation_display(record: &Record) -> Option<String> {
+    first_citation_subfield(record, "a")
+}
+
+pub fn publisher_citation_display(record: &Record) -> Option<String> {
+    first_citation_subfield(record, "b")
+}
+
+fn first_citation_subfield(record: &Record, subfield: &str) -> Option<String> {
+    record
+        .extract_field_values_by(is_publication_field, |field| {
+            field
+                .first_subfield(subfield)
+                .map(pipe!(Subfield::content, trim_punctuation))
+        })
+        .next()
+}
+
+fn is_publication_field(field: &Field) -> bool {
+    match latin_or_non_latin_tag(field) {
+        "260" => true,
+        "264" => field.ind2() == "1",
+        _ => false,
+    }
 }
 
 fn statements_from_264(record: &Record) -> impl Iterator<Item = String> {
@@ -239,5 +269,62 @@ mod tests {
             Some("昆明: 云南大学出版社".to_string())
         );
         assert!(publisher_citations.next().is_none());
+    }
+
+    #[test]
+    fn it_gets_the_first_publication_location_from_260() {
+        let record = Record::from_breaker(
+            r#"=260 \ $a Madison, WI : $b University of Wisconsin Press, $c 1976."#,
+        )
+        .unwrap();
+        assert_eq!(
+            publication_location_citation_display(&record),
+            Some("Madison, WI".to_owned())
+        );
+    }
+
+    #[test]
+    fn it_gets_the_first_publisher_from_260() {
+        let record = Record::from_breaker(
+            r#"=260 \ $a Madison, WI : $b University of Wisconsin Press, $c 1976."#,
+        )
+        .unwrap();
+        assert_eq!(
+            publisher_citation_display(&record),
+            Some("University of Wisconsin Press".to_owned())
+        );
+    }
+
+    #[test]
+    fn it_gets_citation_display_from_264_with_ind2_1() {
+        let record =
+            Record::from_breaker(r#"=264 \1 $a Kunming : $b Yunnan da xue chu ban she, $c 2014."#)
+                .unwrap();
+        assert_eq!(
+            publication_location_citation_display(&record),
+            Some("Kunming".to_owned())
+        );
+        assert_eq!(
+            publisher_citation_display(&record),
+            Some("Yunnan da xue chu ban she".to_owned())
+        );
+    }
+
+    #[test]
+    fn it_ignores_264_fields_without_ind2_1_for_citation_display() {
+        let record = Record::from_breaker(r#"=264 \3 $a A production place only"#).unwrap();
+        assert_eq!(publication_location_citation_display(&record), None);
+        assert_eq!(publisher_citation_display(&record), None);
+    }
+
+    #[test]
+    fn it_gets_citation_display_from_non_latin_parallel_264() {
+        let record =
+            Record::from_breaker(r#"=880 \1 $6 264-04 $a 昆明 : $b 云南大学出版社, $c 2014."#)
+                .unwrap();
+        assert_eq!(
+            publication_location_citation_display(&record),
+            Some("昆明".to_owned())
+        );
     }
 }

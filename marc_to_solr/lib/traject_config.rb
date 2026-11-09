@@ -146,7 +146,7 @@ rust_multi_value_field 'title_no_h_index'
 
 # I'm not sure if this title_t field is used anywhere...
 rust_single_value_field 'title_t'
-to_field 'title_citation_display', extract_marc('245ab', trim_punctuation: true)
+rust_multi_value_field 'title_citation_display'
 
 rust_multi_value_field 'series_title_index'
 rust_multi_value_field 'series_statement_index'
@@ -188,8 +188,8 @@ rust_multi_value_field 'pub_created_display'
 rust_multi_value_field 'pub_created_s'
 rust_multi_value_field 'pub_citation_display'
 
-to_field 'publication_location_citation_display', extract_marc('260a:264|*1|a', trim_punctuation: true, first: true)
-to_field 'publisher_citation_display', extract_marc('260b:264|*1|b', trim_punctuation: true, first: true)
+rust_single_value_field 'publication_location_citation_display'
+rust_single_value_field 'publisher_citation_display'
 
 rust_single_value_field 'pub_date_display'
 rust_single_value_field 'pub_date_start_sort'
@@ -207,7 +207,7 @@ rust_multi_value_field 'format'
 
 # Medium/Support:
 #    340 XX 3abcdefhl
-to_field 'medium_support_display', extract_marc('340')
+rust_multi_value_field 'medium_support_display'
 
 # Electronic access:
 #    856
@@ -222,7 +222,7 @@ to_field 'electronic_access_1display' do |record, accumulator|
   accumulator[0] = JSON.generate(links) unless links == {}
 end
 
-to_field 'electronic_access_index', extract_marc('856')
+rust_multi_value_field 'electronic_access_index'
 
 # Description:
 # 254 XX a
@@ -243,7 +243,7 @@ to_field 'electronic_access_index', extract_marc('856')
 rust_multi_value_field 'description_display'
 rust_multi_value_field 'description_t'
 
-to_field 'number_of_pages_citation_display', extract_marc('300a', trim_punctuation: true)
+rust_multi_value_field 'number_of_pages_citation_display'
 
 rust_single_value_field 'coverage_display'
 
