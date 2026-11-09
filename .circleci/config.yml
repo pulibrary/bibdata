@@ -12,7 +12,7 @@ jobs:
         environment:
           RAILS_ENV: test
     environment:
-      BUNDLE_JOBS: '3'
+      BUNDLE_JOBS: '1'
 
     steps:
       - checkout

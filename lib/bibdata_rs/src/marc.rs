@@ -15,6 +15,7 @@ pub mod fixed_field;
 pub mod genre;
 pub mod holdings;
 pub mod identifier;
+pub mod indigenous_languages;
 pub mod indigenous_studies;
 pub mod language;
 pub mod marcxml_compressor;

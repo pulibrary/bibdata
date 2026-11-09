@@ -47,6 +47,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         "indicates_indigenous_studies?",
         function!(indicates_indigenous_studies, 1),
     )?;
+    submodule_marc.define_singleton_method(
+        "in_an_indigenous_language?",
+        function!(in_an_indigenous_language, 1),
+    )?;
     submodule_marc.define_singleton_method("holding_id", function!(holding_id, 2))?;
     submodule_marc.define_module_function("solr_fields", function!(solr_fields, 1))?;
     submodule_marc.define_singleton_method("is_scsb?", function!(is_scsb, 1))?;
@@ -610,6 +614,11 @@ fn indicates_indigenous_studies(terms: magnus::RArray) -> Result<bool, magnus::E
     ))
 }
 
+fn in_an_indigenous_language(ruby: &Ruby, record: RObject) -> Result<bool, magnus::Error> {
+    let record = marctk_from_ruby_marc_record(ruby, &record)?;
+    Ok(indigenous_languages::in_an_indigenous_language(&record))
+}
+
 fn index_test_figgy_data_into_redis() {
     let json_fixture_path = APPLICATION_ROOT.join("spec/fixtures/files/figgy/figgy_report.json");
     let json = fs::read_to_string(&json_fixture_path).unwrap_or_else(|_| panic!("Could not find the figgy_report in the fixtures directory, please check the path ({}), which is referenced in file {}", json_fixture_path.to_str().unwrap(), file!()));
@@ -793,9 +802,7 @@ record"#,
         assert_eq!(
             hash.aref::<&str, Vec<String>>("homoit_subject_facet")
                 .unwrap(),
-            vec![
-                String::from("Gay scientists"),
-            ]
+            vec![String::from("Gay scientists"),]
         );
     }
 

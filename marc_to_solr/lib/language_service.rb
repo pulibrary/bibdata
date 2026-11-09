@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 require 'languages'
-require_relative 'indigenous_languages'
 
 class LanguageService
-  include IndigenousLanguages
-
   def code_to_name(code)
     BibdataRs::Languages.code_to_name(code) || iso_639_5_name(code)
   end
