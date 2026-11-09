@@ -155,11 +155,7 @@ rust_multi_value_field 'contains_title_index'
 rust_multi_value_field 'linked_title_index'
 rust_multi_value_field 'linked_series_title_index'
 
-to_field 'series_ae_index', extract_marc('830adfghklmnoprstv:840anpv') do |record, accumulator|
-  accumulator << everything_after_t(record, '800:810:811')
-  accumulator.flatten!
-end
-
+rust_multi_value_field 'series_ae_index'
 rust_multi_value_field 'linked_series_index'
 rust_multi_value_field 'original_version_series_index'
 rust_multi_value_field 'cjk_title'

@@ -48,6 +48,18 @@ pub fn series_title_index(record: &Record) -> impl Iterator<Item = String> {
     from_deprecated_field.into_iter().chain(from_newer_fields)
 }
 
+pub fn series_ae_index(record: &Record) -> impl Iterator<Item = String> {
+    let from_series_fields = extract_marc!("830adfghklmnoprstv", "840anpv")(record);
+    let from_added_entries = record.extract_field_values_by(
+        latin_or_non_latin_tag_included_in(&["800", "810", "811"]),
+        |field| {
+            let joined = field.subfields().iter().subfields_after("t").join(" ");
+            pipe!(trim_punctuation, maybe_not_empty)(&joined)
+        },
+    );
+    from_series_fields.into_iter().chain(from_added_entries)
+}
+
 pub fn latin_script_title(record: &Record) -> Option<String> {
     record.first_matching_field_value(
         |field| field.tag() == "245",
@@ -190,6 +202,54 @@ mod tests {
         .unwrap();
         let values: Vec<_> = series_title_index(&record).collect();
         assert!(values.contains(&"زوراء".to_string()));
+    }
+
+    #[test]
+    fn it_indexes_series_ae_index_from_830_and_840() {
+        let record = Record::from_breaker(
+            "=830 02$aSafari Books Online $f(Series)$\n=840 00$aAddison-Wesley professional computing $vseries",
+        )
+        .unwrap();
+        let values: Vec<_> = series_ae_index(&record).collect();
+        assert_eq!(
+            values,
+            vec![
+                String::from("Safari Books Online (Series)"),
+                String::from("Addison-Wesley professional computing series"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_includes_everything_after_t_in_800_810_811() {
+        let record = Record::from_breaker(
+            "=800 00$aPoe, Allan $bE. $tTales$n1$\n=810 02$aUniv. $bLib. $tReports$\n=811 02$aCongress $tPapers",
+        )
+        .unwrap();
+        let values: Vec<_> = series_ae_index(&record).collect();
+        assert_eq!(
+            values,
+            vec![
+                String::from("Tales 1"),
+                String::from("Reports"),
+                String::from("Papers"),
+            ]
+        );
+    }
+
+    #[test]
+    fn it_includes_non_latin_series_ae_index_from_880() {
+        let record =
+            Record::from_breaker("=800 00$aPoe, Allan $bE. $tTales$\n=880 00$6800-01$aポー $t物語")
+                .unwrap();
+        let values: Vec<_> = series_ae_index(&record).collect();
+        assert!(values.contains(&"物語".to_string()));
+    }
+
+    #[test]
+    fn it_excludes_series_ae_index_without_matching_fields() {
+        let record = Record::from_breaker("=245 00 $aThe octopus").unwrap();
+        assert!(series_ae_index(&record).collect::<Vec<_>>().is_empty());
     }
 
     #[test]
