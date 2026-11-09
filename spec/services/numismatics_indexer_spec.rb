@@ -69,7 +69,7 @@ RSpec.describe NumismaticsIndexer do
         allow(solr_connection).to receive(:add).and_wrap_original do |original, *args|
           v = responses.shift
           if v == :raise
-            raise RSolr::Error::Http.new({ uri: 'http://example.com' }, nil)
+            raise RSolr::Error::Http.new({ uri: URI('http://example.com') }, nil)
           else
             original.call(*args)
           end
