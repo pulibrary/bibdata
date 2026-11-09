@@ -294,10 +294,9 @@ fn genres_from_subject_vocabularies(record: &Record) -> impl Iterator<Item = Str
                     field
                         .subfields()
                         .iter()
-                        .filter_by_code(if field.tag() == "650" {
-                            &["v"]
-                        } else {
-                            &["a", "v"]
+                        .filter_by_code(match field.tag() {
+                            "650" => &["v"],
+                            _ => &["a", "v"],
                         })
                         .content()
                         .map(|genre| trim_punctuation(genre).to_string()),
