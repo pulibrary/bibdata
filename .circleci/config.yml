@@ -7,6 +7,7 @@ orbs:
   browser-tools: circleci/browser-tools@2.4.2
 jobs:
   lint:
+    resource_class: large
     docker:
       - image: ruby:4.0
         environment:
@@ -16,6 +17,8 @@ jobs:
 
     steps:
       - checkout
+      - run: apt-get -y update
+      - run: apt-get install -y libclang-dev
       - rust/install
       - ruby/install-deps
       - run:
