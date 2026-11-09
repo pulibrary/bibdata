@@ -16,6 +16,7 @@ jobs:
 
     steps:
       - checkout
+      - run: apt-get install -y libclang-dev
       - rust/install
       - ruby/install-deps
       - run:
