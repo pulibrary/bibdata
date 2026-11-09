@@ -1,0 +1,16 @@
+# This package is responsible for managing copies of various standards
+# that we use in indexing
+
+[[bin]]
+name = "update_relator_terms"
+
+[package]
+name = "standards"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+csv = "1.4.0"
+reqwest = {version = "0.13.4", features = ["blocking"] }
+serde = {version = "1.0.228" }
+serde_json = "1.0.150"

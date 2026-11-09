@@ -126,22 +126,7 @@ rust_multi_value_field 'cjk_author'
 rust_multi_value_field 'non_latin_non_cjk_author_index'
 
 rust_multi_value_field 'author_s'
-
-to_field 'marc_relator_display' do |record, accumulator|
-  MarcExtractor.cached('100:110:111').collect_matching_lines(record) do |field, _spec, _extractor|
-    relator = 'Author'
-    field.subfields.each do |s_field|
-      if s_field.code == 'e'
-        relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/, '')
-        break
-      elsif s_field.code == '4'
-        relator = Traject::TranslationMap.new('relators')[s_field.value]
-      end
-    end
-    accumulator << relator
-    break
-  end
-end
+rust_single_value_field 'marc_relator_display'
 
 # Uniform title:
 #    130 XX apldfhkmnorst T ap

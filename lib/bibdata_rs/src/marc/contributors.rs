@@ -1,15 +1,16 @@
-use crate::solr::AuthorRoles;
-use crate::{
-    data_pipeline::pipe,
-    marc::{
-        extract_values::ExtractValues,
-        string_normalize::maybe_not_empty,
-        trim_punctuation,
-        variable_length_field::{SubfieldIterator, extract_marc, latin_tag_included_in},
+use crate::data_pipeline::pipe;
+use crate::marc::{
+    extract_values::ExtractValues,
+    string_normalize::{maybe_not_empty, sentence_case},
+    trim_punctuation,
+    variable_length_field::{
+        ScriptsToIndex, SubfieldIterator, extract_marc, field_tag_matches, latin_tag_included_in,
     },
 };
+use crate::solr::AuthorRoles;
 use itertools::Itertools;
 use marctk::{Field, Record};
+use std::{collections::HashMap, sync::LazyLock};
 
 impl From<&Record> for AuthorRoles {
     fn from(record: &Record) -> Self {
@@ -99,6 +100,33 @@ pub fn author_s(record: &Record) -> impl Iterator<Item = String> {
         )
         .unique()
 }
+
+pub fn relator_term(record: &Record) -> String {
+    let field = record
+        .fields()
+        .iter()
+        .find(|field| field_tag_matches(field, ScriptsToIndex::All, &["100", "110", "111"]));
+    field
+        .and_then(
+            |field| match (field.first_subfield("e"), field.first_subfield("4")) {
+                (Some(term), _) => Some(sentence_case(
+                    term.content()
+                        .trim_end_matches(|c: char| c.is_ascii_punctuation()),
+                )),
+                (_, Some(code)) => RELATOR_TERMS
+                    .get(code.content())
+                    .map(|term| sentence_case(term)),
+                _ => None,
+            },
+        )
+        .unwrap_or("Author".to_owned())
+}
+
+const RELATOR_TERMS_RAW: &str = include_str!("../../../../standards/data/relator_terms.json");
+static RELATOR_TERMS: LazyLock<HashMap<&str, &str>> = LazyLock::new(|| {
+    serde_json::from_str(RELATOR_TERMS_RAW)
+        .expect("Could not parse relator terms: {RELATOR_TERMS_RAW}")
+});
 
 fn author_info_from_field(field: &Field) -> Option<String> {
     let desired_subfields = match field.tag() {
