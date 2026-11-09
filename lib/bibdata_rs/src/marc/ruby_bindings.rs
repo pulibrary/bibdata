@@ -23,7 +23,7 @@ use crate::marc::record_facet_mapping::formats;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::title;
 use crate::marc::utils::display_format::display_format;
-use crate::marc::variable_length_field::extract_marc;
+use crate::marc::variable_length_field::{all_subfields_of, extract_marc};
 use crate::marc::{fixed_field::dates::EndDate, scsb::recap_partner::recap_partner_notes};
 use crate::paths::APPLICATION_ROOT;
 use crate::solr::AuthorRoles;
@@ -119,7 +119,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(153);
+    let hash = ruby.hash_new_capa(159);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -402,6 +402,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc!("515a")(&record),
     )?;
     hash.aset(
+        "number_of_pages_citation_display",
+        extract_marc_trim_punctuation(ruby, "300a", &record),
+    )?;
+    hash.aset(
         "numeric_id_b",
         matches!(ControlNumber::from(&record), ControlNumber::Alma(_)),
     )?;
@@ -462,6 +466,14 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "pub_citation_display",
         ruby.ary_from_iter(publication::pub_citation_display(&record)),
+    )?;
+    hash.aset(
+        "publication_location_citation_display",
+        publication::publication_location_citation_display(&record),
+    )?;
+    hash.aset(
+        "publisher_citation_display",
+        publication::publisher_citation_display(&record),
     )?;
     hash.aset(
         "pub_created_s",
@@ -584,8 +596,20 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         ruby.ary_from_iter(title::title_no_h_index(&record)),
     )?;
     hash.aset("title_sort_key", title::title_sort_key(&record))?;
+    hash.aset(
+        "medium_support_display",
+        ruby.ary_from_iter(all_subfields_of("340", &record)),
+    )?;
+    hash.aset(
+        "electronic_access_index",
+        ruby.ary_from_iter(all_subfields_of("856", &record)),
+    )?;
     hash.aset("title_vern_display", title::title_vern_display(&record))?;
     hash.aset("title_t", title_t)?;
+    hash.aset(
+        "title_citation_display",
+        extract_marc_trim_punctuation(ruby, "245ab", &record),
+    )?;
     hash.aset(
         "translated_as_display",
         extract_marc_trim_punctuation(ruby, "767at", &record),
@@ -893,6 +917,55 @@ record"#,
                 .aref::<&str, String>("title_display")
                 .unwrap(),
             "First title"
+        );
+    }
+
+    #[ruby_test]
+    fn it_includes_citation_and_access_fields_in_solr_fields() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let record: magnus::RObject = ruby.eval(
+            r#"require 'marc'
+record = MARC::Record.new
+record.append(MARC::DataField.new('245', '1', '0', ['a', 'Advanced concepts of the stability of two-wheeled vehicles :'], ['b', 'a study']))
+record.append(MARC::DataField.new('300', ' ', ' ', ['a', 'x, 203 p.']))
+record.append(MARC::DataField.new('260', ' ', ' ', ['a', 'Madison'], ['b', 'University of Wisconsin Press']))
+record.append(MARC::DataField.new('340', ' ', ' ', ['a', 'in.'], ['b', 'videorecording']))
+record.append(MARC::DataField.new('856', '4', '0', ['u', 'http://doi.org/10.3886/ICPSR35465']))
+record"#,
+        ).unwrap();
+        let hash = solr_fields(&ruby, record).unwrap();
+
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("title_citation_display")
+                .unwrap(),
+            vec![String::from(
+                "Advanced concepts of the stability of two-wheeled vehicles : a study"
+            )]
+        );
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("number_of_pages_citation_display")
+                .unwrap(),
+            vec![String::from("x, 203 p.")]
+        );
+        assert_eq!(
+            hash.aref::<&str, String>("publication_location_citation_display")
+                .unwrap(),
+            "Madison"
+        );
+        assert_eq!(
+            hash.aref::<&str, String>("publisher_citation_display")
+                .unwrap(),
+            "University of Wisconsin Press"
+        );
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("medium_support_display")
+                .unwrap(),
+            vec![String::from("in. videorecording")]
+        );
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("electronic_access_index")
+                .unwrap(),
+            vec![String::from("http://doi.org/10.3886/ICPSR35465")]
         );
     }
 }
