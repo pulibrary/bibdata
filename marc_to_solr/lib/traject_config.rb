@@ -617,7 +617,7 @@ rust_multi_value_field 'other_format_display'
 #    555 XX 3abcd
 
 # No indicator 1- cumulative index
-to_field 'indexes_display', extract_marc('555| *|3abcd')
+rust_multi_value_field 'indexes_display'
 
 # Indicator 1 = 0 - finding aid
 to_field 'finding_aid_display', extract_marc('555|0*|3abcd')

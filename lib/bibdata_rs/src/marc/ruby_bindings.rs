@@ -19,6 +19,7 @@ use crate::marc::marcxml_compressor::marcxml_compressed;
 use crate::marc::name_title_browse::name_title_browse_s;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
+use crate::marc::note::indexes_display;
 use crate::marc::record_facet_mapping::formats;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::title;
@@ -119,7 +120,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(160);
+    let hash = ruby.hash_new_capa(161);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -309,6 +310,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "in_display",
         extract_marc_trim_punctuation(ruby, "7733abdghikmnoprst", &record),
     )?;
+    hash.aset("indexes_display", indexes_display(&record))?;
     hash.aset(
         "info_document_notes_display",
         extract_marc!("556a")(&record),
