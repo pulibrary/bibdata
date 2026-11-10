@@ -69,7 +69,7 @@ pub fn partner_holdings(record: &Record) -> impl Iterator<Item = PartnerHolding<
                 return None;
             }
 
-            let location_code = field.get("b");
+            let location_code = field.sublocation();
             let location = location_code
                 .and_then(|code| location_label(code))
                 .or(location_code);
@@ -78,9 +78,9 @@ pub fn partner_holdings(record: &Record) -> impl Iterator<Item = PartnerHolding<
                 .or(location_code);
             let call_number = field.call_number();
             let call_number_browse = field.call_number();
-            let sub_location = field.get("k").map(|value| vec![value]);
-            let shelving_title = field.get("l").map(|value| vec![value]);
-            let location_note = field.get("z").map(|value| vec![value]);
+            let sub_location = field.call_number_prefix().map(|value| vec![value]);
+            let shelving_title = field.shelving_form_of_title().map(|value| vec![value]);
+            let location_note = field.public_note().map(|value| vec![value]);
 
             let location_has = record
                 .extract_field_values_by(
@@ -165,15 +165,15 @@ pub struct PartnerItem<'a> {
 impl<'a> From<Field876<'a>> for PartnerItem<'a> {
     fn from(field: Field876<'a>) -> Self {
         let holding_id = field.get("0");
-        let description = field.get("3");
-        let id = field.get("a");
-        let status_at_load = field.get("j");
-        let barcode = field.get("p");
-        let copy_number = field.get("t");
-        let use_statement = field.get("h");
-        let storage_location = field.get("l");
-        let cgd = field.get("x").and_then(|cgd| cgd.try_into().ok());
-        let collection_code = field.get("z");
+        let description = field.materials_specified();
+        let id = field.internal_item_number();
+        let status_at_load = field.item_status();
+        let barcode = field.piece_designation();
+        let copy_number = field.copy_number();
+        let use_statement = field.use_restrictions();
+        let storage_location = field.temporary_location();
+        let cgd = field.nonpublic_note().and_then(|cgd| cgd.try_into().ok());
+        let collection_code = field.public_note();
         Self {
             holding_id,
             description,
