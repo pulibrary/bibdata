@@ -1013,19 +1013,6 @@ to_field 'uniform_240_vern' do |record, accumulator|
   end
 end
 
-to_field 'uniform_130' do |record, accumulator|
-  MarcExtractor.cached('130apldfhkmnorst', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
-    field.subfields.each do |s_field|
-      next if !spec.subfields.nil? && !spec.subfields.include?(s_field.code)
-
-      accumulator << s_field.value
-    end
-    break
-  end
-end
-
-rust_multi_value_field 'uniform_130_vern'
-
 to_field 'linked_title_s' do |record, accumulator|
   MarcExtractor.cached(%w(760at:762at:765at:767at:770at:772at:773at:774at:
                           775at:776at:777at:780at:785at:786at:787at)).collect_matching_lines(record) do |field, spec, extractor|
@@ -1068,21 +1055,7 @@ each_record do |_record, context|
   context.output_hash.delete('uniform_240_vern')
 end
 
-# Creates uniform_title_1display for Uniform title display for works that do not have an author
-each_record do |_record, context|
-  doc = context.output_hash
-  uniform_t = []
-  search_field = []
-
-  uniform_t << doc['uniform_130'] if doc['uniform_130']
-  uniform_t << doc['uniform_130_vern'] if doc['uniform_130_vern']
-
-  context.output_hash['uniform_title_1display'] = [uniform_t.to_json] unless uniform_t.empty?
-
-  # these fields are no longer necessary
-  context.output_hash.delete('uniform_130')
-  context.output_hash.delete('uniform_130_vern')
-end
+rust_multi_value_field 'uniform_title_1display'
 
 # Call number: +No call number available
 #    852 XX hik

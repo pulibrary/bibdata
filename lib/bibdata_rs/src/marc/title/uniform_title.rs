@@ -11,7 +11,7 @@ use crate::{
         trim_punctuation,
         variable_length_field::{
             SubfieldIterator, join_subfields_by_code, latin_or_non_latin_tag,
-            latin_or_non_latin_tag_included_in, non_latin_tag_included_in,
+            latin_or_non_latin_tag_included_in, latin_tag_included_in, non_latin_tag_included_in,
         },
     },
 };
@@ -19,6 +19,12 @@ use crate::{
 /// Subfields that make up a 240 uniform title.
 pub const UNIFORM_TITLE_240_SUBLFIELDS: &[&str] =
     &["a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s"];
+
+/// Subfields to index for a Latin 130 field of `uniform_title_1display`. This matches
+/// the traject spec `'130apldfhkmnorst'`.
+const UNIFORM_130_SUBLFIELDS: &[&str] = &[
+    "a", "p", "l", "d", "f", "h", "k", "m", "n", "o", "r", "s", "t",
+];
 
 /// The uniform title, including information about a translation, but without any information about the author
 pub fn uniform_title(record: &Record) -> impl Iterator<Item = String> {
@@ -56,6 +62,48 @@ pub fn uniform_130_non_latin(record: &Record) -> impl Iterator<Item = String> {
             ))
         })
         .map(|s| s.to_string())
+}
+
+/// Builds `uniform_title_1display` for works that do not have an author.
+///
+/// ## Arguments
+///
+/// - `record`: the MARC record
+///
+/// ## Returns
+///
+/// `Some(json_string)` when a uniform title exists, otherwise `None`.
+pub fn uniform_title_1display(record: &Record) -> Option<String> {
+    use serde_json::Value;
+
+    let mut items: Vec<Value> = Vec::new();
+
+    // Latin 130: keep the subfield values of the first Latin 130 field as an inner
+    // array, filtering to the subfield codes the traject spec `130apldfhkmnorst` allowed.
+    let latin_130 = record.first_matching_field_value(latin_tag_included_in(&["130"]), |field| {
+        let subfields: Vec<Value> = field
+            .subfields()
+            .iter()
+            .filter_by_code(UNIFORM_130_SUBLFIELDS)
+            .map(|s| Value::String(s.content().to_owned()))
+            .collect();
+        (!subfields.is_empty()).then_some(subfields)
+    });
+    if let Some(subfields) = latin_130 {
+        items.push(Value::Array(subfields));
+    }
+
+    // Non-Latin 130: each joined string, wrapped in a single inner array.
+    let vern_130: Vec<Value> = uniform_130_non_latin(record).map(Value::String).collect();
+    if !vern_130.is_empty() {
+        items.push(Value::Array(vern_130));
+    }
+
+    if items.is_empty() {
+        None
+    } else {
+        serde_json::to_string(&Value::Array(items)).ok()
+    }
 }
 
 #[cfg(test)]
@@ -136,5 +184,36 @@ mod tests {
         let mut titles = uniform_130_non_latin(&record);
         assert_eq!(titles.next(), Some(String::from("عنوان کتاب")));
         assert_eq!(titles.next(), None);
+    }
+
+    #[test]
+    fn it_builds_uniform_title_1display_from_latin_130() {
+        // A work without an author whose uniform title is a Latin 130 field.
+        let record = Record::from_breaker(r#"=130 10$aBible.$lLatin.$sVulgate.$f1461."#).unwrap();
+        assert_eq!(
+            uniform_title_1display(&record),
+            Some(r#"[["Bible.","Latin.","Vulgate.","1461."]]"#.to_string())
+        );
+    }
+
+    #[test]
+    fn it_builds_uniform_title_1display_from_latin_and_non_latin_130() {
+        // A Latin 130 with a parallel non-Latin (Arabic) 880-130 field.
+        let record = Record::from_breaker(
+            r#"=130 00$6880-01$aAwrāq (Madrid, Spain)
+=880 00$6130-01$aاوراق (Madrid, Spain)"#,
+        )
+        .unwrap();
+        assert_eq!(
+            uniform_title_1display(&record),
+            Some(r#"[["Awrāq (Madrid, Spain)"],["اوراق (Madrid, Spain)"]]"#.to_string())
+        );
+    }
+
+    #[test]
+    fn it_is_absent_when_there_is_no_uniform_title() {
+        // A record with an author and a title but no 130/240 uniform title.
+        let record = Record::from_breaker(r#"=100 10$aAuthor. $245 00$aA title."#).unwrap();
+        assert_eq!(uniform_title_1display(&record), None);
     }
 }

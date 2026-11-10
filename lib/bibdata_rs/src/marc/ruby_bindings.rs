@@ -633,10 +633,12 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         "name_title_browse_s",
         ruby.ary_from_iter(name_title_browse_s(&record)),
     )?;
-    hash.aset(
-        "uniform_130_vern",
-        ruby.ary_from_iter(title::uniform_130_non_latin(&record)),
-    )?;
+    if let Some(uniform_title_1display) = title::uniform_title_1display(&record) {
+        hash.aset(
+            "uniform_title_1display",
+            ruby.ary_from_iter([uniform_title_1display]),
+        )?;
+    }
     hash.aset("with_notes_display", extract_marc!("501a")(&record))?;
 
     Ok(hash)
