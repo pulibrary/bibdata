@@ -1,0 +1,66 @@
+{
+  "id" : null,
+  "scope" : "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa",
+  "query" : null,
+  "appliedFilters" : null,
+  "sort" : null,
+  "configuration" : null,
+  "type" : "discover",
+  "_links" : {
+    "self" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa"
+    }
+  },
+  "_embedded" : {
+    "searchResult" : {
+      "_embedded" : {
+        "objects" : [ {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/22222222-2222-2222-2222-222222222222"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "22222222-2222-2222-2222-222222222222",
+              "uuid" : "22222222-2222-2222-2222-222222222222",
+              "name" : "Second thesis",
+              "handle" : "88435/dsp01multipage2",
+              "metadata" : {
+                "dc.contributor.author" : [ {
+                  "value" : "Author 2",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Second thesis",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01multipage2",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              }
+            }
+          }
+        } ]
+      },
+      "page" : {
+        "number" : 1,
+        "size" : 1,
+        "totalPages" : 2,
+        "totalElements" : 2
+      }
+    }
+  }
+}

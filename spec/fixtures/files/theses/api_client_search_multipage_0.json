@@ -1,0 +1,66 @@
+{
+  "id": null,
+  "scope": "d98b1985-fc36-47ce-b11a-62386b505e85",
+  "query": null,
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85"
+    }
+  },
+  "_embedded" : {
+    "searchResult" : {
+      "_embedded" : {
+        "objects" : [ {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/11111111-1111-1111-1111-111111111111"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "11111111-1111-1111-1111-111111111111",
+              "uuid" : "11111111-1111-1111-1111-111111111111",
+              "name" : "First thesis",
+              "handle" : "88435/dsp01multipage1",
+              "metadata" : {
+                "dc.contributor.author" : [ {
+                  "value" : "Author 1",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "First thesis",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01multipage1",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              }
+            }
+          }
+        } ]
+      },
+      "page" : {
+        "number" : 0,
+        "size" : 1,
+        "totalPages" : 2,
+        "totalElements" : 2
+      }
+    }
+  }
+}

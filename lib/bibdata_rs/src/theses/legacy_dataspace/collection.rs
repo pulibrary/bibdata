@@ -72,16 +72,8 @@ pub fn get_document_list(
     let collection_ids = ids_selector(server, community_handle)?;
     let documents = collection_ids
         .par_iter()
-        .try_fold(Vec::new, |mut accumulator, collection_id| {
-            get_documents_in_collection(
-                &mut accumulator,
-                server,
-                *collection_id,
-                rest_limit,
-                0,
-                0,
-            )?;
-            Ok::<Vec<DataspaceDocument>, anyhow::Error>(accumulator)
+        .try_fold(Vec::new, |accumulator, collection_id| {
+            get_documents_in_collection(&accumulator, server, *collection_id, rest_limit, 0, 0)
         })
         .try_reduce(Vec::new, |mut a, b| {
             a.extend(b);
@@ -93,7 +85,7 @@ pub fn get_document_list(
 
 // This function recursively fetches paginated API results and retries on error
 fn get_documents_in_collection(
-    documents: &mut Vec<DataspaceDocument>,
+    documents: &[DataspaceDocument],
     server: &str,
     collection_id: u32,
     rest_limit: u32,
@@ -134,20 +126,22 @@ fn get_documents_in_collection(
             }
         }
     }?;
-    // If we didn't get an empty JSON, there are still more pages of data to fetch, so
-    // recurse with a higher offset (i.e. fetch the next page)
-    if !new_documents.is_empty() {
-        documents.extend(new_documents);
+    if new_documents.is_empty() {
+        Ok(documents.to_vec())
+    } else {
+        // If we didn't get an empty JSON, there are still more pages of data to fetch, so
+        // recurse with a higher offset (i.e. fetch the next page)
+        let mut combined = documents.to_vec();
+        combined.extend(new_documents);
         get_documents_in_collection(
-            documents,
+            &combined,
             server,
             collection_id,
             rest_limit,
             offset + rest_limit,
             0,
-        )?;
+        )
     }
-    Ok(vec![])
 }
 
 fn get_url_as_json(url: &str) -> Result<Vec<DataspaceDocument>> {
