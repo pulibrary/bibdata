@@ -1903,6 +1903,13 @@ describe 'From traject_config.rb', :indexing do
         expect(@sample1['standard_no_1display']).to be_nil
       end
     end
+
+    describe 'geocode_display' do
+      it 'maps the geocode from 043a using a Translation map and gets the name to display' do
+        record = @indexer.map_record(fixture_record('991583506421'))
+        expect(record['geocode_display']).to include('United States')
+      end
+    end
   end
 
   context 'invalid utf8 record' do
