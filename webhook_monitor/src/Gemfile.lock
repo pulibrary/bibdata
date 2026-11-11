@@ -24,7 +24,7 @@ GEM
     jmespath (1.6.2)
     logger (1.7.0)
     mini_portile2 (2.8.9)
-    nokogiri (1.19.4)
+    nokogiri (1.19.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     racc (1.8.1)
