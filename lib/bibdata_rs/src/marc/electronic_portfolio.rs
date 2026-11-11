@@ -161,6 +161,18 @@ use super::*;
     }
 
     #[test]
+    fn it_does_not_error_with_no_portfolio_data() {
+        let record =
+            Record::from_breaker("=LDR 02646nas a2200673 i 4500
+=001 99122306151806421")
+                .unwrap();
+        assert_eq!(
+            electronic_portfolio_s(&record),
+            Some("[{\"desc\":\"Available from 1869 volume: 1 issue: 1.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[\"Some Note\"],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"Online Content\",\"url\":\"https://example.com\"},{\"desc\":\"Available from 01/04/1990. Most recent 1 year(s) not available.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"ProQuest Central\",\"url\":\"https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53443322640006421&amp;Force_direct=true\"}]".to_owned())
+        )
+    }
+
+    #[test]
     fn it_get_display_format_from_record() {
         let record =
             Record::from_breaker("=LDR 02646nas a2200673 i 4500")
