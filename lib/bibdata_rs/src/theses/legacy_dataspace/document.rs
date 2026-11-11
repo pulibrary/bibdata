@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 mod builder;
 mod normalize;
 
-#[derive(Debug, Serialize)]
+#[derive(Clone, Debug, Serialize)]
 pub struct DataspaceDocument {
     pub id: Option<String>,
     pub contributor: Option<Vec<String>>,

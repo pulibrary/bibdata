@@ -111,9 +111,8 @@ pub fn get_document_list(
     let collection_ids = ids_selector(server, community_id)?;
     let documents = collection_ids
         .par_iter()
-        .try_fold(Vec::new, |mut accumulator, collection_id| {
-            get_documents_in_collection(&mut accumulator, server, collection_id, rest_limit, 0, 0)?;
-            Ok::<Vec<DataspaceDocument>, anyhow::Error>(accumulator)
+        .try_fold(Vec::new, |accumulator, collection_id| {
+            get_documents_in_collection(&accumulator, server, collection_id, rest_limit, 0, 0)
         })
         .try_reduce(Vec::new, |mut a, b| {
             a.extend(b);
@@ -125,7 +124,7 @@ pub fn get_document_list(
 
 // This function recursively fetches paginated API results and retries on error
 fn get_documents_in_collection(
-    documents: &mut Vec<DataspaceDocument>,
+    documents: &[DataspaceDocument],
     server: &str,
     scope: &str,
     page_size: u32,
@@ -164,14 +163,16 @@ fn get_documents_in_collection(
             }
         }
     }?;
+    let mut combined = documents.to_vec();
     if !new_documents.is_empty() {
-        documents.append(&mut new_documents);
+        combined.append(&mut new_documents);
     }
     // If the current page is not the last page get the next page of documents
     if pagination.number + 1 < pagination.total_pages {
-        get_documents_in_collection(documents, server, scope, page_size, page + 1, 0)?;
+        get_documents_in_collection(&combined, server, scope, page_size, page + 1, 0)
+    } else {
+        Ok(combined)
     }
-    Ok(vec![])
 }
 
 fn get_url_as_json(url: &str) -> Result<SearchResponse> {
@@ -193,9 +194,8 @@ fn map_search_result_to_vec(search_response: SearchResponse) -> Vec<DataspaceDoc
 
 #[cfg(test)]
 mod tests {
-    use rb_sys_test_helpers::ruby_test;
-
     use super::*;
+    use rb_sys_test_helpers::ruby_test;
 
     #[test]
     fn it_creates_a_collection_url() {
@@ -267,6 +267,50 @@ mod tests {
         );
 
         assert_eq!(docs.len(), 0);
+        mock_page1.assert();
+    }
+
+    #[test]
+    fn it_fetches_all_pages_when_there_are_more_pages() {
+        let mut server = mockito::Server::new();
+        let mock_page0 = server
+            .mock(
+                "GET",
+                "/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=1&page=0",
+            )
+            .with_status(200)
+            .with_body_from_file(
+                "../../spec/fixtures/files/theses/api_client_search_multipage_0.json",
+            )
+            .create();
+        let mock_page1 = server
+            .mock(
+                "GET",
+                "/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=1&page=1",
+            )
+            .with_status(200)
+            .with_body_from_file(
+                "../../spec/fixtures/files/theses/api_client_search_multipage_1.json",
+            )
+            .create();
+
+        let mut docs: Vec<DataspaceDocument> = vec![];
+        let docs = get_documents_in_collection(
+            &mut docs,
+            &server.url(),
+            "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa",
+            1,
+            0,
+            0,
+        )
+        .unwrap();
+
+        assert_eq!(docs.len(), 2);
+        let ids: Vec<_> = docs.iter().flat_map(|doc| doc.id.clone()).collect();
+        assert!(ids.contains(&"dsp01multipage1".to_string()));
+        assert!(ids.contains(&"dsp01multipage2".to_string()));
+
+        mock_page0.assert();
         mock_page1.assert();
     }
 
