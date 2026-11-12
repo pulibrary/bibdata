@@ -31,7 +31,6 @@ Lint/ConstantDefinitionInBlock:
 # Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
 Lint/DuplicateBranch:
   Exclude:
-    - 'marc_to_solr/lib/electronic_portfolio_builder.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
 
 # Offense count: 4
