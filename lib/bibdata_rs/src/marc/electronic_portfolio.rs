@@ -1,6 +1,6 @@
 use itertools::Itertools;
 use jiff::Zoned;
-use marctk::{Field, Record};
+use marctk::{Controlfield, Field, Record, Subfield};
 
 use DateType::*;
 
@@ -28,10 +28,10 @@ struct PortfolioFields {
     url: String,
 }
 
-pub fn electronic_portfolio_s(record: &Record) -> Option<String> {
+pub fn electronic_portfolio_s(record: &Record) -> Vec<Option<String>> {
     let fields = active_fields(record).collect_vec();
 
-    serde_json::to_string(&fields).ok()
+    fields.iter().map(|field| serde_json::to_string(&field).ok()).collect_vec()
 }
 
 fn active_fields(record: &Record) -> impl Iterator<Item = PortfolioFields> {
@@ -44,7 +44,7 @@ fn active_fields(record: &Record) -> impl Iterator<Item = PortfolioFields> {
                 )
             },
             |field| Some(PortfolioFields {
-                desc: field.first_subfield("k").unwrap().content().to_owned(),
+                desc: field.first_subfield("k").unwrap_or(&Subfield::new("k", "").ok().unwrap()).content().to_owned(),
                 display_format: format(record),
                 end: compute_date(record, field.clone(), EndDate),
                 notes: field.get_subfields("i")
@@ -53,7 +53,7 @@ fn active_fields(record: &Record) -> impl Iterator<Item = PortfolioFields> {
                 source_id: source_id(record),
                 start: compute_date(record, field.clone(), StartDate),
                 title: title(field),
-                url: field.first_subfield("x").unwrap().content().to_owned()
+                url: field.first_subfield("x").unwrap_or(&Subfield::new("x", "").ok().unwrap()).content().to_owned()
             })
         )
 }
@@ -70,14 +70,15 @@ fn format(record: &Record) -> String {
 }
 
 fn source_id(record: &Record) -> String {
-    record.get_control_fields("001").first().unwrap().content().to_owned()
+    record.get_control_fields("001").first().unwrap_or(&&Controlfield::new("001", "").ok().unwrap()).content().to_owned()
 }
 
 fn embargos(record: &Record) -> Vec<Field> {
+    let default_subfield = Subfield::new("a", "").ok().unwrap();
     record.get_fields("954")
         .iter()
         .filter(|field| {
-            let code = field.first_subfield("a").unwrap().content();
+            let code = field.first_subfield("a").unwrap_or(&default_subfield).content();
             code.starts_with("53") && code.ends_with("06421")
         })
         .map(|field| (*field).clone())
@@ -85,10 +86,11 @@ fn embargos(record: &Record) -> Vec<Field> {
 }
 
 fn dates(record: &Record) -> Vec<Field> {
+    let default_subfield = Subfield::new("a", "").ok().unwrap();
     record.get_fields("953")
         .iter()
         .filter(|field| {
-            let code = field.first_subfield("a").unwrap().content();
+            let code = field.first_subfield("a").unwrap_or(&default_subfield).content();
             code.starts_with("53") && code.ends_with("06421")
         })
         .map(|field| (*field).clone())
@@ -96,31 +98,41 @@ fn dates(record: &Record) -> Vec<Field> {
 }
 
 fn embargo_to_embargo_length(embargo: Field) -> i16 {
+    let default_subfield = Subfield::new("c", "").ok().unwrap();
     let year = Zoned::now().year();
-    let embargo_length: i16 = embargo.first_subfield("c").unwrap().content().parse().unwrap();
+    let embargo_length: i16 = embargo.first_subfield("c").unwrap_or(&default_subfield).content().parse().unwrap_or_default();
     year - embargo_length
 }
 
+fn url_decode(encoded_string: &str) -> String {
+    encoded_string
+        .replace("&gt;", ">")
+        .replace("&lt;", "<")
+}
+
 fn compute_date(record: &Record, field: Field, date_type: DateType) -> String {
-    let code = field.first_subfield("8").unwrap().content();
+    let default_subfield = Subfield::new("a", "").ok().unwrap();
+    let default_field = Field::new("953").ok().unwrap();
+    let code = field.first_subfield("8").unwrap_or(&default_subfield).content();
     let embargo = embargos(record)
         .into_iter()
-        .find(|e| e.first_subfield("a").unwrap().content() == code).unwrap();
+        .find(|e| e.first_subfield("a").unwrap_or(&default_subfield).content() == code).unwrap_or(default_field.clone());
     let date = dates(record)
         .into_iter()
-        .find(|d| d.first_subfield("a").unwrap().content() == code).unwrap();
+        .find(|d| d.first_subfield("a").unwrap_or(&default_subfield).content() == code).unwrap_or(default_field);
     let indicator = match embargo.first_subfield("b") {
-        Some(s) => s.content().to_owned(),
+        Some(s) => url_decode(s.content()),
         None => "No Indicator".to_owned()
     };
 
+    let default_subfield = Subfield::new("b", "").ok().unwrap();
     match (date_type, indicator.as_str()) {
-        (StartDate, "&lt;=") => embargo_to_embargo_length(embargo).to_string(),
-        (StartDate, "&lt;") => (embargo_to_embargo_length(embargo) + 1).to_string(),
-        (StartDate, _) => date.first_subfield("b").unwrap().content().to_owned(),
-        (EndDate, "&gt;=") => embargo_to_embargo_length(embargo).to_string(),
-        (EndDate, "&lt;=" | "&lt;") => "latest".to_owned(),
-        (EndDate, "&gt;") => (embargo_to_embargo_length(embargo) - 1).to_string(),
+        (StartDate, "<=") => embargo_to_embargo_length(embargo).to_string(),
+        (StartDate, "<") => (embargo_to_embargo_length(embargo) + 1).to_string(),
+        (StartDate, _) => date.first_subfield("b").unwrap_or(&default_subfield).content().to_owned(),
+        (EndDate, ">=") => embargo_to_embargo_length(embargo).to_string(),
+        (EndDate, "<=" | "<") => "latest".to_owned(),
+        (EndDate, ">") => (embargo_to_embargo_length(embargo) - 1).to_string(),
         (EndDate, _) => match date.first_subfield("c") {
             Some(f) => f.content().to_owned(),
             None => "latest".to_owned()
@@ -146,7 +158,10 @@ use super::*;
                 .unwrap();
         assert_eq!(
             electronic_portfolio_s(&record),
-            Some("[{\"desc\":\"Available from 1869 volume: 1 issue: 1.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[\"Some Note\"],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"Online Content\",\"url\":\"https://example.com\"},{\"desc\":\"Available from 01/04/1990. Most recent 1 year(s) not available.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"ProQuest Central\",\"url\":\"https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53443322640006421&amp;Force_direct=true\"}]".to_owned())
+            vec![
+                Some("{\"desc\":\"Available from 1869 volume: 1 issue: 1.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[\"Some Note\"],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"Online Content\",\"url\":\"https://example.com\"}".to_owned()),
+                Some("{\"desc\":\"Available from 01/04/1990. Most recent 1 year(s) not available.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"ProQuest Central\",\"url\":\"https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53443322640006421&amp;Force_direct=true\"}".to_owned())
+            ]
         )
     }
 
@@ -168,7 +183,7 @@ use super::*;
                 .unwrap();
         assert_eq!(
             electronic_portfolio_s(&record),
-            Some("[{\"desc\":\"Available from 1869 volume: 1 issue: 1.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[\"Some Note\"],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"Online Content\",\"url\":\"https://example.com\"},{\"desc\":\"Available from 01/04/1990. Most recent 1 year(s) not available.\",\"display_format\":\"Journal\",\"end\":\"latest\",\"notes\":[],\"source_id\":\"99122306151806421\",\"start\":\"1990\",\"title\":\"ProQuest Central\",\"url\":\"https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53443322640006421&amp;Force_direct=true\"}]".to_owned())
+            vec![]
         )
     }
 

@@ -1067,7 +1067,7 @@ rust_multi_value_field 'call_number_display'
 # The call_number_browse_s is used in the call number browse page in the catalog
 rust_multi_value_field 'call_number_browse_s'
 
-rust_single_value_field 'electronic_portfolio_s'
+rust_multi_value_field 'electronic_portfolio_s'
 
 # Generate access_facet
 each_record do |record, context|
