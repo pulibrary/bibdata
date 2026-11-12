@@ -1,5 +1,4 @@
 require_relative 'lib/princeton_marc'
-require_relative 'lib/electronic_portfolio_builder'
 require_relative 'lib/alma_reader'
 require_relative 'lib/solr_deleter'
 require_relative 'lib/access_facet_builder'
