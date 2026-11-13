@@ -253,6 +253,12 @@ mod tests {
     #[test]
     fn it_creates_geocode_display_from_multiple_codes() {
         let record = Record::from_breaker("=043  \\ $ae-ur-ai $ae-dk ").unwrap();
-        assert_eq!(geocode_display(&record), Some(vec!["Armenia (Republic)".to_string(), "Denmark".to_string()]));
+        assert_eq!(
+            geocode_display(&record),
+            Some(vec![
+                "Armenia (Republic)".to_string(),
+                "Denmark".to_string()
+            ])
+        );
     }
 }

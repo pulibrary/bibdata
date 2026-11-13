@@ -245,7 +245,7 @@ rust_single_value_field 'coverage_display'
 
 to_field 'geocode_display' do |_record, acc, context|
   arr = context.clipboard[:solr_fields]['geocode_display']
-  acc.concat(Array(arr).flatten) if arr && !arr.empty?
+  acc.concat(Array(arr).flatten) if arr.present?
 end
 
 rust_multi_value_field 'scale_display'
