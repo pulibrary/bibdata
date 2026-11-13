@@ -1907,7 +1907,7 @@ describe 'From traject_config.rb', :indexing do
     describe 'geocode_display' do
       it 'maps the geocode from 043a using a Translation map and gets the name to display' do
         record = @indexer.map_record(fixture_record('991583506421'))
-        expect(record['geocode_display']).to include('United States')
+        expect(record['geocode_display']).to eq(['United States', 'France', 'Denmark', 'Armenia (Republic)'])
       end
     end
   end
