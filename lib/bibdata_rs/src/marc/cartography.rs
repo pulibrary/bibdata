@@ -3,15 +3,48 @@
 use crate::marc::variable_length_field::VariableLengthField;
 use marctk::{Field, Record};
 use regex::Regex;
+use std::collections::HashMap;
 use std::fmt::{self, Display};
 use std::ops::Deref;
 use std::str::FromStr;
 use std::sync::LazyLock;
 
+use serde_json::Value;
+
+const GEOGRAPHIC_AREAS_RAW: &str = include_str!("../../../../standards/data/geographic_areas.json");
+
+static GEOGRAPHIC_AREAS: LazyLock<HashMap<String, String>> = LazyLock::new(|| {
+    serde_json::from_str::<Value>(GEOGRAPHIC_AREAS_RAW)
+        .expect("geographic_areas.json must be valid JSON")
+        .as_object()
+        .expect("geographic_areas.json must be a JSON object")
+        .iter()
+        .map(|(k, v)| {
+            (
+                k.clone(),
+                v.as_str().expect("value must be a string").to_owned(),
+            )
+        })
+        .collect()
+});
+
 pub fn coverage_display(record: &Record) -> Option<String> {
     BoundingBox::try_from(record)
         .ok()
         .map(|bounding_box| bounding_box.to_string())
+}
+
+pub fn geocode_display(record: &Record) -> Option<Vec<String>> {
+    let mut areas = Vec::new();
+    for field in record.get_fields("043") {
+        for sub in field.get_subfields("a") {
+            let key = sub.content().trim().trim_end_matches('-');
+            if let Some(name) = GEOGRAPHIC_AREAS.get(key) {
+                areas.push(name.to_string());
+            }
+        }
+    }
+    (!areas.is_empty()).then_some(areas)
 }
 
 struct Field034<'a>(&'a Field);
@@ -210,5 +243,16 @@ mod tests {
         assert!("1.2.3".parse::<Coordinate>().is_err());
         assert!(" 12".parse::<Coordinate>().is_err());
         assert!("12 ".parse::<Coordinate>().is_err());
+    }
+
+    #[test]
+    fn it_creates_geocode_display_from_043a() {
+        let record = Record::from_breaker("=043  \\ $an-cn---").unwrap();
+        assert_eq!(geocode_display(&record), Some(vec!["Canada".to_string()]));
+    }
+    #[test]
+    fn it_creates_geocode_display_from_multiple_codes() {
+        let record = Record::from_breaker("=043  \\ $ae-ur-ai $ae-dk ").unwrap();
+        assert_eq!(geocode_display(&record), Some(vec!["Armenia (Republic)".to_string(), "Denmark".to_string()]));
     }
 }

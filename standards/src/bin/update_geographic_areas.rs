@@ -70,7 +70,7 @@ fn parse_areas(html: &str) -> BTreeMap<String, String> {
         }
         let code: String = cells[0].text().collect();
         let name: String = cells[1].text().collect();
-        let code = code.trim();
+        let code = code.trim().trim_start_matches('-');
         let name = name.trim();
         if !code.is_empty() && !name.is_empty() {
             areas.insert(code.to_string(), name.to_string());
@@ -120,6 +120,13 @@ mod tests {
         // The code cell `<a id="a" name="a">a</a>` resolves to just "a".
         assert_eq!(areas.get("a"), Some(&"Asia".to_string()));
         assert!(!areas.contains_key("<a id=\"a\" name=\"a\">a</a>"));
+    }
+
+    #[test]
+    fn strips_leading_hyphens_from_discontinued_codes() {
+        let areas = parse_areas(HTML);
+        assert_eq!(areas.get("a-ok"), Some(&"Okinawa".to_string()));
+        assert!(!areas.contains_key("-a-ok"));
     }
 
     #[test]
