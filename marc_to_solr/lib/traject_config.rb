@@ -1106,3 +1106,7 @@ each_record do |_record, context|
     end
   end
 end
+
+to_field 'marcxml_bi' do |_record, accumulator, context|
+  accumulator << context.clipboard[:solr_fields]['marcxml_bi']
+end
