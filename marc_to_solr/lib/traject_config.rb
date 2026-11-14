@@ -243,15 +243,9 @@ rust_multi_value_field 'number_of_pages_citation_display'
 
 rust_single_value_field 'coverage_display'
 
-to_field 'geocode_display' do |record, acc|
-  marc_geo_map = Traject::TranslationMap.new('marc_geographic')
-  extractor_043a = MarcExtractor.cached('043a', separator: nil)
-  acc.concat(
-    extractor_043a.extract(record).collect do |code|
-      # remove any trailing hyphens, then map
-      marc_geo_map[code.gsub(/-+\Z/, '')]
-    end.compact
-  )
+to_field 'geocode_display' do |_record, acc, context|
+  arr = context.clipboard[:solr_fields]['geocode_display']
+  acc.concat(Array(arr).flatten) if arr.present?
 end
 
 rust_multi_value_field 'scale_display'

@@ -51,6 +51,9 @@
   </datafield>
   <datafield tag="043" ind1=" " ind2=" ">
     <subfield code="a">n-us---</subfield>
+    <subfield code="a">e-fr</subfield>
+    <subfield code="a">e-dk</subfield>
+    <subfield code="a">e-ur-ai</subfield>
   </datafield>
   <datafield tag="082" ind1="1" ind2="0">
     <subfield code="a">686</subfield>

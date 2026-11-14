@@ -4,6 +4,8 @@ use std::{collections::BTreeMap, error::Error, fmt::Display, fs::File, io};
 /// This binary is responsible for updating the list of relator terms (how a person
 /// is related to a work) in this repo.  It downloads the list from Library of Congress
 /// and saves it as JSON
+/// To generate the relator_terms.json file run:
+/// cargo run -p standards --bin update_relator_terms
 fn main() {
     let terms = download_terms().expect("Could not download terms");
     let parsed = parse_terms(&terms).expect("Could not parse terms");

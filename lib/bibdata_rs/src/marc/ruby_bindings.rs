@@ -6,6 +6,7 @@ pub mod marc_gem;
 use super::*;
 use crate::marc::call_number::{call_number_labels_for_browse, call_number_labels_for_display};
 use crate::marc::cartography::coverage_display;
+use crate::marc::cartography::geocode_display;
 use crate::marc::control_field::control_number::ControlNumber;
 use crate::marc::control_field::partner_id::other_id;
 use crate::marc::control_field::system_control_number::standard_numbers;
@@ -277,6 +278,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc!("536abcdefgh")(&record),
     )?;
     hash.aset("genre_facet", genre::genres(&record))?;
+    hash.aset(
+        "geocode_display",
+        ruby.ary_from_iter(geocode_display(&record)),
+    )?;
     hash.aset("geo_cov_notes_display", extract_marc!("522a")(&record))?;
     hash.aset(
         "geo_related_record_display",
