@@ -118,6 +118,9 @@ describe 'From traject_config.rb', :indexing do
         expect(@scsb_nypl['marcxml'].first).to be_a(String)
         expect(@scsb_nypl['marcxml'].first).not_to include('<record')
         expect(@scsb_nypl['marcxml'].first).not_to include('<?xml')
+        expect(@sample1['marcxml'].first).to be_a(String)
+        expect(@sample1['marcxml'].first).not_to include('<record')
+        expect(@sample1['marcxml'].first).not_to include('<?xml')
       end
 
       it 'can be decompressed back to MARCXML' do
@@ -138,11 +141,6 @@ describe 'From traject_config.rb', :indexing do
         decompressed = MarcxmlCompressor.decompress(compressed)
         expect(decompressed).to be_a(String)
         expect(decompressed.encoding).to eq(Encoding::UTF_8)
-      end
-
-      it 'is not present for Princeton records' do
-        expect(@sample1['marcxml']).to be_nil
-        expect(@format_book['marcxml']).to be_nil
       end
     end
 

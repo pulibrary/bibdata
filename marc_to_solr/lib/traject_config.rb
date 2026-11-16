@@ -88,10 +88,8 @@ end
 
 rust_single_value_field 'id'
 
-# Store the full MARCXML record as compressed string (gzip + base64) for SCSB records only
+# Store the full MARCXML record as compressed string (gzip + base64)
 to_field 'marcxml' do |_record, accumulator, context|
-  next unless context.clipboard[:is_scsb]
-
   accumulator << context.clipboard[:solr_fields]['marcxml']
 end
 
