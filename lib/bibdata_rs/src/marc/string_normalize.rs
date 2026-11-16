@@ -23,19 +23,15 @@ pub fn trim_punctuation(string: &str) -> String {
         .to_owned()
 }
 
-fn trim_starting_and_ending_brackets(original: &str) -> Cow<'_, str> {
-    let trimmed = original
-        .strip_prefix('[')
-        .map(|start_trimmed| start_trimmed.strip_suffix(']').unwrap_or(start_trimmed))
-        .or(original.strip_suffix(']'));
-    match trimmed {
-        // Make sure the string does not contain any remaining [], since they might have
-        // been paired with the ones we just removed, in which case the trimmed string
-        // won't make sense and we should return the original.
-        Some(trimmed) if !trimmed.contains('[') && !trimmed.contains(']') => {
-            Cow::Owned(trimmed.to_owned())
-        }
-        _ => Cow::Borrowed(original),
+fn trim_starting_and_ending_brackets(original: &str) -> &str {
+    let trimmed = original.trim_prefix('[').trim_suffix(']');
+    // Make sure the string does not contain any remaining [], since they might have
+    // been paired with the ones we just removed, in which case the trimmed string
+    // won't make sense and we should return the original.
+    if trimmed.contains('[') || trimmed.contains(']') {
+        original
+    } else {
+        trimmed
     }
 }
 
