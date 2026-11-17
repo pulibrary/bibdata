@@ -95,7 +95,7 @@ pub fn author_sort_key(record: &Record) -> Option<String> {
 pub fn author_s(record: &Record) -> impl Iterator<Item = String> {
     record
         .extract_field_values_by(
-            latin_or_non_latin_tag_included_in(&["100", "110", "111", "700", "710", "711", "880"]),
+            latin_or_non_latin_tag_included_in(&["100", "110", "111", "700", "710", "711"]),
             author_info_from_field,
         )
         .unique()
