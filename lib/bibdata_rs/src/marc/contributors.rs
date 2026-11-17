@@ -4,7 +4,7 @@ use crate::marc::{
     string_normalize::{maybe_not_empty, sentence_case},
     trim_punctuation,
     variable_length_field::{
-        ScriptsToIndex, SubfieldIterator, extract_marc, field_tag_matches, latin_tag_included_in,
+        ScriptsToIndex, SubfieldIterator, extract_marc, field_tag_matches, latin_or_non_latin_tag_included_in,
     },
 };
 use crate::solr::AuthorRoles;
@@ -95,7 +95,7 @@ pub fn author_sort_key(record: &Record) -> Option<String> {
 pub fn author_s(record: &Record) -> impl Iterator<Item = String> {
     record
         .extract_field_values_by(
-            latin_tag_included_in(&["100", "110", "111", "700", "710", "711"]),
+            latin_or_non_latin_tag_included_in(&["100", "110", "111", "700", "710", "711", "880"]),
             author_info_from_field,
         )
         .unique()
@@ -133,6 +133,7 @@ fn author_info_from_field(field: &Field) -> Option<String> {
         "100" | "700" => vec!["a", "q", "b", "c", "d", "k"],
         "110" | "710" => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n"],
         "111" | "711" => vec!["a", "b", "c", "d", "f", "g", "k", "l", "n", "p", "q"],
+        "880" => vec!["a"],
         _ => return None,
     };
     let joined = field
@@ -269,6 +270,19 @@ mod tests {
     }
 
     #[test]
+    fn it_does_not_excludes_880_parallel_names_for_author_s() {
+        let record = Record::from_breaker(
+            r#"=100 1\$aSijistānī, Abū Ḥātim Sahl ibn Muḥammad,$6880-01
+=880 1\$aسجستاني، ابو حاتم سهل ابن محمد‏.$6100-01"#,
+        )
+        .unwrap();
+        assert_eq!(
+            author_s(&record).collect_vec(),
+            vec!["Sijistānī, Abū Ḥātim Sahl ibn Muḥammad".to_owned(), "سجستاني، ابو حاتم سهل ابن محمد‏.".to_owned()]
+        );
+    }
+
+    #[test]
     fn it_returns_empty_when_no_author_fields_present() {
         let record = Record::from_breaker(r#"=245 10 \\$aA title"#).unwrap();
         assert_eq!(author_citation_display(&record), Vec::<String>::new());
@@ -297,19 +311,6 @@ mod tests {
         assert_eq!(
             author_s(&record).collect::<Vec<_>>(),
             vec!["Doe, John".to_owned()]
-        );
-    }
-
-    #[test]
-    fn it_ignores_880_parallel_names() {
-        let record = Record::from_breaker(
-            r#"=100 \\$aZhang, Liwei
-=880 \\$6100-01$a張，立偉"#,
-        )
-        .unwrap();
-        assert_eq!(
-            author_s(&record).collect::<Vec<_>>(),
-            vec!["Zhang, Liwei".to_owned()]
         );
     }
 
