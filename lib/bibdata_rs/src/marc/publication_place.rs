@@ -7,7 +7,7 @@ use serde_json::Value;
 use std::sync::LazyLock;
 
 pub static MARC_COUNTRIES: LazyLock<HashMap<String, String>> = LazyLock::new(|| {
-    let raw = include_str!("../../../../standards/data/marc_countries.json");
+    let raw = include_str!("data/marc_countries.json");
     let map: HashMap<String, String> =
         serde_json::from_str(raw).expect("Failed to parse marc_countries.json");
     map
@@ -16,15 +16,14 @@ pub static MARC_COUNTRIES: LazyLock<HashMap<String, String>> = LazyLock::new(|| 
 /// Hierarchical pipe mapping from MARC country codes to parent/child paths.
 ///
 /// E.g. "miu" → ["United States", "United States|||Michigan"],
-/// "ja" → "Japan" 
+/// "ja" → "Japan"
 pub static MARC_COUNTRIES_HIERARCHICAL_PIPE: LazyLock<HashMap<String, Value>> =
     LazyLock::new(|| {
-        let raw = include_str!("../../../../standards/data/marc_countries_hierarchical_pipe.json");
+        let raw = include_str!("data/marc_countries_hierarchical_pipe.json");
         let map: HashMap<String, Value> = serde_json::from_str(raw)
             .expect("Failed to parse marc_countries_hierarchical_pipe.json");
         map
     });
-
 
 pub fn publication_place_facet(record: &Record) -> Option<Vec<String>> {
     let code = country_code(record)?;
@@ -88,8 +87,7 @@ mod tests {
 
     #[test]
     fn test_publication_place_facet_unknown_code() {
-        // "zzz" is not in the marc_countries map
-        let record = record_with_008("801010s1964    zzz     ab    000 0 eng  ");
+        let record = record_with_008("801010s1964    ψψψ     ab    000 0 eng  ");
         assert_eq!(publication_place_facet(&record), None);
     }
 
@@ -100,8 +98,7 @@ mod tests {
     }
 
     #[test]
-    fn test_publication_place_facet_empty_code() {
-        // positions 15-17 are all spaces
+    fn test_publication_place_facet_empty_position() {
         let record = record_with_008("801010s1964           ab    000 0 eng  ");
         assert_eq!(publication_place_facet(&record), None);
     }
