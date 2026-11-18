@@ -542,7 +542,10 @@ end
 
 rust_multi_value_field 'original_language_of_translation_facet'
 
-rust_multi_value_field 'publication_place_facet'
+to_field 'publication_place_facet' do |_record, acc, context|
+  arr = context.clipboard[:solr_fields]['publication_place_facet']
+  acc.concat(Array(arr).flatten) if arr.present?
+end
 
 # Script:
 #    546 XX b
@@ -710,7 +713,10 @@ to_field 'lc_subject_facet' do |record, accumulator|
   accumulator.replace(lc_subjects)
 end
 
-rust_multi_value_field 'publication_place_hierarchical_pipe_facet'
+to_field 'publication_place_hierarchical_pipe_facet' do |_record, acc, context|
+  arr = context.clipboard[:solr_fields]['publication_place_hierarchical_pipe_facet']
+  acc.concat(Array(arr).flatten) if arr.present?
+end
 
 # See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
 to_field 'geographic_facet', marc_geo_facet do |_record, accumulator|
