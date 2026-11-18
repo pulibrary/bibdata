@@ -21,6 +21,9 @@ use crate::marc::name_title_browse::name_title_browse_s;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
 use crate::marc::note::indexes_display;
+use crate::marc::publication_place::{
+    publication_place_facet, publication_place_hierarchical_pipe_facet,
+};
 use crate::marc::record_facet_mapping::formats;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::title;
@@ -497,6 +500,14 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "publication_date_citation_display",
         fixed_field::dates::publication_date_citation_display(&record),
+    )?;
+    hash.aset(
+        "publication_place_facet",
+        ruby.ary_from_iter(publication_place_facet(&record)),
+    )?;
+    hash.aset(
+        "publication_place_hierarchical_pipe_facet",
+        ruby.ary_from_iter(publication_place_hierarchical_pipe_facet(&record)),
     )?;
     hash.aset(
         "publications_about_display",
