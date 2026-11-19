@@ -15,7 +15,6 @@ pub struct DataspaceDocument {
     pub contributor: Option<Vec<String>>,
     pub contributor_advisor: Option<Vec<String>>,
     pub contributor_author: Option<Vec<String>>,
-    pub description_abstract: Option<Vec<String>>,
     pub format_extent: Option<Vec<String>>,
     pub identifier_other: Option<Vec<String>>,
     pub identifier_uri: Option<Vec<String>>,
@@ -24,6 +23,7 @@ pub struct DataspaceDocument {
     certificate: Option<Vec<String>>,
     date_classyear: Option<Vec<String>>,
     department: Option<Vec<String>>,
+    description_abstract: Option<Vec<String>>,
     embargo_lift: Option<Vec<String>>,
     embargo_terms: Option<Vec<String>>,
     language_iso: Option<Vec<String>>,
@@ -37,6 +37,12 @@ impl DataspaceDocument {
         self.contributor_author
             .as_ref()
             .map(|authors| authors.iter().map(AsRef::as_ref).collect())
+    }
+
+    pub fn summary(&self) -> Option<Vec<&str>> {
+        self.description_abstract
+            .as_ref()
+            .map(|abstracts| abstracts.iter().map(AsRef::as_ref).collect())
     }
 }
 
