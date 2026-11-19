@@ -6,6 +6,7 @@ use std::{
     fs::File,
     io::{BufWriter, Write},
     path::Path,
+    sync::{Arc, Mutex, RwLock},
 };
 
 use crate::theses::{
@@ -42,17 +43,31 @@ pub struct ResultEmbedded {
     pub objects: Vec<Item>,
 }
 
-#[derive(Clone, Debug, Default, Deserialize)]
+#[derive(Clone, Copy, Debug, Default, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Page {
     /// The page number (starting from 0)
-    number: i32,
-    total_pages: i32,
+    number: u32,
+    total_pages: u32,
+    /// The number of results per page
+    size: Option<u32>,
 }
 
 impl Page {
     pub fn is_last_page(&self) -> bool {
-        self.total_pages == self.number + 1
+        self.number >= (self.total_pages - 1)
+    }
+
+    pub fn next(&self) -> Self {
+        Self {
+            number: self.number + 1,
+            total_pages: self.total_pages,
+            size: self.size,
+        }
+    }
+
+    pub fn page_size(&self) -> u32 {
+        self.size.unwrap_or(100)
     }
 }
 
@@ -67,10 +82,11 @@ pub struct ItemEmbedded {
     pub indexable_object: DataspaceDocument,
 }
 
-pub fn collection_url(server: &str, scope: &str, page_size: u32, page: u32) -> String {
+pub fn collection_url(server: &str, scope: &str, page: Page) -> String {
     format!(
-        "{}/discover/search/objects?scope={}&size={}&page={}",
-        server, scope, page_size, page
+        "{server}/discover/search/objects?scope={scope}&size={}&page={}",
+        page.page_size(),
+        page.number
     )
 }
 
@@ -95,55 +111,75 @@ pub fn collections_as_solr(
     rest_limit: u32,
 ) -> Result<(), magnus::Error> {
     let _ = env_logger::try_init();
-    let documents: Vec<DataspaceDocument> =
-        get_document_list(&server, &community_handle, rest_limit, |server, handle| {
+    let writer = buf_writer(temp_theses_cache_path()).map_err(|err| err.to_magnus(ruby))?;
+    let threadsafe_writer = Arc::new(Mutex::new(writer));
+    let first = true;
+
+    write_buffer(&mut threadsafe_writer.lock().unwrap(), b"[")
+        .map_err(|err| err.to_magnus(ruby))?;
+    write_documents(
+        &server,
+        &community_handle,
+        rest_limit,
+        |server, handle| {
             community::get_collection_list(server, handle, community::get_community_id)
-        })
-        .map_err(|e| magnus_err_from_anyhow_err(ruby, &e))?;
-    let mut writer = buf_writer(temp_theses_cache_path()).map_err(|err| err.to_magnus(ruby))?;
-    serde_json::to_writer_pretty(
-        &mut writer,
-        &documents
-            .iter()
-            .map(SolrDocument::from)
-            .collect::<Vec<SolrDocument>>(),
+        },
+        Arc::clone(&threadsafe_writer),
+        Arc::new(RwLock::new(first)),
     )
-    .map_err(|e| magnus_err(ruby, &e))?;
-    writer.flush().map_err(|value| magnus_err(ruby, value))?;
+    .map_err(|e| magnus_err_from_anyhow_err(ruby, &e))?;
+    write_buffer(&mut threadsafe_writer.lock().unwrap(), b"]")
+        .map_err(|err| err.to_magnus(ruby))?;
+    threadsafe_writer
+        .lock()
+        .unwrap()
+        .flush()
+        .map_err(|value| magnus_err(ruby, value))?;
     Ok(())
 }
 
+fn write_buffer(writer: &mut BufWriter<impl Write>, buffer: &[u8]) -> Result<(), ThesesError> {
+    writer
+        .write_all(buffer)
+        .map_err(|_| ThesesError::CouldNotWriteToFile)
+}
+
 type CollectionIdsSelector = fn(&str, &str) -> Result<Vec<String>>;
-pub fn get_document_list(
+
+pub fn write_documents(
     server: &str,
     community_id: &str,
     rest_limit: u32,
     ids_selector: CollectionIdsSelector, // a closure that returns a Vec of dspace collection ids
-) -> Result<Vec<DataspaceDocument>> {
+    writer: Arc<Mutex<BufWriter<impl Write + Send>>>,
+    first: Arc<RwLock<bool>>,
+) -> Result<()> {
     let collection_ids = ids_selector(server, community_id)?;
-    let documents = collection_ids
-        .par_iter()
-        .try_fold(Vec::new, |accumulator, collection_id| {
-            get_documents_in_collection(&accumulator, server, collection_id, rest_limit, 0, 0)
-        })
-        .try_reduce(Vec::new, |mut a, b| {
-            a.extend(b);
-            Ok(a)
-        })?;
-
-    Ok(documents)
+    collection_ids.par_iter().try_for_each(|collection_id| {
+        get_documents_in_collection(
+            server,
+            collection_id,
+            Page {
+                size: Some(rest_limit),
+                ..Default::default()
+            },
+            0,
+            writer.clone(),
+            first.clone(),
+        )
+    })
 }
 
 // This function recursively fetches paginated API results and retries on error
 fn get_documents_in_collection(
-    documents: &[DataspaceDocument],
     server: &str,
     scope: &str,
-    page_size: u32,
-    page: u32,
+    page: Page,
     attempt: u8,
-) -> Result<Vec<DataspaceDocument>> {
-    let url = collection_url(server, scope, page_size, page);
+    writer: Arc<Mutex<BufWriter<impl Write + Send>>>,
+    first: Arc<RwLock<bool>>,
+) -> Result<()> {
+    let url = collection_url(server, scope, page);
     if attempt == 0 {
         debug!("Querying for the DSpace Collection at {}", url)
     } else {
@@ -155,34 +191,39 @@ fn get_documents_in_collection(
         );
     }
     let search_response = get_url_as_json(&url);
-    let pagination: Page;
 
-    let mut new_documents = match search_response {
+    let (page, new_documents) = match search_response {
         Ok(docs) => {
-            pagination = docs.clone()._embedded.search_result.page;
-            Ok(map_search_result_to_vec(docs))
+            let page = docs.clone()._embedded.search_result.page;
+            (page, map_search_result_to_vec(docs))
         }
         Err(e) => {
             // If there was an error, increment the count of attempts and recurse
-            pagination = Page {
-                number: 0,
-                total_pages: 0,
-            };
-            if attempt < config::THESES_RETRY_ATTEMPTS {
-                get_documents_in_collection(documents, server, scope, page_size, page, attempt + 1)
+            return if attempt < config::THESES_RETRY_ATTEMPTS {
+                get_documents_in_collection(server, scope, page, attempt + 1, writer, first)
             } else {
                 Err(e)
+            };
+        }
+    };
+    if !new_documents.is_empty() {
+        for document in new_documents {
+            let any_documents_written = !*first.read().unwrap();
+            let mut writer = writer.lock().unwrap();
+            if any_documents_written {
+                write_buffer(&mut writer, b",")?;
+                serde_json::to_writer_pretty(&mut *writer, &SolrDocument::from(&document))?;
+            } else {
+                serde_json::to_writer_pretty(&mut *writer, &SolrDocument::from(&document))?;
+                let mut first = first.write().unwrap();
+                *first = false;
             }
         }
-    }?;
-    let mut combined = documents.to_vec();
-    if !new_documents.is_empty() {
-        combined.append(&mut new_documents);
     }
-    if !pagination.is_last_page() {
-        get_documents_in_collection(&combined, server, scope, page_size, page + 1, 0)
+    if !page.is_last_page() {
+        get_documents_in_collection(server, scope, page.next(), 0, writer, first)
     } else {
-        Ok(combined)
+        Ok(())
     }
 }
 
@@ -214,8 +255,10 @@ mod tests {
             collection_url(
                 "https://theses-dissertations.princeton.edu/server/api",
                 "d98b1985-fc36-47ce-b11a-62386b505e85",
-                100,
-                10
+                Page {
+                    number: 10,
+                    ..Default::default()
+                }
             ),
             "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=100&page=10"
         );
@@ -236,20 +279,24 @@ mod tests {
         let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| {
             Ok(vec!["ace6dfbf-4f73-4558-acd0-1c4e5fd94baa".to_string()])
         };
-        let docs = get_document_list(
+        let writer = Arc::new(Mutex::new(BufWriter::new(Vec::new())));
+        write_buffer(&mut writer.lock().unwrap(), b"[").unwrap();
+        write_documents(
             &server.url(),
             "c5839e02-b833-4db1-a92f-92a1ffd286b9",
             20,
             ids_selector,
+            Arc::clone(&writer),
+            Arc::new(RwLock::new(true)),
         )
         .unwrap();
+        write_buffer(&mut writer.lock().unwrap(), b"]").unwrap();
+
+        let docs = docs_from_writer(writer);
         assert_eq!(docs.len(), 20);
         assert_eq!(
-            docs[0].title.clone().unwrap(),
-            vec![
-                "Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion"
-                    .to_owned()
-            ]
+            docs[0].title_display.clone().unwrap(),
+            "Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion"
         );
 
         mock_page0.assert();
@@ -267,16 +314,24 @@ mod tests {
             .with_body_from_file("../../spec/fixtures/files/theses/api_client_search_page_1.json")
             .create();
 
-        let mut docs: Vec<DataspaceDocument> = vec![];
-        let _ = get_documents_in_collection(
-            &mut docs,
+        let writer = Arc::new(Mutex::new(BufWriter::new(Vec::new())));
+        write_buffer(&mut writer.lock().unwrap(), b"[").unwrap();
+        get_documents_in_collection(
             &server.url(),
             "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa",
-            20,
-            1,
+            Page {
+                size: Some(20),
+                number: 1,
+                ..Default::default()
+            },
             0,
-        );
+            writer.clone(),
+            Arc::new(RwLock::new(true)),
+        )
+        .unwrap();
+        write_buffer(&mut writer.lock().unwrap(), b"]").unwrap();
 
+        let docs = docs_from_writer(writer);
         assert_eq!(docs.len(), 0);
         mock_page1.assert();
     }
@@ -305,19 +360,26 @@ mod tests {
             )
             .create();
 
-        let mut docs: Vec<DataspaceDocument> = vec![];
-        let docs = get_documents_in_collection(
-            &mut docs,
+        let writer = Arc::new(Mutex::new(BufWriter::new(Vec::new())));
+        write_buffer(&mut writer.lock().unwrap(), b"[").unwrap();
+        get_documents_in_collection(
             &server.url(),
             "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa",
-            1,
+            Page {
+                size: Some(1),
+                number: 0,
+                ..Default::default()
+            },
             0,
-            0,
+            writer.clone(),
+            Arc::new(RwLock::new(true)),
         )
         .unwrap();
+        write_buffer(&mut writer.lock().unwrap(), b"]").unwrap();
 
+        let docs = docs_from_writer(writer);
         assert_eq!(docs.len(), 2);
-        let ids: Vec<_> = docs.iter().flat_map(|doc| doc.id.clone()).collect();
+        let ids: Vec<_> = docs.iter().map(|doc| doc.id.clone()).collect();
         assert!(ids.contains(&"dsp01multipage1".to_string()));
         assert!(ids.contains(&"dsp01multipage2".to_string()));
 
@@ -340,8 +402,16 @@ mod tests {
         let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| {
             Ok(vec!["d98b1985-fc36-47ce-b11a-62386b505e85".to_string()])
         };
-        let docs = get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, ids_selector);
-        assert!(docs.is_err());
+        let writer = Arc::new(Mutex::new(BufWriter::new(Vec::new())));
+        let result = write_documents(
+            &server.url(),
+            "88435/dsp019c67wm88m",
+            100,
+            ids_selector,
+            Arc::clone(&writer),
+            Arc::new(RwLock::new(true)),
+        );
+        assert!(result.is_err());
 
         mock_page1.assert();
     }
@@ -360,5 +430,16 @@ mod tests {
                 .is_err()
         );
         mock_bad_response.assert();
+    }
+
+    fn docs_from_writer(writer: Arc<Mutex<BufWriter<Vec<u8>>>>) -> Vec<SolrDocument> {
+        let bytes = Arc::try_unwrap(writer)
+            .unwrap()
+            .into_inner()
+            .unwrap()
+            .into_inner()
+            .unwrap();
+        let content = String::from_utf8(bytes).unwrap();
+        serde_json::from_str(&content).unwrap()
     }
 }
