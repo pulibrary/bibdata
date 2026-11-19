@@ -45,7 +45,7 @@ mod tests {
     #[test]
     fn it_posts_the_document_to_solr() {
         let document = SolrDocumentBuilder::default()
-            .with_other_title_display(Some(vec!["Aspen".to_string()]))
+            .with_other_title_display(Some(&["Aspen".to_string()]))
             .build();
         let mut server = mockito::Server::new();
         let collection = "alma-production-rebuild";

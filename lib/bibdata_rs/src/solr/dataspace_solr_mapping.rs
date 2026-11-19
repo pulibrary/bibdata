@@ -13,7 +13,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             })
             .with_access_facet(doc.access_facet())
             .with_advanced_location_s(doc.advanced_location().as_deref())
-            .with_author_citation_display(doc.contributor_author.clone())
+            .with_author_citation_display(doc.contributor_author.as_deref())
             .with_advisor_display(
                 doc.contributor_advisor
                     .as_ref()
@@ -29,29 +29,34 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_call_number_browse_s(&doc.call_number())
             .with_call_number_display(&doc.call_number())
             .with_certificate_display(doc.authorized_certificates().as_deref())
-            .with_contributor_display(doc.contributor.clone())
+            .with_contributor_display(doc.contributor.as_deref())
             .with_department_display(doc.authorized_departments().as_deref())
-            .with_format(vec![super::FormatFacet::SeniorThesis])
-            .with_holdings_1display(doc.physical_holding_string())
+            .with_format(&[super::FormatFacet::SeniorThesis])
+            .with_holdings_1display(doc.physical_holding_string().as_deref())
             .with_location(doc.location())
             .with_location_code_s(doc.location_code())
             .with_location_display(doc.location_display())
-            .with_electronic_access_1display(doc.ark_hash())
-            .with_restrictions_note_display(doc.restrictions_note_display())
+            .with_electronic_access_1display(doc.ark_hash().as_ref())
+            .with_restrictions_note_display(doc.restrictions_note_display().as_deref())
             .with_title_citation_display(doc.first_title())
             .with_title_display(match &doc.title {
                 Some(titles) => titles.first().map(|s| s.as_ref()),
                 None => None,
             })
             .with_title_sort_key(title_sort_key(doc.title.as_ref()).as_deref())
-            .with_title_t(doc.title_search_versions())
+            .with_title_t(doc.title_search_versions().as_deref())
             .with_language_facet(&doc.languages())
             .with_language_name_display(&doc.languages())
-            .with_class_year_s(doc.class_year().map(|year| vec![year]))
+            .with_class_year_s(
+                doc.class_year()
+                    .map(|year| [year])
+                    .as_ref()
+                    .map(|years| years.as_slice()),
+            )
             .with_pub_citation_display(&doc.authorized_departments().unwrap_or_default())
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
-            .with_description_display(doc.format_extent.clone())
+            .with_description_display(doc.format_extent.as_deref())
             .with_summary_note_display(doc.summary().as_deref())
             .build()
     }
@@ -72,7 +77,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
                     .map(|v| v.iter().map(|s| s.as_ref()).collect::<Vec<_>>())
                     .as_deref(),
             )
-            .with_author_citation_display(doc.contributor_author.clone())
+            .with_author_citation_display(doc.contributor_author.as_deref())
             .with_author_display(doc.author().as_deref())
             .with_author_s(&doc.all_authors())
             .with_author_sort_key(match &doc.contributor_author {
@@ -82,29 +87,34 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_call_number_browse_s(&doc.call_number())
             .with_call_number_display(&doc.call_number())
             .with_certificate_display(doc.authorized_ceritificates().as_deref())
-            .with_contributor_display(doc.contributor.clone())
+            .with_contributor_display(doc.contributor.as_deref())
             .with_department_display(doc.authorized_departments().as_deref())
-            .with_format(vec![super::FormatFacet::SeniorThesis])
-            .with_holdings_1display(doc.physical_holding_string())
+            .with_format(&[super::FormatFacet::SeniorThesis])
+            .with_holdings_1display(doc.physical_holding_string().as_deref())
             .with_location(doc.location())
             .with_location_code_s(doc.location_code())
             .with_location_display(doc.location_display())
-            .with_electronic_access_1display(doc.ark_hash())
-            .with_restrictions_note_display(doc.restrictions_note_display())
+            .with_electronic_access_1display(doc.ark_hash().as_ref())
+            .with_restrictions_note_display(doc.restrictions_note_display().as_deref())
             .with_title_citation_display(doc.first_title())
             .with_title_display(match &doc.title {
                 Some(titles) => titles.first().map(|s| s.as_str()),
                 None => None,
             })
             .with_title_sort_key(title_sort_key(doc.title.as_ref()).as_deref())
-            .with_title_t(doc.title_search_versions())
+            .with_title_t(doc.title_search_versions().as_deref())
             .with_language_facet(&doc.languages())
             .with_language_name_display(&doc.languages())
-            .with_class_year_s(doc.class_year().map(|year| vec![year]))
+            .with_class_year_s(
+                doc.class_year()
+                    .map(|year| [year])
+                    .as_ref()
+                    .map(|years| years.as_slice()),
+            )
             .with_pub_citation_display(&doc.authorized_departments().unwrap_or_default())
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
-            .with_description_display(doc.format_extent.clone())
+            .with_description_display(doc.format_extent.as_deref())
             .with_summary_note_display(doc.summary().as_deref())
             .build()
     }
