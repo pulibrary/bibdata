@@ -45,8 +45,15 @@ pub struct ResultEmbedded {
 #[derive(Clone, Debug, Default, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Page {
+    /// The page number (starting from 0)
     number: i32,
     total_pages: i32,
+}
+
+impl Page {
+    pub fn is_last_page(&self) -> bool {
+        self.total_pages == self.number + 1
+    }
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
@@ -60,7 +67,7 @@ pub struct ItemEmbedded {
     pub indexable_object: DataspaceDocument,
 }
 
-pub fn collection_url(server: &str, scope: &str, page_size: &str, page: &str) -> String {
+pub fn collection_url(server: &str, scope: &str, page_size: u32, page: u32) -> String {
     format!(
         "{}/discover/search/objects?scope={}&size={}&page={}",
         server, scope, page_size, page
@@ -136,7 +143,7 @@ fn get_documents_in_collection(
     page: u32,
     attempt: u8,
 ) -> Result<Vec<DataspaceDocument>> {
-    let url = collection_url(server, scope, &page_size.to_string(), &page.to_string());
+    let url = collection_url(server, scope, page_size, page);
     if attempt == 0 {
         debug!("Querying for the DSpace Collection at {}", url)
     } else {
@@ -172,8 +179,7 @@ fn get_documents_in_collection(
     if !new_documents.is_empty() {
         combined.append(&mut new_documents);
     }
-    // If the current page is not the last page get the next page of documents
-    if pagination.number + 1 < pagination.total_pages {
+    if !pagination.is_last_page() {
         get_documents_in_collection(&combined, server, scope, page_size, page + 1, 0)
     } else {
         Ok(combined)
@@ -208,8 +214,8 @@ mod tests {
             collection_url(
                 "https://theses-dissertations.princeton.edu/server/api",
                 "d98b1985-fc36-47ce-b11a-62386b505e85",
-                "100",
-                "10"
+                100,
+                10
             ),
             "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=100&page=10"
         );
