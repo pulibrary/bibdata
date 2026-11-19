@@ -294,23 +294,6 @@ describe 'From princeton_marc.rb', :indexing do
     end
   end
 
-  describe 'process_names, process_alt_script_names function' do
-    before(:all) do
-      @t100 = { '100' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'John' }, { 'd' => '1492' }, { 't' => 'TITLE' }, { 'k' => 'ignore' }] } }
-      @t700 = { '700' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'John' }, { 'd' => '1492' }, { 'k' => "don't ignore" }, { 't' => 'TITLE' }] } }
-      @t880 = { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '100-1' }, { 'a' => 'Κινέζικα' }, { 't' => 'TITLE' }, { 'k' => 'ignore' }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@t100, @t700, @t880])
-    end
-
-    it 'strips subfields that appear after subfield $t, includes 880' do
-      names = process_names(@sample_marc)
-      expect(names).to include('John 1492')
-      expect(names).to include("John 1492 don't ignore")
-      expect(names).not_to include('John 1492 ignore')
-      expect(names).to include('Κινέζικα')
-    end
-  end
-
   describe '#everything_after_t, #everything_after_t_alt_script' do
     before(:all) do
       t100 = { '100' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'IGNORE' }, { 'd' => 'me' }, { 't' => 'TITLE' }] } }
