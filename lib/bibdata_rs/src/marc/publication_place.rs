@@ -6,6 +6,8 @@ use marctk::Record;
 use serde_json::Value;
 use std::sync::LazyLock;
 
+use crate::marc::string_normalize::maybe_not_empty;
+
 pub static MARC_COUNTRIES: LazyLock<HashMap<String, String>> = LazyLock::new(|| {
     let raw = include_str!("data/marc_countries.json");
     let map: HashMap<String, String> =
