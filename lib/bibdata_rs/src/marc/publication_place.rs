@@ -50,11 +50,7 @@ fn country_code(record: &Record) -> Option<String> {
     let content = record.get_control_fields("008").first()?.content();
     let stripped: String = content.chars().skip(15).take(3).collect();
     let stripped = stripped.trim();
-    if stripped.is_empty() {
-        None
-    } else {
-        Some(stripped.to_string())
-    }
+    maybe_not_empty(stripped.to_string())
 }
 
 #[cfg(test)]
