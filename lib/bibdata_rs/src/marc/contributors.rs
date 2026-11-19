@@ -4,7 +4,8 @@ use crate::marc::{
     string_normalize::{maybe_not_empty, sentence_case},
     trim_punctuation,
     variable_length_field::{
-        ScriptsToIndex, SubfieldIterator, extract_marc, field_tag_matches, latin_or_non_latin_tag_included_in,
+        ScriptsToIndex, SubfieldIterator, extract_marc, field_tag_matches,
+        latin_or_non_latin_tag_included_in,
     },
 };
 use crate::solr::AuthorRoles;
@@ -278,7 +279,10 @@ mod tests {
         .unwrap();
         assert_eq!(
             author_s(&record).collect_vec(),
-            vec!["Sijistānī, Abū Ḥātim Sahl ibn Muḥammad".to_owned(), "سجستاني، ابو حاتم سهل ابن محمد‏.".to_owned()]
+            vec![
+                "Sijistānī, Abū Ḥātim Sahl ibn Muḥammad".to_owned(),
+                "سجستاني، ابو حاتم سهل ابن محمد‏.".to_owned()
+            ]
         );
     }
 

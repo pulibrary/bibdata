@@ -840,11 +840,9 @@ record",
         assert!(
             hash.aref::<_, Qnil>("publication_date_citation_display")
                 .is_ok()
-           
         );
         assert_eq!(
-            hash.aref::<&str, String>("title_display")
-                .unwrap(),
+            hash.aref::<&str, String>("title_display").unwrap(),
             String::from("Gay scientists")
         );
     }
