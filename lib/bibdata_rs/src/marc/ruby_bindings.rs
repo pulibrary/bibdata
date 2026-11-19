@@ -775,7 +775,7 @@ fn extract_marc_trim_punctuation(ruby: &Ruby, spec: &str, record: &Record) -> RA
 #[cfg(test)]
 mod tests {
     use super::*;
-    use magnus::Ruby;
+    use magnus::{Ruby, value::Qnil};
     use rb_sys_test_helpers::ruby_test;
 
     #[ruby_test]
@@ -817,6 +817,35 @@ mod tests {
                 String::from("Dust jackets (Bindings)"),
                 String::from("Dust jackets (Bindings)—2013"),
             ]
+        );
+    }
+    #[ruby_test]
+    fn it_includes_publication_date_citation_display_but_not_unknown_publication_place() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby
+            .eval(
+                r"require 'marc';
+record = MARC::Record.new;
+record.append(MARC::ControlField.new('008', '801010s1964    ψψψ     ab    000 0 eng  '));
+record.append(MARC::DataField.new('245', ' ', '', ['a', 'Gay scientists']))
+record",
+            )
+            .unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("publication_place_facet")
+                .unwrap(),
+            Vec::<String>::new()
+        );
+        assert!(
+            hash.aref::<_, Qnil>("publication_date_citation_display")
+                .is_ok()
+           
+        );
+        assert_eq!(
+            hash.aref::<&str, String>("title_display")
+                .unwrap(),
+            String::from("Gay scientists")
         );
     }
 
