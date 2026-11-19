@@ -22,6 +22,7 @@ pub mod marcxml_compressor;
 pub mod name_title_browse;
 pub mod note;
 pub mod publication;
+pub mod publication_place;
 pub mod record_facet_mapping;
 pub mod scsb;
 pub mod searching;

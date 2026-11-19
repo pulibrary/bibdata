@@ -21,6 +21,9 @@ use crate::marc::name_title_browse::name_title_browse_s;
 use crate::marc::note::access_notes;
 use crate::marc::note::action_note::action_notes;
 use crate::marc::note::indexes_display;
+use crate::marc::publication_place::{
+    publication_place_facet, publication_place_hierarchical_pipe_facet,
+};
 use crate::marc::record_facet_mapping::formats;
 use crate::marc::ruby_bindings::marc_gem::marctk_from_ruby_marc_record;
 use crate::marc::title;
@@ -121,7 +124,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(161);
+    let hash = ruby.hash_new_capa(164);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -499,6 +502,14 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         fixed_field::dates::publication_date_citation_display(&record),
     )?;
     hash.aset(
+        "publication_place_facet",
+        ruby.ary_from_iter(publication_place_facet(&record)),
+    )?;
+    hash.aset(
+        "publication_place_hierarchical_pipe_facet",
+        ruby.ary_from_iter(publication_place_hierarchical_pipe_facet(&record)),
+    )?;
+    hash.aset(
         "publications_about_display",
         extract_marc!("581az36")(&record),
     )?;
@@ -764,7 +775,7 @@ fn extract_marc_trim_punctuation(ruby: &Ruby, spec: &str, record: &Record) -> RA
 #[cfg(test)]
 mod tests {
     use super::*;
-    use magnus::Ruby;
+    use magnus::{Ruby, value::Qnil};
     use rb_sys_test_helpers::ruby_test;
 
     #[ruby_test]
@@ -806,6 +817,33 @@ mod tests {
                 String::from("Dust jackets (Bindings)"),
                 String::from("Dust jackets (Bindings)—2013"),
             ]
+        );
+    }
+    #[ruby_test]
+    fn it_includes_publication_date_citation_display_but_not_unknown_publication_place() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let ruby_record: magnus::RObject = ruby
+            .eval(
+                r"require 'marc';
+record = MARC::Record.new;
+record.append(MARC::ControlField.new('008', '801010s1964    ψψψ     ab    000 0 eng  '));
+record.append(MARC::DataField.new('245', ' ', '', ['a', 'Gay scientists']))
+record",
+            )
+            .unwrap();
+        let hash = solr_fields(&ruby, ruby_record).unwrap();
+        assert_eq!(
+            hash.aref::<&str, Vec<String>>("publication_place_facet")
+                .unwrap(),
+            Vec::<String>::new()
+        );
+        assert!(
+            hash.aref::<_, Qnil>("publication_date_citation_display")
+                .is_ok()
+        );
+        assert_eq!(
+            hash.aref::<&str, String>("title_display").unwrap(),
+            String::from("Gay scientists")
         );
     }
 
