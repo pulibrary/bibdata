@@ -53,7 +53,7 @@ pub struct SolrDocumentBuilder<'a> {
     department_display: Option<&'a [&'a str]>,
     certificate_display: Option<&'a [&'a str]>,
     description_display: Option<Vec<String>>,
-    summary_note_display: Option<Vec<String>>,
+    summary_note_display: Option<&'a [&'a str]>,
 }
 impl<'a> SolrDocumentBuilder<'a> {
     pub fn with_id(&mut self, id: &'a str) -> &mut Self {
@@ -307,7 +307,7 @@ impl<'a> SolrDocumentBuilder<'a> {
     }
     pub fn with_summary_note_display(
         &mut self,
-        summary_note_display: Option<Vec<String>>,
+        summary_note_display: Option<&'a [&'a str]>,
     ) -> &mut Self {
         self.summary_note_display = summary_note_display;
         self
@@ -369,7 +369,7 @@ impl<'a> SolrDocumentBuilder<'a> {
             description_display: self.description_display.clone(),
             restrictions_note_display: self.restrictions_note_display.clone(),
             other_title_display: self.other_title_display.clone(),
-            summary_note_display: self.summary_note_display.clone(),
+            summary_note_display: allocate_option_vec(self.summary_note_display),
         }
     }
 }

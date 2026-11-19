@@ -52,7 +52,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())
-            .with_summary_note_display(doc.description_abstract.clone())
+            .with_summary_note_display(doc.summary().as_deref())
             .build()
     }
 }
@@ -105,7 +105,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())
-            .with_summary_note_display(doc.description_abstract.clone())
+            .with_summary_note_display(doc.summary().as_deref())
             .build()
     }
 }
