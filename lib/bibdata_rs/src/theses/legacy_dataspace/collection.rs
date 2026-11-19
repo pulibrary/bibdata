@@ -1,31 +1,29 @@
 // This module is responsible for interacting with Dataspace collections
 // using the Dataspace JSON API
 
-use std::{
-    fs::File,
-    io::{BufWriter, Write},
-};
-
-use crate::solr::SolrDocument;
+use crate::theses::legacy_dataspace::community;
 use crate::theses::{
-    config,
-    legacy_dataspace::{community, document::DataspaceDocument},
-    temp_legacy_theses_cache_path,
+    config, legacy_dataspace::document::DataspaceDocument, temp_legacy_theses_cache_path,
 };
+use crate::{solr::SolrDocument, theses::errors::ThesesError};
 use anyhow::{Result, anyhow};
 use log::debug;
 use magnus::Ruby;
 use rayon::prelude::*;
+use std::sync::RwLock;
+use std::{
+    fs::File,
+    io::{BufWriter, Write},
+    path::Path,
+    sync::Arc,
+    sync::Mutex,
+};
 
 pub fn collection_url(server: &str, id: &str, rest_limit: &str, offset: &str) -> String {
     format!(
         "{}/collections/{}/items?limit={}&offset={}&expand=metadata",
         server, id, rest_limit, offset
     )
-}
-
-fn magnus_err_from_serde_err(ruby: &Ruby, value: &serde_json::Error) -> magnus::Error {
-    magnus::Error::new(ruby.exception_runtime_error(), value.to_string())
 }
 
 fn magnus_err_from_anyhow_err(ruby: &Ruby, value: &anyhow::Error) -> magnus::Error {
@@ -40,58 +38,79 @@ pub fn legacy_collections_as_solr(
     rest_limit: u32,
 ) -> Result<(), magnus::Error> {
     let _ = env_logger::try_init();
-    let documents: Vec<DataspaceDocument> =
-        get_document_list(&server, &community_handle, rest_limit, |server, handle| {
+    let writer = buf_writer(temp_legacy_theses_cache_path()).map_err(|err| err.to_magnus(ruby))?;
+    let threadsafe_writer = Arc::new(Mutex::new(writer));
+    let first = true;
+
+    write_buffer(&mut threadsafe_writer.lock().unwrap(), b"[")
+        .map_err(|err| err.to_magnus(ruby))?;
+
+    write_documents(
+        &server,
+        &community_handle,
+        rest_limit,
+        |server, handle| {
             community::get_collection_list(server, handle, community::get_community_id)
-        })
-        .map_err(|e| magnus_err_from_anyhow_err(ruby, &e))?;
-    let file = File::create(temp_legacy_theses_cache_path())
-        .map_err(|value| magnus_err_from_anyhow_err(ruby, &anyhow!(value)))?;
-    let mut writer = BufWriter::new(file);
-    serde_json::to_writer_pretty(
-        &mut writer,
-        &documents
-            .iter()
-            .map(SolrDocument::from)
-            .collect::<Vec<SolrDocument>>(),
+        },
+        Arc::clone(&threadsafe_writer),
+        Arc::new(RwLock::new(first)),
     )
-    .map_err(|e| magnus_err_from_serde_err(ruby, &e))?;
-    writer
+    .map_err(|e| magnus_err_from_anyhow_err(ruby, &e))?;
+    write_buffer(&mut threadsafe_writer.lock().unwrap(), b"]")
+        .map_err(|err| err.to_magnus(ruby))?;
+    threadsafe_writer
+        .lock()
+        .unwrap()
         .flush()
         .map_err(|value| magnus_err_from_anyhow_err(ruby, &anyhow!(value)))?;
     Ok(())
 }
 
+fn buf_writer(path: impl AsRef<Path>) -> Result<BufWriter<impl Write>, ThesesError> {
+    let file = File::create(path).map_err(|_| ThesesError::CouldNotOpenFileForWriting)?;
+    Ok(BufWriter::new(file))
+}
+
+fn write_buffer(writer: &mut BufWriter<impl Write>, buffer: &[u8]) -> Result<(), ThesesError> {
+    writer
+        .write_all(buffer)
+        .map_err(|_| ThesesError::CouldNotWriteToFile)
+}
+
 type CollectionIdsSelector = fn(&str, &str) -> Result<Vec<u32>>;
-pub fn get_document_list(
+
+pub fn write_documents(
     server: &str,
     community_handle: &str,
     rest_limit: u32,
     ids_selector: CollectionIdsSelector, // a closure that returns a Vec of dspace collection ids
-) -> Result<Vec<DataspaceDocument>> {
+    writer: Arc<Mutex<BufWriter<impl Write + Send>>>,
+    first: Arc<RwLock<bool>>,
+) -> Result<()> {
     let collection_ids = ids_selector(server, community_handle)?;
-    let documents = collection_ids
-        .par_iter()
-        .try_fold(Vec::new, |accumulator, collection_id| {
-            get_documents_in_collection(&accumulator, server, *collection_id, rest_limit, 0, 0)
-        })
-        .try_reduce(Vec::new, |mut a, b| {
-            a.extend(b);
-            Ok(a)
-        })?;
-
-    Ok(documents)
+    collection_ids.par_iter().try_for_each(|collection_id| {
+        get_documents_in_collection(
+            server,
+            *collection_id,
+            rest_limit,
+            0,
+            0,
+            writer.clone(),
+            first.clone(),
+        )
+    })
 }
 
 // This function recursively fetches paginated API results and retries on error
 fn get_documents_in_collection(
-    documents: &[DataspaceDocument],
     server: &str,
     collection_id: u32,
     rest_limit: u32,
     offset: u32,
     attempt: u8,
-) -> Result<Vec<DataspaceDocument>> {
+    writer: Arc<Mutex<BufWriter<impl Write + Send>>>,
+    first: Arc<RwLock<bool>>,
+) -> Result<()> {
     let url = collection_url(
         server,
         &collection_id.to_string(),
@@ -109,37 +128,49 @@ fn get_documents_in_collection(
         );
     }
     let new_documents = match get_url_as_json(&url) {
-        Ok(docs) => Ok(docs),
+        Ok(docs) => docs,
         Err(e) => {
             // If there was an error, increment the count of attempts and recurse
-            if attempt < config::THESES_RETRY_ATTEMPTS {
+            return if attempt < config::THESES_RETRY_ATTEMPTS {
                 get_documents_in_collection(
-                    documents,
                     server,
                     collection_id,
                     rest_limit,
                     offset,
                     attempt + 1,
+                    writer,
+                    first,
                 )
             } else {
                 Err(e)
+            };
+        }
+    };
+    if new_documents.is_empty() {
+        Ok(())
+    } else {
+        for document in new_documents {
+            let any_documents_written = !*first.read().unwrap();
+            let mut writer = writer.lock().unwrap();
+            if any_documents_written {
+                write_buffer(&mut writer, b",")?;
+                serde_json::to_writer_pretty(&mut *writer, &SolrDocument::from(&document))?;
+            } else {
+                serde_json::to_writer_pretty(&mut *writer, &SolrDocument::from(&document))?;
+                let mut first = first.write().unwrap();
+                *first = false;
             }
         }
-    }?;
-    if new_documents.is_empty() {
-        Ok(documents.to_vec())
-    } else {
         // If we didn't get an empty JSON, there are still more pages of data to fetch, so
         // recurse with a higher offset (i.e. fetch the next page)
-        let mut combined = documents.to_vec();
-        combined.extend(new_documents);
         get_documents_in_collection(
-            &combined,
             server,
             collection_id,
             rest_limit,
             offset + rest_limit,
             0,
+            writer,
+            first,
         )
     }
 }
@@ -190,15 +221,25 @@ mod tests {
             .create();
 
         let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec![361u32]);
-        let docs =
-            get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, ids_selector).unwrap();
+        let writer = Arc::new(Mutex::new(BufWriter::new(Vec::new())));
+
+        write_buffer(&mut writer.lock().unwrap(), b"[").unwrap();
+        write_documents(
+            &server.url(),
+            "88435/dsp019c67wm88m",
+            100,
+            ids_selector,
+            Arc::clone(&writer),
+            Arc::new(RwLock::new(true)),
+        )
+        .unwrap();
+        write_buffer(&mut writer.lock().unwrap(), b"]").unwrap();
+
+        let docs = docs_from_writer(writer);
         assert_eq!(docs.len(), 1);
         assert_eq!(
-            docs[0].title.clone().unwrap(),
-            vec![
-                "Calibration of the Princeton University Subsonic Instructional Wind Tunnel"
-                    .to_owned()
-            ]
+            docs[0].title_display.clone().unwrap(),
+            "Calibration of the Princeton University Subsonic Instructional Wind Tunnel"
         );
 
         mock_page1.assert();
@@ -218,8 +259,16 @@ mod tests {
             .create();
 
         let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec![361u32]);
-        let docs = get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, ids_selector);
-        assert!(docs.is_err());
+        let writer = Arc::new(Mutex::new(BufWriter::new(Vec::new())));
+        let result = write_documents(
+            &server.url(),
+            "88435/dsp019c67wm88m",
+            100,
+            ids_selector,
+            Arc::clone(&writer),
+            Arc::new(RwLock::new(true)),
+        );
+        assert!(result.is_err());
 
         mock_page1.assert();
     }
@@ -238,5 +287,16 @@ mod tests {
                 .is_err()
         );
         mock_bad_response.assert();
+    }
+
+    fn docs_from_writer(writer: Arc<Mutex<BufWriter<Vec<u8>>>>) -> Vec<SolrDocument> {
+        let bytes = Arc::try_unwrap(writer)
+            .unwrap()
+            .into_inner()
+            .unwrap()
+            .into_inner()
+            .unwrap();
+        let content = String::from_utf8(bytes).unwrap();
+        serde_json::from_str(&content).unwrap()
     }
 }
