@@ -6,6 +6,7 @@ pub mod legacy_dataspace;
 mod config;
 mod department;
 mod embargo;
+mod errors;
 mod holdings;
 mod language;
 mod program;

@@ -5,14 +5,15 @@ use std::{
     error::Error,
     fs::File,
     io::{BufWriter, Write},
+    path::Path,
 };
 
-use crate::solr::SolrDocument;
 use crate::theses::{
     config,
     dataspace::{community, document::DataspaceDocument},
     temp_theses_cache_path,
 };
+use crate::{solr::SolrDocument, theses::errors::ThesesError};
 use anyhow::{Result, anyhow};
 use log::debug;
 use magnus::Ruby;
@@ -74,7 +75,12 @@ fn magnus_err(ruby: &Ruby, value: impl Error) -> magnus::Error {
     magnus::Error::new(ruby.exception_runtime_error(), value.to_string())
 }
 
-// The main function for thesis caching, to be called from Ruby
+fn buf_writer(path: impl AsRef<Path>) -> Result<BufWriter<impl Write>, ThesesError> {
+    let file = File::create(path).map_err(|_| ThesesError::CouldNotOpenFileForWriting)?;
+    Ok(BufWriter::new(file))
+}
+
+/// Cache theses to a file on disk, to be called from Ruby
 pub fn collections_as_solr(
     ruby: &Ruby,
     server: String,
@@ -87,8 +93,7 @@ pub fn collections_as_solr(
             community::get_collection_list(server, handle, community::get_community_id)
         })
         .map_err(|e| magnus_err_from_anyhow_err(ruby, &e))?;
-    let file = File::create(temp_theses_cache_path()).map_err(|value| magnus_err(ruby, value))?;
-    let mut writer = BufWriter::new(file);
+    let mut writer = buf_writer(temp_theses_cache_path()).map_err(|err| err.to_magnus(ruby))?;
     serde_json::to_writer_pretty(
         &mut writer,
         &documents
