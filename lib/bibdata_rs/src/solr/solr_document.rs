@@ -163,7 +163,7 @@ mod tests {
     #[test]
     fn it_can_serialize_an_electronic_access() {
         let document = SolrDocument::builder()
-            .with_electronic_access_1display(Some(ElectronicAccess {
+            .with_electronic_access_1display(Some(&ElectronicAccess {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
                 link_text: "DataSpace".to_owned(),
                 link_description: Some("Full text".to_owned()),
@@ -179,7 +179,7 @@ mod tests {
     #[test]
     fn it_can_serialize_an_author_roles() {
         let document = SolrDocument::builder()
-            .with_author_roles_1display(AuthorRoles {
+            .with_author_roles_1display(&AuthorRoles {
                 primary_author: Some(String::from("Prang, Louis")),
                 ..Default::default()
             })
