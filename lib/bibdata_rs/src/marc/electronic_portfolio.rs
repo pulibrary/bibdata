@@ -97,7 +97,7 @@ fn dates(record: &Record) -> Vec<Field> {
         .collect_vec()
 }
 
-fn embargo_to_embargo_length(embargo: Field) -> i16 {
+fn years_since_embargo_start(embargo: Field) -> i16 {
     let default_subfield = Subfield::new("c", "").ok().unwrap();
     let year = Zoned::now().year();
     let embargo_length: i16 = embargo.first_subfield("c").unwrap_or(&default_subfield).content().parse().unwrap_or_default();
@@ -127,12 +127,12 @@ fn compute_date(record: &Record, field: Field, date_type: DateType) -> String {
 
     let default_subfield = Subfield::new("b", "").ok().unwrap();
     match (date_type, indicator.as_str()) {
-        (StartDate, "<=") => embargo_to_embargo_length(embargo).to_string(),
-        (StartDate, "<") => (embargo_to_embargo_length(embargo) + 1).to_string(),
+        (StartDate, "<=") => years_since_embargo_start(embargo).to_string(),
+        (StartDate, "<") => (years_since_embargo_start(embargo) + 1).to_string(),
         (StartDate, _) => date.first_subfield("b").unwrap_or(&default_subfield).content().to_owned(),
-        (EndDate, ">=") => embargo_to_embargo_length(embargo).to_string(),
+        (EndDate, ">=") => years_since_embargo_start(embargo).to_string(),
         (EndDate, "<=" | "<") => "latest".to_owned(),
-        (EndDate, ">") => (embargo_to_embargo_length(embargo) - 1).to_string(),
+        (EndDate, ">") => (years_since_embargo_start(embargo) - 1).to_string(),
         (EndDate, _) => match date.first_subfield("c") {
             Some(f) => f.content().to_owned(),
             None => "latest".to_owned()
@@ -188,7 +188,7 @@ use super::*;
     }
 
     #[test]
-    fn it_get_display_format_from_record() {
+    fn it_gets_display_format_from_record() {
         let record =
             Record::from_breaker("=LDR 02646nas a2200673 i 4500")
                 .unwrap();
@@ -196,7 +196,7 @@ use super::*;
     }
 
     #[test]
-    fn it_get_source_id_from_record() {
+    fn it_gets_source_id_from_record() {
         let record =
             Record::from_breaker("=001 99122306151806421")
                 .unwrap();
@@ -265,7 +265,7 @@ use super::*;
     fn it_converts_embargo_length_to_date() {
         let mut field = Field::new("954").ok().unwrap();
         let _ = field.add_subfield("c", "2015");
-        assert_eq!(embargo_to_embargo_length(field), 11);
+        assert_eq!(years_since_embargo_start(field), Zoned::now().year() - 2015);
     }
 
     #[test]
