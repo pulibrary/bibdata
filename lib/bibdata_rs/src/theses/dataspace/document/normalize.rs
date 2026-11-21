@@ -95,7 +95,7 @@ impl<'a> DataspaceDocument {
     }
 
     pub fn languages(&self) -> Vec<&str> {
-        language::codes_to_english_names(&self.language_iso)
+        language::codes_to_english_names(self.language_iso.as_deref())
     }
 
     pub fn location(&self) -> Option<LibraryFacet> {
