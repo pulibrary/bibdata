@@ -4,7 +4,7 @@ use codes_iso_639::part_1::LanguageCode;
 use itertools::Itertools;
 use std::str::FromStr;
 
-pub fn codes_to_english_names(codes: &Option<Vec<String>>) -> Vec<&str> {
+pub fn codes_to_english_names<'a>(codes: Option<&'a [String]>) -> Vec<&'a str> {
     let names: Vec<&str> = match codes.as_ref() {
         Some(names) => names
             .iter()
@@ -52,17 +52,17 @@ mod tests {
 
     #[test]
     fn test_codes_to_english_names() {
-        assert_eq!(codes_to_english_names(&None), vec!["English"]);
+        assert_eq!(codes_to_english_names(None), vec!["English"]);
         assert_eq!(
-            codes_to_english_names(&Some(vec!["fr".to_owned()])),
+            codes_to_english_names(Some(&vec!["fr".to_owned()])),
             vec!["French"]
         );
         assert_eq!(
-            codes_to_english_names(&Some(vec!["el".to_owned(), "it".to_owned()])),
+            codes_to_english_names(Some(&vec!["el".to_owned(), "it".to_owned()])),
             vec!["Greek, Modern (1453-)", "Italian"]
         );
         assert_eq!(
-            codes_to_english_names(&Some(vec!["en_US".to_owned(), "en".to_owned()])),
+            codes_to_english_names(Some(&vec!["en_US".to_owned(), "en".to_owned()])),
             vec!["English"]
         );
     }
