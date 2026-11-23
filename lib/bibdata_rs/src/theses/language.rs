@@ -4,7 +4,7 @@ use codes_iso_639::part_1::LanguageCode;
 use itertools::Itertools;
 use std::str::FromStr;
 
-pub fn codes_to_english_names<'a>(codes: Option<&'a [String]>) -> Vec<&'a str> {
+pub fn codes_to_english_names(codes: Option<&[String]>) -> Vec<&str> {
     let names: Vec<&str> = match codes.as_ref() {
         Some(names) => names
             .iter()
