@@ -5,10 +5,8 @@ use marctk::{Controlfield, Field, Record, Subfield};
 use DateType::*;
 
 use crate::marc::{
-    alma::AlmaElectronicPortfolio,
-    extract_values::ExtractValues,
-    record_facet_mapping::formats,
-    utils::display_format::display_format
+    alma::AlmaElectronicPortfolio, extract_values::ExtractValues, record_facet_mapping::formats,
+    utils::display_format::display_format,
 };
 
 enum DateType {
@@ -31,31 +29,45 @@ struct PortfolioFields {
 pub fn electronic_portfolio_s(record: &Record) -> Vec<Option<String>> {
     let fields = active_fields(record).collect_vec();
 
-    fields.iter().map(|field| serde_json::to_string(&field).ok()).collect_vec()
+    fields
+        .iter()
+        .map(|field| serde_json::to_string(&field).ok())
+        .collect_vec()
 }
 
 fn active_fields(record: &Record) -> impl Iterator<Item = PortfolioFields> {
-    record
-        .extract_field_values_by(
-            |field| {
-                matches!(
-                    AlmaElectronicPortfolio::try_from(field),
-                    Ok(AlmaElectronicPortfolio::Active)
-                )
-            },
-            |field| Some(PortfolioFields {
-                desc: field.first_subfield("k").unwrap_or(&Subfield::new("k", "").ok().unwrap()).content().to_owned(),
+    record.extract_field_values_by(
+        |field| {
+            matches!(
+                AlmaElectronicPortfolio::try_from(field),
+                Ok(AlmaElectronicPortfolio::Active)
+            )
+        },
+        |field| {
+            Some(PortfolioFields {
+                desc: field
+                    .first_subfield("k")
+                    .unwrap_or(&Subfield::new("k", "").ok().unwrap())
+                    .content()
+                    .to_owned(),
                 display_format: format(record),
                 end: compute_date(record, field.clone(), EndDate),
-                notes: field.get_subfields("i")
-                    .iter().map(|s| s.content().to_owned())
+                notes: field
+                    .get_subfields("i")
+                    .iter()
+                    .map(|s| s.content().to_owned())
                     .collect_vec(),
                 source_id: source_id(record),
                 start: compute_date(record, field.clone(), StartDate),
                 title: title(field),
-                url: field.first_subfield("x").unwrap_or(&Subfield::new("x", "").ok().unwrap()).content().to_owned()
+                url: field
+                    .first_subfield("x")
+                    .unwrap_or(&Subfield::new("x", "").ok().unwrap())
+                    .content()
+                    .to_owned(),
             })
-        )
+        },
+    )
 }
 
 fn title(field: &Field) -> String {
@@ -70,15 +82,24 @@ fn format(record: &Record) -> String {
 }
 
 fn source_id(record: &Record) -> String {
-    record.get_control_fields("001").first().unwrap_or(&&Controlfield::new("001", "").ok().unwrap()).content().to_owned()
+    record
+        .get_control_fields("001")
+        .first()
+        .unwrap_or(&&Controlfield::new("001", "").ok().unwrap())
+        .content()
+        .to_owned()
 }
 
 fn embargos(record: &Record) -> Vec<Field> {
     let default_subfield = Subfield::new("a", "").ok().unwrap();
-    record.get_fields("954")
+    record
+        .get_fields("954")
         .iter()
         .filter(|field| {
-            let code = field.first_subfield("a").unwrap_or(&default_subfield).content();
+            let code = field
+                .first_subfield("a")
+                .unwrap_or(&default_subfield)
+                .content();
             code.starts_with("53") && code.ends_with("06421")
         })
         .map(|field| (*field).clone())
@@ -87,10 +108,14 @@ fn embargos(record: &Record) -> Vec<Field> {
 
 fn dates(record: &Record) -> Vec<Field> {
     let default_subfield = Subfield::new("a", "").ok().unwrap();
-    record.get_fields("953")
+    record
+        .get_fields("953")
         .iter()
         .filter(|field| {
-            let code = field.first_subfield("a").unwrap_or(&default_subfield).content();
+            let code = field
+                .first_subfield("a")
+                .unwrap_or(&default_subfield)
+                .content();
             code.starts_with("53") && code.ends_with("06421")
         })
         .map(|field| (*field).clone())
@@ -100,49 +125,61 @@ fn dates(record: &Record) -> Vec<Field> {
 fn years_since_embargo_start(embargo: Field) -> i16 {
     let default_subfield = Subfield::new("c", "").ok().unwrap();
     let year = Zoned::now().year();
-    let embargo_length: i16 = embargo.first_subfield("c").unwrap_or(&default_subfield).content().parse().unwrap_or_default();
+    let embargo_length: i16 = embargo
+        .first_subfield("c")
+        .unwrap_or(&default_subfield)
+        .content()
+        .parse()
+        .unwrap_or_default();
     year - embargo_length
 }
 
 fn url_decode(encoded_string: &str) -> String {
-    encoded_string
-        .replace("&gt;", ">")
-        .replace("&lt;", "<")
+    encoded_string.replace("&gt;", ">").replace("&lt;", "<")
 }
 
 fn compute_date(record: &Record, field: Field, date_type: DateType) -> String {
     let default_subfield = Subfield::new("a", "").ok().unwrap();
     let default_field = Field::new("953").ok().unwrap();
-    let code = field.first_subfield("8").unwrap_or(&default_subfield).content();
+    let code = field
+        .first_subfield("8")
+        .unwrap_or(&default_subfield)
+        .content();
     let embargo = embargos(record)
         .into_iter()
-        .find(|e| e.first_subfield("a").unwrap_or(&default_subfield).content() == code).unwrap_or(default_field.clone());
+        .find(|e| e.first_subfield("a").unwrap_or(&default_subfield).content() == code)
+        .unwrap_or(default_field.clone());
     let date = dates(record)
         .into_iter()
-        .find(|d| d.first_subfield("a").unwrap_or(&default_subfield).content() == code).unwrap_or(default_field);
+        .find(|d| d.first_subfield("a").unwrap_or(&default_subfield).content() == code)
+        .unwrap_or(default_field);
     let indicator = match embargo.first_subfield("b") {
         Some(s) => url_decode(s.content()),
-        None => "No Indicator".to_owned()
+        None => "No Indicator".to_owned(),
     };
 
     let default_subfield = Subfield::new("b", "").ok().unwrap();
     match (date_type, indicator.as_str()) {
         (StartDate, "<=") => years_since_embargo_start(embargo).to_string(),
         (StartDate, "<") => (years_since_embargo_start(embargo) + 1).to_string(),
-        (StartDate, _) => date.first_subfield("b").unwrap_or(&default_subfield).content().to_owned(),
+        (StartDate, _) => date
+            .first_subfield("b")
+            .unwrap_or(&default_subfield)
+            .content()
+            .to_owned(),
         (EndDate, ">=") => years_since_embargo_start(embargo).to_string(),
         (EndDate, "<=" | "<") => "latest".to_owned(),
         (EndDate, ">") => (years_since_embargo_start(embargo) - 1).to_string(),
         (EndDate, _) => match date.first_subfield("c") {
             Some(f) => f.content().to_owned(),
-            None => "latest".to_owned()
-        }
+            None => "latest".to_owned(),
+        },
     }
 }
 
 #[cfg(test)]
 mod tests {
-use super::*;
+    use super::*;
 
     #[test]
     fn it_can_build_electronic_portfolio_s() {
@@ -177,64 +214,54 @@ use super::*;
 
     #[test]
     fn it_does_not_error_with_no_portfolio_data() {
-        let record =
-            Record::from_breaker("=LDR 02646nas a2200673 i 4500
-=001 99122306151806421")
-                .unwrap();
-        assert_eq!(
-            electronic_portfolio_s(&record),
-            vec![]
+        let record = Record::from_breaker(
+            "=LDR 02646nas a2200673 i 4500
+=001 99122306151806421",
         )
+        .unwrap();
+        assert_eq!(electronic_portfolio_s(&record), vec![])
     }
 
     #[test]
     fn it_gets_display_format_from_record() {
-        let record =
-            Record::from_breaker("=LDR 02646nas a2200673 i 4500")
-                .unwrap();
+        let record = Record::from_breaker("=LDR 02646nas a2200673 i 4500").unwrap();
         assert_eq!(format(&record), "Journal");
     }
 
     #[test]
     fn it_gets_source_id_from_record() {
-        let record =
-            Record::from_breaker("=001 99122306151806421")
-                .unwrap();
+        let record = Record::from_breaker("=001 99122306151806421").unwrap();
         assert_eq!(source_id(&record), "99122306151806421");
     }
 
     #[test]
     fn it_gets_embargos_from_954() {
-        let record =
-            Record::from_breaker("=001 99122306151806421
+        let record = Record::from_breaker(
+            "=001 99122306151806421
 =951 \\$aAvailable$kAvailable from 1869 volume: 1 issue: 1.$w2021-07-13 12:24:58$853443322630006421
-=954 \\\\$a53443322630006421")
-                .unwrap();
-        let mut field = Field::new("954").ok().unwrap();
-            let _ = field.set_ind1(" ");
-            let _ = field.set_ind2(" ");
-            let _ = field.add_subfield("a", "53443322630006421");
-        assert_eq!(
-            embargos(&record),
-            vec![field]
+=954 \\\\$a53443322630006421",
         )
+        .unwrap();
+        let mut field = Field::new("954").ok().unwrap();
+        let _ = field.set_ind1(" ");
+        let _ = field.set_ind2(" ");
+        let _ = field.add_subfield("a", "53443322630006421");
+        assert_eq!(embargos(&record), vec![field])
     }
 
     #[test]
     fn it_gets_dates_from_953() {
-        let record =
-            Record::from_breaker("=001 99122306151806421
-=953 \\\\$a53443322630006421$b1990")
-                .unwrap();
-        let mut field = Field::new("953").ok().unwrap();
-            let _ = field.set_ind1(" ");
-            let _ = field.set_ind2(" ");
-            let _ = field.add_subfield("a", "53443322630006421");
-            let _ = field.add_subfield("b", "1990");
-        assert_eq!(
-            dates(&record),
-            vec![field]
+        let record = Record::from_breaker(
+            "=001 99122306151806421
+=953 \\\\$a53443322630006421$b1990",
         )
+        .unwrap();
+        let mut field = Field::new("953").ok().unwrap();
+        let _ = field.set_ind1(" ");
+        let _ = field.set_ind2(" ");
+        let _ = field.add_subfield("a", "53443322630006421");
+        let _ = field.add_subfield("b", "1990");
+        assert_eq!(dates(&record), vec![field])
     }
 
     #[test]
@@ -253,10 +280,10 @@ use super::*;
         let _ = field.add_subfield("8", "53443322630006421");
 
         assert_eq!(
-            record.extract_field_values_by(
-                |f| f.tag() == "951",
-                |r| Some(r)
-            ).collect_vec().first(),
+            record
+                .extract_field_values_by(|f| f.tag() == "951", |r| Some(r))
+                .collect_vec()
+                .first(),
             Some(&&field)
         )
     }
@@ -270,64 +297,52 @@ use super::*;
 
     #[test]
     fn it_computes_start_and_end_dates_correctly() {
-        let record_lt_eq =
-            Record::from_breaker("=953 \\\\$a53443322630006421$b1990
-=954 \\\\$a53443322630006421$b&lt;=$c1")
-                .unwrap();
-        let record_lt =
-            Record::from_breaker("=953 \\\\$a53443322630006421$b1990
-=954 \\\\$a53443322630006421$b&lt;$c1")
-                .unwrap();
-        let record_gt_eq =
-            Record::from_breaker("=953 \\\\$a53443322630006421$b1990
-=954 \\\\$a53443322630006421$b&gt;=$c1")
-                .unwrap();
-        let record_gt =
-            Record::from_breaker("=953 \\\\$a53443322630006421$b1990
-=954 \\\\$a53443322630006421$b&gt;$c1")
-                .unwrap();
-            let record_eq_gt =
-            Record::from_breaker("=953 \\\\$a53443322630006421$b1990$c2015
-=954 \\\\$a53443322630006421$b=&gt;$c1")
-                .unwrap();
-            let record_no_date =
-            Record::from_breaker("=953 \\\\$a53443322630006421$b1990
-=954 \\\\$a53443322630006421$b&=gt;")
-                .unwrap();
+        let record_lt_eq = Record::from_breaker(
+            "=953 \\\\$a53443322630006421$b1990
+=954 \\\\$a53443322630006421$b&lt;=$c1",
+        )
+        .unwrap();
+        let record_lt = Record::from_breaker(
+            "=953 \\\\$a53443322630006421$b1990
+=954 \\\\$a53443322630006421$b&lt;$c1",
+        )
+        .unwrap();
+        let record_gt_eq = Record::from_breaker(
+            "=953 \\\\$a53443322630006421$b1990
+=954 \\\\$a53443322630006421$b&gt;=$c1",
+        )
+        .unwrap();
+        let record_gt = Record::from_breaker(
+            "=953 \\\\$a53443322630006421$b1990
+=954 \\\\$a53443322630006421$b&gt;$c1",
+        )
+        .unwrap();
+        let record_eq_gt = Record::from_breaker(
+            "=953 \\\\$a53443322630006421$b1990$c2015
+=954 \\\\$a53443322630006421$b=&gt;$c1",
+        )
+        .unwrap();
+        let record_no_date = Record::from_breaker(
+            "=953 \\\\$a53443322630006421$b1990
+=954 \\\\$a53443322630006421$b&=gt;",
+        )
+        .unwrap();
         let mut field = Field::new("951").ok().unwrap();
         let _ = field.add_subfield("8", "53443322630006421");
         assert_eq!(
             compute_date(&record_lt_eq, field.clone(), StartDate),
             "2025"
         );
-        assert_eq!(
-            compute_date(&record_lt, field.clone(), StartDate),
-            "2026"
-        );
-        assert_eq!(
-            compute_date(&record_gt, field.clone(), StartDate),
-            "1990"
-        );
-        assert_eq!(
-            compute_date(&record_gt_eq, field.clone(), EndDate),
-            "2025"
-        );
+        assert_eq!(compute_date(&record_lt, field.clone(), StartDate), "2026");
+        assert_eq!(compute_date(&record_gt, field.clone(), StartDate), "1990");
+        assert_eq!(compute_date(&record_gt_eq, field.clone(), EndDate), "2025");
         assert_eq!(
             compute_date(&record_lt_eq, field.clone(), EndDate),
             "latest"
         );
-        assert_eq!(
-            compute_date(&record_lt, field.clone(), EndDate),
-            "latest"
-        );
-        assert_eq!(
-            compute_date(&record_gt, field.clone(), EndDate),
-            "2024"
-        );
-        assert_eq!(
-            compute_date(&record_eq_gt, field.clone(), EndDate),
-            "2015"
-        );
+        assert_eq!(compute_date(&record_lt, field.clone(), EndDate), "latest");
+        assert_eq!(compute_date(&record_gt, field.clone(), EndDate), "2024");
+        assert_eq!(compute_date(&record_eq_gt, field.clone(), EndDate), "2015");
         assert_eq!(
             compute_date(&record_no_date, field.clone(), EndDate),
             "latest"
