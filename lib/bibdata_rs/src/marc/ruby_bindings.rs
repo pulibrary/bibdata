@@ -200,10 +200,6 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         extract_marc!("514abcdefghijkm")(&record),
     )?;
     hash.aset(
-        "data_source_display",
-        extract_marc_trim_punctuation(ruby, "786at", &record),
-    )?;
-    hash.aset(
         "date_place_event_notes_display",
         extract_marc!("5183adop")(&record),
     )?;
@@ -348,6 +344,10 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "continues_in_part_display",
         crate::marc::linking_entry::continues_in_part_display(&record),
+    )?;
+    hash.aset(
+        "data_source_display",
+        crate::marc::linking_entry::data_source_display(&record),
     )?;
     hash.aset(
         "formed_from_display",
