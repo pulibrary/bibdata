@@ -5,7 +5,7 @@ use crate::{
     marc::{
         extract_values::ExtractValues,
         string_normalize::{maybe_not_empty, trim_punctuation},
-        variable_length_field::join_subfields_by_code,
+        variable_length_field::{extract_marc, join_subfields_by_code},
     },
 };
 
@@ -62,6 +62,12 @@ pub fn merged_to_form_display(record: &Record) -> Vec<String> {
 }
 pub fn changed_back_to_display(record: &Record) -> Vec<String> {
     a_t_subfields_display(record, "785", &["8"])
+}
+pub fn data_source_display(record: &Record) -> Vec<String> {
+    extract_marc!("786at")(record)
+        .into_iter()
+        .map(|s| trim_punctuation(&s))
+        .collect()
 }
 
 #[cfg(test)]
@@ -259,5 +265,20 @@ mod tests {
     fn handles_non_latin_titles() {
         let record = Record::from_breaker("=785 08$t日本語のタイトル").unwrap();
         assert_eq!(changed_back_to_display(&record), vec!["日本語のタイトル"]);
+    }
+
+    #[test]
+    fn data_source_display_uses_786_a_and_t() {
+        let record = Record::from_breaker("=786 00$aData Source Title, $tSubtitle").unwrap();
+        assert_eq!(
+            data_source_display(&record),
+            vec!["Data Source Title, Subtitle"]
+        );
+    }
+
+    #[test]
+    fn data_source_display_trims_punctuation() {
+        let record = Record::from_breaker("=786 00$aSource : $tVolume One.").unwrap();
+        assert_eq!(data_source_display(&record), vec!["Source : Volume One"]);
     }
 }
