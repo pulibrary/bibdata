@@ -32,6 +32,7 @@ pub mod subject;
 pub mod variable_length_field;
 
 mod figgy;
+mod linking_entry;
 mod non_latin;
 mod ruby_bindings;
 mod string_normalize;
