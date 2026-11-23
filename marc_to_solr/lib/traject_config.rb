@@ -268,58 +268,58 @@ rust_multi_value_field 'issued_with_display'
 # Continues:
 #    780 00 at
 #    780 02 at
-to_field 'continues_display', extract_marc('780|00|at:780|02|at', trim_punctuation: true)
+rust_multi_value_field 'continues_display'
 
 # Continues in part:
 #    780 01 at
 #    780 03 at
-to_field 'continues_in_part_display', extract_marc('780|01|at:780|03|at', trim_punctuation: true)
+rust_multi_value_field 'continues_in_part_display'
 
 # Formed from:
 #    780 04 at
-to_field 'formed_from_display', extract_marc('780|04|at', trim_punctuation: true)
+rust_multi_value_field 'formed_from_display'
 
 # Absorbed:
 #    780 05 at
-to_field 'absorbed_display', extract_marc('780|05|at', trim_punctuation: true)
+rust_multi_value_field 'absorbed_display'
 
 # Absorbed in part:
 #    780 06 at
-to_field 'absorbed_in_part_display', extract_marc('780|06|at', trim_punctuation: true)
+rust_multi_value_field 'absorbed_in_part_display'
 
 # Separated from:
 #    780 07 at
-to_field 'separated_from_display', extract_marc('780|07|at', trim_punctuation: true)
+rust_multi_value_field 'separated_from_display'
 
 # Continued by:
 #    785 00 at
 #    785 02 at
-to_field 'continued_by_display', extract_marc('785|00|at:785|02|at', trim_punctuation: true)
+rust_multi_value_field 'continued_by_display'
 
 # Continued in part by:
 #    785 01 at
 #    785 03 at
-to_field 'continued_in_part_by_display', extract_marc('785|01|at:785|03|at', trim_punctuation: true)
+rust_multi_value_field 'continued_in_part_by_display'
 
 # Absorbed by:
 #    785 04 at
-to_field 'absorbed_by_display', extract_marc('785|04|at', trim_punctuation: true)
+rust_multi_value_field 'absorbed_by_display'
 
 # Absorbed in part by:
 #    785 05 at
-to_field 'absorbed_in_part_by_display', extract_marc('785|05|at', trim_punctuation: true)
+rust_multi_value_field 'absorbed_in_part_by_display'
 
 # Split into:
 #    785 06 at
-to_field 'split_into_display', extract_marc('785|06|at', trim_punctuation: true)
+rust_multi_value_field 'split_into_display'
 
 # Merged to form:
 #    785 07 at
-to_field 'merged_to_form_display', extract_marc('785|07|at', trim_punctuation: true)
+rust_multi_value_field 'merged_to_form_display'
 
 # Changed back to:
 #    785 08 at
-to_field 'changed_back_to_display', extract_marc('785|08|at', trim_punctuation: true)
+rust_multi_value_field 'changed_back_to_display'
 
 # Frequency:
 #    310 XX ab

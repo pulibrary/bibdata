@@ -125,7 +125,7 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
         .ok()
         .and_then(|date| date.maybe_to_string());
 
-    let hash = ruby.hash_new_capa(165);
+    let hash = ruby.hash_new_capa(178);
     hash.aset("aat_s", ruby.ary_from_iter(genre::aat_s(&record)))?;
     hash.aset("action_notes_1display", action_notes_1display)?;
     hash.aset("access_restrictions_note_display", access_notes(&record))?;
@@ -340,6 +340,58 @@ fn solr_fields(ruby: &Ruby, record: magnus::RObject) -> Result<RHash, magnus::Er
     hash.aset(
         "issued_with_display",
         extract_marc_trim_punctuation(ruby, "777at", &record),
+    )?;
+    hash.aset(
+        "continues_display",
+        crate::marc::linking_entry::continues_display(&record),
+    )?;
+    hash.aset(
+        "continues_in_part_display",
+        crate::marc::linking_entry::continues_in_part_display(&record),
+    )?;
+    hash.aset(
+        "formed_from_display",
+        crate::marc::linking_entry::formed_from_display(&record),
+    )?;
+    hash.aset(
+        "absorbed_display",
+        crate::marc::linking_entry::absorbed_display(&record),
+    )?;
+    hash.aset(
+        "absorbed_in_part_display",
+        crate::marc::linking_entry::absorbed_in_part_display(&record),
+    )?;
+    hash.aset(
+        "separated_from_display",
+        crate::marc::linking_entry::separated_from_display(&record),
+    )?;
+    hash.aset(
+        "continued_by_display",
+        crate::marc::linking_entry::continued_by_display(&record),
+    )?;
+    hash.aset(
+        "continued_in_part_by_display",
+        crate::marc::linking_entry::continued_in_part_by_display(&record),
+    )?;
+    hash.aset(
+        "absorbed_by_display",
+        crate::marc::linking_entry::absorbed_by_display(&record),
+    )?;
+    hash.aset(
+        "absorbed_in_part_by_display",
+        crate::marc::linking_entry::absorbed_in_part_by_display(&record),
+    )?;
+    hash.aset(
+        "split_into_display",
+        crate::marc::linking_entry::split_into_display(&record),
+    )?;
+    hash.aset(
+        "merged_to_form_display",
+        crate::marc::linking_entry::merged_to_form_display(&record),
+    )?;
+    hash.aset(
+        "changed_back_to_display",
+        crate::marc::linking_entry::changed_back_to_display(&record),
     )?;
     hash.aset(
         "lccn_s",
