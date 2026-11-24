@@ -23,6 +23,8 @@ pub struct Library<'a> {
 pub struct Location<'a> {
     pub label: &'a str,
     #[serde(default)]
+    pub id: Option<u64>,
+    #[serde(default)]
     pub code: Option<&'a str>,
     #[serde(default)]
     pub gfa_pickup: Option<&'a str>,
@@ -60,6 +62,7 @@ pub struct LibraryRuby {
 #[derive(Clone)]
 pub struct LocationRuby {
     pub label: String,
+    pub id: Option<u64>,
     pub code: String,
     pub library: LibraryRuby,
     pub holding_library: Option<LibraryRuby>,
@@ -78,6 +81,7 @@ impl<'a> From<&Location<'a>> for LocationRuby {
     fn from(location: &Location<'a>) -> Self {
         LocationRuby {
             label: location.label.to_string(),
+            id: location.id,
             code: location
                 .code
                 .or(location.gfa_pickup)
@@ -115,6 +119,10 @@ impl LocationRuby {
 
     fn code(&self) -> String {
         self.code.clone()
+    }
+
+    fn id(&self) -> Option<u64> {
+        self.id
     }
     fn aeon_location(&self) -> bool {
         self.aeon_location
@@ -240,5 +248,21 @@ mod tests {
             .expect("annex$doc should exist");
         assert_eq!(loc.gfa_pickup, None);
         assert_eq!(loc.code, Some("annex$doc"));
+    }
+
+    #[test]
+    fn delivery_locations_have_an_id() {
+        let loc = DELIVERY_LOCATIONS
+            .get("PQ")
+            .expect("PQ should be a delivery location");
+        assert_eq!(loc.id, Some(1));
+    }
+
+    #[test]
+    fn holding_locations_have_no_id() {
+        let loc = HOLDING_LOCATIONS
+            .get("annex$doc")
+            .expect("annex$doc should exist");
+        assert_eq!(loc.id, None);
     }
 }

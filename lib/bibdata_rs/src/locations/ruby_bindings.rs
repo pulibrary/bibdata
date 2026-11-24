@@ -4,6 +4,7 @@ use magnus::{RModule, Ruby, function, method, prelude::*};
 pub fn register_ruby_methods(ruby: &Ruby, parent_module: &RModule) -> Result<(), magnus::Error> {
     let class = parent_module.define_class("Location", ruby.class_object())?;
     class.define_method("label", method!(LocationRuby::label, 0))?;
+    class.define_method("id", method!(LocationRuby::id, 0))?;
     class.define_method("code", method!(LocationRuby::code, 0))?;
     class.define_method("aeon_location", method!(LocationRuby::aeon_location, 0))?;
     class.define_method(
@@ -200,5 +201,17 @@ mod tests {
             loc.library_label(),
             "Harold P. Furth Plasma Physics Library"
         );
+    }
+
+    #[test]
+    fn it_exposes_delivery_location_id() {
+        let loc = LocationRuby::delivery_location("PQ".to_owned()).unwrap();
+        assert_eq!(loc.id(), Some(1));
+    }
+
+    #[test]
+    fn holding_locations_have_no_id() {
+        let loc = LocationRuby::holding_location("annex$doc".to_owned()).unwrap();
+        assert_eq!(loc.id(), None);
     }
 }
