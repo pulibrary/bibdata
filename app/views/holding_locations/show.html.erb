@@ -15,46 +15,46 @@
 
 <p>
   <strong>Holding Library:</strong>
-  <%= holding_library_render @holding_location %>
+  <%= @holding_location_rust.holding_library_label %>
 </p>
 
 <p>
   <strong>Remote Storage:</strong>
-  <%= @holding_location.remote_storage %>
+  <%= @holding_location_rust.remote_storage %>
 </p>
 <p>
   <strong>Fulfillment Unit:</strong>
-  <%= @holding_location.fulfillment_unit %>
+  <%= @holding_location_rust.fulfillment_unit %>
 </p>
 
 <p>
   <strong>Aeon Location:</strong>
-  <%= @holding_location.aeon_location %>
+  <%= @holding_location_rust.aeon_location %>
 </p>
 
 <p>
   <strong>ReCAP Electronic Delivery Location:</strong>
-  <%= @holding_location.recap_electronic_delivery_location %>
+  <%= @holding_location_rust.recap_electronic_delivery_location %>
 </p>
 
 <p>
   <strong>Open:</strong>
-  <%= @holding_location.open %>
+  <%= @holding_location_rust.open %>
 </p>
 
 <p>
   <strong>Requestable:</strong>
-  <%= @holding_location.requestable %>
+  <%= @holding_location_rust.requestable %>
 </p>
 
 <p>
   <strong>Always Requestable:</strong>
-  <%= @holding_location.always_requestable %>
+  <%= @holding_location_rust.always_requestable %>
 </p>
 
 <p>
   <strong>Circulates:</strong>
-  <%= @holding_location.circulates %>
+  <%= @holding_location_rust.circulates %>
 </p>
 
 <p>
@@ -62,8 +62,9 @@
 	  <dt><strong>Delivery Locations:</strong></dt>
 	  <dd>
       <ul>
-        <% @holding_location.delivery_locations.each do |dl| %>
-        <li><%= link_to dl.label, dl %></li>
+        <% @holding_location_rust.delivery_location_codes.each do |delivery_location_code| %>
+          <% delivery_location = BibdataRs::Location.delivery_location(delivery_location_code) %>
+        <li><%= link_to delivery_location.label, delivery_location_path(delivery_location) %></li>
         <% end %>
       </ul>
 		</dd>
