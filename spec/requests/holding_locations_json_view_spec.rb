@@ -4,15 +4,41 @@ require 'rails_helper'
 
 describe 'HoldingLocation', type: :request do
   def stub_holding_location_rust(holding_location, label: nil, code: nil)
+    delivery_location_codes = holding_location.delivery_locations.map(&:gfa_pickup)
     rust_holding_location = instance_double(
       BibdataRs::Location,
       label: label || "Rust #{holding_location.label}",
-      code: code || "rust:#{holding_location.code}"
+      code: code || "rust:#{holding_location.code}",
+      holding_library_label: holding_location.holding_library&.label,
+      remote_storage: holding_location.remote_storage,
+      fulfillment_unit: holding_location.fulfillment_unit,
+      aeon_location: holding_location.aeon_location,
+      recap_electronic_delivery_location: holding_location.recap_electronic_delivery_location,
+      open: holding_location.open,
+      requestable: holding_location.requestable,
+      always_requestable: holding_location.always_requestable,
+      circulates: holding_location.circulates,
+      delivery_location_codes: delivery_location_codes
     )
 
-    allow(BibdataRs::Location).to receive(:holding_location)
+    allow(BibdataRs::Location)
+      .to receive(:holding_location)
       .with(holding_location.code)
       .and_return(rust_holding_location)
+
+    delivery_location_codes.uniq.each do |gfa_pickup|
+      delivery_location =
+        holding_location.delivery_locations.find { |d| d.gfa_pickup == gfa_pickup }
+      delivery_location_double = instance_double(
+        BibdataRs::Location,
+        label: delivery_location.label,
+        id: delivery_location.id
+      )
+      allow(BibdataRs::Location)
+        .to receive(:delivery_location)
+        .with(gfa_pickup)
+        .and_return(delivery_location_double)
+    end
 
     rust_holding_location
   end
